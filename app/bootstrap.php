@@ -58,8 +58,8 @@ if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']))
 $autoloader = require(APP_INCLUDE_VENDOR . DIRECTORY_SEPARATOR . 'autoload.php');
 
 // Save configuration object.
-require(APP_INCLUDE_LIB . '/FA/Config.php');
-require(APP_INCLUDE_LIB . '/FA/Config/Item.php');
+require(APP_INCLUDE_LIB . '/App/Config.php');
+require(APP_INCLUDE_LIB . '/App/Config/Item.php');
 
 $config = new \App\Config(APP_INCLUDE_BASE.'/config');
 $config->preload(array('application'));
@@ -180,14 +180,14 @@ $di->setShared('db', function() use ($config) {
 
 // Auth and ACL
 $di->setShared('auth', array(
-    'className' => '\FA\Auth',
+    'className' => '\App\Auth',
     'arguments' => array(
         array('type' => 'service', 'name' => 'session'),
     )
 ));
 
 $di->setShared('acl', array(
-    'className' => '\FA\Legacy\Acl',
+    'className' => '\App\Legacy\Acl',
     'arguments' => array(
         array('type' => 'service', 'name' => 'em'),
         array('type' => 'service', 'name' => 'auth'),
@@ -236,7 +236,7 @@ $di->setShared('cache_driver', function() use ($config) {
 });
 
 $di->set('cache', array(
-    'className' => '\FA\Cache',
+    'className' => '\App\Cache',
     'arguments' => array(
         array('type' => 'service', 'name' => 'cache_driver'),
         array('type' => 'parameter', 'value' => 'user'),
@@ -245,7 +245,7 @@ $di->set('cache', array(
 
 // Register URL handler.
 $di->setShared('url', array(
-    'className' => '\FA\Url',
+    'className' => '\App\Url',
     'arguments' => array(
         array('type' => 'service', 'name' => 'config'),
         array('type' => 'service', 'name' => 'request'),
@@ -254,22 +254,22 @@ $di->setShared('url', array(
 ));
 
 // Register session service.
-$di->setShared('session', '\FA\Session');
+$di->setShared('session', '\App\Session');
 
 // Register CSRF prevention security token service.
 $di->setShared('csrf', array(
-    'className' => '\FA\Csrf',
+    'className' => '\App\Csrf',
     'arguments' => array(
         array('type' => 'service', 'name' => 'session'),
     )
 ));
 
 // Register view helpers.
-$di->setShared('viewHelper', '\FA\Phalcon\Service\ViewHelper');
+$di->setShared('viewHelper', '\App\Phalcon\Service\ViewHelper');
 
 // Register Flash notification service.
 $di->setShared('flash', array(
-    'className' => '\FA\Flash',
+    'className' => '\App\Flash',
     'arguments' => array(
         array('type' => 'service', 'name' => 'session'),
     )
@@ -277,7 +277,7 @@ $di->setShared('flash', array(
 
 // Register global text parsing helper.
 $di->setShared('parser', array(
-    'className' => '\FA\Parser',
+    'className' => '\App\Parser',
     'arguments' => array(
         array('type' => 'service', 'name' => 'config'),
         array('type' => 'service', 'name' => 'url'),
@@ -292,6 +292,12 @@ $system_tz = \PVL\Customization::get('timezone');
 */
 
 $di->setShared('fa', function () use ($di) {
+    $fa = new \App\Legacy($di);
+    $fa->init();
+    return $fa;
+});
+
+$di->setShared('app', function () use ($di) {
     $fa = new \App\Legacy($di);
     $fa->init();
     return $fa;

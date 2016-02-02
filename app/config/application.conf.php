@@ -70,13 +70,9 @@ $config = array(
         APP_INCLUDE_LIB.'/ThirdParty',
     ),
     
-    'pluginpaths'       => array(
-        'FA\Application\Resource\\' => 'FA/Application/Resource',
-    ),
-    
     'autoload'          => array(
         'psr0'      => array(
-            'FA'        => APP_INCLUDE_LIB,
+            'App'       => APP_INCLUDE_LIB,
             'Entity'    => APP_INCLUDE_MODELS,
         ),
         'psr4'      => array(

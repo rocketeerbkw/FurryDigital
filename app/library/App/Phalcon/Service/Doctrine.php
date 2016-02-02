@@ -67,8 +67,8 @@ class Doctrine
         if (isset($options['conn']['debug']) && $options['conn']['debug'])
             $config->setSQLLogger(new \App\Doctrine\Logger\EchoSQL);
 
-        $config->addFilter('softdelete', '\FA\Doctrine\Filter\SoftDelete');
-        $config->addCustomNumericFunction('RAND', '\FA\Doctrine\Functions\Rand');
+        $config->addFilter('softdelete', '\App\Doctrine\Filter\SoftDelete');
+        $config->addCustomNumericFunction('RAND', '\App\Doctrine\Functions\Rand');
 
         $config->addCustomStringFunction('FIELD', 'DoctrineExtensions\Query\Mysql\Field');
         $config->addCustomStringFunction('IF', 'DoctrineExtensions\Query\Mysql\IfElse');
