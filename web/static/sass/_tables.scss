@@ -1,0 +1,20 @@
+table {
+    &.table-nopadding {
+        margin-bottom: 0;
+    }
+
+    tr td.center,
+    tr th.center {
+        text-align: center;
+    }
+
+    tr td.right,
+    tr th.right {
+        text-align: right;
+    }
+
+    tr.input td,
+    tr.input th {
+        vertical-align: middle;
+    }
+}

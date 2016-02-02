@@ -1,0 +1,80 @@
+    <?//
+        $max_cells_on_sides = 3;
+        // for the main gallery/scraps minigallery
+        $folder_data = $submission_folders[0];
+    ?>
+
+    <?if($_USER['vars']->get('gallery_navigation') == 'minigallery'){?>
+        <div class="minigalleries hideonmobile rounded" style="background-color: #373B44; max-width: 850px; margin: 0 auto 10px auto">
+            <!-- gallery/scraps -->
+            <div class="minigallery-container">
+                <center class="flow thumb-size-100">
+                <?//
+                // add image cell stubs if there are less than $max_cells_on_sides images to display
+                $num_cells_added_before = array_key_exists('before', $adjacent_submissions[$folder_data['folder_id']]) ? count($adjacent_submissions[$folder_data['folder_id']]['before']) : 0;
+                for($i=$max_cells_on_sides-$num_cells_added_before; $i; $i--) {?>
+                    <b><u><s></s></u></b>
+                <?}?>
+
+                <?if(array_key_exists('before', $adjacent_submissions[$folder_data['folder_id']])) {
+                    $tmp = array_reverse($adjacent_submissions[$folder_data['folder_id']]['before']);
+
+                    foreach($tmp as $sub_data){?>
+                        <b id="sid_<?=$sub_data['rowid']?>" class="r-<?=$sub_data['icon_rating']?>"><u><s><a href="/view/<?=$sub_data['rowid']?>/"><img alt="" title="<?=$sub_data['title']?>" src="<?=thumbnail_url(100, $sub_data['rowid'], $sub_data['date_updated'])?>.jpg"/></a></s></u></b>
+                     <?}?>
+                <?}?>
+
+                <b class="minigallery-title"><u><s>
+                    <?if($folder_data['group_name']){?>
+                        <strong><?=$folder_data['group_name']?></strong>
+                        <br /><br />
+                    <?}?>
+                    <a href="<?=$folder_data['url']?>" class="dotted">
+                        <?=$folder_data['folder_name']?>
+                    </a>
+                    <br/>
+                    <?if($folder_data['num_files']){?>
+                        <i><?=$folder_data['num_files']?> submissions</i>
+                    <?}?>
+                </s></u></b>
+
+
+                <?if(array_key_exists('after', $adjacent_submissions[$folder_data['folder_id']])){?>
+                    <?foreach($adjacent_submissions[$folder_data['folder_id']]['after'] as $sub_data){?>
+                        <b id="sid_<?=$sub_data['rowid']?>" class="r-<?=$sub_data['icon_rating']?>"><u><s><a href="/view/<?=$sub_data['rowid']?>/"><img alt="" title="<?=$sub_data['title']?>" src="<?=thumbnail_url(100, $sub_data['rowid'], $sub_data['date_updated'])?>.jpg"/></a></s></u></b>
+                    <?}?>
+                <?}?>
+
+                <?//
+                // add image cell stubs if there are less than $max_cells_on_sides images to display
+                $num_cells_added_after = array_key_exists('after', $adjacent_submissions[$folder_data['folder_id']]) ? count($adjacent_submissions[$folder_data['folder_id']]['after']) : 0;
+                for($i=$max_cells_on_sides-$num_cells_added_after; $i; $i--) {?>
+                    <b><u><s></s></u></b>
+                <?}?>
+                </center>
+            </div>
+
+
+            <?if(count($submission_folders) > 1){?>
+                <div class="folder-list-container">
+                    <h4>Featured in the following folders:</h4>
+                    <ul class="clearfloat">
+                    <?foreach($submission_folders as $folder_info){
+                        if($folder_info['folder_id'] == 0) {
+                            continue;
+                        }
+                    ?>
+                        <li>
+                            <a href="<?=$folder_info['url']?>" title="<?=$folder_info['num_files']?> submissions" class="dotted">
+                            <?if($folder_info['group_name']){?>
+                                <strong><?=$folder_info['group_name']?></strong> -
+                            <?}?>
+                                <span><?=$folder_info['folder_name']?></span>
+                            </a>
+                        </li>
+                    <?}?>
+                    </ul>
+                </div>
+            <?}?>
+        </div>
+    <?}?>

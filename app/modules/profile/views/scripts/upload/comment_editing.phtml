@@ -1,0 +1,52 @@
+<div style="clear:both"></div>
+
+<form class="comment-edit-form" name="myform" method="post"  action="/view/<?=$submission_id?>/" id="edit_comment_form" align="center">
+    <input type="hidden" name="action" value="edit-comment" id="form-action">
+    <input type="hidden" name="f" value="<?=$fullview_flag?>"/>
+    <input type="hidden" name="comment_id" value="<?=$rowid?>"/>
+    <input type="hidden" name="key" value="<?=$edit_nonce?>"/>
+
+    <table id="cid:<?=$rowid?>" cellpadding="0" cellspacing="0" class="container-comment" align="right" width="<?=$levwidth?>" data-timestamp="<?=$date_posted?>">
+
+        <tr>
+            <div class="alignright p20r fontsize12">
+                <span class="edit-countdown hidden">Comment edit window ends in: <strong>&nbsp;</strong></span>
+                <?=$admin_options?>
+                <?=$user_options?>
+                Posted: <?=$thisdate?>
+            </div>
+        </tr>
+        <tr>
+            <td class="replyto-message<?=$is_deleted?' comment-deleted' : ''?>">
+
+                <div class="p20lr">
+                    <textarea id="JSMessage" name="message" rows="10" class="textarea"><?=$raw_message?></textarea>
+                </div>
+
+                <div class="floatright p20r p10t">
+                    <input class="button submit" type="submit" name="mysubmit" value="Apply" />
+                    <input class="button cancel" type="submit" name="cancel-edit" value="Cancel" />
+                </div>
+            </td>
+        </tr>
+    </table>
+</form>
+
+<script type="text/javascript">
+    window['time_left_sec'] = <?=($edit_duration_sec - ($_USER['db_time']-$date_posted)-10)?>;
+
+    Queue.add(function(){
+        var countdown_container = $$('.edit-countdown').first();
+        countdown_elm = countdown_container.down('strong');
+        window['edit_timer'] = setInterval(function() {
+            if(window['time_left_sec'] > 0) {
+                countdown_elm.innerHTML = readable_date_min(window['time_left_sec']);
+                window['time_left_sec']--;
+                countdown_container.removeClassName('hidden');
+            } else {
+                clearInterval(window['edit_timer']);
+                countdown_elm.innerHTML = 'Expired.  Changes will not be saved if form submitted.';
+            }
+        }, 1000);
+    });
+</script>
