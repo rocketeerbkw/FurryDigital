@@ -3,7 +3,7 @@ namespace Modules\Profile\Controllers;
 
 use Entity\User;
 
-class BaseController extends \FA\Phalcon\Controller
+class BaseController extends \App\Phalcon\Controller
 {
     /**
      * @var \Entity\User The owner of the page being viewed.
@@ -29,8 +29,9 @@ class BaseController extends \FA\Phalcon\Controller
 
     /**
      * Check the user's "no guests" setting.
-     * @return bool
-     * @throws \FA\Exception\NotLoggedIn
+     *
+*@return bool
+     * @throws \App\Exception\NotLoggedIn
      */
     protected function _enforceNoGuests()
     {
@@ -39,7 +40,7 @@ class BaseController extends \FA\Phalcon\Controller
             if ($this->owner->getVariable('no_guests'))
             {
                 $this->alert('<b>This user has has elected to make their content available to registered users only.</b><br />Please log in or register to continue.', 'red');
-                throw new \FA\Exception\NotLoggedIn;
+                throw new \App\Exception\NotLoggedIn;
             }
         }
 
@@ -50,14 +51,14 @@ class BaseController extends \FA\Phalcon\Controller
      * Get the user referenced in the "username" parameter.
      *
      * @return \Entity\User|null
-     * @throws \FA\Exception
+     * @throws \App\Exception
      */
     protected function _getUser(User $record = null)
     {
         if (!($record instanceof User))
         {
             if (!$this->hasParam('username'))
-                throw new \FA\Exception('No username provided!');
+                throw new \App\Exception('No username provided!');
 
             $lower = $this->getParam('username');
 
@@ -69,7 +70,7 @@ class BaseController extends \FA\Phalcon\Controller
                 ->execute();
 
             if (count($record) == 0)
-                throw new \FA\Exception('User not found!');
+                throw new \App\Exception('User not found!');
 
             $record = $record[0];
         }
@@ -83,7 +84,7 @@ class BaseController extends \FA\Phalcon\Controller
                 $unwatch_url = $this->url->routeFromHere(array('action' => 'unwatch', 'username' => $lower));
 
                 $output = 'User "'.htmlspecialchars($record['username']).'" has voluntarily disabled access to their account and all of its contents.<br><br>If this is your userpage and you would like to re-enable it, you may do so by logging in and re-enabling it in your <a href="'.$settings_url.'">Account Settings</a>.<br><br>If you came here to unwatch this user you may do so by <a href="'.$unwatch_url.'">clicking here</a>.';
-                throw new \FA\Exception($output);
+                throw new \App\Exception($output);
             }
         }
 

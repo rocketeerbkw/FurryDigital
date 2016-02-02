@@ -51,7 +51,7 @@ class AvatarController extends BaseController
         $this->fa->readOnly();
         $this->fa->fileReadOnly();
 
-        $form = new \FA\Form($this->current_module_config->forms->avatar);
+        $form = new \App\Form($this->current_module_config->forms->avatar);
 
         // Handle new avatar upload.
         if ($_POST && $this->request->hasFiles() && $form->isValid(array_merge($_POST, $_FILES)))
@@ -95,10 +95,10 @@ class AvatarController extends BaseController
 
     public function gravatarAction()
     {
-        $source_path = FA_INCLUDE_TEMP.'/'.$this->user->lower.'_gravatar.png';
+        $source_path = APP_INCLUDE_TEMP.'/'.$this->user->lower.'_gravatar.png';
 
         if(!@copy($this->_gravatar, $source_path))
-            throw new \FA\Exception('Copy error: '.error_get_last());
+            throw new \App\Exception('Copy error: '.error_get_last());
 
         $art_dir = $this->config->application->art_path;
 
@@ -125,7 +125,7 @@ class AvatarController extends BaseController
         $id = $this->getParam('id');
 
         if (empty($id))
-            throw new \FA\Exception('Avatar ID not specified.');
+            throw new \App\Exception('Avatar ID not specified.');
 
         if (isset($this->_avatars[$id]))
         {
@@ -143,7 +143,7 @@ class AvatarController extends BaseController
         $id = $this->getParam('id');
 
         if (empty($id))
-            throw new \FA\Exception('Avatar ID not specified.');
+            throw new \App\Exception('Avatar ID not specified.');
 
         if (isset($this->_avatars[$id]))
         {

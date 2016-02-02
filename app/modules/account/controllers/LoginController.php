@@ -18,7 +18,7 @@ class LoginController extends BaseController
             $this->forceSecure();
         }
 
-        $form = new \FA\Form($this->current_module_config->forms->login);
+        $form = new \App\Form($this->current_module_config->forms->login);
 
         if ($_POST && $form->isValid($_POST))
         {

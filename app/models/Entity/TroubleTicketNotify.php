@@ -10,7 +10,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @Table(name="df_usermessages_Tickets", indexes={@Index(name="userid", columns={"userid"})})
  * @Entity
  */
-class TroubleTicketNotify extends \FA\Doctrine\Entity
+class TroubleTicketNotify extends \App\Doctrine\Entity
 {
     /**
      * @var integer

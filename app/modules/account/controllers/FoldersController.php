@@ -47,7 +47,7 @@ class FoldersController extends BaseController
         $form_config = $this->current_module_config->forms->folder->toArray();
         $form_config['elements']['group_id'][1]['options'] = FolderGroup::fetchSelect($this->user->id, 'No Group');
 
-        $form = new \FA\Form($form_config);
+        $form = new \App\Form($form_config);
 
         $id = (int)$this->getParam('id');
         if ($id)
@@ -55,7 +55,7 @@ class FoldersController extends BaseController
             $record = Folder::getRepository()->findOneBy(array('id' => $id, 'user_id' => $this->user->id));
 
             if (!($record instanceof Folder))
-                throw new \FA\Exception('Folder ID not found!');
+                throw new \App\Exception('Folder ID not found!');
 
             $form->populate($record->toArray());
         }
@@ -93,7 +93,7 @@ class FoldersController extends BaseController
         $record = Folder::getRepository()->findOneBy(array('id' => $id, 'user_id' => $this->user->id));
 
         if (!($record instanceof Folder))
-            throw new \FA\Exception('Folder ID not found!');
+            throw new \App\Exception('Folder ID not found!');
 
         $record->delete();
 
@@ -112,7 +112,7 @@ class FoldersController extends BaseController
         $record = Folder::getRepository()->findOneBy(array('id' => $id, 'user_id' => $this->user->id));
 
         if (!($record instanceof Folder))
-            throw new \FA\Exception('Folder ID not found!');
+            throw new \App\Exception('Folder ID not found!');
 
         $this->_moveEntity($record, $this->getParam('direction'));
 
@@ -129,7 +129,7 @@ class FoldersController extends BaseController
         $this->fa->readOnly();
 
         $form_config = $this->current_module_config->forms->foldergroup->toArray();
-        $form = new \FA\Form($form_config);
+        $form = new \App\Form($form_config);
 
         $id = (int)$this->getParam('id');
         if ($id)
@@ -137,7 +137,7 @@ class FoldersController extends BaseController
             $record = FolderGroup::getRepository()->findOneBy(array('id' => $id, 'user_id' => $this->user->id));
 
             if (!($record instanceof FolderGroup))
-                throw new \FA\Exception('Folder ID not found!');
+                throw new \App\Exception('Folder ID not found!');
 
             $form->populate($record->toArray());
         }
@@ -175,7 +175,7 @@ class FoldersController extends BaseController
         $record = FolderGroup::getRepository()->findOneBy(array('id' => $id, 'user_id' => $this->user->id));
 
         if (!($record instanceof FolderGroup))
-            throw new \FA\Exception('Folder ID not found!');
+            throw new \App\Exception('Folder ID not found!');
 
         $record->delete();
 
@@ -194,7 +194,7 @@ class FoldersController extends BaseController
         $record = FolderGroup::getRepository()->findOneBy(array('id' => $id, 'user_id' => $this->user->id));
 
         if (!($record instanceof FolderGroup))
-            throw new \FA\Exception('Folder ID not found!');
+            throw new \App\Exception('Folder ID not found!');
 
         $this->_moveEntity($record, $this->getParam('direction'));
 
@@ -211,7 +211,7 @@ class FoldersController extends BaseController
      *
      * @param $entity
      * @param $direction
-     * @throws \FA\Exception
+     * @throws \App\Exception
      */
     protected function _moveEntity($entity, $direction)
     {
@@ -222,7 +222,7 @@ class FoldersController extends BaseController
         elseif ($direction == 'down')
             $new_position = $entity->sort_order+1;
         else
-            throw new \FA\Exception('Invalid direction specified!');
+            throw new \App\Exception('Invalid direction specified!');
 
         // Update any record currently in the new position.
         $entity_class = get_class($entity);

@@ -17,7 +17,7 @@ class UploadController extends BaseController
         $upload = Upload::find($upload_id);
 
         if (!($upload instanceof Upload))
-            throw new \FA\Exception('Upload not found!');
+            throw new \App\Exception('Upload not found!');
 
         $view = $this->view;
         
@@ -28,7 +28,7 @@ class UploadController extends BaseController
         $view->upload_csrf_str = $this->csrf->generate('_upload_content');
         $view->file_mime = $upload->getMIME();
         $view->keyword_arr = $upload->getKeywords();
-        $view->created_at = \FA\Utilities::fa_date_format($upload->created_at, $upload->user->getTimezoneDiff());
+        $view->created_at = \App\Utilities::fa_date_format($upload->created_at, $upload->user->getTimezoneDiff());
         
         if ($this->user != NULL) {
             // Determine if the user is the owner of the upload
@@ -44,19 +44,19 @@ class UploadController extends BaseController
         
         $form_config['action'] = $this->url->named('upload_view', array('id' => $upload->id)) . '/comment/new'; // Add the action so they can actually comment!
         
-        $view->comment_form = new \FA\Form($form_config);
+        $view->comment_form = new \App\Form($form_config);
         
         // Reply form. Uses the same config, but different id.
         $form_config['action'] = ''; // No need for this.
         
         $form_config['id'] = 'reply_form';
         
-        $view->reply_form = new \FA\Form($form_config);
+        $view->reply_form = new \App\Form($form_config);
         
         // Edit form. Same story.
         $form_config['id'] = 'edit_form';
         
-        $view->edit_form = new \FA\Form($form_config);
+        $view->edit_form = new \App\Form($form_config);
 
         // Construct the comments        
         $comment_ents = \Entity\UploadComment::getRepository()->findBy(

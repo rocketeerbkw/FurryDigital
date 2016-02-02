@@ -19,7 +19,7 @@ class JournalsController extends BaseController
         $query = $this->em->createQuery('SELECT j FROM Entity\Journal j WHERE j.user_id = :user_id ORDER BY j.id DESC')
             ->setParameter('user_id', $this->owner->id);
 
-        $pager = new \FA\Paginator\Doctrine($query, $this->getParam('page', 1), $perpage);
+        $pager = new \App\Paginator\Doctrine($query, $this->getParam('page', 1), $perpage);
         $this->view->pager = $pager;
     }
 
@@ -29,7 +29,7 @@ class JournalsController extends BaseController
         $record = Journal::find($id);
 
         if (!($record instanceof Journal))
-            throw new \FA\Exception('Journal not found!');
+            throw new \App\Exception('Journal not found!');
 
         $this->view->journal = $record;
 

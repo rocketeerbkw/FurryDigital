@@ -10,7 +10,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @Table(name="df_adminactions")
  * @Entity
  */
-class AuditAdminAction extends \FA\Doctrine\Entity
+class AuditAdminAction extends \App\Doctrine\Entity
 {
     public function __construct()
     {

@@ -13,7 +13,7 @@ class FavoritesController extends BaseController
         $query = $this->em->createQuery('SELECT f, up FROM Entity\Favorite f JOIN f.upload up WHERE f.user_id = :user_id ORDER BY f.id DESC')
             ->setParameter('user_id', $this->user->id);
 
-        $pager = new \FA\Paginator\Doctrine($query, $page, $perpage);
+        $pager = new \App\Paginator\Doctrine($query, $page, $perpage);
 
         // Determine if any content is adult.
         foreach($pager as $row)

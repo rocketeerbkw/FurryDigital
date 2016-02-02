@@ -10,7 +10,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @Table(name="messagecenter_comments_submission", indexes={@Index(name="entity_id", columns={"entity_id"})})
  * @Entity
  */
-class UploadCommentNotify extends \FA\Doctrine\Entity
+class UploadCommentNotify extends \App\Doctrine\Entity
 {
     /**
      * @var integer

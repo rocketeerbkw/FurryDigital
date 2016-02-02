@@ -19,7 +19,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @Entity
  * @HasLifecycleCallbacks
  */
-class Upload extends \FA\Doctrine\Entity
+class Upload extends \App\Doctrine\Entity
 {
     const TYPE_IMAGE = 1; // Submissions
     const TYPE_TEXT  = 2; // Stories
@@ -56,7 +56,7 @@ class Upload extends \FA\Doctrine\Entity
     public function created()
     {
         User::incrementCounter('uploads', $this->user_id);
-        \FA\Legacy\Notifications::dispatch('upload', $this->id);
+        \App\Legacy\Notifications::dispatch('upload', $this->id);
     }
 
     /**
@@ -81,12 +81,12 @@ class Upload extends \FA\Doctrine\Entity
         {
             foreach($this->comments as $comment)
             {
-                \FA\Legacy\Notifications::purge('upload_comment', $comment->id, $this->user_id);
+                \App\Legacy\Notifications::purge('upload_comment', $comment->id, $this->user_id);
             }
         }
 
         User::decrementCounter('uploads', $this->user_id);
-        \FA\Legacy\Notifications::purge('upload', $this->id);
+        \App\Legacy\Notifications::purge('upload', $this->id);
     }
 
     /**
@@ -281,7 +281,7 @@ class Upload extends \FA\Doctrine\Entity
         }
 
         $this->full = self::cleanUpBasePath($new_path);
-        $this->full_uuid = \FA\Legacy\Utilities::uuid();
+        $this->full_uuid = \App\Legacy\Utilities::uuid();
     }
 
     protected function _getFull()
@@ -383,7 +383,7 @@ class Upload extends \FA\Doctrine\Entity
             @unlink(self::getFilePath($this->thumbnail));
 
         $this->thumbnail = self::cleanUpBasePath($new_path);
-        $this->thumbnail_uuid = \FA\Legacy\Utilities::uuid();
+        $this->thumbnail_uuid = \App\Legacy\Utilities::uuid();
     }
 
     /**
@@ -622,7 +622,7 @@ class Upload extends \FA\Doctrine\Entity
      * @return string
      */
     private static function _getReadable($value, $haystack) {
-        $readable = \FA\Utilities::recursive_array_search($value, $haystack);
+        $readable = \App\Utilities::recursive_array_search($value, $haystack);
         
         return ($readable ? $readable : 'N/A');
     }

@@ -11,7 +11,7 @@ $config = array(
     'analytics_code'    => 'UA-60038462-1',
     
     // Primary application web address
-    'base_url'          => (FA_IS_SECURE ? 'https://' : 'http://').'floof.club',
+    'base_url'          => (APP_IS_SECURE ? 'https://' : 'http://').'floof.club',
 
     // Path the cookie should use.
     'cookie_domain'     => '.floof.club',
@@ -24,10 +24,10 @@ $config = array(
 
     // Web address for API calls.
     // TODO: No API yet!
-    // 'api_url'           => (FA_IS_SECURE ? 'https://' : 'http://').'api.floof.club',
+    // 'api_url'           => (APP_IS_SECURE ? 'https://' : 'http://').'api.floof.club',
 
     // Local path for art.
-    'art_path'          => FA_INCLUDE_WEB.'/uploads/art',
+    'art_path'          => APP_INCLUDE_WEB.'/uploads/art',
 
     // List of folders that should exist in any user's art folder.
     'art_folders'       => array('avatars', 'images', 'text', 'audio', 'video'),
@@ -36,14 +36,14 @@ $config = array(
     'art_url'           => '/uploads/art',
 
     // Local path for avatars.
-    'avatars_path'      => FA_INCLUDE_WEB.'/uploads/avatars',
+    'avatars_path'      => APP_INCLUDE_WEB.'/uploads/avatars',
 
     // Web URL for avatars.
     'avatars_url'       => '/uploads/avatars',
     
     // FA Messenger mail settings
     'mail'              => array(
-        'templates'         => FA_INCLUDE_BASE.'/messages',
+        'templates'         => APP_INCLUDE_BASE.'/messages',
         'from_addr'         => 'noreply@floof.club',
         'from_name'         => 'FloofClub',
         'use_smtp'          => true,
@@ -53,7 +53,7 @@ $config = array(
         'display_startup_errors' => 0,
         'display_errors'        => 0,
         'log_errors'            => 1,
-        'error_log'             => FA_INCLUDE_TEMP.'/php_errors.log',
+        'error_log'             => APP_INCLUDE_TEMP.'/php_errors.log',
         'error_reporting'       => E_ALL & ~E_NOTICE & ~E_WARNING & ~E_STRICT,
         'session' => array(
             'use_only_cookies'  => 1,
@@ -67,7 +67,7 @@ $config = array(
     ),
     
     'includePaths'      => array(
-        FA_INCLUDE_LIB.'/ThirdParty',
+        APP_INCLUDE_LIB.'/ThirdParty',
     ),
     
     'pluginpaths'       => array(
@@ -76,11 +76,11 @@ $config = array(
     
     'autoload'          => array(
         'psr0'      => array(
-            'FA'        => FA_INCLUDE_LIB,
-            'Entity'    => FA_INCLUDE_MODELS,
+            'FA'        => APP_INCLUDE_LIB,
+            'Entity'    => APP_INCLUDE_MODELS,
         ),
         'psr4'      => array(
-            '\\Proxy\\'     => FA_INCLUDE_TEMP.'/proxies',
+            '\\Proxy\\'     => APP_INCLUDE_TEMP.'/proxies',
         ),
     ),
 
@@ -94,8 +94,8 @@ $config = array(
         'doctrine'          => array(
             'autoGenerateProxies' => (FA_APPLICATION_ENV == "development"),
             'proxyNamespace'    => 'Proxy',
-            'proxyPath'         => FA_INCLUDE_TEMP.'/proxies',
-            'modelPath'         => FA_INCLUDE_MODELS,
+            'proxyPath'         => APP_INCLUDE_TEMP.'/proxies',
+            'modelPath'         => APP_INCLUDE_MODELS,
         ),
     ),
 );

@@ -16,7 +16,7 @@ class WatchesController extends BaseController
         $query = $this->em->createQuery('SELECT w FROM Entity\Watch w WHERE w.user_id = :user_id')
             ->setParameter('user_id', $this->user->id);
 
-        $pager = new \FA\Paginator\Doctrine($query, $page, $per_page);
+        $pager = new \App\Paginator\Doctrine($query, $page, $per_page);
         $this->view->pager = $pager;
     }
 }

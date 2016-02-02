@@ -24,7 +24,7 @@ trait CommentTrait
      */
     public function getLevelWidth()
     {    
-        return \FA\Legacy\Utilities::levpercent($this->getParentDepth());
+        return \App\Legacy\Utilities::levpercent($this->getParentDepth());
     }
     
     /**
@@ -47,7 +47,7 @@ trait CommentTrait
      */
     public function getFormattedDate()
     {
-        return \FA\Utilities::fa_date_format($this->date_posted, $this->user->getTimezoneDiff());
+        return \App\Utilities::fa_date_format($this->date_posted, $this->user->getTimezoneDiff());
     }
     
     /**

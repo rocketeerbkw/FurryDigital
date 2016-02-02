@@ -19,7 +19,7 @@ class ShoutsController extends BaseController
         $this->fa->readOnly();
 
         if (empty($_POST['shouts']))
-            throw new \FA\Exception('No shouts specified to delete!');
+            throw new \App\Exception('No shouts specified to delete!');
 
         $shout_ids = array_filter($_POST['shouts']);
 

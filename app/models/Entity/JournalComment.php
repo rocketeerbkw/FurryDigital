@@ -17,7 +17,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @Entity
  * @HasLifecycleCallbacks
  */
-class JournalComment extends \FA\Doctrine\Entity
+class JournalComment extends \App\Doctrine\Entity
 {
     public function __construct()
     {
@@ -29,7 +29,7 @@ class JournalComment extends \FA\Doctrine\Entity
      */
     public function created()
     {
-        \FA\Legacy\Notifications::dispatch('journal_comment', $this->id, $this->journal->user_id);
+        \App\Legacy\Notifications::dispatch('journal_comment', $this->id, $this->journal->user_id);
     }
 
     /**
@@ -37,7 +37,7 @@ class JournalComment extends \FA\Doctrine\Entity
      */
     public function deleted()
     {
-        \FA\Legacy\Notifications::purge('journal_comment', $this->id, $this->journal->user_id);
+        \App\Legacy\Notifications::purge('journal_comment', $this->id, $this->journal->user_id);
     }
 
     /**

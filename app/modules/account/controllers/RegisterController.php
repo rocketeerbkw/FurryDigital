@@ -19,7 +19,7 @@ class RegisterController extends BaseController
         // Check if registration is disabled in settings.
         $fa_settings = $this->di->get('fa')->settings;
         if($fa_settings['Disable_Registration'] == 1)
-            throw new \FA\Exception($fa_settings['Disable_Registration_Reason']);
+            throw new \App\Exception($fa_settings['Disable_Registration_Reason']);
     }
 
     public function indexAction()
@@ -27,7 +27,7 @@ class RegisterController extends BaseController
         if (!$_POST)
             $this->forceSecure();
 
-        $form = new \FA\Form($this->current_module_config->forms->register);
+        $form = new \App\Form($this->current_module_config->forms->register);
 
         if ($_POST && $form->isValid($_POST))
         {
@@ -73,7 +73,7 @@ class RegisterController extends BaseController
 
                 $confirmation_code = $rr->confirmation_code;
 
-                \FA\Messenger::send(array(
+                \App\Messenger::send(array(
                     'to'        => $data['email'],
                     'subject'   => 'Verify Your FloofClub Account',
                     'template'  => 'account_registration',
@@ -96,15 +96,15 @@ class RegisterController extends BaseController
     public function verifyAction()
     {
         if (!$this->hasParam('code'))
-            throw new \FA\Exception('No verification code was provided! Your e-mail should have included a verification code.');
+            throw new \App\Exception('No verification code was provided! Your e-mail should have included a verification code.');
 
         $code = $this->getParam('code');
         $rr = RegistrationRequest::validate($code);
 
         if (!($rr instanceof RegistrationRequest))
-            throw new \FA\Exception('Your verification code could not be validated. The code may have expired, or already been used.');
+            throw new \App\Exception('Your verification code could not be validated. The code may have expired, or already been used.');
 
-        $form = new \FA\Form($this->current_module_config->forms->register_complete);
+        $form = new \App\Form($this->current_module_config->forms->register_complete);
 
         $form->setDefaults(array(
             'username'      => $rr->username,

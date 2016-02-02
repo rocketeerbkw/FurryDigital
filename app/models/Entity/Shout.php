@@ -16,7 +16,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @Entity
  * @HasLifecycleCallbacks
  */
-class Shout extends \FA\Doctrine\Entity
+class Shout extends \App\Doctrine\Entity
 {
     public function __construct()
     {
@@ -30,7 +30,7 @@ class Shout extends \FA\Doctrine\Entity
      */
     public function created()
     {
-        \FA\Legacy\Notifications::dispatch('shout', $this->id, $this->recipient->id, $this->sender->id);
+        \App\Legacy\Notifications::dispatch('shout', $this->id, $this->recipient->id, $this->sender->id);
     }
 
     /**
@@ -38,7 +38,7 @@ class Shout extends \FA\Doctrine\Entity
      */
     public function deleted()
     {
-        \FA\Legacy\Notifications::purge('shout', $this->id, $this->recipient->id);
+        \App\Legacy\Notifications::purge('shout', $this->id, $this->recipient->id);
     }
 
     /**

@@ -14,7 +14,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @Entity
  * @HasLifecycleCallbacks
  */
-class Watch extends \FA\Doctrine\Entity
+class Watch extends \App\Doctrine\Entity
 {
     public function __construct()
     {
@@ -28,7 +28,7 @@ class Watch extends \FA\Doctrine\Entity
      */
     public function created()
     {
-        \FA\Legacy\Notifications::dispatch('watch', $this->id, $this->target->id, $this->user->id);
+        \App\Legacy\Notifications::dispatch('watch', $this->id, $this->target->id, $this->user->id);
     }
 
     /**
@@ -36,7 +36,7 @@ class Watch extends \FA\Doctrine\Entity
      */
     public function deleted()
     {
-        \FA\Legacy\Notifications::purge('watch', $this->id, $this->target_id);
+        \App\Legacy\Notifications::purge('watch', $this->id, $this->target_id);
     }
 
     /**

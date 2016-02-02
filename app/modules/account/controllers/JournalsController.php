@@ -11,7 +11,7 @@ class JournalsController extends BaseController
             ->setParameter('uid', $this->user->id);
 
         $perpage = 25;
-        $pager = new \FA\Paginator\Doctrine($query, $this->getParam('page', 1), $perpage);
+        $pager = new \App\Paginator\Doctrine($query, $this->getParam('page', 1), $perpage);
 
         $this->view->pager = $pager;
         $this->view->featured_journal = $this->user->getVariable('featured_journal_id');
@@ -23,7 +23,7 @@ class JournalsController extends BaseController
         $this->fa->readOnly();
 
         $form_config = $this->current_module_config->forms->journal->toArray();
-        $form = new \FA\Form($form_config);
+        $form = new \App\Form($form_config);
 
         $record = null;
         $edit_mode = false;
@@ -33,7 +33,7 @@ class JournalsController extends BaseController
         {
             $record = Journal::getRepository()->findOneBy(array('id' => $id, 'user_id' => $this->user->id));
             if (!($record instanceof Journal))
-                throw new \FA\Exception('Journal entry not found!');
+                throw new \App\Exception('Journal entry not found!');
 
             $record_info = $record->toArray(FALSE, TRUE);
 
@@ -82,7 +82,7 @@ class JournalsController extends BaseController
         $id = (int)$this->getParam('id');
         $record = Journal::getRepository()->findOneBy(array('id' => $id, 'user_id' => $this->user->id));
         if (!($record instanceof Journal))
-            throw new \FA\Exception('Journal entry not found!');
+            throw new \App\Exception('Journal entry not found!');
 
         $record->delete();
 

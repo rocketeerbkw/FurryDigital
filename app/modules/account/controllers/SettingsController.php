@@ -9,7 +9,7 @@ class SettingsController extends BaseController
     public function indexAction()
     {
         // Initialize the form.
-        $form = new \FA\Form($this->current_module_config->forms->settings_account->toArray());
+        $form = new \App\Form($this->current_module_config->forms->settings_account->toArray());
 
         // Set form defaults based on current user database records.
         $form->setDefaults(array_merge(
@@ -78,7 +78,7 @@ class SettingsController extends BaseController
         $form_config['groups']['featured_items']['elements']['profile_pic'][1]['options'] = $submission_select['profile_pic'];
 
         // Initialize the form.
-        $form = new \FA\Form($form_config);
+        $form = new \App\Form($form_config);
 
         // Set form defaults based on current user database records.
         $contact = $this->user->contact;

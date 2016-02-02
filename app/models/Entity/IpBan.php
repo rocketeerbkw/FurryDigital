@@ -10,7 +10,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @Table(name="ip_bans")
  * @Entity
  */
-class IpBan extends \FA\Doctrine\Entity
+class IpBan extends \App\Doctrine\Entity
 {
     /**
      * @var integer

@@ -14,7 +14,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @Entity
  * @HasLifecycleCallbacks
  */
-class Favorite extends \FA\Doctrine\Entity
+class Favorite extends \App\Doctrine\Entity
 {
     public function __construct()
     {
@@ -29,7 +29,7 @@ class Favorite extends \FA\Doctrine\Entity
     public function created()
     {
         User::incrementCounter('favorites', $this->user->id);
-        \FA\Legacy\Notifications::dispatch('favorite', $this->id, $this->user->id, $this->upload->id);
+        \App\Legacy\Notifications::dispatch('favorite', $this->id, $this->user->id, $this->upload->id);
     }
 
     /**
@@ -38,7 +38,7 @@ class Favorite extends \FA\Doctrine\Entity
     public function deleted()
     {
         User::decrementCounter('favorites', $this->user_id);
-        \FA\Legacy\Notifications::purge('favorite', $this->id, $this->user_id);
+        \App\Legacy\Notifications::purge('favorite', $this->id, $this->user_id);
     }
 
     /**

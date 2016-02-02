@@ -12,7 +12,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * })
  * @Entity
  */
-class UserVariable extends \FA\Doctrine\Entity
+class UserVariable extends \App\Doctrine\Entity
 {
     /**
      * @var integer

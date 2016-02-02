@@ -10,7 +10,7 @@ class TicketsController extends BaseController
     public function indexAction()
     {
         $form_config = $this->current_module_config->forms->ticket_new->toArray();
-        $form = new \FA\Form($form_config);
+        $form = new \App\Form($form_config);
 
         if ($this->request->isPost() && $form->isValid($_POST))
         {
@@ -55,7 +55,7 @@ class TicketsController extends BaseController
         $record = TroubleTicket::getRepository()->findOneBy(array('id' => (int)$id, 'user_id' => $this->user->id));
 
         if (!($record instanceof TroubleTicket))
-            throw new \FA\Exception('Trouble ticket not found!');
+            throw new \App\Exception('Trouble ticket not found!');
 
         $this->view->ticket = $record;
 
@@ -65,7 +65,7 @@ class TicketsController extends BaseController
         if (!$record->is_resolved)
             unset($form_config['elements']['reopen']);
 
-        $form = new \FA\Form($form_config);
+        $form = new \App\Form($form_config);
 
         if ($this->request->isPost() && $form->isValid($_POST))
         {
@@ -120,7 +120,7 @@ class TicketsController extends BaseController
         $record = TroubleTicket::getRepository()->findOneBy(array('id' => (int)$id, 'user_id' => $this->user->id));
 
         if (!($record instanceof TroubleTicket))
-            throw new \FA\Exception('Trouble ticket not found!');
+            throw new \App\Exception('Trouble ticket not found!');
 
         $record->is_resolved = true;
         $record->replies += 1;

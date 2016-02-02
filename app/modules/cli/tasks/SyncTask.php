@@ -1,5 +1,5 @@
 <?php
-use \FA\Phalcon\Cli\Task;
+use App\Phalcon\Cli\Task;
 use \PVL\SyncManager;
 
 class SyncTask extends Task

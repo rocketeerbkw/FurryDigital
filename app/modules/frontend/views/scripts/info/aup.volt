@@ -390,7 +390,7 @@
         </div>
 
         <div class="cell two p10">
-            <p><i>In plain English...</i></br>If you're suspended you may not create a new account or continue to use FA until the suspension is over. If you're caught your suspension will be upgraded to a permanent ban.</p>
+            <p><i>In plain English...</i></br>If you're suspended you may not create a new account or continue to use App until the suspension is over. If you're caught your suspension will be upgraded to a permanent ban.</p>
         </div>
     </div>
 

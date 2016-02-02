@@ -21,7 +21,7 @@ class SearchController extends BaseController
             unset($form_config['elements']['rating'][1]['options'][Upload::RATING_ADULT]);
         }
 
-        $form = new \FA\Form($form_config);
+        $form = new \App\Form($form_config);
 
         $data = $form->getDefaults();
         if ($this->request->isPost() && $form->isValid($_POST))
@@ -80,7 +80,7 @@ class SearchController extends BaseController
             $sphinx_result = $this->_sphinx_make_request($sphinx_request, $sphinx_error, $sphinx_warning);
 
             if (!$sphinx_result)
-                throw new \FA\Exception($sphinx_error);
+                throw new \App\Exception($sphinx_error);
 
             if ($sphinx_result['total_found'] && isset($sphinx_result['matches']) && is_array($sphinx_result['matches']))
             {
@@ -97,12 +97,12 @@ class SearchController extends BaseController
                     ->setParameter('ids', $found_docs)
                     ->execute();
 
-                $pager = new \FA\Paginator\Sphinx($result, $sphinx_result['total_found'], $data['page'], $data['perpage']);
+                $pager = new \App\Paginator\Sphinx($result, $sphinx_result['total_found'], $data['page'], $data['perpage']);
             }
         }
 
         if (!$pager)
-            $pager = new \FA\Paginator\Sphinx(array(), 0, $data['page'], $data['perpage']);
+            $pager = new \App\Paginator\Sphinx(array(), 0, $data['page'], $data['perpage']);
 
         $this->view->page_current = $data['page'];
         $this->view->page_count = $pager->getPageCount();

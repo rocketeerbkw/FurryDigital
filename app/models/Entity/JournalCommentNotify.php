@@ -12,7 +12,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * })
  * @Entity
  */
-class JournalCommentNotify extends \FA\Doctrine\Entity
+class JournalCommentNotify extends \App\Doctrine\Entity
 {
     /**
      * @var integer

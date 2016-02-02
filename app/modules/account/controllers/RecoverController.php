@@ -7,7 +7,7 @@ class RecoverController extends BaseController
 {
     public function indexAction()
     {
-        $form = new \FA\Form($this->current_module_config->forms->recover);
+        $form = new \App\Form($this->current_module_config->forms->recover);
 
         if ($_POST && $form->isValid($_POST))
         {
@@ -18,10 +18,10 @@ class RecoverController extends BaseController
 
             if ($user instanceof User)
             {
-                $user->lostpw = \FA\Legacy\Utilities::uuid();
+                $user->lostpw = \App\Legacy\Utilities::uuid();
                 $user->save();
 
-                \FA\Messenger::send(array(
+                \App\Messenger::send(array(
                     'to'        => $user->email,
                     'subject'   => 'Password Recovery Code',
                     'template'  => 'account_recover',
@@ -50,12 +50,12 @@ class RecoverController extends BaseController
         $code = trim($this->getParam('code'));
 
         if ($id == 0 || empty($code))
-            throw new \FA\Exception('This page requires a valid user ID and recovery code.');
+            throw new \App\Exception('This page requires a valid user ID and recovery code.');
 
         $user = User::getRepository()->findOneBy(array('id' => $id, 'lostpw' => $code));
 
         if (!($user instanceof User))
-            throw new \FA\Exception('Invalid ID or recovery code provided!');
+            throw new \App\Exception('Invalid ID or recovery code provided!');
 
         // Reset the "lost password" code.
         $user->lostpw = NULL;

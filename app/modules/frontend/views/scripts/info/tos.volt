@@ -118,7 +118,7 @@
         </div>
 
         <div class="cell two p10">
-            <p><i>In plain English...</i></br>You won't give away your account without first consulting site staff. FA accounts may not be resold.</p>
+            <p><i>In plain English...</i></br>You won't give away your account without first consulting site staff. App accounts may not be resold.</p>
         </div>
     </div>
 

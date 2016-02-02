@@ -13,7 +13,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * })
  * @Entity
  */
-class TroubleTicket extends \FA\Doctrine\Entity
+class TroubleTicket extends \App\Doctrine\Entity
 {
     public function __construct()
     {

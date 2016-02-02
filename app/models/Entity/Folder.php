@@ -14,7 +14,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @Entity
  * @HasLifecycleCallbacks
  */
-class Folder extends \FA\Doctrine\Entity
+class Folder extends \App\Doctrine\Entity
 {
     public function __construct()
     {

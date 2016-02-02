@@ -11,7 +11,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @Table(name="submissions_tmp", indexes={@Index(name="userid_date", columns={"userid", "date"})})
  * @Entity
  */
-class UploadTemp extends \FA\Doctrine\Entity
+class UploadTemp extends \App\Doctrine\Entity
 {
     /**
      * @var integer

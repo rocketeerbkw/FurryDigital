@@ -25,8 +25,8 @@
     {% if title is empty %}{% set title = "Welcome" %}{% endif %}
     <title>{{ title }} -- {{ config.application.name }}</title>
 
-    <link rel="icon" href="{{ static_url('icon_'~constant('FA_APPLICATION_ENV')~'.png') }}" type="image/png">
-    <link rel="shortcut icon" href="{{ static_url('icon_'~constant('FA_APPLICATION_ENV')~'.png') }}" type="image/png">
+    <link rel="icon" href="{{ static_url('icon_'~constant('APP_APPLICATION_ENV')~'.png') }}" type="image/png">
+    <link rel="shortcut icon" href="{{ static_url('icon_'~constant('APP_APPLICATION_ENV')~'.png') }}" type="image/png">
 
     {% block header_css %}
         {{ stylesheet_link('//fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,700', false) }}
@@ -72,7 +72,7 @@
                 <ul class="dropdown-menu">
                     <li class="dropdown-header">Community</li>
                     <li><a href="{{ url.get('journals/fender') }}">FloofClub News</a></li>
-                    <li><a href="http://www.faunited.org">FA United</a></li>
+                    <li><a href="http://www.faunited.org">App United</a></li>
                     <li><a href="http://www.facebook.com/floofclub">Facebook</a></li>
                     <li><a href="http://twitter.com/floofclub">Twitter</a></li>
                     <li><a href="http://help.floof.club/article/AA-00210/7/Advertising.html">Advertising</a></li>
@@ -97,7 +97,7 @@
         {% if auth.isLoggedIn() %}
             <li role="presentation" class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="{{ url.named('user_view', ['username': user.lower]) }}" role="button" aria-haspopup="true" aria-expanded="false">
-                    <span class="hideondesktop">My FA ( </span>{{ user.symbol }} {{ user.username }}<span class="hideondesktop"> )</span>
+                    <span class="hideondesktop">My App ( </span>{{ user.symbol }} {{ user.username }}<span class="hideondesktop"> )</span>
                     <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
@@ -262,7 +262,7 @@
     // OnReady
     jQuery(function($) {
 
-        // Load and init FA ads
+        // Load and init App ads
         {% if fa.canSeeArt('adult') %}
         // non-sfw
         var ad_zone_ids = [2,4,6,8,10];
@@ -297,7 +297,7 @@
                         // remove impression tracking
                         //tmp_output = tmp_output.replace(/<div\ id='beacon.+?<\/div>/g, '');
 
-                        // regular FA ad
+                        // regular App ad
                         ad_block = $('#ad-'+ad_zone_ids[i]);
                         if(ad_block) {
                             ad_block.html(tmp_output);

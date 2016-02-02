@@ -12,7 +12,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * })
  * @Entity
  */
-class FolderGroup extends \FA\Doctrine\Entity
+class FolderGroup extends \App\Doctrine\Entity
 {
     public function __construct()
     {

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @Table(name="_sphinx")
  * @Entity
  */
-class Sphinx extends \FA\Doctrine\Entity
+class Sphinx extends \App\Doctrine\Entity
 {
     /**
      * @var integer

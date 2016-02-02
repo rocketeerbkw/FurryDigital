@@ -46,7 +46,7 @@ class GalleryController extends BaseController
             $folder = Folder::getRepository()->findOneBy(array('user_id' => $this->owner->id, 'id' => $folder_id));
 
             if (!($folder instanceof Folder))
-                throw new \FA\Exception('Folder not found!');
+                throw new \App\Exception('Folder not found!');
 
             $this->view->folder = $folder;
 
@@ -62,7 +62,7 @@ class GalleryController extends BaseController
         }
 
         $perpage = $this->user->getVariable('perpage');
-        $pager = new \FA\Paginator\Doctrine($query, $this->getParam('page', 1), $perpage);
+        $pager = new \App\Paginator\Doctrine($query, $this->getParam('page', 1), $perpage);
 
         if (count($pager) > 0)
         {

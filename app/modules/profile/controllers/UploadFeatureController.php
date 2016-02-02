@@ -14,7 +14,7 @@ class UploadFeatureController extends BaseController
         // Create the comment forms
         $form_config = $this->current_module_config->forms->upload_comment;
         
-        $form = new \FA\Form($form_config);
+        $form = new \App\Form($form_config);
         
         $form->populate($_POST);
         
@@ -25,11 +25,11 @@ class UploadFeatureController extends BaseController
             $upload = Upload::find($upload_id);
 
             if (!($upload instanceof Upload))
-                throw new \FA\Exception('Upload not found!');
+                throw new \App\Exception('Upload not found!');
                 
             // Prevent posting if comments are locked
             if ($upload->comments_locked)
-                throw new \FA\Exception('Comments are locked on this Upload!');
+                throw new \App\Exception('Comments are locked on this Upload!');
             
             // Verify the user can even progress further
             self::_userCheck($upload);
@@ -50,7 +50,7 @@ class UploadFeatureController extends BaseController
                 if (($parent_com instanceof UploadComment) && $upload->id == $parent_com->upload_id)
                     $record->parent = $parent_com;
                 else
-                    throw new \FA\Exception('Invalid parent comment!');
+                    throw new \App\Exception('Invalid parent comment!');
             }
             
             $record->save();
@@ -70,7 +70,7 @@ class UploadFeatureController extends BaseController
     
         $form_config = $this->current_module_config->forms->upload_comment;
         
-        $form = new \FA\Form($form_config);
+        $form = new \App\Form($form_config);
         
         $form->populate($_POST);
         
@@ -80,16 +80,16 @@ class UploadFeatureController extends BaseController
             $comment = UploadComment::find($comment_id);
 
             if (!($comment instanceof UploadComment))
-                throw new \FA\Exception('Comment not found!');
+                throw new \App\Exception('Comment not found!');
             
             if (!$comment->canEdit($this->user))
-                throw new \FA\Exception('Unable to edit comment!');
+                throw new \App\Exception('Unable to edit comment!');
             
             $upload = $comment->upload;
                 
             // Prevent posting if comments are locked
             if ($upload->comments_locked)
-                throw new \FA\Exception('Comments are locked on this Upload!');
+                throw new \App\Exception('Comments are locked on this Upload!');
             
             // Verify the user can even progress further
             self::_userCheck($upload);
@@ -117,16 +117,16 @@ class UploadFeatureController extends BaseController
             $comment = UploadComment::find($comment_id);
 
             if (!($comment instanceof UploadComment))
-                throw new \FA\Exception('Comment not found!');
+                throw new \App\Exception('Comment not found!');
             
             if (($comment->hidden && !$comment->canUnhide($this->user)) || !$comment->canHide($this->user))
-                throw new \FA\Exception('Unable to change hidden state of comment!');
+                throw new \App\Exception('Unable to change hidden state of comment!');
             
             $upload = $comment->upload;
                 
             // Prevent posting if comments are locked
             if ($upload->comments_locked)
-                throw new \FA\Exception('Comments are locked on this Upload!');
+                throw new \App\Exception('Comments are locked on this Upload!');
             
             // Verify the user can even progress further
             self::_userCheck($upload);
@@ -155,7 +155,7 @@ class UploadFeatureController extends BaseController
             
             // Verifying if the Upload exists
             if (!($upload instanceof Upload))
-                throw new \FA\Exception('Upload not found!');
+                throw new \App\Exception('Upload not found!');
             
             $favorite = $this->em->createQuery('SELECT f FROM \Entity\Favorite f WHERE f.upload_id = :upload_id')
                                 ->setParameter('upload_id', $upload->id)
@@ -167,7 +167,7 @@ class UploadFeatureController extends BaseController
             // If the favorite exists, delete it. If not, create it!
             // TODO: Look into soft deleting
             if (count($favorite) > 0)
-                \FA\Utilities::print_r($favorite);
+                \App\Utilities::print_r($favorite);
                 //$favorite->delete();
             else {
                 $favorite = new Favorite();
@@ -193,7 +193,7 @@ class UploadFeatureController extends BaseController
         // LEGACY        
         // TODO: Report error to user on how they're banned and redirect back to the submission
         if ($logged_user->suspend && $logged_user->access_level == User::LEGACY_ACL_BANNED)            
-            throw new \FA\Exception('Banned users cannot comment!');
+            throw new \App\Exception('Banned users cannot comment!');
 
         // LEGACY
         // TODO: Add check for disabled accounts (Need to find where that's stored)

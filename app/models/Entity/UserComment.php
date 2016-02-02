@@ -17,7 +17,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * })
  * @Entity
  */
-class UserComment extends \FA\Doctrine\Entity
+class UserComment extends \App\Doctrine\Entity
 {
     /**
      * @var integer

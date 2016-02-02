@@ -193,7 +193,7 @@ class IndexController extends BaseController
         $shout_form_config = $this->current_module_config->forms->shout->toArray();
         $shout_form_config['action'] = $this->url->routeFromHere(array('action' => 'shout'));
 
-        $shout_form = new \FA\Form($shout_form_config);
+        $shout_form = new \App\Form($shout_form_config);
         $this->view->shout_form = $shout_form;
     }
 
@@ -227,7 +227,7 @@ class IndexController extends BaseController
         }
 
         $form_config = $this->current_module_config->forms->shout->toArray();
-        $form = new \FA\Form($form_config);
+        $form = new \App\Form($form_config);
 
         if ($this->request->isPost() && $form->isValid($_POST))
         {

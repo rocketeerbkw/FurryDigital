@@ -54,7 +54,7 @@
     <div class="line">
         <div class="cell one p10">
             <span class="num">1.5</span><p><b>Do not be disrespectful to site staff or abuse the trouble ticket system.</b></br>
-            Our staff is currently made up of volunteers who perform duties that are difficult and time consuming. Please refrain from needless harassment, insults, and arguing as it interferes with the ability for staff to perform their duties. Furthermore, please refrain from contacting staff via notes, shouts, comments or offsite communication about FA-related issues and instead use the Trouble Ticket system. Do not misrepresent site policies or any actions staff have made.</p></br>
+            Our staff is currently made up of volunteers who perform duties that are difficult and time consuming. Please refrain from needless harassment, insults, and arguing as it interferes with the ability for staff to perform their duties. Furthermore, please refrain from contacting staff via notes, shouts, comments or offsite communication about App-related issues and instead use the Trouble Ticket system. Do not misrepresent site policies or any actions staff have made.</p></br>
             <p>Trouble ticket abuse includes opening multiple tickets for the same issue and re-opening tickets after a ruling was made by an Administrator after escalation. Do not encourage others to open Trouble Tickets en masse - one ticket is sufficient.</p>
         </div>
 
@@ -187,7 +187,7 @@
             <span class="num">2.4</span><p>While you are Temporarily Suspended, you are not permitted to access or create accounts on FloofClub. Doing so may result in the length of your current suspension being extended or a changed to a Permanent Ban.</p>
         </div>
         <div class="cell two p10">
-            <p><i>In plain English...</i></br>If you're suspended you may not create a new account or continue to use FA until the suspension is over. If you're caught your suspension will be upgraded to a permanent ban.</p>
+            <p><i>In plain English...</i></br>If you're suspended you may not create a new account or continue to use App until the suspension is over. If you're caught your suspension will be upgraded to a permanent ban.</p>
         </div>
     </div>
 

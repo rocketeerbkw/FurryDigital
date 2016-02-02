@@ -10,7 +10,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @Table(name="messagecenter_favorites", indexes={@Index(name="entity_id", columns={"entity_id"})})
  * @Entity
  */
-class FavoriteNotify extends \FA\Doctrine\Entity
+class FavoriteNotify extends \App\Doctrine\Entity
 {
     /**
      * @var integer

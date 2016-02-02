@@ -13,7 +13,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * })
  * @Entity
  */
-class CommissionType extends \FA\Doctrine\Entity
+class CommissionType extends \App\Doctrine\Entity
 {
     /**
      * @var integer

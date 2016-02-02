@@ -4,7 +4,7 @@ namespace Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-use FA\Legacy\Notifications;
+use App\Legacy\Notifications;
 
 /**
  * Notes
@@ -19,7 +19,7 @@ use FA\Legacy\Notifications;
  * @Entity
  * @HasLifecycleCallbacks
  */
-class Note extends \FA\Doctrine\Entity
+class Note extends \App\Doctrine\Entity
 {
     public function __construct()
     {

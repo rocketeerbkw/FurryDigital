@@ -33,7 +33,7 @@ class UploadsController extends BaseController
             ->setParameter('user_id', $this->user->id);
 
         $per_page = 64;
-        $pager = new \FA\Paginator\Doctrine($query, $this->getParam('page', 1), $per_page);
+        $pager = new \App\Paginator\Doctrine($query, $this->getParam('page', 1), $per_page);
 
         // Determine if any content is adult.
         foreach($pager as $row)
@@ -57,7 +57,7 @@ class UploadsController extends BaseController
             $record = Upload::getRepository()->findOneBy(array('id' => $id, 'user_id' => $this->user->id));
 
             if (!($record instanceof Upload))
-                throw new \FA\Exception('Submission ID not found!');
+                throw new \App\Exception('Submission ID not found!');
 
             $edit_mode = true;
             $type = $record->submission_type;
@@ -100,7 +100,7 @@ class UploadsController extends BaseController
         $form_config['groups']['files']['elements']['submission'][1]['allowedTypes'] = $type_info['types'];
 
         // Create the form class.
-        $form = new \FA\Form($form_config);
+        $form = new \App\Form($form_config);
 
         // Populate the form (if available).
         if ($record instanceof Upload)
@@ -256,7 +256,7 @@ class UploadsController extends BaseController
      * Assign submission(s) to the specified folder Id.
      *
      * @return \Phalcon\Http\Response|\Phalcon\Http\ResponseInterface
-     * @throws \FA\Exception
+     * @throws \App\Exception
      */
     public function assignfolderAction()
     {
@@ -267,7 +267,7 @@ class UploadsController extends BaseController
         $folder = Folder::getRepository()->findOneBy(array('id' => $folder_id, 'user_id' => $this->user->id));
 
         if (!($folder instanceof Folder))
-            throw new \FA\Exception('Folder not found!');
+            throw new \App\Exception('Folder not found!');
 
         foreach($submissions as $sub)
         {
@@ -293,7 +293,7 @@ class UploadsController extends BaseController
      * Assign submission(s) to a newly created folder.
      *
      * @return \Phalcon\Http\Response|\Phalcon\Http\ResponseInterface
-     * @throws \FA\Exception
+     * @throws \App\Exception
      */
     public function createfolderAction()
     {
@@ -301,7 +301,7 @@ class UploadsController extends BaseController
 
         $folder_name = trim($this->getParam('new_folder_name'));
         if (empty($folder_name))
-            throw new \FA\Exception('No folder name provided!');
+            throw new \App\Exception('No folder name provided!');
 
         $folder = new Folder;
         $folder->user = $this->user;
@@ -327,7 +327,7 @@ class UploadsController extends BaseController
      * Remove all folders from submission(s).
      *
      * @return \Phalcon\Http\Response|\Phalcon\Http\ResponseInterface
-     * @throws \FA\Exception
+     * @throws \App\Exception
      */
     public function removefolderAction()
     {
@@ -352,7 +352,7 @@ class UploadsController extends BaseController
      * Move submission(s) to Scraps folder.
      *
      * @return \Phalcon\Http\Response|\Phalcon\Http\ResponseInterface
-     * @throws \FA\Exception
+     * @throws \App\Exception
      */
     public function movetoscrapsAction()
     {
@@ -374,7 +374,7 @@ class UploadsController extends BaseController
      * Move submission(s) from Scraps folder.
      *
      * @return \Phalcon\Http\Response|\Phalcon\Http\ResponseInterface
-     * @throws \FA\Exception
+     * @throws \App\Exception
      */
     public function movefromscrapsAction()
     {
@@ -396,7 +396,7 @@ class UploadsController extends BaseController
      * Delete submission(s).
      *
      * @return \Phalcon\Http\Response|\Phalcon\Http\ResponseInterface
-     * @throws \FA\Exception
+     * @throws \App\Exception
      */
     public function deleteAction()
     {
@@ -417,18 +417,18 @@ class UploadsController extends BaseController
      * Initialize a bulk action by validating submission IDs.
      *
      * @return \Entity\Upload[] An array of submissions.
-     * @throws \FA\Exception
+     * @throws \App\Exception
      */
     protected function _initBulkAction()
     {
         $this->fa->readOnly();
 
         if (!$this->request->hasPost('ids'))
-            throw new \FA\Exception('No Upload IDs specified!');
+            throw new \App\Exception('No Upload IDs specified!');
 
         $csrf = $this->getParam('csrf');
         if (!$this->csrf->verify($csrf, 'uploads'))
-            throw new \FA\Exception('Form validation code was not valid.');
+            throw new \App\Exception('Form validation code was not valid.');
 
         $ids_raw = (array)$this->request->getPost('ids');
 
@@ -440,7 +440,7 @@ class UploadsController extends BaseController
             ->execute();
 
         if (count($submissions) == 0)
-            throw new \FA\Exception('No valid submissions were found!');
+            throw new \App\Exception('No valid submissions were found!');
 
         return $submissions;
     }

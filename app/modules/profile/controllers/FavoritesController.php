@@ -60,7 +60,7 @@ class FavoritesController extends BaseController
                 ->setParameter('user_id', $this->owner->id)
                 ->setParameter('ratings', $fav_maturity_filter);
 
-            $pager = new \FA\Paginator\Doctrine($query, $this->getParam('page', 1), $perpage);
+            $pager = new \App\Paginator\Doctrine($query, $this->getParam('page', 1), $perpage);
             $this->view->pager = $pager;
 
             if (count($pager) > 0)

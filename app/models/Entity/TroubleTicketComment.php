@@ -15,7 +15,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @Entity
  * @HasLifecycleCallbacks
  */
-class TroubleTicketComment extends \FA\Doctrine\Entity
+class TroubleTicketComment extends \App\Doctrine\Entity
 {
     public function __construct()
     {
@@ -36,7 +36,7 @@ class TroubleTicketComment extends \FA\Doctrine\Entity
     public function created()
     {
         if ($this->user_id !== $this->ticket->user_id)
-            \FA\Legacy\Notifications::dispatch('ticket', $this->ticket->id, $this->ticket->user_id);
+            \App\Legacy\Notifications::dispatch('ticket', $this->ticket->id, $this->ticket->user_id);
     }
 
     /**
@@ -44,7 +44,7 @@ class TroubleTicketComment extends \FA\Doctrine\Entity
      */
     public function deleted()
     {
-        \FA\Legacy\Notifications::purge('ticket', $this->id, $this->ticket->user_id);
+        \App\Legacy\Notifications::purge('ticket', $this->id, $this->ticket->user_id);
     }
 
     /**

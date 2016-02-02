@@ -10,7 +10,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @Table(name="user_contacts")
  * @Entity
  */
-class UserContact extends \FA\Doctrine\Entity
+class UserContact extends \App\Doctrine\Entity
 {
     /**
      * @var integer

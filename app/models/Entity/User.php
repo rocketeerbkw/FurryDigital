@@ -17,7 +17,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * })
  * @Entity
  */
-class User extends \FA\Doctrine\Entity
+class User extends \App\Doctrine\Entity
 {
     const LEGACY_ACL_REGULAR = 0;
     const LEGACY_ACL_ADMINISTRATOR = 1;
@@ -621,7 +621,7 @@ class User extends \FA\Doctrine\Entity
         $config = $di['config'];
 
         $species_raw = $config->fa->species->toArray();
-        $species = \FA\Legacy\Utilities::reverseArray($species_raw);
+        $species = \App\Legacy\Utilities::reverseArray($species_raw);
 
         if (isset($species[$this->species]))
             return $species[$this->species];

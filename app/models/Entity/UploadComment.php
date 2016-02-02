@@ -19,7 +19,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @Entity
  * @HasLifecycleCallbacks
  */
-class UploadComment extends \FA\Doctrine\Entity
+class UploadComment extends \App\Doctrine\Entity
 {
     use CommentTrait;
 
@@ -52,7 +52,7 @@ class UploadComment extends \FA\Doctrine\Entity
         User::incrementCounter('comments_sent', $this->user_id);
         User::incrementCounter('comments_received', $this->upload->user_id);
 
-        \FA\Legacy\Notifications::dispatch('upload_comment', $this->id, $this->upload->user_id, $this->upload->id);
+        \App\Legacy\Notifications::dispatch('upload_comment', $this->id, $this->upload->user_id, $this->upload->id);
     }
 
     /**
@@ -63,7 +63,7 @@ class UploadComment extends \FA\Doctrine\Entity
         User::decrementCounter('comments_sent', $this->user_id);
         User::decrementCounter('comments_received', $this->upload->user_id);
 
-        \FA\Legacy\Notifications::purge('upload_comment', $this->id, $this->upload->user_id);
+        \App\Legacy\Notifications::purge('upload_comment', $this->id, $this->upload->user_id);
     }
 
     /**

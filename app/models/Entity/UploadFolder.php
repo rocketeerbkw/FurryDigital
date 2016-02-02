@@ -13,7 +13,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @Entity
  * @HasLifecycleCallbacks
  */
-class UploadFolder extends \FA\Doctrine\Entity
+class UploadFolder extends \App\Doctrine\Entity
 {
     public function __construct()
     {

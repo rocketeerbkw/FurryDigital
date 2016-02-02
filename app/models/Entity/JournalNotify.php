@@ -10,7 +10,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @Table(name="messagecenter_journals", indexes={@Index(name="entity_id", columns={"entity_id"})})
  * @Entity
  */
-class JournalNotify extends \FA\Doctrine\Entity
+class JournalNotify extends \App\Doctrine\Entity
 {
     /**
      * @var integer

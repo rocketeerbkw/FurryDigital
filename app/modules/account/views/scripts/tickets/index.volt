@@ -36,7 +36,7 @@
                 </li>
                 <li>
                     <div class="floatleft fonthighlight"><strong>Off-Site Issues</strong></div>
-                    <div class="ttguideline">We cannot take action on issues happening off-site UNLESS the user in question is linking to them on FA.</div>
+                    <div class="ttguideline">We cannot take action on issues happening off-site UNLESS the user in question is linking to them on App.</div>
                 </li>
             </ul>
         </div>

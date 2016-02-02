@@ -10,7 +10,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @Table(name="user_suspensions2", indexes={@Index(name="user_suspended", columns={"user_suspended"})})
  * @Entity
  */
-class UserSuspension extends \FA\Doctrine\Entity
+class UserSuspension extends \App\Doctrine\Entity
 {
     /**
      * @var integer

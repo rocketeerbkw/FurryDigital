@@ -15,11 +15,11 @@ use Doctrine\Common\Collections\ArrayCollection;
  * })
  * @Entity
  */
-class RegistrationRequest extends \FA\Doctrine\Entity
+class RegistrationRequest extends \App\Doctrine\Entity
 {
     public function __construct()
     {
-        $this->confirmation_code = \FA\Legacy\Utilities::uuid();
+        $this->confirmation_code = \App\Legacy\Utilities::uuid();
         $this->ip = $_SERVER['REMOTE_ADDR'];
         $this->created_at = time();
         $this->is_used = false;
@@ -100,7 +100,7 @@ class RegistrationRequest extends \FA\Doctrine\Entity
      */
     public static function validate($code)
     {
-        $code_bin = \FA\Doctrine\Type\BinaryUuid::uuidToBin($code);
+        $code_bin = \App\Doctrine\Type\BinaryUuid::uuidToBin($code);
         $record = self::getRepository()->findOneBy(array('confirmation_code' => $code, 'is_used' => FALSE));
 
         if ($record instanceof self)

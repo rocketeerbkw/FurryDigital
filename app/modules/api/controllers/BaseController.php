@@ -1,7 +1,7 @@
 <?php
 namespace Modules\Api\Controllers;
 
-class BaseController extends \FA\Phalcon\Controller
+class BaseController extends \App\Phalcon\Controller
 {
     public function permissions()
     {
@@ -100,7 +100,7 @@ class BaseController extends \FA\Phalcon\Controller
         $format = strtolower($this->getParam('format', 'json'));
 
         if ($format == 'xml')
-            return $this->returnRaw(\FA\Export::ArrayToXml($obj), 'xml');
+            return $this->returnRaw(\App\Export::ArrayToXml($obj), 'xml');
         else
             return $this->returnRaw(json_encode($obj, \JSON_UNESCAPED_SLASHES), 'json');
     }

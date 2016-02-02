@@ -5,7 +5,7 @@
                 <div id="controlpanelnav" class="hideonmobile">
                     <h3>Administration</h3>
                     <div><a href="{{ url.route(['module': 'admin']) }}">Admin Home</a></div>
-                    <div><a href="{{ url.route() }}">FA Home</a></div>
+                    <div><a href="{{ url.route() }}">App Home</a></div>
 
                     <h3>Trouble Tickets</h3>
                     <div><a href="#">Open Issues</a></div>

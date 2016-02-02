@@ -1,5 +1,5 @@
 <?php
-use FA\Utilities;
+use App\Utilities;
 use Entity\Upload;
 
 $di = \Phalcon\Di::getDefault();
@@ -206,7 +206,7 @@ return array(
 
                 'no_notes' => array('radio', array(
                     'label' => 'Disable Notes System',
-                    'description' => 'Enable or disable the ability to send or receive notes using FA\'s note system. Note that administrators are never restricted from sending you notes.',
+                    'description' => 'Enable or disable the ability to send or receive notes using App\'s note system. Note that administrators are never restricted from sending you notes.',
                     'layout' => 'col50',
                     'options' => array(
                         0       => 'Enable Notes',

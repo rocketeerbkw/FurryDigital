@@ -10,7 +10,7 @@ class IndexController extends BaseController
         $avatar_base = $this->config->application->avatars_path;
         $user_avatar = $avatar_base.'/'.$user->lower.'.gif';
 
-        $default_avatar = FA_INCLUDE_STATIC.'/img/avatar.gif';
+        $default_avatar = APP_INCLUDE_STATIC.'/img/avatar.gif';
 
         if (!file_exists($user_avatar))
             @copy($default_avatar, $user_avatar);

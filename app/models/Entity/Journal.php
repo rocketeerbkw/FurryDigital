@@ -14,7 +14,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @Entity
  * @HasLifecycleCallbacks
  */
-class Journal extends \FA\Doctrine\Entity
+class Journal extends \App\Doctrine\Entity
 {
     public function __construct()
     {
@@ -30,7 +30,7 @@ class Journal extends \FA\Doctrine\Entity
     public function created()
     {
         User::incrementCounter('journals', $this->user_id);
-        \FA\Legacy\Notifications::dispatch('upload', $this->id);
+        \App\Legacy\Notifications::dispatch('upload', $this->id);
     }
 
     /**
@@ -42,12 +42,12 @@ class Journal extends \FA\Doctrine\Entity
         {
             foreach($this->comments as $comment)
             {
-                \FA\Legacy\Notifications::purge('journal_comment', $comment->id, $this->user_id);
+                \App\Legacy\Notifications::purge('journal_comment', $comment->id, $this->user_id);
             }
         }
 
         User::decrementCounter('journals', $this->user_id);
-        \FA\Legacy\Notifications::purge('journal', $this->id);
+        \App\Legacy\Notifications::purge('journal', $this->id);
     }
 
 

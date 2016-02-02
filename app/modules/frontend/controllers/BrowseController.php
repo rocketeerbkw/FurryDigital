@@ -22,7 +22,7 @@ class BrowseController extends BaseController
             unset($form_config['elements']['rating'][1]['options'][Upload::RATING_ADULT]);
         }
 
-        $form = new \FA\Form($form_config);
+        $form = new \App\Form($form_config);
 
         if ($this->request->isPost() && $form->isValid($_POST))
             $filters = $form->getValues();
@@ -71,7 +71,7 @@ class BrowseController extends BaseController
         }
 
         $query = $qb->orderBy('up.created_at', 'DESC')->getQuery();
-        $pager = new \FA\Paginator\Doctrine($query, $filters['page'], $per_page);
+        $pager = new \App\Paginator\Doctrine($query, $filters['page'], $per_page);
 
         $this->view->page_current = $filters['page'];
         $this->view->page_count = $pager->getPageCount();
