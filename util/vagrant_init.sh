@@ -19,6 +19,9 @@ mkswap /swapfile
 swapon /swapfile
 echo "/swapfile   none    swap    sw    0   0" >> /etc/fstab
 
+# Force an initial apt-get update
+apt-get update
+
 # Aptitude helper functions (if they don't already exist)
 apt-get -y install software-properties-common python-software-properties
 
