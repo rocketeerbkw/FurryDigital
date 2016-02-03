@@ -61,8 +61,6 @@
     </div>
 
     <nav id="ddmenu" class="block-menu-top">
-
-        <div class="hideondesktop floatleft"><a href="{{ url.get('') }}"><img class="p10lr" style="max-height:30px;padding-top:9px" src="{{ static_url('img/banners/fa_logo.png') }}"></a></div>
         <div class="hideondesktop floatleft" style="font-size:24px;padding-top:7px"><a href="{{ url.get('') }}"><strong>FurryDigital</strong></a></div>
         <div class="menu-icon"></div>
 
@@ -72,7 +70,7 @@
             <li class="lileft"><a class="top-heading" href="{{ url.get('upload') }}">Upload</a></li>
             <li class="lileft dropdown" role="presentation">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                    Support
+                    About
                     <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
@@ -174,7 +172,7 @@
 
     {# End Menu Top #}
 
-    {# Ad Block Header #}
+    {# Ad Block Header
 
     <div class="ads">
         <div class="in">
@@ -188,26 +186,24 @@
         </div>
     </div>
 
-    {# End Ad Block Header #}
+     End Ad Block Header #}
 
-    <div id="ad-extra-flat" class="bg1 leaderboard1" style="text-align:center;min-height:90px"></div>
+    <div id="ad-extra-flat" class="bg1 leaderboard1" style="text-align:center;min-height:90px">&nbsp;</div>
 
-    <div class="bg1">
+    <div class="bg1 container-fluid" id="standardpage">
 
         {{ content() }}
 
     </div>
 
     <div id="footer" class="bg5">
-        <div class="p5 borderbot fontsize12">
-            <strong>&copy; 2015-{{ date('Y') }} {{ config.application.name }}</strong> |
-            <span class="hideonmobile">
-                <a href="http://github.com/SlvrEagle23/FAOpen">Powered by FAOpen</a> |
-                <a href="{{ url.get('tos') }}">Terms of Service</a> |
-                <a href="{{ url.get('coc') }}">Code of Conduct</a> |
-                <a href="{{ url.get('aup') }}">Acceptable Upload Policy</a> |
-            </span>
-        </div>
+        <strong>&copy; 2015-{{ date('Y') }} {{ config.application.name }}</strong> |
+        <span class="hideonmobile">
+            <a href="http://github.com/SlvrEagle23/FAOpen">Powered by FAOpen</a> |
+            <a href="{{ url.get('tos') }}">Terms of Service</a> |
+            <a href="{{ url.get('coc') }}">Code of Conduct</a> |
+            <a href="{{ url.get('aup') }}">Acceptable Upload Policy</a>
+        </span>
     </div>
 </div>
 
@@ -229,54 +225,6 @@
 
     // OnReady
     jQuery(function($) {
-
-        // Load and init App ads
-        {% if fa.canSeeArt('adult') %}
-        // non-sfw
-        var ad_zone_ids = [2,4,6,8,10];
-        {% else %}
-        // sfw
-        var ad_zone_ids = [1,3,5,7,9];
-        {% endif %}
-
-        var ad_zone_info_src = '//rv.furry.digital/www/delivery/spc.php?zones='+(ad_zone_ids.join('|'))+'&r='+((new Date()).getTime());
-        try {
-            if(window.location) {
-                ad_zone_info_src += '&loc='+escape(window.location);
-            }
-            if(document.referrer) {
-                ad_zone_info_src += '&referer='+escape(document.referrer);
-            }
-        } catch(e){
-            console && console.log && console.log('JS Error caught: %o', e);
-        }
-
-        $.getScript(ad_zone_info_src).done(function() {
-            try {
-                if(typeof(OA_output) == 'undefined') {
-                    return;
-                }
-                var tmp_output, ad_block;
-                for(var i=0, cnt=ad_zone_ids.length; i<cnt; i++) {
-                    tmp_output = OA_output[ad_zone_ids[i]];
-                    if(typeof(tmp_output) != 'undefined') {
-                        // make URLs protocol relative
-                        tmp_output = tmp_output.replace(/https?:\/\/rv\./g, '//rv.');
-                        // remove impression tracking
-                        //tmp_output = tmp_output.replace(/<div\ id='beacon.+?<\/div>/g, '');
-
-                        // regular App ad
-                        ad_block = $('#ad-'+ad_zone_ids[i]);
-                        if(ad_block) {
-                            ad_block.html(tmp_output);
-                            ad_block.removeClass('hidden');
-                        }
-                    }
-                }
-            } catch(e) {
-                console && console.log && console.log('JS Error caught: %o', e);
-            }
-        });
 
         var enlthumb_elem = $(".enlthumb"), preview_elem;
 
@@ -335,7 +283,12 @@
 
         w.googletag = w.googletag || {cmd: []};
 
+
+
+
+
         w.ad_zones = {
+
             {% if fa.page_has_mature_content %}
             // mature rated
             'top'     : '/6017/APP_MA',
@@ -353,9 +306,10 @@
                 if(flat_ad && w.ad_zones.top) {
                     w.googletag.defineSlot(w.ad_zones.top, [[728, 90]], 'ad-extra-flat').setCollapseEmptyDiv(true).addService(w.googletag.pubads());
                 }
-                if(comments_ad && w.ad_zones.comments) {
+
+                /* if(comments_ad && w.ad_zones.comments) {
                     w.googletag.defineSlot(w.ad_zones.comments, [[728, 90]], 'ad-extra-comments').setCollapseEmptyDiv(true).addService(w.googletag.pubads());
-                }
+                } */
 
                 // enable services for defined ad slots
                 w.googletag.enableServices();
@@ -363,12 +317,11 @@
                 w.googletag.pubads().enableSingleRequest();
 
                 // display
-                if(flat_ad) {
+                if(flat_ad)
                     w.googletag.display('ad-extra-flat');
-                }
-                if(comments_ad) {
-                    w.googletag.display('ad-extra-comments');
-                }
+
+                /* if(comments_ad)
+                    w.googletag.display('ad-extra-comments'); */
             } catch(e) {
                 console && console.log && console.log('JS Error caught: %o', e);
             }

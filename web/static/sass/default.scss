@@ -70,7 +70,7 @@ a {
 /* THEME & COLOR FORMATTING */
 
 html, body {
-    background-color: #161d20;
+    background-color: #141A21;
 }
 
 .bg1 {
@@ -90,7 +90,7 @@ html, body {
 }
 
 .bg5 {
-    background-color: #161d20;
+    background-color: #141A21;
 }
 
 .maintable {
@@ -1205,13 +1205,14 @@ a.button {
 #footer {
     width: 100%;
     border: 0;
+    padding: 20px 10px 50px 10px;
+
     border-top: 1px;
     border-style: solid;
     border-color: #000;
     position: relative;
     bottom: 0;
     clear: both;
-    width: 100%;
     text-align: center;
 }
 
@@ -1541,7 +1542,7 @@ li.sfw-toggle {
                 li.dropdown-header {
                     font-size: 14px;
                     font-weight: bold;
-                    color: #fba734;
+                    color: #00ACFF;
                 }
                 li > a {
                     font-size: 13px;
