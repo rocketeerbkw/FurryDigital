@@ -15,7 +15,7 @@ class Acl
 
     protected $_actions = NULL;
 
-    public function __construct(\Doctrine\ORM\EntityManager $em, \App\Auth $auth)
+    public function __construct(\Doctrine\ORM\EntityManager $em, Auth $auth)
     {
         $this->_em = $em;
         $this->_auth = $auth;

@@ -294,6 +294,7 @@ $system_tz = \PVL\Customization::get('timezone');
 $di->setShared('fa', function () use ($di) {
     $fa = new \App\Legacy($di);
     $fa->init();
+
     return $fa;
 });
 
@@ -311,3 +312,6 @@ $di->setShared('user', function() use ($di) {
     else
         return new \App\Auth\AnonymousUser();
 });
+
+// Initialize cache.
+$cache = $di->get('cache');

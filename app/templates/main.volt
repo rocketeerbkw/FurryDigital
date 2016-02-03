@@ -47,11 +47,123 @@
 <body>
 <div id="furrydigital">
 
-    {# Menu Top #}
-
     <div id="header">
         <a name="top"></a>
-        <a href="/"><div class="sitebanner hideonmobile"></div></a>
+        <a href="{{ url.get('') }}"><div class="sitebanner hideonmobile"></div></a>
+
+        {# Menu Top #}
+
+        <nav id="ddmenu" class="block-menu-top">
+            <div class="hideondesktop floatleft" style="font-size:24px;padding-top:7px"><a href="{{ url.get('') }}"><strong>FurryDigital</strong></a></div>
+            <div class="menu-icon"></div>
+
+            <ul>
+                <li class="lileft"><a class="top-heading" href="{{ url.get('browse') }}">Browse</a></li>
+                <li class="lileft"><a class="top-heading hideondesktop" href="{{ url.get('search') }}">Search</a></li>
+                <li class="lileft"><a class="top-heading" href="{{ url.get('upload') }}">Upload</a></li>
+                <li class="lileft dropdown" role="presentation">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                        About
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-header">Community</li>
+                        <li><a href="{{ url.get('journals/fender') }}">Site News</a></li>
+                        <li><a href="http://www.facebook.com/furrydigital">Facebook</a></li>
+                        <li><a href="http://twitter.com/furrydigital">Twitter</a></li>
+
+                        <li class="dropdown-header">Support</li>
+                        <li><a href="{{ url.get('staff') }}">FurryDigital Staff</a></li>
+                        <li><a href="{{ url.get('tos') }}">Terms of Service</a></li>
+                        <li><a href="{{ url.get('coc') }}">Code of Conduct</a></li>
+                        <li><a href="{{ url.get('aup') }}">Upload Policy</a></li>
+                    </ul>
+                </li>
+
+                <li class="lileft hideonmobile">
+                    <form id="searchbox" method="post" action="{{ url.get('search') }}">
+                        <input type="search" name="q" placeholder="Search" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search'">
+                    </form>
+                </li>
+
+                {% if auth.isLoggedIn() %}
+                    <li role="presentation" class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="{{ url.named('user_view', ['username': user.lower]) }}" role="button" aria-haspopup="true" aria-expanded="false">
+                            <span class="hideondesktop">My App ( </span>{{ user.symbol }} {{ user.username }}<span class="hideondesktop"> )</span>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-header">Profile Information</li>
+                            <li><a href="{{ url.named('user_view', ['username': user.lower]) }}">My Userpage</a></li>
+                            <li><a href="/msg/pms/">My Notes</a></li>
+                            <li><a href="{{ url.route(['module': 'account', 'controller': 'journals', 'action': 'edit']) }}">Post a New Journal</a></li>
+                            <li><a href="/commissions/{{ user.lower }}/">My Commission Info</a></li>
+                        </ul>
+                    </li>
+
+                    {% if user.hasNotifications() %}
+                        <li style="padding-left:8px">
+                            <span class="hideondesktop">Messages:<br/></span>
+                            {% for notification_key, notification in user.getNotifications() %}
+                                {% if notification['show'] %}
+                                    <span><a title="{{ notification['title'] }}" href="{{ notification['url'] }}">{{ notification['text'] }}</a></span>
+                                {% endif %}
+                            {% endfor %}
+                        </li>
+                    {% endif %}
+
+                    <li class="dropdown" role="presentation">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="{{ url.route(['module': 'account']) }}" role="button" aria-haspopup="true" aria-expanded="false">
+                            Control Panel
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-header">Customize</li>
+                            <li><a href="{{ url.route(['module': 'account', 'controller': 'settings', 'action': 'index']) }}">Site Settings</a></li>
+                            <li><a href="{{ url.route(['module': 'account', 'controller': 'settings', 'action': 'profile']) }}">Edit Profile Page</a></li>
+                            <li><a href="{{ url.route(['module': 'account', 'controller': 'avatar']) }}">My Avatar</a></li>
+
+                            <li class="dropdown-header">My Content</li>
+                            <li><a href="{{ url.route(['module': 'account', 'controller': 'uploads']) }}">Uploads</a></li>
+                            <li><a href="{{ url.route(['module': 'account', 'controller': 'journals']) }}">Journals</a></li>
+                            <li><a href="{{ url.route(['module': 'account', 'controller': 'folders']) }}">Folders</a></li>
+                            <li><a href="{{ url.route(['module': 'account', 'controller': 'favorites']) }}">Favorites</a></li>
+                            <li><a href="{{ url.route(['module': 'account', 'controller': 'watches']) }}">Watches</a></li>
+                            <li><a href="{{ url.route(['module': 'account', 'controller': 'shouts']) }}">Shouts</a></li>
+
+                            <li class="dropdown-header">Support</li>
+                            <li><a href="{{ url.route(['module': 'account', 'controller': 'tickets']) }}">Trouble Tickets</a></li>
+                        </ul>
+                    </li>
+
+                    {% if acl.isAllowed('administer all') %}
+                        <li>
+                            <a class="top-heading" href="{{ url.route(['module': 'admin']) }}">Admin</a>
+                        </li>
+                    {% endif %}
+
+                    {% if fa.canSeeArt('adult', false) %}
+                        <li class="no-sub sfw-toggle {% if fa.getSfwCookie() %}active{% endif %}">
+                            <a class="top-heading" href="?" title="Toggle to hide Mature and Adult submissions. Effective starting next page load.">
+                                <span class="hideonmobile">SFW</span>
+                                <span class="hideondesktop">Toggle SFW</span>
+                            </a>
+                        </li>
+                    {% endif %}
+                {% endif %}
+
+                <li class="no-sub">
+                {% if auth.isLoggedIn() %}
+                    <a id="logout-link" class="logout-link" href="{{ url.route(['module': 'account', 'controller': 'logout', 'csrf': csrf.generate('login')]) }}">Log Out</a>
+                {% else %}
+                    <a href="{{ url.route(['module': 'account', 'controller': 'register']) }}">Register</a> | <a href="{{ url.route(['module': 'account', 'controller': 'login']) }}">Log in</a>
+                {% endif %}
+                </li>
+
+            </ul>
+        </nav>
+
+        {# End Menu Top #}
 
         {% if flash.hasMessages() %}
             {% for message in flash.getMessages() %}
@@ -59,118 +171,6 @@
             {% endfor %}
         {% endif %}
     </div>
-
-    <nav id="ddmenu" class="block-menu-top">
-        <div class="hideondesktop floatleft" style="font-size:24px;padding-top:7px"><a href="{{ url.get('') }}"><strong>FurryDigital</strong></a></div>
-        <div class="menu-icon"></div>
-
-        <ul>
-            <li class="lileft"><a class="top-heading" href="{{ url.get('browse') }}">Browse</a></li>
-            <li class="lileft"><a class="top-heading hideondesktop" href="{{ url.get('search') }}">Search</a></li>
-            <li class="lileft"><a class="top-heading" href="{{ url.get('upload') }}">Upload</a></li>
-            <li class="lileft dropdown" role="presentation">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                    About
-                    <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li class="dropdown-header">Community</li>
-                    <li><a href="{{ url.get('journals/fender') }}">Site News</a></li>
-                    <li><a href="http://www.facebook.com/furrydigital">Facebook</a></li>
-                    <li><a href="http://twitter.com/furrydigital">Twitter</a></li>
-
-                    <li class="dropdown-header">Support</li>
-                    <li><a href="{{ url.get('staff') }}">FurryDigital Staff</a></li>
-                    <li><a href="{{ url.get('tos') }}">Terms of Service</a></li>
-                    <li><a href="{{ url.get('coc') }}">Code of Conduct</a></li>
-                    <li><a href="{{ url.get('aup') }}">Upload Policy</a></li>
-                </ul>
-            </li>
-
-            <li class="lileft hideonmobile">
-                <form id="searchbox" method="post" action="{{ url.get('search') }}">
-                    <input type="search" name="q" placeholder="Search" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search'">
-                </form>
-            </li>
-
-            {% if auth.isLoggedIn() %}
-                <li role="presentation" class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="{{ url.named('user_view', ['username': user.lower]) }}" role="button" aria-haspopup="true" aria-expanded="false">
-                        <span class="hideondesktop">My App ( </span>{{ user.symbol }} {{ user.username }}<span class="hideondesktop"> )</span>
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li class="dropdown-header">Profile Information</li>
-                        <li><a href="{{ url.named('user_view', ['username': user.lower]) }}">My Userpage</a></li>
-                        <li><a href="/msg/pms/">My Notes</a></li>
-                        <li><a href="{{ url.route(['module': 'account', 'controller': 'journals', 'action': 'edit']) }}">Post a New Journal</a></li>
-                        <li><a href="/commissions/{{ user.lower }}/">My Commission Info</a></li>
-                    </ul>
-                </li>
-
-                {% if user.hasNotifications() %}
-                    <li style="padding-left:8px">
-                        <span class="hideondesktop">Messages:<br/></span>
-                        {% for notification_key, notification in user.getNotifications() %}
-                            {% if notification['show'] %}
-                                <span><a title="{{ notification['title'] }}" href="{{ notification['url'] }}">{{ notification['text'] }}</a></span>
-                            {% endif %}
-                        {% endfor %}
-                    </li>
-                {% endif %}
-
-                <li class="dropdown" role="presentation">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="{{ url.route(['module': 'account']) }}" role="button" aria-haspopup="true" aria-expanded="false">
-                        Control Panel
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li class="dropdown-header">Customize</li>
-                        <li><a href="{{ url.route(['module': 'account', 'controller': 'settings', 'action': 'index']) }}">Site Settings</a></li>
-                        <li><a href="{{ url.route(['module': 'account', 'controller': 'settings', 'action': 'profile']) }}">Edit Profile Page</a></li>
-                        <li><a href="{{ url.route(['module': 'account', 'controller': 'avatar']) }}">My Avatar</a></li>
-
-                        <li class="dropdown-header">My Content</li>
-                        <li><a href="{{ url.route(['module': 'account', 'controller': 'uploads']) }}">Uploads</a></li>
-                        <li><a href="{{ url.route(['module': 'account', 'controller': 'journals']) }}">Journals</a></li>
-                        <li><a href="{{ url.route(['module': 'account', 'controller': 'folders']) }}">Folders</a></li>
-                        <li><a href="{{ url.route(['module': 'account', 'controller': 'favorites']) }}">Favorites</a></li>
-                        <li><a href="{{ url.route(['module': 'account', 'controller': 'watches']) }}">Watches</a></li>
-                        <li><a href="{{ url.route(['module': 'account', 'controller': 'shouts']) }}">Shouts</a></li>
-
-                        <li class="dropdown-header">Support</li>
-                        <li><a href="{{ url.route(['module': 'account', 'controller': 'tickets']) }}">Trouble Tickets</a></li>
-                    </ul>
-                </li>
-
-                {% if acl.isAllowed('administer all') %}
-                    <li>
-                        <a class="top-heading" href="{{ url.route(['module': 'admin']) }}">Admin</a>
-                    </li>
-                {% endif %}
-
-                {% if fa.canSeeArt('adult', false) %}
-                    <li class="no-sub sfw-toggle {% if fa.getSfwCookie() %}active{% endif %}">
-                        <a class="top-heading" href="?" title="Toggle to hide Mature and Adult submissions. Effective starting next page load.">
-                            <span class="hideonmobile">SFW</span>
-                            <span class="hideondesktop">Toggle SFW</span>
-                        </a>
-                    </li>
-                {% endif %}
-            {% endif %}
-
-            <li class="no-sub">
-            {% if auth.isLoggedIn() %}
-                <a id="logout-link" class="logout-link" href="{{ url.route(['module': 'account', 'controller': 'logout', 'csrf': csrf.generate('login')]) }}">Log Out</a>
-            {% else %}
-                <a href="{{ url.route(['module': 'account', 'controller': 'register']) }}">Register</a> | <a href="{{ url.route(['module': 'account', 'controller': 'login']) }}">Log in</a>
-            {% endif %}
-            </li>
-
-        </ul>
-    </nav>
-
-    {# End Menu Top #}
 
     {# Ad Block Header
 
@@ -188,7 +188,18 @@
 
      End Ad Block Header #}
 
-    <div id="ad-extra-flat" class="bg1 leaderboard1" style="text-align:center;min-height:90px">&nbsp;</div>
+    {% if !fa.page_has_mature_content %}
+    <div id="ad-extra-flat" class="bg1 leaderboard1" style="text-align:center;min-height:90px">
+
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:728px;height:90px"
+             data-ad-client="ca-pub-1896533421580439"
+             data-ad-slot="6496973379"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+    {% endif %}
 
     <div class="bg1 container-fluid" id="standardpage">
 
@@ -208,7 +219,7 @@
 </div>
 
 {% block footerjs %}
-    {{ javascript_include('//www.googletagservices.com/tag/js/gpt.js') }}
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
     {{ javascript_include('//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js') }}
     {{ javascript_include('//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.2.43/jquery.form-validator.min.js') }}
@@ -273,60 +284,6 @@
         }
 
     });
-
-    //
-    // load and init additional ads
-    //
-    (function(w, d) {
-        var flat_ad     = d.getElementById('ad-extra-flat');
-        var comments_ad = d.getElementById('ad-extra-comments');
-
-        w.googletag = w.googletag || {cmd: []};
-
-
-
-
-
-        w.ad_zones = {
-
-            {% if fa.page_has_mature_content %}
-            // mature rated
-            'top'     : '/6017/APP_MA',
-            'comments': '/6017/APP_MA'
-            {% else %}
-            // general rated
-            'top'     : '/6017/APP_GA',
-            'comments': '/6017/APP_GA/Low_Value_GA_728_90'
-            {% endif %}
-        };
-
-        // this will be executed after google ad code loads
-        w.googletag.cmd.push(function(){
-            try {
-                if(flat_ad && w.ad_zones.top) {
-                    w.googletag.defineSlot(w.ad_zones.top, [[728, 90]], 'ad-extra-flat').setCollapseEmptyDiv(true).addService(w.googletag.pubads());
-                }
-
-                /* if(comments_ad && w.ad_zones.comments) {
-                    w.googletag.defineSlot(w.ad_zones.comments, [[728, 90]], 'ad-extra-comments').setCollapseEmptyDiv(true).addService(w.googletag.pubads());
-                } */
-
-                // enable services for defined ad slots
-                w.googletag.enableServices();
-                // consolidate all slot calls into a singel request
-                w.googletag.pubads().enableSingleRequest();
-
-                // display
-                if(flat_ad)
-                    w.googletag.display('ad-extra-flat');
-
-                /* if(comments_ad)
-                    w.googletag.display('ad-extra-comments'); */
-            } catch(e) {
-                console && console.log && console.log('JS Error caught: %o', e);
-            }
-        });
-    })(window, document);
     </script>
 {% endblock %}
 </body>

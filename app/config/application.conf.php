@@ -116,8 +116,7 @@ if (APP_APPLICATION_ENV != 'production')
 
 if (APP_APPLICATION_ENV == 'staging')
 {
-    $config['base_url'] = 'http://fa.dashdev.net/';
-    $config['cookie_domain'] = '.dashdev.net';
+    $config['base_url'] = 'http://staging.furry.digital/';
 }
 
 return $config;
