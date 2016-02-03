@@ -88,7 +88,7 @@ $config = array(
 
         /* RESOURCES: Doctrine ORM Layer */
         'doctrine'          => array(
-            'autoGenerateProxies' => (FA_APPLICATION_ENV == "development"),
+            'autoGenerateProxies' => (APP_APPLICATION_ENV == "development"),
             'proxyNamespace'    => 'Proxy',
             'proxyPath'         => APP_INCLUDE_TEMP.'/proxies',
             'modelPath'         => APP_INCLUDE_MODELS,
@@ -101,7 +101,7 @@ $config = array(
  */
 
 
-if (FA_APPLICATION_ENV != 'production')
+if (APP_APPLICATION_ENV != 'production')
 {
     $config['phpSettings']['display_startup_errors'] = 1;
     $config['phpSettings']['display_errors'] = 1;
@@ -114,7 +114,7 @@ if (FA_APPLICATION_ENV != 'production')
     unset($config['upload_url']);
 }
 
-if (FA_APPLICATION_ENV == 'staging')
+if (APP_APPLICATION_ENV == 'staging')
 {
     $config['base_url'] = 'http://fa.dashdev.net/';
     $config['cookie_domain'] = '.dashdev.net';

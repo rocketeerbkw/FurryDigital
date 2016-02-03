@@ -7,12 +7,8 @@
     <meta name="viewport" content="width=device-width">
     <meta name="viewport" content="width=768, user-scalable=yes">
 
-    <meta name="description" content="FloofClub, the internet's largest online furry art community.">
+    <meta name="description" content="FloofClub, furry art, media and more!">
     <meta name="keywords" content="furry, furries, furry art, fursuits, fursuiting, anthro, anthropomorphic">
-
-    <meta name="copyright" content="Ferrox Art LLC">
-    <meta name="author" content="Ferrox Art LLC">
-    <meta name="Distribution" content="Global">
 
     <meta http-equiv="X-UA-Compatible" content="IE=9; IE=EDGE">
 
@@ -60,7 +56,6 @@
         <div class="menu-icon"></div>
 
         <ul>
-            <li class="lileft hideonmobile" style="vertical-align:middle;line-height:0 !important" ><a class="top-heading" href="{{ url.get('') }}"><img style="max-height:30px;padding-top:8px" src="{{ static_url('img/banners/fa_logo.png') }}"></a></li>
             <li class="lileft"><a class="top-heading" href="{{ url.get('browse') }}">Browse</a></li>
             <li class="lileft"><a class="top-heading hideondesktop" href="{{ url.get('search') }}">Search</a></li>
             <li class="lileft"><a class="top-heading" href="{{ url.get('upload') }}">Upload</a></li>
