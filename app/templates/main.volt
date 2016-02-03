@@ -77,20 +77,15 @@
                 </a>
                 <ul class="dropdown-menu">
                     <li class="dropdown-header">Community</li>
-                    <li><a href="{{ url.get('journals/fender') }}">FurryDigital News</a></li>
-                    <li><a href="http://www.faunited.org">App United</a></li>
+                    <li><a href="{{ url.get('journals/fender') }}">Site News</a></li>
                     <li><a href="http://www.facebook.com/furrydigital">Facebook</a></li>
                     <li><a href="http://twitter.com/furrydigital">Twitter</a></li>
-                    <li><a href="http://help.furry.digital/article/AA-00210/7/Advertising.html">Advertising</a></li>
 
                     <li class="dropdown-header">Support</li>
                     <li><a href="{{ url.get('staff') }}">FurryDigital Staff</a></li>
-                    <li><a href="http://help.furry.digital">Help & FAQ</a></li>
-
-                    <li class="dropdown-header">Rules & Policies</li>
-                    <li><a href="http://help.furry.digital/article/AA-00203/8/Terms-of-Service-TOS.html">Terms of Service</a></li>
-                    <li><a href="http://help.furry.digital/article/AA-01065/0/Code-of-Conduct-COC.html">Code of Conduct</a></li>
-                    <li><a href="http://help.furry.digital/article/AA-00205/8/Acceptable-Upload-Policy-AUP.html">Upload Policy</a></li>
+                    <li><a href="{{ url.get('tos') }}">Terms of Service</a></li>
+                    <li><a href="{{ url.get('coc') }}">Code of Conduct</a></li>
+                    <li><a href="{{ url.get('aup') }}">Upload Policy</a></li>
                 </ul>
             </li>
 
@@ -167,13 +162,11 @@
             {% endif %}
 
             <li class="no-sub">
-                <span class="top-heading p10r">
-                {% if auth.isLoggedIn() %}
-                    <a id="logout-link" class="logout-link" href="{{ url.route(['module': 'account', 'controller': 'logout', 'csrf': csrf.generate('login')]) }}">Log Out</a>
-                {% else %}
-                    <a href="{{ url.route(['module': 'account', 'controller': 'register']) }}">Register</a> | <a href="{{ url.route(['module': 'account', 'controller': 'login']) }}">Log in</a>
-                {% endif %}
-                </span>
+            {% if auth.isLoggedIn() %}
+                <a id="logout-link" class="logout-link" href="{{ url.route(['module': 'account', 'controller': 'logout', 'csrf': csrf.generate('login')]) }}">Log Out</a>
+            {% else %}
+                <a href="{{ url.route(['module': 'account', 'controller': 'register']) }}">Register</a> | <a href="{{ url.route(['module': 'account', 'controller': 'login']) }}">Log in</a>
+            {% endif %}
             </li>
 
         </ul>
@@ -206,32 +199,10 @@
     </div>
 
     <div id="footer" class="bg5">
-
-        <div class="p10">
-            <div class="ads">
-            {% if fa.canSeeArt('adult') %}
-                <span id="ad-10" class="adftr hidden"></span>
-            {% else %}
-                <span id="ad-9" class="adftr hidden"></span>
-            {% endif %}
-
-                <img class="falogo" src="{{ static_url('img/banners/fa_logo.png') }}">
-
-                <div class="ftr">
-                {% if fa.canSeeArt('adult') %}
-                    <div id="ad-6" class="adftr hidden spacer"></div>
-                    <div id="ad-8" class="adftr hidden"></div>
-                {% else %}
-                    <div id="ad-5" class="adftr hidden spacer"></div>
-                    <div id="ad-7" class="adftr hidden"></div>
-                {% endif %}
-                </div>
-            </div>
-        </div>
         <div class="p5 borderbot fontsize12">
-            <strong>&copy; 2005-{{ date('Y') }} IMVU</strong> |
+            <strong>&copy; 2015-{{ date('Y') }} {{ config.application.name }}</strong> |
             <span class="hideonmobile">
-                <a href="http://help.furry.digital/article/AA-00210/7/Advertising.html">Advertising</a> |
+                <a href="http://github.com/SlvrEagle23/FAOpen">Powered by FAOpen</a> |
                 <a href="{{ url.get('tos') }}">Terms of Service</a> |
                 <a href="{{ url.get('coc') }}">Code of Conduct</a> |
                 <a href="{{ url.get('aup') }}">Acceptable Upload Policy</a> |
@@ -253,6 +224,8 @@
 
     var sfw_cookie_name = '{{ fa.sfw_cookie_name|escape_js }}';
     var cookie_domain = '{{ config.application.cookie_domain|escape_js }}';
+
+    var page_has_mature_content = {% if fa.page_has_mature_content %}true{% else %}false{% endif %};
 
     // OnReady
     jQuery(function($) {

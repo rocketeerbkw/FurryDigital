@@ -5,7 +5,7 @@
 
 /* BOOTSTRAP */
 
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,700");
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400italic,600,700");
 @import 'bootstrap';
 
 /* THEME & COLOR FORMATTING */
@@ -19,7 +19,7 @@ html, body {
   min-width: 728px;
   margin-left: auto;
   margin-right: auto;
-  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 400;
   font-size: 14px;
   color: #cfcfcf;
@@ -74,7 +74,7 @@ html, body {
 }
 
 .bg1 {
-    background-color: #212127;
+    background-color: #1B1B21;
 }
 
 .bg2 {
@@ -112,10 +112,6 @@ html, body, .fontsize14, .selectorbutton, .fontoverride {
     font-size: 14px !important;
 }
 
-html, body, h1, h2, h3, h4, .fontstyle, .selectorbutton, .button, .fontoverride {
-    font-family: "Open Sans" !important;
-}
-
 h1 {
     font-weight: 400;
 }
@@ -141,13 +137,13 @@ h1, h4 {
 }
 
 h3, h2 {
-    color: #fda936 !important;
+    color: #00ACFF !important;
 }
 
 .fonthighlight {
-    color: #fda936 !important;
+    color: #00ACFF !important;
     a {
-        color: #fda936 !important;
+        color: #00ACFF !important;
     }
 }
 
@@ -187,7 +183,7 @@ h1 a, h2 a, h3 a, h4 a {
 }
 
 h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, .auto_link a:hover, #userpage a:hover, #userprofile a:hover, #journalcontent a:hover, #usershoutbubble a:hover, .usershoutbubble a:hover, #submission-details .desc-col a:hover, #nav a:hover, #mainnav a:hover, .userpage-tabs a:hover, #subnav li:hover ul li a:hover, #controlpanelnav a:hover, #journal a:hover, .selectorbutton:hover, .pmlistsubject a:hover, .usernamehref:hover, #ddmenu li a:hover, .prevnextbutton:hover, .link-override a:hover, .helphover:hover {
-    color: #fda936 !important;
+    color: #00ACFF !important;
     text-decoration: none;
 }
 
@@ -258,7 +254,7 @@ ul.nobullet {
         display: none !important;
     }
     #standardpage {
-        padding: 0 0 10px 0;
+        padding: 10px 0;
     }
     #columnpage {
         width: 100%;
@@ -387,7 +383,7 @@ ul.nobullet {
         display: none !important;
     }
     #standardpage {
-        padding: 0px 20px 10px 20px;
+        padding: 20px;
     }
     #columnpage {
         width: 100%;
@@ -1496,7 +1492,7 @@ li.sfw-toggle {
 
     & > ul {
         margin: 0;
-        padding: 0;
+        padding: 0 10px;
         text-align: right;
         width: 100%;
         font-size: 0;
@@ -1516,8 +1512,9 @@ li.sfw-toggle {
             display: inline-block;
             outline: 0;
             cursor: pointer;
+            text-align: right;
 
-            font-size: 14px;
+            font-size: 16px;
             zoom: 1;
             position: relative;
             line-height: 46px;
@@ -1561,6 +1558,7 @@ li.sfw-toggle {
     }
 
     .lileft {
+        text-align: left;
         float: left !important;
     }
 
@@ -2650,7 +2648,7 @@ table.pagegutter {
         font-weight: 100;
         line-height: 30px;
         color: black;
-        background-color: #fda936;
+        background-color: #00ACFF;
         padding: 2px 12px;
         &:hover {
             background-color: #fff;
