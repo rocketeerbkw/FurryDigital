@@ -23,7 +23,7 @@ return array(
 
     // CloudFlare API.
     'cloudflare' => array(
-        'domain'        => 'floof.club',
+        'domain'        => 'furry.digital',
         'email'         => '',
         'api_key'       => '',
     ),

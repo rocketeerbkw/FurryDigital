@@ -58,7 +58,7 @@ class ErrorHandler
         elseif ($e instanceof \App\Exception\Bootstrap)
         {
             // Bootstrapping error; cannot render template for error display.
-            if (FA_APPLICATION_ENV != 'production')
+            if (APP_APPLICATION_ENV != 'production')
             {
                 self::renderPretty($e, $di);
                 return;
@@ -97,7 +97,7 @@ class ErrorHandler
                     $show_debug = true;
             }
 
-            if (FA_APPLICATION_ENV != 'production')
+            if (APP_APPLICATION_ENV != 'production')
                 $show_debug = true;
 
             if ($show_debug)

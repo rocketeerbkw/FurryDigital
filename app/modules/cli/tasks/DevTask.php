@@ -10,7 +10,7 @@ class DevTask extends Task
      */
     public function deployAction()
     {
-        if (FA_APPLICATION_ENV == "production")
+        if (APP_APPLICATION_ENV == "production")
             die('Not in a development environment!');
 
         // Create an admin user.
@@ -22,8 +22,8 @@ class DevTask extends Task
             'seeadultart'   => Upload::RATING_ADULT,
             'birthday'      => date('Y-m-d', strtotime('-21 years')),
             'regbdate'      => date('Y-m-d', strtotime('-21 years')),
-            'email'         => 'info@floof.club',
-            'regemail'      => 'info@floof.club',
+            'email'         => 'info@furry.digital',
+            'regemail'      => 'info@furry.digital',
             'access_level'  => User::LEGACY_ACL_ADMINISTRATOR,
         ));
         $user->save();

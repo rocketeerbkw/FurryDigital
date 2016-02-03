@@ -1,6 +1,6 @@
 {
-  "name": "Unrealomega/daedalus",
-  "description": "The FloofClub flagship application.",
+  "name": "SlvrEagle23/FurryDigital",
+  "description": "The FurryDigital flagship application.",
   "require": {
     "zendframework/zend-paginator": "~2.4",
     "zendframework/zend-feed": "~2.4",
@@ -24,7 +24,7 @@
   },
   "authors": [
     {
-      "name": "Buster Neece",
+      "name": "Buster 'Silver Eagle' Neece",
       "email": "buster@busterneece.com",
       "role": "Developer"
     },

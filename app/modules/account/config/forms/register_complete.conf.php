@@ -61,7 +61,7 @@ return array(
             'elements' => array(
                 'terms' => array('markup', array(
                     'markup' => '
-                        <p>FloofClub values your privacy and will not share this information. See our <a href="/tos">privacy policy</a> for more information.</p>
+                        <p>FurryDigital values your privacy and will not share this information. See our <a href="/tos">privacy policy</a> for more information.</p>
                         <p>By clicking on \'I accept\' below you are agreeing to the <a href="/tos">Terms of Service</a> and the <a href="/aup">Submission Policy</a>.</p>
                         <p>Yes, we know, we already displayed this message once. It is here as a reminder just so you can\'t say "I haven\'t read it" later, because you really should.</p>',
                 )),

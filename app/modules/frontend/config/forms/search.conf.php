@@ -4,7 +4,7 @@
  */
 
 use Entity\Upload;
-use FA\Legacy\Utilities as FAUtils;
+use App\Legacy\Utilities as AppUtils;
 
 $di = \Phalcon\Di::getDefault();
 $config = $di['config'];

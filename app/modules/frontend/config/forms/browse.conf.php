@@ -4,7 +4,7 @@
  */
 
 use Entity\Upload;
-use App\Legacy\Utilities as FAUtils;
+use App\Legacy\Utilities as AppUtils;
 
 $di = \Phalcon\Di::getDefault();
 $config = $di['config'];
@@ -16,22 +16,22 @@ return array(
 
         'category' => array('select', array(
             'label' => 'Category',
-            'options' => FAUtils::reverseArray($config->fa->categories->toArray()),
+            'options' => AppUtils::reverseArray($config->fa->categories->toArray()),
         )),
 
         'theme' => array('select', array(
             'label' => 'Theme',
-            'options' => FAUtils::reverseArray($config->fa->art_types->toArray()),
+            'options' => AppUtils::reverseArray($config->fa->art_types->toArray()),
         )),
 
         'species' => array('select', array(
             'label' => 'Species',
-            'options' => FAUtils::reverseArray($config->fa->species->toArray()),
+            'options' => AppUtils::reverseArray($config->fa->species->toArray()),
         )),
 
         'gender' => array('select', array(
             'label' => 'Gender',
-            'options' => FAUtils::reverseArray($config->fa->genders->toArray()),
+            'options' => AppUtils::reverseArray($config->fa->genders->toArray()),
         )),
 
         'rating' => array('multiCheckbox', array(

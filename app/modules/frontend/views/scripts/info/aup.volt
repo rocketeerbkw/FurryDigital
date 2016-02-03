@@ -53,7 +53,7 @@
 
     <div class="line">
         <div class="cell one p10">
-            <span class="num">1.2</span><p>Keywords, Ratings, Categories, Themes, and Species are used to define images as they appear in FloofClub's search engine. Abuse of these (misleading, inaccurate, or false) is prohibited. This does not apply to the Gender section.</p>
+            <span class="num">1.2</span><p>Keywords, Ratings, Categories, Themes, and Species are used to define images as they appear in FurryDigital's search engine. Abuse of these (misleading, inaccurate, or false) is prohibited. This does not apply to the Gender section.</p>
         </div>
 
         <div class="cell two p10">
@@ -73,7 +73,7 @@
         </div>
 
         <div class="cell two p10">
-            <p><i>In plain English...</i></br>Submissions used to sell goods are limited to 1 per item. To keep the focus of FloofClub on user-created artwork, you may not advertise the sale of mass manufactured goods. This rule does not apply to price guides and commission notices.</p>
+            <p><i>In plain English...</i></br>Submissions used to sell goods are limited to 1 per item. To keep the focus of FurryDigital on user-created artwork, you may not advertise the sale of mass manufactured goods. This rule does not apply to price guides and commission notices.</p>
         </div>
     </div>
 
@@ -355,7 +355,7 @@
                 <li><b>5th Offense:</b> You will be <b>Temporarily Suspended for 1 week</b>.</li>
                 <li><b>6th Offense:</b> You will be <b>Temporarily Suspended for 2 weeks</b>.</li>
                 <li><b>7th Offense:</b> You will be <b>Temporarily Suspended for 1 month</b> and will receive a Final Warning to cease violating the relevant section.</li>
-                <li><b>8th Offense:</b> You will be <b>Permanently Banned</b> from using FloofClub's services. Any future accounts you create will also be Permanently Banned.</li>
+                <li><b>8th Offense:</b> You will be <b>Permanently Banned</b> from using FurryDigital's services. Any future accounts you create will also be Permanently Banned.</li>
            </p></ul>
         </div>
 
@@ -386,7 +386,7 @@
 
     <div class="line">
         <div class="cell one p10">
-            <span class="num">8.4</span><p>While you are Temporarily Suspended, you are not permitted to access or create accounts on FloofClub. Doing so may result in the length of your current suspension being extended or changed to a Permanent Ban.</p>
+            <span class="num">8.4</span><p>While you are Temporarily Suspended, you are not permitted to access or create accounts on FurryDigital. Doing so may result in the length of your current suspension being extended or changed to a Permanent Ban.</p>
         </div>
 
         <div class="cell two p10">
@@ -396,7 +396,7 @@
 
     <div class="line2">
         <div class="cell one p10">
-            <span class="num">8.5</span><p>All decisions are made based upon your history, the severity of your offense, and the discretion of the Moderator. If you disagree with the decision of a Moderator, you may appeal his decision by opening a <b>Trouble Ticket</b> under the <b>Dispute Administrative Action</b> section. If your account is currently inaccessible due to a Suspension or Ban you may email <a href="mailto:appeals@floof.club">appeals@floof.club</a>. Disputes must be filed within 6 months of when the decision took place.</p>
+            <span class="num">8.5</span><p>All decisions are made based upon your history, the severity of your offense, and the discretion of the Moderator. If you disagree with the decision of a Moderator, you may appeal his decision by opening a <b>Trouble Ticket</b> under the <b>Dispute Administrative Action</b> section. If your account is currently inaccessible due to a Suspension or Ban you may email <a href="mailto:appeals@furry.digital">appeals@furry.digital</a>. Disputes must be filed within 6 months of when the decision took place.</p>
         </div>
 
         <div class="cell two p10">

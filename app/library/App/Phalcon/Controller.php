@@ -34,7 +34,7 @@ class Controller extends \Phalcon\Mvc\Controller
             $this->view->setLayout(null);
         }
 
-        if ($this->hasParam('debug') && $this->getParam('debug') === 'true' && FA_APPLICATION_ENV != 'production')
+        if ($this->hasParam('debug') && $this->getParam('debug') === 'true' && APP_APPLICATION_ENV != 'production')
         {
             error_reporting(E_ALL & ~E_STRICT);
             ini_set('display_errors', 1);
@@ -322,7 +322,7 @@ class Controller extends \Phalcon\Mvc\Controller
      */
     protected function forceSecure()
     {
-        if (FA_APPLICATION_ENV == 'production' && !APP_IS_SECURE)
+        if (APP_APPLICATION_ENV == 'production' && !APP_IS_SECURE)
         {
             $this->doNotRender();
 
@@ -336,7 +336,7 @@ class Controller extends \Phalcon\Mvc\Controller
      */
     protected function forceInsecure()
     {
-        if (FA_APPLICATION_ENV == 'production' && APP_IS_SECURE)
+        if (APP_APPLICATION_ENV == 'production' && APP_IS_SECURE)
         {
             $this->doNotRender();
 

@@ -67,7 +67,7 @@ $config->preload(array('application'));
 // Set URL constants from configuration.
 $app_cfg = $config->application;
 if ($app_cfg->base_url)
-    define('FA_BASE_URL', $app_cfg->base_url);
+    define('APP_BASE_URL', $app_cfg->base_url);
 
 // Apply PHP settings.
 $php_settings = $config->application->phpSettings->toArray();

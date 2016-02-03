@@ -1,16 +1,16 @@
 <?
 /**
- * FloofClub Legacy Configuration File
+ * FurryDigital Legacy Configuration File
  *
  * TODO: These all need documentation!
  */
 
 return array(
     // Name of the website
-    'Site_Name'         => "FloofClub",
+    'Site_Name'         => "FurryDigital",
 
     // Primary email which the website shows for things like errors or support...
-    'Master_Email'      => "admin@floof.club",
+    'Master_Email'      => "admin@furry.digital",
 
     // Primary format for displaying time
     'Regular_Date_Format' => "m-d-y",
@@ -62,7 +62,7 @@ return array(
     'Avatar_Filesize'   => "55",
 
     // A list of words separated by whitespace. Prevents registration of accounts the names of which contain any of the listed words.
-    'Account_Name_Blocklist' => "n1gg3r nigger niggger nigggger niggggger Nigger nigga Nigga niglet cunt fuck Fuck fucking Fucking  beaner gook dogcock piche Piche Dragoneer DRAGONEER dragoneer Carenath  arshesnei qmelon Surgat net-cat affinity faggot Faggot f4gg0t floofclub faadmin admin Admin niggar niggah nigga furfa-g f-urfag -furfag fu-rfag fur-fag furfa-g furf-ag cerbrus cerberusnl asshole a5shole as5hole a55hole 4sshole cocks c0cks vagina v4gina v4g1n4 v4g1na v4gin4 yiffinhell yiff-in-hell inkbunny sofurry weasyl moderator Moderator imvu",
+    'Account_Name_Blocklist' => "n1gg3r nigger niggger nigggger niggggger Nigger nigga Nigga niglet cunt fuck Fuck fucking Fucking  beaner gook dogcock piche Piche Dragoneer DRAGONEER dragoneer Carenath  arshesnei qmelon Surgat net-cat affinity faggot Faggot f4gg0t furrydigital faadmin admin Admin niggar niggah nigga furfa-g f-urfag -furfag fu-rfag fur-fag furfa-g furf-ag cerbrus cerberusnl asshole a5shole as5hole a55hole 4sshole cocks c0cks vagina v4gina v4g1n4 v4g1na v4gin4 yiffinhell yiff-in-hell inkbunny sofurry weasyl moderator Moderator imvu",
 
     // List of junk or temporary email providers, one item per line.
     // !!!! You damn well better know what you're doing before updating this list !!!!

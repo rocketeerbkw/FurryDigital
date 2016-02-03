@@ -83,7 +83,7 @@ return array(
 
                 'seeadultart' => array('radio', array(
                     'label' => 'Enable Adult Artwork',
-                    'description' => 'By enabling Mature or Adult artwork you agree that you are of legal age in the United States (18+). In compliance with United States law, FloofClub will lock any account found lying/misrepresenting their age and prevent them from further viewing of adult work.',
+                    'description' => 'By enabling Mature or Adult artwork you agree that you are of legal age in the United States (18+). In compliance with United States law, FurryDigital will lock any account found lying/misrepresenting their age and prevent them from further viewing of adult work.',
                     'belongsTo' => 'user',
                     'default' => '0',
                     'options' => array(

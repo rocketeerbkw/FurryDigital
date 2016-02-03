@@ -4,8 +4,8 @@
 
     <h1>1. Community Standards</h1>
 
-    <p>These standards apply to all aspects of FloofClub such as social interaction and content that you upload to the site. Before opening a Trouble Ticket, please be aware that we neither accept third-party reports nor act upon incidents occurring outside FloofClub unless a substantial and direct correlation can be made to an incident that is imminent or occurring on FloofClub. While personal screenshots, off-site chat logs, and similar evidence will not be reviewed unless irrefutable, you may provide FloofClub webpage screenshots using <a href="http://archive.today/">http://archive.today/</a>. If you are reporting a user who is harassing you, it is required that you block him via <b>Control Panel > Profile Info > Block List</b> before we can assist you.</p></br>
-    <p>FloofClub Site Moderators will do everything they can to assist you in alleviating issues you may be experiencing on site with professionalism and without bias. However, if at any time you disagree with a decision made by a member of staff, you may request that your issue be escalated to a Site Administrator for review or contact <a href="mailto:appeals@floof.club">appeals@floof.club</a> with your user name and related ticket number. Rulings are made based upon staff discretion after thorough investigation and reviewing site policies.</p></br>
+    <p>These standards apply to all aspects of FurryDigital such as social interaction and content that you upload to the site. Before opening a Trouble Ticket, please be aware that we neither accept third-party reports nor act upon incidents occurring outside FurryDigital unless a substantial and direct correlation can be made to an incident that is imminent or occurring on FurryDigital. While personal screenshots, off-site chat logs, and similar evidence will not be reviewed unless irrefutable, you may provide FurryDigital webpage screenshots using <a href="http://archive.today/">http://archive.today/</a>. If you are reporting a user who is harassing you, it is required that you block him via <b>Control Panel > Profile Info > Block List</b> before we can assist you.</p></br>
+    <p>FurryDigital Site Moderators will do everything they can to assist you in alleviating issues you may be experiencing on site with professionalism and without bias. However, if at any time you disagree with a decision made by a member of staff, you may request that your issue be escalated to a Site Administrator for review or contact <a href="mailto:appeals@furry.digital">appeals@furry.digital</a> with your user name and related ticket number. Rulings are made based upon staff discretion after thorough investigation and reviewing site policies.</p></br>
 
     <div class="line highlight">
         <div class="cell one p10">
@@ -109,13 +109,13 @@
 
     <div class="line">
         <div class="cell one p10">
-            <span class="num">1.10</span><p><b>Do not post links to content prohibited by FloofClub's policies.</b></br>
+            <span class="num">1.10</span><p><b>Do not post links to content prohibited by FurryDigital's policies.</b></br>
             Posting links to real life pornography, pirated media, malware, or websites featuring the illegal streaming of copyrighted content are not permitted.</p></br>
             <p>Links in publicly available content (comments, journals, shouts) or in submissions rated General (AUP 1.1) may not link to pornographic material.</p>
         </div>
 
         <div class="cell two p10">
-            <p><i>In plain English...</i></br>Do not post links to real porn, pirated material, viruses, malware, or other content which violates FloofClub's policies.</p>
+            <p><i>In plain English...</i></br>Do not post links to real porn, pirated material, viruses, malware, or other content which violates FurryDigital's policies.</p>
         </div>
     </div>
 
@@ -156,7 +156,7 @@
                 <li><b>5th Offense:</b> You will be <b>Temporarily Suspended for 1 week</b>.</li>
                 <li><b>6th Offense:</b> You will be <b>Temporarily Suspended for 2 weeks</b>.</li>
                 <li><b>7th Offense:</b> You will be <b>Temporarily Suspended for 1 month</b> and will receive a Final Warning to cease violating the relevant section.</li>
-                <li><b>8th Offense:</b> You will be <b>Permanently Banned</b> from using FloofClub's services. Any future accounts you create will also be Permanently Banned.</li>
+                <li><b>8th Offense:</b> You will be <b>Permanently Banned</b> from using FurryDigital's services. Any future accounts you create will also be Permanently Banned.</li>
            </p></ul>
         </div>
         <div class="cell two p10">
@@ -184,7 +184,7 @@
 
     <div class="line">
         <div class="cell one p10">
-            <span class="num">2.4</span><p>While you are Temporarily Suspended, you are not permitted to access or create accounts on FloofClub. Doing so may result in the length of your current suspension being extended or a changed to a Permanent Ban.</p>
+            <span class="num">2.4</span><p>While you are Temporarily Suspended, you are not permitted to access or create accounts on FurryDigital. Doing so may result in the length of your current suspension being extended or a changed to a Permanent Ban.</p>
         </div>
         <div class="cell two p10">
             <p><i>In plain English...</i></br>If you're suspended you may not create a new account or continue to use App until the suspension is over. If you're caught your suspension will be upgraded to a permanent ban.</p>
@@ -193,7 +193,7 @@
 
     <div class="line2">
         <div class="cell one p10">
-            <span class="num">2.5</span><p>All decisions are made based upon your history, the severity of your offense, and the discretion of the Moderator. If you disagree with the decision of a Moderator, you may appeal his decision by opening a <b>Trouble Ticket</b> under the <b>Dispute Administrative Action</b> section. If your account is currently inaccessible due to a Suspension or Ban, you may email <a href="mailto:appeals@floof.club">appeals@floof.club</a>. Disputes must be filed within 6 months of when the decision took place.</p>
+            <span class="num">2.5</span><p>All decisions are made based upon your history, the severity of your offense, and the discretion of the Moderator. If you disagree with the decision of a Moderator, you may appeal his decision by opening a <b>Trouble Ticket</b> under the <b>Dispute Administrative Action</b> section. If your account is currently inaccessible due to a Suspension or Ban, you may email <a href="mailto:appeals@furry.digital">appeals@furry.digital</a>. Disputes must be filed within 6 months of when the decision took place.</p>
         </div>
         <div class="cell two p10">
             <p><i>In plain English...</i></br>If suspended or banned you can appeal or dispute any action taken against your account for up to 6 months.</p>

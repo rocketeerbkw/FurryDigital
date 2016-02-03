@@ -1,8 +1,8 @@
 <?php
 namespace Modules\Frontend\Controllers;
 
-use \FA\Debug;
-use \FA\Utilities;
+use \App\Debug;
+use \App\Utilities;
 
 class UtilController extends BaseController
 {

@@ -1,4 +1,4 @@
-# FloofClub
+# FurryDigital
 
 * [Overview](#overview)
 * [Developing Locally](#developing-locally)
@@ -6,7 +6,7 @@
 
 ## Overview
 
-**FloofClub** is the flagship web application for the FloofClub web site. It is built on the solid foundation of the [FAOpen](https://github.com/SlvrEagle23/FAOpen) project, with a number of improvements and unique branding.
+**FurryDigital** is the flagship web application for the FurryDigital web site. It is built on the solid foundation of the [FAOpen](https://github.com/SlvrEagle23/FAOpen) project, with a number of improvements and unique branding.
 
 The application is built on the following technologies:
 
@@ -64,7 +64,7 @@ Because stylesheets are written in SCSS, they must first be compiled into CSS be
 
 The modern application follows the Model/View/Controller (MVC) structure, which enforces a strict separation between the database model (M), the controlling code that connects the model and template (C), and the template itself (V).
 
-Typically, the URL pattern is as follows: `floof.club/{module}/{controller}/{action}/{parameters}`, which corresponds to the following path: `/app/modules/{module}/controllers/{controller}Controller.php::{action}Action()`.
+Typically, the URL pattern is as follows: `furry.digital/{module}/{controller}/{action}/{parameters}`, which corresponds to the following path: `/app/modules/{module}/controllers/{controller}Controller.php::{action}Action()`.
 
 The default module is `frontend`, default controller is `index` (`IndexController.php`) and the default action is `index` (`indexAction`).
 
@@ -96,7 +96,7 @@ Here are the common DI containers used across the system:
 * **`current_module_config` - Current Module Configuration:** Same as `config`, but relative to the current module.
 * **`db` - Doctrine Database Abstraction:** The [Database Abstraction Layer](http://www.doctrine-project.org/projects/dbal.html) from the Doctrine database system.
 * **`em` - Doctrine Entity Manager:** The global ORM [Entity Manager](http://www.doctrine-project.org/api/orm/2.0/class-Doctrine.ORM.EntityManager.html) from the Doctrine database system.
-* **`fa` - FloofClub Legacy:** Inherited functionality from the older FloofClub system.
+* **`fa` - FurryDigital Legacy:** Inherited functionality from the older FurryDigital system.
 * **`flash` - Status Announcements:** Post persistent messages to the site header, that will appear either on the current page load (if the render hasn't happened yet) or on the next page (in the event of forwards).
 * **`parser` - Text Parser:** Helpers to handle message escaping, BBCode, smileys, URLs, etc.
 * **`session` - Session Management:** Wraps the PHP $_SESSION superglobal and allows for isolated namespaces in the session. 

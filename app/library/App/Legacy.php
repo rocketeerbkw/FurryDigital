@@ -1,6 +1,6 @@
 <?php
 /**
- * FloofClub Legacy Class
+ * FurryDigital Legacy Class
  *
  * This class exposes several critical functions to the global Dependency Injection (DI) container as $di->fa.
  * It is, itself, DI-aware, so it can call other DI containers as needed.
@@ -87,15 +87,15 @@ class Legacy
                 break;
 
             case self::SITE_MODE_READONLY:
-                $flash->addMessage('FloofClub is in read-only mode.', 'warning');
+                $flash->addMessage('FurryDigital is in read-only mode.', 'warning');
                 break;
 
             case self::SITE_MODE_FILE_READONLY:
-                $flash->addMessage('FloofClub is in file read-only mode.', 'warning');
+                $flash->addMessage('FurryDigital is in file read-only mode.', 'warning');
                 break;
 
             case self::SITE_MODE_OFFLINE:
-                die('FloofClub is currently offline. Thank you for your patience!');
+                die('FurryDigital is currently offline. Thank you for your patience!');
                 break;
         }
 

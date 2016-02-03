@@ -232,7 +232,7 @@ echo '<VirtualHost *:80>
     ErrorLog  /var/www/www_tmp/error.log
     CustomLog /var/www/www_tmp/access.log combined
 
-    SetEnv FA_APPLICATION_ENV development
+    SetEnv APP_APPLICATION_ENV development
 </VirtualHost>
 
 <Directory "/var/www/vagrant/web">

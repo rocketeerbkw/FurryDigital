@@ -28,7 +28,7 @@ class UtilController extends BaseController
 
                 if($cmd_result > 0) {
                     // error on copy
-                    echo 'Errors encountered while fixing artfolders. Please contact admin@floof.club to let us know.';
+                    echo 'Errors encountered while fixing artfolders. Please contact admin@furry.digital to let us know.';
                     exit;
                 }
             }

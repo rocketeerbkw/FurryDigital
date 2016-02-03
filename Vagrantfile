@@ -30,7 +30,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   if Vagrant.has_plugin?("hostsupdater")
-    config.hostsupdater.aliases = ["local.floof.club"]
+    config.hostsupdater.aliases = ["local.furry.digital"]
   end
 
   # Disabled for Windows 10 + VirtualBox

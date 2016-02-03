@@ -65,7 +65,7 @@ class Session
     public function getNamespaceName($suffix = 'default')
     {
         $app_hash = strtoupper(substr(md5(APP_INCLUDE_BASE), 0, 5));
-        return 'FA_'.$app_hash.'_'.$suffix;
+        return 'APP_'.$app_hash.'_'.$suffix;
     }
 
     /**

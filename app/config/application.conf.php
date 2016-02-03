@@ -7,14 +7,14 @@ $session_lifetime = 86400*1;
 
 $config = array(
     // Application name
-    'name'              => 'FloofClub',
+    'name'              => 'FurryDigital',
     'analytics_code'    => 'UA-60038462-1',
     
     // Primary application web address
-    'base_url'          => (APP_IS_SECURE ? 'https://' : 'http://').'floof.club',
+    'base_url'          => (APP_IS_SECURE ? 'https://' : 'http://').'furry.digital',
 
     // Path the cookie should use.
-    'cookie_domain'     => '.floof.club',
+    'cookie_domain'     => '.furry.digital',
 
     // Subfolder for the application (if applicable)
     'base_uri'          => '/',
@@ -24,7 +24,7 @@ $config = array(
 
     // Web address for API calls.
     // TODO: No API yet!
-    // 'api_url'           => (APP_IS_SECURE ? 'https://' : 'http://').'api.floof.club',
+    // 'api_url'           => (APP_IS_SECURE ? 'https://' : 'http://').'api.furry.digital',
 
     // Local path for art.
     'art_path'          => APP_INCLUDE_WEB.'/uploads/art',
@@ -41,11 +41,11 @@ $config = array(
     // Web URL for avatars.
     'avatars_url'       => '/uploads/avatars',
     
-    // FA Messenger mail settings
+    // Messenger mail settings
     'mail'              => array(
         'templates'         => APP_INCLUDE_BASE.'/messages',
-        'from_addr'         => 'noreply@floof.club',
-        'from_name'         => 'FloofClub',
+        'from_addr'         => 'noreply@furry.digital',
+        'from_name'         => 'FurryDigital',
         'use_smtp'          => true,
     ),
 

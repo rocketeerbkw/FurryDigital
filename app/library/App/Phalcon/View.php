@@ -54,7 +54,7 @@ class View
 
                 $volt = new Volt($view, $di);
                 $volt->setOptions(array(
-                    'compileAlways' => (FA_APPLICATION_ENV == 'development'),
+                    'compileAlways' => (APP_APPLICATION_ENV == 'development'),
                     'compiledPath' => function($templatePath) {
                         // Clean up the template path and remove non-application folders from path.
                         $templatePath = realpath($templatePath);

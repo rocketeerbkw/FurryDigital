@@ -27,7 +27,7 @@ class CacheTask extends Task
         $this->printLn('Local cache flushed.');
 
         // Flush CloudFlare cache (if used).
-        if (FA_APPLICATION_ENV == 'production')
+        if (APP_APPLICATION_ENV == 'production')
         {
             $apis = $this->config->apis->toArray();
             if (isset($apis['cloudflare']))

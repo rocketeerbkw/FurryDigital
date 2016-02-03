@@ -1,6 +1,6 @@
 <?php
 /**
- * FloofClub Legacy Classes
+ * FurryDigital Legacy Classes
  * Imported from older application codebase.
  */
 
@@ -95,7 +95,7 @@ class Utilities
             $value,
             ($expires !== FALSE ? $expires : time() + 60 * 60 * 24 * 30),
             ($path !== null ? $path : '/'),
-            ($domain !== null ? $domain : '.floof.club'),
+            ($domain !== null ? $domain : '.furry.digital'),
             $secure
         );
     }

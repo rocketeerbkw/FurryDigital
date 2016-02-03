@@ -75,7 +75,7 @@ class RegisterController extends BaseController
 
                 \App\Messenger::send(array(
                     'to'        => $data['email'],
-                    'subject'   => 'Verify Your FloofClub Account',
+                    'subject'   => 'Verify Your FurryDigital Account',
                     'template'  => 'account_registration',
                     'vars'      => array(
                         'form_data'         => $data,
@@ -159,7 +159,7 @@ class RegisterController extends BaseController
                 // Log in the user.
                 $this->auth->setUser($user);
 
-                $this->alert('<b>Welcome to FloofClub!</b><br>Your account has been created, and you are now logged in to the web site.', 'green');
+                $this->alert('<b>Welcome to FurryDigital!</b><br>Your account has been created, and you are now logged in to the web site.', 'green');
                 return $this->redirectHome();
                 // return $this->view->pick('register/welcome');
             }

@@ -6,7 +6,7 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">{{ title }}</h3>
-            Dealing with a problem user? Having site issues or technical issues? We're here to help! From the Trouble Ticket page you can reach out to the FloofClub staff to report problems and get assistance with the site.
+            Dealing with a problem user? Having site issues or technical issues? We're here to help! From the Trouble Ticket page you can reach out to the FurryDigital staff to report problems and get assistance with the site.
         </div>
         <div class="panel-body">
             <ul class="nobullet">

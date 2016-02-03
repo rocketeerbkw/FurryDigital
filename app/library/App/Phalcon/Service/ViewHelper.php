@@ -19,7 +19,7 @@ class ViewHelper implements \Phalcon\DI\InjectionAwareInterface
 
     public function __call($function, $args)
     {
-        $class_name = '\FA\View\Helper\\'.ucfirst($function);
+        $class_name = '\App\View\Helper\\'.ucfirst($function);
 
         if (class_exists($class_name))
         {
@@ -38,7 +38,7 @@ class ViewHelper implements \Phalcon\DI\InjectionAwareInterface
 
     public function compileFunction($function, $arguments)
     {
-        $class_name = '\FA\View\Helper\\'.ucfirst($function);
+        $class_name = '\App\View\Helper\\'.ucfirst($function);
         if (class_exists($class_name))
             return $class_name.'::'.$function.'('.$arguments.')';
 
@@ -47,7 +47,7 @@ class ViewHelper implements \Phalcon\DI\InjectionAwareInterface
 
     public function compileFilter($function, $arguments)
     {
-        $class_name = '\FA\View\Helper\\'.ucfirst($function);
+        $class_name = '\App\View\Helper\\'.ucfirst($function);
         if (class_exists($class_name))
             return $class_name.'::'.$function.'('.$arguments.')';
 

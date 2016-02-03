@@ -6,7 +6,7 @@
 
     <div class="line2">
         <div class="cell one p10">
-            <span class="num">1.1</span><p>Upon registering an account on FloofClub, you agree to abide by all the guidelines provided in this document and any therein, including the Code of Conduct and Acceptable Upload Policy. By registering an account, using, or accessing our services, you agree to be bound by all the terms and conditions of this agreement. If you do not agree to all the terms and conditions of this agreement you should not, and are not permitted to, use our services.</p>
+            <span class="num">1.1</span><p>Upon registering an account on FurryDigital, you agree to abide by all the guidelines provided in this document and any therein, including the Code of Conduct and Acceptable Upload Policy. By registering an account, using, or accessing our services, you agree to be bound by all the terms and conditions of this agreement. If you do not agree to all the terms and conditions of this agreement you should not, and are not permitted to, use our services.</p>
         </div>
 
         <div class="cell two p10">
@@ -16,7 +16,7 @@
 
     <div class="line">
         <div class="cell one p10">
-            <span class="num">1.2</span><p>FloofClub reserves the right to enforce these terms via content removal (submissions, journals, comments, etc), account suspension, and account termination at the discretion of its staff. You agree that we are not responsible for any loss of data, information, or financial hardships that may result from us enforcing these terms. In order to investigate claims and comply with local law enforcement, we reserve the right to monitor any communication using FloofClub as the medium. We encourage users to backup all their data.</p>
+            <span class="num">1.2</span><p>FurryDigital reserves the right to enforce these terms via content removal (submissions, journals, comments, etc), account suspension, and account termination at the discretion of its staff. You agree that we are not responsible for any loss of data, information, or financial hardships that may result from us enforcing these terms. In order to investigate claims and comply with local law enforcement, we reserve the right to monitor any communication using FurryDigital as the medium. We encourage users to backup all their data.</p>
         </div>
 
         <div class="cell two p10">
@@ -26,7 +26,7 @@
 
     <div class="line">
         <div class="cell one p10">
-            <span class="num">1.3</span><p>If for any reason, your account is suspended, banned, restricted, blocked (via users), or otherwise disabled by FloofClub, you agree to not create another account with the intent to bypass these limitations without our permission. Any effort to evade these limitations may result in the termination of all current and future accounts you register.</p>
+            <span class="num">1.3</span><p>If for any reason, your account is suspended, banned, restricted, blocked (via users), or otherwise disabled by FurryDigital, you agree to not create another account with the intent to bypass these limitations without our permission. Any effort to evade these limitations may result in the termination of all current and future accounts you register.</p>
         </div>
 
         <div class="cell two p10">
@@ -46,7 +46,7 @@
 
     <div class="line">
         <div class="cell one p10">
-            <span class="num">1.5</span><p>You may appeal any action taken against your account either via our Trouble Ticket system or email <a href="mailto:appeals@floof.club">appeals@floof.club</a>.</p>
+            <span class="num">1.5</span><p>You may appeal any action taken against your account either via our Trouble Ticket system or email <a href="mailto:appeals@furry.digital">appeals@furry.digital</a>.</p>
         </div>
 
         <div class="cell two p10">
@@ -60,7 +60,7 @@
 
     <div class="line">
         <div class="cell one p10">
-            <span class="num">2.1</span><p>FloofClub reserves the right to change these documents at any time, without prior notice, and for any reason. You will be notified of these changes via site announcements. Continued usage of the site after being notified constitutes acceptance and agreement with any changes. You are responsible for reviewing and becoming familiar with and adhering to any modifications to this agreement.</p>
+            <span class="num">2.1</span><p>FurryDigital reserves the right to change these documents at any time, without prior notice, and for any reason. You will be notified of these changes via site announcements. Continued usage of the site after being notified constitutes acceptance and agreement with any changes. You are responsible for reviewing and becoming familiar with and adhering to any modifications to this agreement.</p>
         </div>
 
         <div class="cell two p10">
@@ -84,7 +84,7 @@
 
     <div class="line">
         <div class="cell one p10">
-            <span class="num">3.1</span><p>You agree that you are at least thirteen (13) years of age. No individual under the age of thirteen (13) may register an account, use our services, provide any personal information to FloofClub, or otherwise upload or transmit personal information through our services (Name, address, telephone number, email address, etc).</p>
+            <span class="num">3.1</span><p>You agree that you are at least thirteen (13) years of age. No individual under the age of thirteen (13) may register an account, use our services, provide any personal information to FurryDigital, or otherwise upload or transmit personal information through our services (Name, address, telephone number, email address, etc).</p>
         </div>
 
         <div class="cell two p10">
@@ -134,7 +134,7 @@
 
     <div class="line">
         <div class="cell one p10">
-            <span class="num">3.6</span><p>You agree to not use your account to aid any user in circumventing the terms and policies of FloofClub.</p>
+            <span class="num">3.6</span><p>You agree to not use your account to aid any user in circumventing the terms and policies of FurryDigital.</p>
         </div>
 
         <div class="cell two p10">
@@ -165,7 +165,7 @@
 
     <div class="line2">
         <div class="cell one p10">
-            <span class="num">3.9</span><p>You agree that while there is no limit to the number of accounts you may create, you and each of your accounts will use FloofClub's services as intended and NOT to:</p>
+            <span class="num">3.9</span><p>You agree that while there is no limit to the number of accounts you may create, you and each of your accounts will use FurryDigital's services as intended and NOT to:</p>
         </div>
 
         <div class="cell two p10">
@@ -259,7 +259,7 @@
 
     <div class="line">
         <div class="cell one p10">
-            <span class="num">4.1</span><p>When you upload content to FloofClub via our services, you grant us a non-exclusive, worldwide, royalty-free, sublicensable, transferable right and license to use, host, store, cache, reproduce, publish, display (publicly or otherwise), perform (publicly or otherwise), distribute, transmit, modify, adapt, and create derivative works of, that content. These permissions are purely for the limited purposes of allowing us to provide our services in accordance with their functionality (hosting and display), improve them, and develop new services. These permissions do not transfer the rights of your content or allow us to create any deviations of that content outside the aforementioned purposes.</p>
+            <span class="num">4.1</span><p>When you upload content to FurryDigital via our services, you grant us a non-exclusive, worldwide, royalty-free, sublicensable, transferable right and license to use, host, store, cache, reproduce, publish, display (publicly or otherwise), perform (publicly or otherwise), distribute, transmit, modify, adapt, and create derivative works of, that content. These permissions are purely for the limited purposes of allowing us to provide our services in accordance with their functionality (hosting and display), improve them, and develop new services. These permissions do not transfer the rights of your content or allow us to create any deviations of that content outside the aforementioned purposes.</p>
         </div>
 
         <div class="cell two p10">
@@ -279,7 +279,7 @@
 
     <div class="line">
         <div class="cell one p10">
-            <span class="num">4.3</span><p>Although FloofClub can display artistic renditions of adult content, the feature is disabled by default and may only be enabled via your account settings if you are legally allowed to view it in the United States (18 years of age). If we determine that you may not be legally allowed to access this content, we will restrict your access to mature and adult content until you can verify your age via government photo identification. Any attempt to bypass this measure may result in all current and future accounts registered by you to be permanently banned.</p>
+            <span class="num">4.3</span><p>Although FurryDigital can display artistic renditions of adult content, the feature is disabled by default and may only be enabled via your account settings if you are legally allowed to view it in the United States (18 years of age). If we determine that you may not be legally allowed to access this content, we will restrict your access to mature and adult content until you can verify your age via government photo identification. Any attempt to bypass this measure may result in all current and future accounts registered by you to be permanently banned.</p>
         </div>
 
         <div class="cell two p10">
@@ -299,7 +299,7 @@
 
     <div class="line">
         <div class="cell one p10">
-            <span class="num">4.5</span><p>Any information you choose to display on your account or upload to FloofClub, except mature and adult content, is public by default. You may disable public view of your account and most of your content as well as hide your favorites and user page from registered users via your account settings. Although we provide tools that allow you to change the privacy of your information and content you should always assume that the information and content you share is publicly accessible unless you have explicitly selected otherwise.</p>
+            <span class="num">4.5</span><p>Any information you choose to display on your account or upload to FurryDigital, except mature and adult content, is public by default. You may disable public view of your account and most of your content as well as hide your favorites and user page from registered users via your account settings. Although we provide tools that allow you to change the privacy of your information and content you should always assume that the information and content you share is publicly accessible unless you have explicitly selected otherwise.</p>
         </div>
 
         <div class="cell two p10">
@@ -323,7 +323,7 @@
 
     <div class="line2">
         <div class="cell one p10">
-            <span class="num">5.2</span><p>FloofClub's services are provided on an "as is" and "as available" basis. We do not warranty our services or content (yours or ours). You release us from liability concerning:</p>
+            <span class="num">5.2</span><p>FurryDigital's services are provided on an "as is" and "as available" basis. We do not warranty our services or content (yours or ours). You release us from liability concerning:</p>
         </div>
 
         <div class="cell two p10">
@@ -373,7 +373,7 @@
 
     <div class="line2">
         <div class="cell one p10">
-            <span class="num sub">5.2.5</span><p class="sub2">Issues relating to occurrences that happen at any face-to-face meeting that was organized on FloofClub or by FloofClub, unless expressly disclosed in writing that FloofClub is sponsoring the event.</p>
+            <span class="num sub">5.2.5</span><p class="sub2">Issues relating to occurrences that happen at any face-to-face meeting that was organized on FurryDigital or by FurryDigital, unless expressly disclosed in writing that FurryDigital is sponsoring the event.</p>
         </div>
 
         <div class="cell two p10">

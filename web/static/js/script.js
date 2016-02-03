@@ -803,7 +803,7 @@ function gallery_toggle_descriptions(){
     var galleries = $$('center.flow');
     var cookie_name = 'nodesc';
     var cookie_path = '/';
-    var cookie_domain = '.floof.club';
+    var cookie_domain = '.furry.digital';
     if(galleries){
         galleries[0].hasClassName(cookie_name) ? deleteCookie(cookie_name, cookie_path, cookie_domain) : setCookie(cookie_name, 1, expiryyear, cookie_path, cookie_domain);
         galleries.invoke('toggleClassName', 'nodesc');

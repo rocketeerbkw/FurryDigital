@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="viewport" content="width=768, user-scalable=yes">
 
-    <meta name="description" content="FloofClub, furry art, media and more!">
+    <meta name="description" content="FurryDigital, furry art, media and more!">
     <meta name="keywords" content="furry, furries, furry art, fursuits, fursuiting, anthro, anthropomorphic">
 
     <meta http-equiv="X-UA-Compatible" content="IE=9; IE=EDGE">
@@ -45,14 +45,25 @@
     <!-- End Google Analytics -->
 </head>
 <body>
-<div id="floofclub">
+<div id="furrydigital">
 
     {# Menu Top #}
+
+    <div id="header">
+        <a name="top"></a>
+        <a href="/"><div class="sitebanner hideonmobile"></div></a>
+
+        {% if flash.hasMessages() %}
+            {% for message in flash.getMessages() %}
+                <div class="message {{ message['color'] }}">{{ message['text'] }}</div>
+            {% endfor %}
+        {% endif %}
+    </div>
 
     <nav id="ddmenu" class="block-menu-top">
 
         <div class="hideondesktop floatleft"><a href="{{ url.get('') }}"><img class="p10lr" style="max-height:30px;padding-top:9px" src="{{ static_url('img/banners/fa_logo.png') }}"></a></div>
-        <div class="hideondesktop floatleft" style="font-size:24px;padding-top:7px"><a href="{{ url.get('') }}"><strong>FloofClub</strong></a></div>
+        <div class="hideondesktop floatleft" style="font-size:24px;padding-top:7px"><a href="{{ url.get('') }}"><strong>FurryDigital</strong></a></div>
         <div class="menu-icon"></div>
 
         <ul>
@@ -66,20 +77,20 @@
                 </a>
                 <ul class="dropdown-menu">
                     <li class="dropdown-header">Community</li>
-                    <li><a href="{{ url.get('journals/fender') }}">FloofClub News</a></li>
+                    <li><a href="{{ url.get('journals/fender') }}">FurryDigital News</a></li>
                     <li><a href="http://www.faunited.org">App United</a></li>
-                    <li><a href="http://www.facebook.com/floofclub">Facebook</a></li>
-                    <li><a href="http://twitter.com/floofclub">Twitter</a></li>
-                    <li><a href="http://help.floof.club/article/AA-00210/7/Advertising.html">Advertising</a></li>
+                    <li><a href="http://www.facebook.com/furrydigital">Facebook</a></li>
+                    <li><a href="http://twitter.com/furrydigital">Twitter</a></li>
+                    <li><a href="http://help.furry.digital/article/AA-00210/7/Advertising.html">Advertising</a></li>
 
                     <li class="dropdown-header">Support</li>
-                    <li><a href="{{ url.get('staff') }}">FloofClub Staff</a></li>
-                    <li><a href="http://help.floof.club">Help & FAQ</a></li>
+                    <li><a href="{{ url.get('staff') }}">FurryDigital Staff</a></li>
+                    <li><a href="http://help.furry.digital">Help & FAQ</a></li>
 
                     <li class="dropdown-header">Rules & Policies</li>
-                    <li><a href="http://help.floof.club/article/AA-00203/8/Terms-of-Service-TOS.html">Terms of Service</a></li>
-                    <li><a href="http://help.floof.club/article/AA-01065/0/Code-of-Conduct-COC.html">Code of Conduct</a></li>
-                    <li><a href="http://help.floof.club/article/AA-00205/8/Acceptable-Upload-Policy-AUP.html">Upload Policy</a></li>
+                    <li><a href="http://help.furry.digital/article/AA-00203/8/Terms-of-Service-TOS.html">Terms of Service</a></li>
+                    <li><a href="http://help.furry.digital/article/AA-01065/0/Code-of-Conduct-COC.html">Code of Conduct</a></li>
+                    <li><a href="http://help.furry.digital/article/AA-00205/8/Acceptable-Upload-Policy-AUP.html">Upload Policy</a></li>
                 </ul>
             </li>
 
@@ -89,71 +100,71 @@
                 </form>
             </li>
 
-        {% if auth.isLoggedIn() %}
-            <li role="presentation" class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="{{ url.named('user_view', ['username': user.lower]) }}" role="button" aria-haspopup="true" aria-expanded="false">
-                    <span class="hideondesktop">My App ( </span>{{ user.symbol }} {{ user.username }}<span class="hideondesktop"> )</span>
-                    <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li class="dropdown-header">Profile Information</li>
-                    <li><a href="{{ url.named('user_view', ['username': user.lower]) }}">My Userpage</a></li>
-                    <li><a href="/msg/pms/">My Notes</a></li>
-                    <li><a href="{{ url.route(['module': 'account', 'controller': 'journals', 'action': 'edit']) }}">Post a New Journal</a></li>
-                    <li><a href="/commissions/{{ user.lower }}/">My Commission Info</a></li>
-                </ul>
-            </li>
-
-            {% if user.hasNotifications() %}
-            <li style="padding-left:8px">
-                <span class="hideondesktop">Messages:<br/></span>
-            {% for notification_key, notification in user.getNotifications() %}
-                {% if notification['show'] %}
-                    <span><a title="{{ notification['title'] }}" href="{{ notification['url'] }}">{{ notification['text'] }}</a></span>
-                {% endif %}
-            {% endfor %}
-            </li>
-            {% endif %}
-
-            <li class="dropdown" role="presentation">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="{{ url.route(['module': 'account']) }}" role="button" aria-haspopup="true" aria-expanded="false">
-                    Control Panel
-                    <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li class="dropdown-header">Customize</li>
-                    <li><a href="{{ url.route(['module': 'account', 'controller': 'settings', 'action': 'index']) }}">Site Settings</a></li>
-                    <li><a href="{{ url.route(['module': 'account', 'controller': 'settings', 'action': 'profile']) }}">Edit Profile Page</a></li>
-                    <li><a href="{{ url.route(['module': 'account', 'controller': 'avatar']) }}">My Avatar</a></li>
-
-                    <li class="dropdown-header">My Content</li>
-                    <li><a href="{{ url.route(['module': 'account', 'controller': 'uploads']) }}">Uploads</a></li>
-                    <li><a href="{{ url.route(['module': 'account', 'controller': 'journals']) }}">Journals</a></li>
-                    <li><a href="{{ url.route(['module': 'account', 'controller': 'folders']) }}">Folders</a></li>
-                    <li><a href="{{ url.route(['module': 'account', 'controller': 'favorites']) }}">Favorites</a></li>
-                    <li><a href="{{ url.route(['module': 'account', 'controller': 'watches']) }}">Watches</a></li>
-                    <li><a href="{{ url.route(['module': 'account', 'controller': 'shouts']) }}">Shouts</a></li>
-
-                    <li class="dropdown-header">Support</li>
-                    <li><a href="{{ url.route(['module': 'account', 'controller': 'tickets']) }}">Trouble Tickets</a></li>
-                </ul>
-            </li>
-
-            {% if acl.isAllowed('administer all') %}
-            <li>
-                <a class="top-heading" href="{{ url.route(['module': 'admin']) }}">Admin</a>
-            </li>
-            {% endif %}
-
-            {% if fa.canSeeArt('adult', false) %}
-                <li class="no-sub sfw-toggle {% if fa.getSfwCookie() %}active{% endif %}">
-                    <a class="top-heading" href="?" title="Toggle to hide Mature and Adult submissions. Effective starting next page load.">
-                        <span class="hideonmobile">SFW</span>
-                        <span class="hideondesktop">Toggle SFW</span>
+            {% if auth.isLoggedIn() %}
+                <li role="presentation" class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="{{ url.named('user_view', ['username': user.lower]) }}" role="button" aria-haspopup="true" aria-expanded="false">
+                        <span class="hideondesktop">My App ( </span>{{ user.symbol }} {{ user.username }}<span class="hideondesktop"> )</span>
+                        <span class="caret"></span>
                     </a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-header">Profile Information</li>
+                        <li><a href="{{ url.named('user_view', ['username': user.lower]) }}">My Userpage</a></li>
+                        <li><a href="/msg/pms/">My Notes</a></li>
+                        <li><a href="{{ url.route(['module': 'account', 'controller': 'journals', 'action': 'edit']) }}">Post a New Journal</a></li>
+                        <li><a href="/commissions/{{ user.lower }}/">My Commission Info</a></li>
+                    </ul>
                 </li>
+
+                {% if user.hasNotifications() %}
+                    <li style="padding-left:8px">
+                        <span class="hideondesktop">Messages:<br/></span>
+                        {% for notification_key, notification in user.getNotifications() %}
+                            {% if notification['show'] %}
+                                <span><a title="{{ notification['title'] }}" href="{{ notification['url'] }}">{{ notification['text'] }}</a></span>
+                            {% endif %}
+                        {% endfor %}
+                    </li>
+                {% endif %}
+
+                <li class="dropdown" role="presentation">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="{{ url.route(['module': 'account']) }}" role="button" aria-haspopup="true" aria-expanded="false">
+                        Control Panel
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-header">Customize</li>
+                        <li><a href="{{ url.route(['module': 'account', 'controller': 'settings', 'action': 'index']) }}">Site Settings</a></li>
+                        <li><a href="{{ url.route(['module': 'account', 'controller': 'settings', 'action': 'profile']) }}">Edit Profile Page</a></li>
+                        <li><a href="{{ url.route(['module': 'account', 'controller': 'avatar']) }}">My Avatar</a></li>
+
+                        <li class="dropdown-header">My Content</li>
+                        <li><a href="{{ url.route(['module': 'account', 'controller': 'uploads']) }}">Uploads</a></li>
+                        <li><a href="{{ url.route(['module': 'account', 'controller': 'journals']) }}">Journals</a></li>
+                        <li><a href="{{ url.route(['module': 'account', 'controller': 'folders']) }}">Folders</a></li>
+                        <li><a href="{{ url.route(['module': 'account', 'controller': 'favorites']) }}">Favorites</a></li>
+                        <li><a href="{{ url.route(['module': 'account', 'controller': 'watches']) }}">Watches</a></li>
+                        <li><a href="{{ url.route(['module': 'account', 'controller': 'shouts']) }}">Shouts</a></li>
+
+                        <li class="dropdown-header">Support</li>
+                        <li><a href="{{ url.route(['module': 'account', 'controller': 'tickets']) }}">Trouble Tickets</a></li>
+                    </ul>
+                </li>
+
+                {% if acl.isAllowed('administer all') %}
+                    <li>
+                        <a class="top-heading" href="{{ url.route(['module': 'admin']) }}">Admin</a>
+                    </li>
+                {% endif %}
+
+                {% if fa.canSeeArt('adult', false) %}
+                    <li class="no-sub sfw-toggle {% if fa.getSfwCookie() %}active{% endif %}">
+                        <a class="top-heading" href="?" title="Toggle to hide Mature and Adult submissions. Effective starting next page load.">
+                            <span class="hideonmobile">SFW</span>
+                            <span class="hideondesktop">Toggle SFW</span>
+                        </a>
+                    </li>
+                {% endif %}
             {% endif %}
-        {% endif %}
 
             <li class="no-sub">
                 <span class="top-heading p10r">
@@ -169,17 +180,6 @@
     </nav>
 
     {# End Menu Top #}
-
-    <div id="header">
-        <a name="top"></a>
-        <a href="/"><div class="sitebanner hideonmobile"></div></a>
-
-        {% if flash.hasMessages() %}
-            {% for message in flash.getMessages() %}
-                <div class="message {{ message['color'] }}">{{ message['text'] }}</div>
-            {% endfor %}
-        {% endif %}
-    </div>
 
     {# Ad Block Header #}
 
@@ -231,7 +231,7 @@
         <div class="p5 borderbot fontsize12">
             <strong>&copy; 2005-{{ date('Y') }} IMVU</strong> |
             <span class="hideonmobile">
-                <a href="http://help.floof.club/article/AA-00210/7/Advertising.html">Advertising</a> |
+                <a href="http://help.furry.digital/article/AA-00210/7/Advertising.html">Advertising</a> |
                 <a href="{{ url.get('tos') }}">Terms of Service</a> |
                 <a href="{{ url.get('coc') }}">Code of Conduct</a> |
                 <a href="{{ url.get('aup') }}">Acceptable Upload Policy</a> |
@@ -266,7 +266,7 @@
         var ad_zone_ids = [1,3,5,7,9];
         {% endif %}
 
-        var ad_zone_info_src = '//rv.floof.club/www/delivery/spc.php?zones='+(ad_zone_ids.join('|'))+'&r='+((new Date()).getTime());
+        var ad_zone_info_src = '//rv.furry.digital/www/delivery/spc.php?zones='+(ad_zone_ids.join('|'))+'&r='+((new Date()).getTime());
         try {
             if(window.location) {
                 ad_zone_info_src += '&loc='+escape(window.location);
@@ -365,12 +365,12 @@
         w.ad_zones = {
             {% if fa.page_has_mature_content %}
             // mature rated
-            'top'     : '/6017/FA_MA',
-            'comments': '/6017/FA_MA'
+            'top'     : '/6017/APP_MA',
+            'comments': '/6017/APP_MA'
             {% else %}
             // general rated
-            'top'     : '/6017/FA_GA',
-            'comments': '/6017/FA_GA/Low_Value_GA_728_90'
+            'top'     : '/6017/APP_GA',
+            'comments': '/6017/APP_GA/Low_Value_GA_728_90'
             {% endif %}
         };
 
