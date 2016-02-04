@@ -1,0 +1,46 @@
+span {
+    &.bbcode_size_1 {
+        font-size: inherit;
+    }
+    &.bbcode_size_2, &.bbcode_size_3 {
+        font-size: 9pt;
+    }
+    &.bbcode_size_4 {
+        font-size: 11pt;
+    }
+    &.bbcode_size_5 {
+        font-size: 12pt;
+    }
+}
+
+ul.bbcode_list, ol.bbcode_list {
+    margin: 2px;
+}
+
+.bbcode_quote {
+    border: 1px dashed #6A7283;
+    padding: 5px;
+    margin: 5px;
+    SPAN {
+        display: block;
+        font-weight: bold;
+        padding-bottom: 2px;
+        margin-bottom: 5px;
+    }
+}
+
+.bbcode_hr {
+    width: 95%;
+}
+
+.bbcode_left {
+    text-align: left;
+}
+
+.bbcode_center {
+    text-align: center;
+}
+
+.bbcode_right {
+    text-align: right;
+}

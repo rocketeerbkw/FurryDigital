@@ -1,0 +1,426 @@
+div#no-images {
+    font-size: 14px;
+    padding: 40px;
+}
+
+center.flow {
+    b > span, small {
+        padding: 2px 0 0 0;
+        display: block;
+        margin: 0;
+    }
+    span {
+        font-size: 10px;
+        font-weight: bold;
+        a {
+            font-size: 10px;
+            font-weight: bold;
+            &:hover {
+                font-size: 10px;
+                font-weight: bold;
+            }
+        }
+    }
+    small a {
+        font-size: 9px;
+        font-weight: normal;
+        &:hover {
+            font-size: 9px;
+            font-weight: normal;
+        }
+    }
+    b > span {
+        max-height: 27px;
+        overflow: hidden;
+    }
+    small a {
+        font-style: italic;
+        &:hover {
+            font-style: italic;
+        }
+    }
+
+    div#no-images i {
+        font-size: 24px;
+    }
+    s > a {
+        border: 1px solid #333;
+        min-width: 24px;
+        min-height: 24px;
+        background-color: #2E3B41;
+        box-shadow: 2px 2px 2px #2a2a2a;
+        -moz-box-shadow: 2px 2px 2px #2a2a2a;
+        -webkit-box-shadow: 2px 2px 2px #2a2a2a;
+        &:hover {
+            border: 1px solid #333;
+            min-width: 24px;
+            min-height: 24px;
+            background-color: #2E3B41;
+            box-shadow: 2px 2px 2px #2a2a2a;
+            -moz-box-shadow: 2px 2px 2px #2a2a2a;
+            -webkit-box-shadow: 2px 2px 2px #2a2a2a;
+        }
+    }
+    b {
+        &.r-mature s > a {
+            border: 1px solid #697cc1;
+            box-shadow: 2px 2px 2px #394C91;
+            -moz-box-shadow: 2px 2px 2px #394C91;
+            -webkit-box-shadow: 2px 2px 2px #394C91;
+            &:hover {
+                border: 1px solid #697cc1;
+                box-shadow: 2px 2px 2px #394C91;
+                -moz-box-shadow: 2px 2px 2px #394C91;
+                -webkit-box-shadow: 2px 2px 2px #394C91;
+            }
+        }
+        &.r-adult s > a {
+            border: 1px solid #971c1c;
+            box-shadow: 2px 2px 2px #670c0c;
+            -moz-box-shadow: 2px 2px 2px #670c0c;
+            -webkit-box-shadow: 2px 2px 2px #670c0c;
+            &:hover {
+                border: 1px solid #971c1c;
+                box-shadow: 2px 2px 2px #670c0c;
+                -moz-box-shadow: 2px 2px 2px #670c0c;
+                -webkit-box-shadow: 2px 2px 2px #670c0c;
+            }
+        }
+        i.icon {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 28px;
+            height: 28px;
+            background-color: transparent;
+            font-size: 1px;
+            line-height: 28px;
+            background-repeat: no-repeat;
+            &:hover {
+                cursor: help;
+            }
+        }
+        &.r-mature i.icon {
+            background-image: url(../img/file-types/file-types-mature.gif) !important;
+        }
+        &.r-adult i.icon {
+            background-image: url(../img/file-types/file-types-adult.gif) !important;
+        }
+        &.r-general i.icon {
+            background-image: url(../img/file-types/file-types-general.gif) !important;
+        }
+        &.t-none i.icon {
+            background-position: 2px 0;
+        }
+        &.t-image i.icon {
+            background-position: 2px -26px;
+        }
+        &.t-audio i.icon {
+            background-position: 2px -54px;
+        }
+        &.t-text i.icon {
+            background-position: 2px -82px;
+        }
+        &.t-flash i.icon {
+            background-position: 2px -110px;
+        }
+    }
+    &.frontpage {
+        &.twolines {
+            height: 320px;
+            overflow: hidden;
+        }
+        &.threelines {
+            max-height: 480px;
+            overflow: hidden;
+        }
+        b {
+            width: 160px;
+            height: 160px;
+        }
+        u {
+            height: 160px;
+        }
+    }
+    &.messagecenter b.checked, &.manage-submissions b.checked {
+        background-color: #6A7283 !important;
+    }
+    &.messagecenter small input, &.manage-submissions small input {
+        display: block;
+        width: 100%;
+        margin: 0px 0px 5px 0px;
+        cursor: pointer;
+    }
+    &.thumb-size-100 b {
+        height: 110px;
+        width: 110px;
+    }
+    &.with-titles.thumb-size-100 b {
+        height: 140px;
+    }
+    &.with-titles-usernames.thumb-size-100 b {
+        height: 154px;
+    }
+    &.with-checkboxes.thumb-size-100 b {
+        height: 130px;
+    }
+    &.with-checkboxes-titles-usernames.thumb-size-100 b {
+        height: 176px;
+    }
+    &.nodesc.thumb-size-100 b {
+        height: 110px !important;
+    }
+    &.messagecenter.nodesc.thumb-size-100 b {
+        height: 130px !important;
+    }
+    &.thumb-size-100 u {
+        height: 110px;
+    }
+    &.thumb-size-150 b {
+        height: 160px;
+        width: 160px;
+    }
+    &.with-titles.thumb-size-150 b {
+        height: 190px;
+    }
+    &.with-titles-usernames.thumb-size-150 b {
+        height: 204px;
+    }
+    &.with-checkboxes.thumb-size-150 b {
+        height: 180px;
+    }
+    &.with-checkboxes-titles-usernames.thumb-size-150 b {
+        height: 226px;
+    }
+    &.nodesc.thumb-size-150 b {
+        height: 160px !important;
+    }
+    &.messagecenter.nodesc.thumb-size-150 b {
+        height: 180px !important;
+    }
+    &.thumb-size-150 u {
+        height: 160px;
+    }
+    b, &.thumb-size-200 b {
+        height: 210px;
+        width: 210px;
+        margin-top: 8px;
+    }
+    &.with-titles {
+        b, &.thumb-size-200 b {
+            height: 240px;
+        }
+    }
+    &.with-titles-usernames {
+        b, &.thumb-size-200 b {
+            height: 254px;
+        }
+    }
+    &.with-checkboxes {
+        b, &.thumb-size-200 b {
+            height: 230px;
+        }
+    }
+    &.with-checkboxes-titles-usernames {
+        b, &.thumb-size-200 b {
+            height: 276px;
+        }
+    }
+    &.nodesc {
+        b, &.thumb-size-200 b {
+            height: 210px !important;
+        }
+    }
+    &.messagecenter.nodesc {
+        b, &.thumb-size-200 b {
+            height: 230px !important;
+        }
+    }
+    u, &.thumb-size-200 u {
+        height: 210px;
+    }
+
+    &.userpage-favorites b, &.userpage-submissions b {
+        width: 125px;
+        height: 142px;
+    }
+    &.userpage-favorites b.active a, &.userpage-submissions b.active a {
+        border: 1px dotted #6A7283 !important;
+        padding: 2px;
+        -moz-box-shadow: 0 0 0 #222;
+        -webkit-box-shadow: 0 0 0 #222;
+        box-shadow: 0 0 0 #222;
+    }
+    &.userpage-favorites u, &.userpage-submissions u {
+        height: 120px;
+    }
+    &.frontpage {
+        b {
+            width: 160px;
+            height: 120px;
+        }
+        u {
+            height: 160px;
+        }
+    }
+    &.userpage-first-favorite b {
+        width: auto;
+        height: 312px;
+    }
+    &.userpage-first-submission {
+        b {
+            width: auto;
+            height: 312px;
+        }
+        img {
+            max-height: 300px;
+            max-width: 350px;
+        }
+    }
+    &.userpage-first-favorite u {
+        height: 310px;
+        width: 310px;
+    }
+    &.userpage-first-submission {
+        u {
+            height: 310px;
+            width: 310px;
+        }
+        b > span {
+            max-height: 46px;
+            overflow: hidden;
+            padding-bottom: 2px;
+        }
+    }
+    &.userpage-first-favorite b > span {
+        max-height: 46px;
+        overflow: hidden;
+        padding-bottom: 2px;
+    }
+    &.userpage-first-submission i, &.userpage-first-favorite i {
+        font-style: normal;
+    }
+    &.userpage-first-submission span.popup_date {
+        font-weight: normal;
+    }
+    &.userpage-first-favorite span {
+        &.popup_date {
+            font-weight: normal;
+        }
+        small {
+            display: inline;
+            padding-left: 8px;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    }
+    &.userpage-featured-submission b, &.userpage-profile-submission b {
+        width: auto;
+        height: auto;
+    }
+    &.userpage-featured-submission u, &.userpage-profile-submission u {
+        height: auto;
+    }
+    &.nodesc i.icon {
+        display: none !important;
+    }
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 0;
+    font-style: normal;
+    font-weight: normal;
+    b, u, s {
+        text-decoration: none;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        outline: 0;
+        font-size: 0;
+        font-style: normal;
+        font-weight: normal;
+    }
+    a {
+        text-decoration: none;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        outline: 0;
+        font-size: 0;
+        font-style: normal;
+        font-weight: normal;
+        &:hover {
+            text-decoration: none;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            outline: 0;
+            font-size: 0;
+            font-style: normal;
+            font-weight: normal;
+        }
+    }
+    img, small, span {
+        text-decoration: none;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        outline: 0;
+        font-size: 0;
+        font-style: normal;
+        font-weight: normal;
+    }
+    b {
+        display: inline-block;
+        overflow: hidden;
+        margin: 0px 4px 0px 4px;
+    }
+    u {
+        display: table;
+        width: 100%;
+    }
+    s {
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+        > a {
+            display: inline-block;
+            position: relative;
+        }
+    }
+    img {
+        margin: 0px;
+        max-height: 380px;
+        max-width: 400px;
+        vertical-align: middle;
+    }
+    .backdrop {
+        width: 100%;
+        height: 100%;
+    }
+    desc {
+        margin: 0px;
+    }
+}
+
+@media screen and (max-width: 728px) {
+    center.flow {
+        &.userpage-submissions.linesubs, &.userpage-favorites.linefavs {
+            min-height: 120px;
+            max-height: 280px;
+            overflow: hidden;
+        }
+    }
+}
+
+@media screen and (min-width: 729px) {
+    center.flow {
+        &.userpage-submissions.linesubs, &.userpage-favorites.linefavs {
+            max-height: 120px;
+            overflow: hidden;
+        }
+    }
+}

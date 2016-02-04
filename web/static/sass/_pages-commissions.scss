@@ -1,0 +1,143 @@
+#page-commission-info {
+    .types-table {
+        td {
+            padding: 18px;
+        }
+        tr.even {
+            th, td {
+                background-color: #474d52;
+            }
+        }
+        .move input {
+            width: 100px;
+            text-align: left;
+        }
+        .info {
+            min-width: 100px;
+            dl, dt, dd {
+                margin: 0;
+                padding: 0;
+            }
+            dt {
+                font-weight: bold;
+                font-size: 15px;
+                margin-bottom: 10px;
+                span {
+                    font-size: 12px;
+                }
+            }
+            dd span {
+                display: block;
+                float: left;
+                width: 50px;
+                font-weight: bold;
+            }
+            dt {
+                &.open {
+                    color: green;
+                }
+                &.closed {
+                    color: #a50000;
+                }
+            }
+        }
+        .desc {
+            min-width: 200px;
+        }
+        .update {
+            line-height: 18px;
+            span {
+                font-weight: bold;
+                padding-right: 6px;
+            }
+            input {
+                &.textbox {
+                    width: 30px;
+                    text-align: center;
+                }
+                &.button {
+                    margin-left: 10px;
+                    width: 50px;
+                }
+                &.delete {
+                    width: 160px;
+                    margin-left: 0;
+                }
+            }
+            .edit-link {
+                margin: 4px 1px 4px 0;
+                width: 150px;
+                text-align: center;
+                line-height: 12px;
+            }
+            .plus, .minus {
+                padding: 0 1px;
+                display: inline-block;
+                cursor: pointer;
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -khtml-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+            }
+        }
+    }
+    #addedit-form {
+        width: 550px;
+        text-align: center;
+        margin-bottom: 30px;
+        fieldset {
+            padding: 0 12px;
+            margin-bottom: 20px;
+            text-align: left;
+            legend {
+                font-size: 14px;
+                font-weight: bold;
+                padding: 0 6px;
+            }
+        }
+        dd {
+            margin: 0;
+            line-height: 19px;
+            margin-bottom: 12px;
+            span {
+                display: block;
+                float: left;
+                width: 110px;
+                clear: both;
+                font-weight: bold;
+            }
+            em {
+                font-style: normal;
+                position: relative;
+                top: -4px;
+            }
+        }
+        input {
+            &.textbox {
+                width: 180px;
+                margin: 0;
+                padding: 2px;
+            }
+            &.price-lower, &.price-upper {
+                width: 78px;
+            }
+            &.price-type {
+                margin: 3px 5px 0 0;
+                padding: 0;
+            }
+            &#is-addon {
+                margin-left: 0px;
+            }
+        }
+        textarea {
+            width: 510px;
+            height: 230px;
+            padding: 2px;
+        }
+        #cancel {
+            position: relative;
+            top: 1px;
+        }
+    }
+}

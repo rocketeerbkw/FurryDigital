@@ -1,0 +1,356 @@
+/* USERPAGE */
+@media screen and (max-width: 728px) {
+    .userpage-tabs a {
+        padding: 0 7px;
+    }
+}
+
+@media screen and (min-width: 729px) {
+    .userpage-tabs a {
+        padding: 0 15px;
+    }
+}
+
+#userpage {
+    a {
+        text-decoration: none;
+    }
+    display: table;
+    width: 100%;
+    .userline {
+        display: table-row;
+        padding: 0px;
+    }
+    .row {
+        display: table-row;
+        height: 100%;
+    }
+    .cell {
+        display: table-cell;
+    }
+    .column {
+        display: table-cell;
+        padding: 0px;
+        li {
+            list-style-type: none;
+        }
+    }
+    .one {
+        vertical-align: top;
+    }
+}
+
+#userpage {
+    .one {
+        min-width: 400px;
+        width: 400px;
+    }
+    .two {
+        width: 100%;
+        padding-left: 20px;
+    }
+    .profilepic {
+        max-width: 280px;
+        max-height: 320px;
+        text-align: center;
+    }
+    .contacticon {
+        float: left;
+        padding: 5px;
+        &:after {
+            clear: left;
+        }
+    }
+    .contactinfo {
+        position: relative;
+        bottom: 10px;
+    }
+    .infowrap {
+        padding-left: 2em;
+        text-indent: -2em;
+    }
+    .contactwrap {
+        position: relative;
+        bottom: 10px;
+        padding-left: 2em;
+        text-indent: -2em;
+    }
+    .stats-flex-container {
+        width: 100%;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-flow: row wrap;
+        flex-flow: row wrap;
+        flex-wrap: wrap;
+    }
+    .stats-flex-item {
+        width: 50%;
+    }
+    .stats {
+        min-width: 115px;
+        display: inline-block;
+    }
+    .stats2 {
+        min-width: 90px;
+        display: inline-block;
+    }
+}
+
+#shoutboxentry {
+    .shoutboxcontainer {
+        float: left;
+        width: 100%;
+    }
+    .shoutboxcontent {
+        margin: 0px 0px 0px 115px;
+    }
+    .leftcol {
+        float: left;
+        width: 109px;
+        margin-left: -100%;
+        text-align: center;
+    }
+}
+
+.userpage-section-content {
+    padding-left: 10px;
+}
+
+.userpage-tabs {
+    height: 40px;
+    overflow: hidden;
+    padding: 0;
+    a {
+        float: left;
+        height: 100%;
+        line-height: 40px;
+        text-decoration: none;
+        &.stats {
+            float: right;
+        }
+    }
+}
+
+.userpage-data {
+    width: 100%;
+    border-collapse: separate;
+    padding: 10px 20px 10px 20px;
+    td {
+        vertical-align: top;
+    }
+    .col1 {
+        width: 100px;
+    }
+    .col2 {
+        width: 100%;
+        .row1, .row2 {}
+    }
+    .col3 {
+        width: 300px;
+        min-width: 300px;
+    }
+}
+
+@media screen and (max-width: 728px) {
+    .user-profile-flex {
+        padding: 0 5px;
+    }
+    .user-profile-pic {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 729px) {
+    .user-profile-flex {
+        padding: 0 5px;
+    }
+}
+
+.user-profile-flex {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.user-profile-pic {
+    flex: 1 1 0;
+    padding: 5px;
+}
+
+.user-profile-desc {
+    flex: 6 1 0;
+    width: 100%;
+}
+
+/* USER NAV LINKS */
+
+.usernav_icon {
+    position: relative;
+}
+
+.usernav_icon_resize {
+    max-height: 50px;
+    max-height: 50px;
+}
+
+/* USERPAGE > FORMATTING */
+
+.data-footer {
+    height: 50px;
+    overflow: hidden;
+    text-align: center;
+    line-height: 50px;
+    .data {
+        height: 50px;
+        display: inline-block;
+        margin: 0 5px;
+    }
+}
+
+/* USERPAGE > SUBMISSION/GALLERY */
+/* NOTE - Quite a few of these options have been replaced, and will need to be audited to remove dupes */
+
+.submissiontitlecontent {
+    font-weight: 700;
+}
+
+@media only screen and (max-width: 728px) {
+    .submissionflex {
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-flow: row wrap;
+        flex-flow: row wrap;
+        -webkit-align-content: flex-start;
+        align-content: flex-start;
+    }
+    .submissiontitle {
+        float: left;
+        z-index: 2000;
+        width: 100%;
+        order: 1;
+        margin-top: 20px;
+    }
+    .submissiontitlecontent {
+        padding-left: 60px;
+    }
+    .submissionstats {
+        clear: both;
+        text-align: center;
+        width: 100%;
+        order: 2;
+    }
+    .submissionfr {
+        display: inline-block;
+    }
+    .submissionusericon {
+        z-index: 1000;
+        max-height: 50px;
+        position: relative;
+        margin-top: -2px;
+    }
+    .flextitlerow {
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-direction: row;
+        flex-direction: row;
+    }
+    .flextitlecol {
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-direction: column;
+        flex-direction: column;
+    }
+    .flextitleitem1 {
+        flex: 1 100%;
+        order: 1;
+        padding: 5px 0 0 0;
+        min-height: 50px;
+    }
+    .flextitleitem2 {
+        flex: auto;
+        order: 3;
+        padding: 5px 0;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .flextitleitem3 {
+        order: 2;
+    }
+    .flextitlestat {
+        width: 100px;
+    }
+}
+
+@media only screen and (min-width: 729px) {
+    .submissiontitle {
+        z-index: 2000;
+        font-size: 16px;
+    }
+    h3, .submissiontitleuser, .flextitlestat, .submissiontitlecontent {
+        font-size: 14px !important;
+    }
+    .submissionstats {
+        float: right;
+        min-width: 350px;
+        max-width: 350px;
+        float: right;
+    }
+    .submissionfr {
+        float: right;
+    }
+    .submissionusericon {
+        z-index: 1000;
+        max-height: 65px;
+        position: relative;
+        margin-top: -25px;
+    }
+    .flextitlerow {
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-direction: row;
+        flex-direction: row;
+    }
+    .flextitlecol {
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-direction: row;
+        flex-direction: row;
+        height: 60px;
+    }
+    .flextitle {
+        display: flex;
+        flex-flow: row wrap;
+        width: 100%;
+    }
+    .flextitleitem1 {
+        order: 1;
+        flex: 100%;
+        padding: 10px 0;
+    }
+    .flextitleitem2 {
+        order: 2;
+        flex: 300px;
+        padding: 10px 0;
+        -webkit-flex-pack: right;
+        -webkit-flex-align: right;
+    }
+}
+
+@media only screen and (min-width: 1000px) {
+    h3, .flextitlestat, .submissiontitlecontent {
+        font-size: 16px !important;
+    }
+    .submissionusericon {
+        z-index: 1000;
+        max-height: 75px;
+        position: relative;
+        margin-top: -30px;
+    }
+    .flextitlecol {
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-direction: row;
+        flex-direction: row;
+        height: 65px;
+    }
+}

@@ -25,7 +25,6 @@
     <link rel="shortcut icon" href="{{ static_url('icon_'~constant('APP_APPLICATION_ENV')~'.png') }}" type="image/png">
 
     {% block header_css %}
-        {{ stylesheet_link('//fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,700', false) }}
         {{ stylesheet_link('css/default.css') }}
     {% endblock %}
     {% block header_js %}
@@ -45,8 +44,7 @@
     <!-- End Google Analytics -->
 </head>
 <body>
-<div id="furrydigital">
-
+<div id="site">
     <div id="header">
         <a name="top"></a>
         <a href="{{ url.get('') }}"><div class="sitebanner hideonmobile"></div></a>
@@ -94,10 +92,15 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li class="dropdown-header">Profile Information</li>
-                            <li><a href="{{ url.named('user_view', ['username': user.lower]) }}">My Userpage</a></li>
+                            <li><a href="{{ url.named('user_view', ['username': user.lower]) }}">My Profile Page</a></li>
                             <li><a href="/msg/pms/">My Notes</a></li>
                             <li><a href="{{ url.route(['module': 'account', 'controller': 'journals', 'action': 'edit']) }}">Post a New Journal</a></li>
                             <li><a href="/commissions/{{ user.lower }}/">My Commission Info</a></li>
+
+                            <li class="dropdown-header">Customize</li>
+                            <li><a href="{{ url.route(['module': 'account', 'controller': 'settings', 'action': 'index']) }}">Site Settings</a></li>
+                            <li><a href="{{ url.route(['module': 'account', 'controller': 'settings', 'action': 'profile']) }}">Edit Profile Page</a></li>
+                            <li><a href="{{ url.route(['module': 'account', 'controller': 'avatar']) }}">My Avatar</a></li>
                         </ul>
                     </li>
 
@@ -114,24 +117,16 @@
 
                     <li class="dropdown" role="presentation">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="{{ url.route(['module': 'account']) }}" role="button" aria-haspopup="true" aria-expanded="false">
-                            Control Panel
+                            My Content
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li class="dropdown-header">Customize</li>
-                            <li><a href="{{ url.route(['module': 'account', 'controller': 'settings', 'action': 'index']) }}">Site Settings</a></li>
-                            <li><a href="{{ url.route(['module': 'account', 'controller': 'settings', 'action': 'profile']) }}">Edit Profile Page</a></li>
-                            <li><a href="{{ url.route(['module': 'account', 'controller': 'avatar']) }}">My Avatar</a></li>
-
-                            <li class="dropdown-header">My Content</li>
                             <li><a href="{{ url.route(['module': 'account', 'controller': 'uploads']) }}">Uploads</a></li>
                             <li><a href="{{ url.route(['module': 'account', 'controller': 'journals']) }}">Journals</a></li>
                             <li><a href="{{ url.route(['module': 'account', 'controller': 'folders']) }}">Folders</a></li>
                             <li><a href="{{ url.route(['module': 'account', 'controller': 'favorites']) }}">Favorites</a></li>
                             <li><a href="{{ url.route(['module': 'account', 'controller': 'watches']) }}">Watches</a></li>
                             <li><a href="{{ url.route(['module': 'account', 'controller': 'shouts']) }}">Shouts</a></li>
-
-                            <li class="dropdown-header">Support</li>
                             <li><a href="{{ url.route(['module': 'account', 'controller': 'tickets']) }}">Trouble Tickets</a></li>
                         </ul>
                     </li>
@@ -190,7 +185,6 @@
 
     {% if !fa.page_has_mature_content %}
     <div id="ad-extra-flat" class="bg1 leaderboard1" style="text-align:center;min-height:90px">
-
         <ins class="adsbygoogle"
              style="display:inline-block;width:728px;height:90px"
              data-ad-client="ca-pub-1896533421580439"
@@ -201,10 +195,8 @@
     </div>
     {% endif %}
 
-    <div class="bg1 container-fluid" id="standardpage">
-
+    <div class="bg1 container-fluid" id="page">
         {{ content() }}
-
     </div>
 
     <div id="footer" class="bg5">
@@ -219,6 +211,15 @@
 </div>
 
 {% block footerjs %}
+    <script type="text/javascript">
+    var app_static_url = '{{ static_url('') }}';
+
+    var sfw_cookie_name = '{{ fa.sfw_cookie_name|escape_js }}';
+    var cookie_domain = '{{ config.application.cookie_domain|escape_js }}';
+
+    var page_has_mature_content = {% if fa.page_has_mature_content %}true{% else %}false{% endif %};
+    </script>
+
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
     {{ javascript_include('//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js') }}
@@ -227,13 +228,6 @@
     {{ javascript_include('js/layout.js') }}
 
     <script type="text/javascript">
-    var fa_static_url = '{{ static_url('') }}';
-
-    var sfw_cookie_name = '{{ fa.sfw_cookie_name|escape_js }}';
-    var cookie_domain = '{{ config.application.cookie_domain|escape_js }}';
-
-    var page_has_mature_content = {% if fa.page_has_mature_content %}true{% else %}false{% endif %};
-
     // OnReady
     jQuery(function($) {
 

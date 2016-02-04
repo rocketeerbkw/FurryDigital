@@ -8,7 +8,7 @@ $session_lifetime = 86400*1;
 $config = array(
     // Application name
     'name'              => 'FurryDigital',
-    'analytics_code'    => 'UA-60038462-1',
+    'analytics_code'    => 'UA-37359273-8',
     
     // Primary application web address
     'base_url'          => (APP_IS_SECURE ? 'https://' : 'http://').'furry.digital',
