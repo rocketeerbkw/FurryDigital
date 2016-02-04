@@ -65,10 +65,8 @@
         </div>
         <!-- END GALLERY -->
 
-
-        <div class="flex-container-userpage">
-            <div class="flex-item-userpage">
-
+        <div class="row p10t">
+            <div class="col-md-4">
                 <!--- START STATS --->
                 <h3 class="p10b">Statistics</h3>
                 <div class="">
@@ -105,78 +103,77 @@
                 <!--- START PROFILE --->
                 <h3 class="p10t p10b">Personal Info</h3>
                 <div class="bg3 rounded p10t p10b">
-                {% if owner.species %}
-                    <div class="p10l"><strong class="p5r">Character Species</strong><br/>{{ owner.getSpeciesName() }}</div>
-                {% endif %}
-                {% if owner.age %}
-                    <div class="p10l p10t"><strong class="p5r">Age</strong><br/>{{ owner.age }}</div>
-                {% endif %}
-                {% if owner.music %}
-                    <div class="p10l p10t"><strong class="p5r">Favorite Music Type/Genre</strong><br/>{{ owner.music|e }}</div>
-                {% endif %}
-                {% if owner.favoritemovie %}
-                    <div class="p10l p10t"><strong class="p5r">Favorite Movies and Films</strong><br/>{{ owner.favoritemovie|e }}</div>
-                {% endif %}
-                {% if owner.favoritegame %}
-                    <div class="p10l p10t"><strong class="p5r">Favorite Games</strong><br/>{{ owner.favoritegame|e }}</div>
-                {% endif %}
-                {% if owner.favoriteplatform %}
-                    <div class="p10l p10t"><strong class="p5r">Favorite Gaming Consoles</strong><br/>{{ owner.favoriteplatform|e }}</div>
-                {% endif %}
-                {% if owner.favoriteanimal %}
-                    <div class="p10l p10t"><strong class="p5r">Favorite Animals</strong><br/>{{ owner.favoriteanimal|e }}</div>
-                {% endif %}
-                {% if owner.favoritewebsite %}
-                    <div class="p10l p10t"><strong class="p5r">Favorite Website</strong><br/>{{ owner.favoritewebsite|e }}</div>
-                {% endif %}
-                {% if owner.favoritefood %}
-                    <div class="p10l p10t"><strong class="p5r">Favorite Noms</strong><br/>{{ owner.favoritefood|e }}</div>
-                {% endif %}
-                {% if owner.quote %}
-                    <div class="p10l p10t"><strong>Favorite Quote or Lyric</strong><br/> {{ owner.quote|e }}</div>
-                {% endif %}
-                {% if owner.favoriteartist %}
-                    <div class="p10l p10t"><strong>Favorite Artists</strong><br/> {{ owner.favoriteartist|e }}</div>
-                {% endif %}
+                    {% if owner.species %}
+                        <div class="p10l"><strong class="p5r">Character Species</strong><br/>{{ owner.getSpeciesName() }}</div>
+                    {% endif %}
+                    {% if owner.age %}
+                        <div class="p10l p10t"><strong class="p5r">Age</strong><br/>{{ owner.age }}</div>
+                    {% endif %}
+                    {% if owner.music %}
+                        <div class="p10l p10t"><strong class="p5r">Favorite Music Type/Genre</strong><br/>{{ owner.music|e }}</div>
+                    {% endif %}
+                    {% if owner.favoritemovie %}
+                        <div class="p10l p10t"><strong class="p5r">Favorite Movies and Films</strong><br/>{{ owner.favoritemovie|e }}</div>
+                    {% endif %}
+                    {% if owner.favoritegame %}
+                        <div class="p10l p10t"><strong class="p5r">Favorite Games</strong><br/>{{ owner.favoritegame|e }}</div>
+                    {% endif %}
+                    {% if owner.favoriteplatform %}
+                        <div class="p10l p10t"><strong class="p5r">Favorite Gaming Consoles</strong><br/>{{ owner.favoriteplatform|e }}</div>
+                    {% endif %}
+                    {% if owner.favoriteanimal %}
+                        <div class="p10l p10t"><strong class="p5r">Favorite Animals</strong><br/>{{ owner.favoriteanimal|e }}</div>
+                    {% endif %}
+                    {% if owner.favoritewebsite %}
+                        <div class="p10l p10t"><strong class="p5r">Favorite Website</strong><br/>{{ owner.favoritewebsite|e }}</div>
+                    {% endif %}
+                    {% if owner.favoritefood %}
+                        <div class="p10l p10t"><strong class="p5r">Favorite Noms</strong><br/>{{ owner.favoritefood|e }}</div>
+                    {% endif %}
+                    {% if owner.quote %}
+                        <div class="p10l p10t"><strong>Favorite Quote or Lyric</strong><br/> {{ owner.quote|e }}</div>
+                    {% endif %}
+                    {% if owner.favoriteartist %}
+                        <div class="p10l p10t"><strong>Favorite Artists</strong><br/> {{ owner.favoriteartist|e }}</div>
+                    {% endif %}
                 </div>
                 <!--- END PROFILE --->
 
                 <!--- START CONTACT INFO --->
                 {% if owner_social %}
-                <div class="contactinfo p10t">
+                    <div class="contactinfo p10t">
 
-                    <h3 class="p10b p10t hideonmobile">Contact Information</h3>
+                        <h3 class="p10b p10t hideonmobile">Contact Information</h3>
 
-                    {% for social_item in owner_social %}
-                        <div>{{ social_item }}</div>
-                    {% endfor %}
-                </div>
+                        {% for social_item in owner_social %}
+                            <div>{{ social_item }}</div>
+                        {% endfor %}
+                    </div>
                 {% endif %}
             </div>
-
-            <div class="flex-item-userpage2">
+            <div class="col-md-8">
                 {% if journal %}
-                <!-- START RECENT JOURNAL -->
-                <div class="p10b">
-                    <h3 class="inline p10b"><?=$is_featured?'Featured':'Recent'?> Journal</h3>
-                    <div class="floatright inline"><a href="{{ url.named('user_journals', ['username': owner.lower]) }}"><h3>View Recent Journals</h3></a></div>
-                    <!-- {latestjournal} -->
-                    <div class="container-item-mid roundedul roundedur">
-                        <div class="fontcolor3 fontsize12 floatright inline p10t">
-                            {{ fa.formatDate(journal.created_at) }}
-                            <?=$date?>
+                    <!-- START RECENT JOURNAL -->
+                    <div class="p10b">
+                        <h3 class="inline p10b"><?=$is_featured?'Featured':'Recent'?> Journal</h3>
+                        <div class="floatright inline"><a href="{{ url.named('user_journals', ['username': owner.lower]) }}"><h3>View Recent Journals</h3></a></div>
+                        <!-- {latestjournal} -->
+                        <div class="container-item-mid roundedul roundedur">
+                            <div class="fontcolor3 fontsize12 floatright inline p10t">
+                                {{ fa.formatDate(journal.created_at) }}
+                                <?=$date?>
+                            </div>
+                            <h2><a href="{{ url.named('journal_view', ['id': journal.id]) }}"><strong>{{ journal.subject|e }}</strong></a></h2>
+                            <hr>
+                            {{ parser.message(journal.message) }}
                         </div>
-                        <h2><a href="{{ url.named('journal_view', ['id': journal.id]) }}"><strong>{{ journal.subject|e }}</strong></a></h2>
-                        <hr>
-                        {{ parser.message(journal.message) }}
-                    </div>
 
-                    <div class="container-item-bot-settings aligncenter">
-                        <a href="{{ url.named('journal_view', ['id': journal.id]) }}">Read More</a> | <a href="{{ url.named('journal_view', ['id': journal.id]) }}">Comments ({{ journal.num_comments }})</a>
+                        <div class="container-item-bot-settings aligncenter">
+                            <a href="{{ url.named('journal_view', ['id': journal.id]) }}">Read More</a> | <a href="{{ url.named('journal_view', ['id': journal.id]) }}">Comments ({{ journal.num_comments }})</a>
+                        </div>
+                        <!-- {/latestjournal} -->
                     </div>
-                    <!-- {/latestjournal} -->
-                </div>
-                <!-- END RECENT JOURNAL -->
+                    <!-- END RECENT JOURNAL -->
                 {% endif %}
 
                 <!-- START SHOUTS-->
@@ -186,56 +183,57 @@
                 <!-- LEAVE A SHOUT -->
 
                 {% if auth.isLoggedIn() %}
-                <div id="shoutboxentry">
-                    <div class="shoutboxcontainer">
-                        <div class="shoutboxcontent p10b">
-                            {{ shout_form.render() }}
+                    <div id="shoutboxentry">
+                        <div class="shoutboxcontainer">
+                            <div class="shoutboxcontent p10b">
+                                {{ shout_form.render() }}
+                            </div>
+                        </div>
+                        <div class="leftcol">
+                            <img alt="{{ user.lower }}" src="{{ user.getAvatar() }}">
                         </div>
                     </div>
-                    <div class="leftcol">
-                        <img alt="{{ user.lower }}" src="{{ user.getAvatar() }}">
-                    </div>
-                </div>
                 {% endif %}
                 <!-- END LEAVE A SHOUT -->
 
                 {% if shouts %}
-                <div class="clear">
-                    {% for row in shouts %}
-                    <div class="clearfix p10t">
-                        <table width="100%" id="shout-{{ row.id }}">
-                            <tr>
-                                <td>
-                                    <div class="comments-flex-shouts">
+                    <div class="clear">
+                        {% for row in shouts %}
+                            <div class="clearfix p10t">
+                                <table width="100%" id="shout-{{ row.id }}">
+                                    <tr>
+                                        <td>
+                                            <div class="comments-flex-shouts">
 
-                                        <div class="comments-flex-item-icon">
-                                            <a href="{{ url.named('user_view', ['username': row.sender.lower]) }}"><img class="usericonmobile valigntop" src="{{ row.sender.getAvatar() }}" alt="{{ row.sender.username|e }}"></a>
-                                        </div>
-
-                                        <div class="comments-flex-item-main usercomment bg3">
-                                            <div class="comments-userline-flex">
-                                                <div class="replyto-name comments-userline-username">
-                                                    <h3><a class="fonthighlight" href="{{ url.named('user_view', ['username': row.sender.lower]) }}"><strong>{{ row.sender.username|e }}</strong></a></h3>
+                                                <div class="comments-flex-item-icon">
+                                                    <a href="{{ url.named('user_view', ['username': row.sender.lower]) }}"><img class="usericonmobile valigntop" src="{{ row.sender.getAvatar() }}" alt="{{ row.sender.username|e }}"></a>
                                                 </div>
-                                                <div class="comments-userline-datetime fontsize12 p5b">
-                                                    {{ fa.formatDate(row.created_at) }}
+
+                                                <div class="comments-flex-item-main usercomment bg3">
+                                                    <div class="comments-userline-flex">
+                                                        <div class="replyto-name comments-userline-username">
+                                                            <h3><a class="fonthighlight" href="{{ url.named('user_view', ['username': row.sender.lower]) }}"><strong>{{ row.sender.username|e }}</strong></a></h3>
+                                                        </div>
+                                                        <div class="comments-userline-datetime fontsize12 p5b">
+                                                            {{ fa.formatDate(row.created_at) }}
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                    <div class="p5t">
+                                                        <div class="comment_text usershoutbubble" style="min-height:38px">{{ parser.message(row.message) }}</div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <hr>
-                                            <div class="p5t">
-                                                <div class="comment_text usershoutbubble" style="min-height:38px">{{ parser.message(row.message) }}</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        {% endfor %}
                     </div>
-                    {% endfor %}
-                </div>
                 {% endif %}
+                <!-- END SHOUTS -->
+
             </div>
-            <!-- END SHOUTS -->
         </div>
     </div>
 </div>

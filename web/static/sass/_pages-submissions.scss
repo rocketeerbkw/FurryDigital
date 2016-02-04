@@ -1,4 +1,69 @@
+
+/* SUBMISSION VIEW PAGE  */
+
 #submission_page {
+    .minigallery-container, .folder-list-container {
+        margin: 0px auto;
+        width: 850px;
+    }
+    b.minigallery-title {
+        s {
+            font-size: 9pt;
+        }
+        strong {
+            font-size: 8.5pt;
+            font-style: italic;
+        }
+        a {
+            font-size: 12pt;
+            font-weight: bold;
+            background-color: inherit;
+            border: 0 none;
+            border-radius: 0;
+            box-shadow: none;
+            min-height: initial;
+            min-width: initial;
+            position: static;
+            display: inline;
+        }
+        i {
+            line-height: 20px;
+        }
+    }
+    .folder-list-container {
+        text-align: left;
+        padding: 8px 0;
+        h4 {
+            margin: 0 8px;
+        }
+        ul {
+            margin: 2px 0 0 0;
+            padding: 0;
+        }
+        li {
+            list-style-type: none;
+            float: left;
+            margin-left: 20px;
+            line-height: 16px;
+            strong {
+                font-weight: normal;
+            }
+        }
+    }
+    .links-container {
+        margin: 4px auto;
+        width: 300px;
+        text-align: center;
+        a {
+            &.prev {
+                float: left;
+            }
+            &.next {
+                float: right;
+            }
+        }
+    }
+
     .subnavcontainer {
         width: 100%;
         display: table;

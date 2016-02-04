@@ -1,0 +1,67 @@
+.grid-sizer,
+.grid-item {
+    width: 20%;
+    max-width: 200px;
+    margin-bottom: 10px;
+}
+
+.grid-item {
+    text-decoration: none;
+    max-height: 150px;
+    overflow: hidden;
+
+    border: 1px solid #333;
+    background-color: #2E3B41;
+    box-shadow: 2px 2px 2px #2a2a2a;
+    -moz-box-shadow: 2px 2px 2px #2a2a2a;
+    -webkit-box-shadow: 2px 2px 2px #2a2a2a;
+
+    &:hover {
+        border: 1px solid #333;
+        background-color: #2E3B41;
+        box-shadow: 2px 2px 2px #2a2a2a;
+        -moz-box-shadow: 2px 2px 2px #2a2a2a;
+        -webkit-box-shadow: 2px 2px 2px #2a2a2a;
+    }
+
+    /* Ratings */
+    &.r-mature {
+        border: 1px solid #697cc1;
+        box-shadow: 2px 2px 2px #394C91;
+        -moz-box-shadow: 2px 2px 2px #394C91;
+        -webkit-box-shadow: 2px 2px 2px #394C91;
+
+        &:hover {
+            border: 1px solid #697cc1;
+            box-shadow: 2px 2px 2px #394C91;
+            -moz-box-shadow: 2px 2px 2px #394C91;
+            -webkit-box-shadow: 2px 2px 2px #394C91;
+        }
+    }
+
+    &.r-adult {
+        border: 1px solid #971c1c;
+        box-shadow: 2px 2px 2px #670c0c;
+        -moz-box-shadow: 2px 2px 2px #670c0c;
+        -webkit-box-shadow: 2px 2px 2px #670c0c;
+
+        &:hover {
+            border: 1px solid #971c1c;
+            box-shadow: 2px 2px 2px #670c0c;
+            -moz-box-shadow: 2px 2px 2px #670c0c;
+            -webkit-box-shadow: 2px 2px 2px #670c0c;
+        }
+    }
+
+    img {
+        object-fit: cover;
+        object-position: center;
+
+        width: 100%;
+        max-width: 200px;
+        height: auto;
+        max-height: 150px;
+    }
+
+
+}

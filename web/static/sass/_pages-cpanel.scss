@@ -1,0 +1,71 @@
+@media screen and (max-width: 728px) {
+    #controlpanel {
+        .mobiletoggle {
+            width: 100% !important;
+            padding-top: 10px !important;
+            display: block !important;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cptoggle, .cpavatar {
+            padding: 0 !important;
+            vertical-align: top;
+        }
+        .passwordverify {
+            width: auto !important;
+        }
+    }
+}
+
+#controlpanelnav {
+    padding-top: 15px;
+    text-align: right;
+
+    ul, li {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    ul {
+        padding-bottom: 10px;
+    }
+    a {
+        text-decoration: none;
+    }
+}
+
+#controlpanel {
+    .cplineitem {
+        display: table;
+        width: 100%;
+        padding: 10px;
+    }
+    .cprow {
+        display: table-row;
+    }
+    .cpcell {
+        display: table-cell;
+        padding-right: 5px;
+    }
+    .cp33 {
+        width: 33%;
+    }
+    .cp50 {
+        width: 50%;
+    }
+    .cptoggle, .cpavatar {
+        width: 300px;
+        padding: 0 10px;
+        vertical-align: top;
+    }
+    .p10tb {
+        padding: 10px 0 5px 0;
+    }
+    .passwordverify {
+        width: 530px;
+    }
+    li {
+        list-style-type: square !important;
+        margin-left: 20px;
+    }
+}

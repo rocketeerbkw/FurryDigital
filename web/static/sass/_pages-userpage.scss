@@ -21,10 +21,6 @@
         display: table-row;
         padding: 0px;
     }
-    .row {
-        display: table-row;
-        height: 100%;
-    }
     .cell {
         display: table-cell;
     }
@@ -352,5 +348,207 @@
         -webkit-flex-direction: row;
         flex-direction: row;
         height: 65px;
+    }
+}
+
+/* USERPAGE > GALLERY PREVIEW */
+@media screen and (max-width: 728px) {
+    .usercomment, .journalbody {
+        padding: 0;
+    }
+    .usercommentavatar {
+        padding-right: 10px;
+    }
+    .usercommentseperator {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+
+@media screen and (min-width: 729px) {
+    .usercomment {
+        padding: 5px 5px 10px 5px;
+    }
+    .journalbody {
+        padding: 5px 5px 10px 5px;
+        padding: 5px;
+    }
+    .usercomment:after {
+        content: '';
+        position: absolute;
+        border-style: solid;
+        border-width: 15px 20px 15px 0;
+        border-color: transparent #474e58;
+        display: block;
+        width: 0;
+        z-index: 1;
+        left: -20px;
+        top: 10px;
+    }
+    .usercommentavatar {
+        padding-right: 25px;
+        max-width: 100px !important;
+    }
+    .usercommentseperator {
+        padding-left: 20px;
+        padding-right: 20px;
+        width: 100%;
+    }
+    .admin-comment .usercomment {
+        &:after {
+            content: '';
+            position: absolute;
+            border-style: solid;
+            border-width: 15px 20px 15px 0;
+            border-color: transparent #474e58;
+            display: block;
+            width: 0;
+            z-index: 1;
+            left: -19x;
+            top: 8px;
+        }
+        &:before {
+            content: '';
+            position: absolute;
+            border-style: solid;
+            border-width: 17px 22px 17px 0;
+            border-color: transparent #ac8043;
+            display: block;
+            width: 0;
+            z-index: 0;
+            left: -24px;
+            top: 6px;
+        }
+    }
+}
+
+.usercomment, .journalcomment {
+    position: relative;
+}
+
+.admin-comment .usercomment {
+    position: relative;
+    border: #ac8043 solid 2px;
+}
+
+.usercommentavatar {
+    min-width: 100px;
+    width: 100px;
+    height: 100%;
+}
+
+.usercommentbubble {
+    width: 100%;
+    box-shadow: 0 0 15px 2px rgba(0, 0, 0, 0.8);
+}
+
+.admin-comment .usercommentbubble {
+    border: 2px solid #ac8043 !important;
+}
+
+.usercommentseperator {
+    margin-top: 6px;
+    margin-bottom: 5px;
+    vertical-align: top;
+}
+
+.usercommenticon {
+    width: 100px;
+    height: 120px;
+    padding-right: 5px;
+    text-align: center;
+}
+
+.comment-quote {
+    position: relative;
+    vertical-align: top;
+    padding: 310px;
+}
+
+.container-comment .reply-link {
+    position: relative;
+    bottom: 7px;
+    right: -10px;
+}
+
+html {
+    .container-comment .reply-link {
+        bottom: 6px;
+    }
+    &:first-child .reply-link {
+        bottom: 3px;
+    }
+}
+
+@media screen and (max-width: 728px) {
+    .comments-flex {
+        padding: 0 5px;
+    }
+    .comments-flex-shouts {}
+    .usericonmobile {
+        max-width: 75px !important;
+    }
+    .comments-flex-item-icon {
+        max-width: 85px;
+        flex: 1 1 0;
+    }
+    .comments-userline-username, .comments-userline-datetime {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 729px) {
+    .comments-flex {
+        padding: 0 10px;
+    }
+    .comments-flex-shouts {}
+    .comments-flex-item-icon {
+        max-width: 100px;
+        flex: 1 1 0;
+        margin-right: 25px;
+    }
+    .comments-userline-username {
+        flex: 1 1 0;
+    }
+    .comments-userline-datetime {
+        flex: 1 1 0;
+        text-align: right;
+    }
+}
+
+.comments-flex, .comments-flex-shouts {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.comments-flex-item-main {
+    flex: 1 1 0;
+    padding: 10px;
+}
+
+.comments-userline-flex {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+/* COMMENT RESPONSE */
+
+#responsebox {
+    padding-top: 20px;
+    max-width: 300px;
+    max-width: 700px;
+    clear: both;
+    input[type="text"] {
+        height: 80px;
+        vertical-align: top;
+        min-width: 100%;
+        vertical-align: top;
+        height: 180x;
+        border: 0;
+        &:focus {
+            outline: none;
+        }
     }
 }
