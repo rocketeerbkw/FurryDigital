@@ -5,6 +5,11 @@ use \Entity\User;
 
 class RecoverController extends BaseController
 {
+    public function permissions()
+    {
+        return true;
+    }
+
     public function indexAction()
     {
         $form = new \App\Form($this->current_module_config->forms->recover);

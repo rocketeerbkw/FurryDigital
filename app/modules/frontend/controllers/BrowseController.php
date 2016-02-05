@@ -8,7 +8,7 @@ class BrowseController extends BaseController
     public function indexAction()
     {
         // TODO: Use variable for this setting.
-        $per_page = 48;
+        $per_page = $this->user->getVariable('perpage');
 
         $form_config = $this->current_module_config->forms->browse->toArray();
 
