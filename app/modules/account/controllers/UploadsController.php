@@ -132,12 +132,15 @@ class UploadsController extends BaseController
             $imagine = new Imagine;
 
             $submission_file = $files['submission'][0];
+            $submission_image = null;
 
             $thumbnail_file = null;
             $thumbnail_paths = array();
+            $thumbnail_image = null;
             
             $preview_file = null;
             $preview_paths = array();
+            $preview_image = null;
 
             if ($submission_file)
             {
@@ -151,6 +154,8 @@ class UploadsController extends BaseController
                 {
                     // Handle image uploads.
                     $submission_image = $imagine->open($submission_file->getTempName());
+                    $submission_image->strip();
+
                     $is_animated = count($submission_image->layers()) > 1;
                     
                     // So, it seems Imagine really loves to screw up GIFs, so lets avoid that
@@ -163,18 +168,20 @@ class UploadsController extends BaseController
                     else
                         $submission_image->save($submission_paths['full']['path'], array('animated' => $is_animated));
 
-                    $submission_image->strip();
-
                     // Make this file the thumbnail if no other is specified.
                     if (empty($files['thumbnail']) && (!$edit_mode || $data['rebuild_thumbnail']))
                     {
                         $thumbnail_file = $submission_file;
                         $thumbnail_paths = $submission_paths;
+
+                        $thumbnail_image = $submission_image;
                     }
                     
                     // Set up the preview parameters
                     $preview_file = $submission_file;
                     $preview_paths = $submission_paths;
+
+                    $preview_image = $submission_image;
                 }
                 else
                 {
@@ -194,6 +201,9 @@ class UploadsController extends BaseController
             {
                 $thumbnail_file = $files['thumbnail'][0];
                 $thumbnail_paths = $record->generatePaths($thumbnail_file->getName());
+
+                $thumbnail_image = $imagine->open($thumbnail_file->getTempName());
+                $thumbnail_image->strip();
             }
             
             // If we haven't set a preview image/path, then use the thumbnail if possible
@@ -201,13 +211,14 @@ class UploadsController extends BaseController
             {
                 $preview_file = $thumbnail_file;
                 $preview_paths = $thumbnail_paths;
+
+                $preview_image = $thumbnail_image;
             }
             
             // Process either the uploaded thumbnail, or resize the original file to be our preview.
-            if ($preview_file)
+            if ($preview_image)
             {
                 // Generate "small" size thumbnail.
-                $preview_image = $imagine->open($preview_file->getTempName());
                 $preview_image->resize(
                     $preview_image->getSize()->widen(self::MAX_PREVIEW_SIZE)
                 );
@@ -217,11 +228,9 @@ class UploadsController extends BaseController
             }
 
             // Process either the uploaded thumbnail, or thumbnailize the original file.
-            if ($thumbnail_file)
+            if ($thumbnail_image)
             {
                 // Generate "thumb" size thumbnail.
-                $thumbnail_image = $imagine->open($thumbnail_file->getTempName());
-
                 $thumbnail_image->resize(
                     $thumbnail_image->getSize()->widen(self::MAX_THUMB_SIZE)
                 );
