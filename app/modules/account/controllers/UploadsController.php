@@ -9,6 +9,7 @@ use Entity\FolderGroup;
 
 use Imagine\Image\Box;
 use Imagine\Image\ImageInterface;
+use Imagine\Image\Point;
 use Imagine\Imagick\Imagine;
 
 class UploadsController extends BaseController
@@ -219,9 +220,7 @@ class UploadsController extends BaseController
             if ($preview_image)
             {
                 // Generate "small" size thumbnail.
-                $preview_image->resize(
-                    $preview_image->getSize()->widen(self::MAX_PREVIEW_SIZE)
-                );
+                $this->_resizeImage($preview_image, self::MAX_PREVIEW_SIZE);
                 $preview_image->save($preview_paths['small']['path']);
 
                 $record->setSmall($preview_paths['small']['base']);
@@ -231,9 +230,7 @@ class UploadsController extends BaseController
             if ($thumbnail_image)
             {
                 // Generate "thumb" size thumbnail.
-                $thumbnail_image->resize(
-                    $thumbnail_image->getSize()->widen(self::MAX_THUMB_SIZE)
-                );
+                $this->_resizeImage($thumbnail_image, self::MAX_THUMB_SIZE);
                 $thumbnail_image->save($thumbnail_paths['thumbnail']['path']);
 
                 $record->setThumbnail($thumbnail_paths['thumbnail']['base']);
@@ -459,5 +456,36 @@ class UploadsController extends BaseController
             throw new \App\Exception('No valid submissions were found!');
 
         return $submissions;
+    }
+
+    /**
+     * Handle some special conditions around resizing images.
+     *
+     * @param ImageInterface $image
+     * @param $width
+     */
+    protected function _resizeImage(\Imagine\Image\ImageInterface $image, $width)
+    {
+        $image_size = $image->getSize();
+
+        // Resize images wider than the destination width.
+        if ($image_size->getWidth() > $width)
+        {
+            $image->resize($image_size->widen($width));
+            $image_size = $image->getSize();
+        }
+
+        // Crop images that are "way too vertical".
+        $threshold_height = round($width * 1.5);
+        if ($image_size->getHeight() > $threshold_height)
+        {
+            // Crop from the center of the image.
+            $x1 = max(0, round($image_size->getWidth() / 2) - round($width / 2));
+            $y1 = max(0, round($image_size->getHeight() / 2) - round($threshold_height / 2));
+
+            $image->crop(new Point($x1, $y1), new Box($width, $threshold_height));
+        }
+
+        return $image;
     }
 }
