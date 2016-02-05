@@ -13,8 +13,8 @@ use Imagine\Imagick\Imagine;
 
 class UploadsController extends BaseController
 {
-    const MAX_THUMB_SIZE = 120;
-    const MAX_PREVIEW_SIZE = 300;
+    const MAX_THUMB_SIZE = 200;
+    const MAX_PREVIEW_SIZE = 500;
 
     public function indexAction()
     {
@@ -163,6 +163,8 @@ class UploadsController extends BaseController
                     else
                         $submission_image->save($submission_paths['full']['path'], array('animated' => $is_animated));
 
+                    $submission_image->strip();
+
                     // Make this file the thumbnail if no other is specified.
                     if (empty($files['thumbnail']) && (!$edit_mode || $data['rebuild_thumbnail']))
                     {
@@ -205,22 +207,27 @@ class UploadsController extends BaseController
             if ($preview_file)
             {
                 // Generate "small" size thumbnail.
-                $preview_size = new Box(self::MAX_PREVIEW_SIZE, self::MAX_PREVIEW_SIZE);
-                
-                self::_saveAsJPG($imagine, $preview_file, $preview_paths['small']['path'], 90, $preview_size);
+                $preview_image = $imagine->open($preview_file->getTempName());
+                $preview_image->resize(
+                    $preview_image->getSize()->widen(self::MAX_PREVIEW_SIZE)
+                );
+                $preview_image->save($preview_paths['small']['path']);
 
-                $record->setSmall(self::_changeExtension($preview_paths['small']['base'], 'jpg'));
+                $record->setSmall($preview_paths['small']['base']);
             }
 
             // Process either the uploaded thumbnail, or thumbnailize the original file.
             if ($thumbnail_file)
             {
                 // Generate "thumb" size thumbnail.
-                $thumbnail_size = new Box(self::MAX_THUMB_SIZE, self::MAX_THUMB_SIZE);
-                
-                self::_saveAsJPG($imagine, $thumbnail_file, $thumbnail_paths['thumbnail']['path'], 90, $thumbnail_size);
-                
-                $record->setThumbnail(self::_changeExtension($thumbnail_paths['thumbnail']['base'], 'jpg'));
+                $thumbnail_image = $imagine->open($thumbnail_file->getTempName());
+
+                $thumbnail_image->resize(
+                    $thumbnail_image->getSize()->widen(self::MAX_THUMB_SIZE)
+                );
+                $thumbnail_image->save($thumbnail_paths['thumbnail']['path']);
+
+                $record->setThumbnail($thumbnail_paths['thumbnail']['base']);
             }
 
             // Delete the temp files (if not already moved).
@@ -443,44 +450,5 @@ class UploadsController extends BaseController
             throw new \App\Exception('No valid submissions were found!');
 
         return $submissions;
-    }
-    
-    /**
-     * Helper function for changing file extensions
-     *
-     * @param $file_path    File path
-     * @param $new_ext      Desired extension
-     */
-    protected static function _changeExtension($file_path, $new_ext)
-    {
-        // Change the image extension to .jpg
-        return substr_replace($file_path, $new_ext, strrpos($file_path, '.') + 1);
-    }
-    
-    /**
-     * Saves the image as a jpg.
-     *
-     * @param $imagine      Imagine object
-     * @param $file         Temporary file
-     * @param $path         Destination path
-     * @param $quality      Jpeg Quality (Default: 90)
-     * @param $box_size     Constraint box size
-     */
-    protected static function _saveAsJPG($imagine, $file, $path, $quality = 90, $box_size = null)
-    {
-        // Change the image extension to .jpg
-        $file_path = self::_changeExtension($path, 'jpg');
-        
-        // Start processing
-        $image = $imagine->open($file->getTempName());
-        
-        // Grab the first frame in case this is an animation (If not, it just returns the image itself)
-        $image = $image->layers()->get(0);
-        
-        // If a box size is specify, resize the image!
-        if ($box_size instanceof Box)
-            $image = $image->thumbnail($box_size, ImageInterface::THUMBNAIL_INSET);
-        
-        $image->save($file_path, array('jpeg_quality' => $quality));
     }
 }
