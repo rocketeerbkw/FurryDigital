@@ -17,8 +17,8 @@ return array(
         'server'        => 'smtp.mandrillapp.com',
         'port'          => '587',
         'auth'          => 'login',
-        'username'      => 'loobaightdark@gmail.com',
-        'password'      => 'UKaZnNb2BKepPBtmKY4mIw',
+        'username'      => 'loobalightdark@gmail.com',
+        'password'      => 'i4t3dB83dEl4LnREt1w5Vg', // Test key, replace with production key!
     ),
 
     // CloudFlare API.
