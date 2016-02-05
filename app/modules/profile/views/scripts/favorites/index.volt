@@ -3,16 +3,25 @@
 {% include('usernav') %}
 
 {% if pager %}
-    {{ paginate(pager) }}
+    <div class="pagination">
+        {{ paginate(pager) }}
+    </div>
 
-    <center class="flow gallery with-titles">
-    {% for fave in pager %}
-        {% set row=fave.upload %}
-        <b id="sid_{{ row.id }}" class="r-{{ row.getRatingReadable() }}"><u><s><a href="{{ url.named('upload_view', ['id': row.id]) }}"><img alt="" src="{{ row.getThumbnailUrl() }}"></a></s></u><span title="{{ row.title|e }}">{{ row.title|e }}</span></b>
-    {% endfor %}
-    </center>
+    <div class="grid">
+        <div class="grid-sizer"></div>
+        {% for fave in pager %}
+            {% set row=fave.upload %}
+            <div id="sid_{{ row['id'] }}" class="grid-item r-{{ row.getRatingReadable() }}">
+                <a class="image" href="{{ url.named('upload_view', ['id': row['id']]) }}">
+                    <img alt="" src="{{ row['thumbnail_url'] }}">
+                </a>
+            </div>
+        {% endfor %}
+    </div>
 
-    {{ paginate(pager) }}
+    <div class="pagination">
+        {{ paginate(pager) }}
+    </div>
 {% endif %}
 
 {#

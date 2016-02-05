@@ -1,43 +1,45 @@
 {% set title='Browse' %}
 
-<div id="columnpage" class="page-browse">
-    <div class="onevisible">
-        <div class="onecontent">
-
-            <div class="search-flex-container p10t">
-                <div class="search-flex-item-holder">
-                    <h3 class="search-flex-item-title">Browse</h3>
-
-                    {{ form.render() }}
-                </div>
-            </div>
-
-        </div>
+<div class="row">
+    <div class="col-md-3 col-sm-3">
+        <h3>Browse</h3>
+        {{ form.render() }}
     </div>
+    <div class="col-md-9 col-sm-9">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="floatright">
+                    {{ paginate(pager) }}
+                </div>
+                <h3 class="panel-title">Page {{ page_current }} of {{ page_count }}</h3>
+            </div>
+            <div class="panel-body">
+                <div class="grid">
+                    <div class="grid-sizer"></div>
+                    {% for row in pager %}
+                        <div id="sid_{{ row['id'] }}" class="grid-item r-{{ row.getRatingReadable() }} t-{{ row.getUploadTypeName() }}">
+                            <a class="image" href="{{ url.get('view/'~row['id']) }}">
+                                <img alt="" src="{{ row['thumbnail_url'] }}">
+                            </a>
+                            <span class="title" title="{{ row.title }}">{{ row.title }}</span>
+                            <span class="artist"><a href="{{ url.named('user_view', ['username': row.user.lower]) }}">{{ row.user.username }}</a></span>
+                        </div>
+                    {% endfor %}
+                </div>
 
-    <div class="two">
-        <div class="twocontent">
-
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <div class="floatright">
-                        {{ paginate(pager) }}
-                    </div>
-                    <h3 class="panel-title">Page {{ page_current }} of {{ page_count }}</h3>
+                {#
+                <center class="flow browse with-titles-usernames thumb-size-{{ thumbnail_size }}">
+                    {% for row in pager %}
+                        <b><u><s><a href="{{ url.named('upload_view', ['id': row['id']]) }}"><img alt="" src="{{ row.getThumbnailUrl() }}"><i class="icon" title="Click for description"></i></a></s></u><span title="{{ row.title }}">{{ row.title }}</span><small><a href="{{ url.named('user_view', ['username': row.user.lower]) }}">{{ row.user.username }}</a></small></b>
+                    {% endfor %}
+                </center>
+                #}
+            </div>
+            <div class="panel-footer">
+                <div class="floatright">
+                    {{ paginate(pager) }}
                 </div>
-                <div class="panel-body">
-                    <center class="flow browse with-titles-usernames thumb-size-{{ thumbnail_size }}">
-                        {% for row in pager %}
-                            <b id="sid_{{ row['id'] }}" class="r-{{ row.getRatingReadable() }} t-{{ row.getUploadTypeName() }}"><u><s><a href="{{ url.named('upload_view', ['id': row['id']]) }}"><img alt="" src="{{ row.getThumbnailUrl() }}"><i class="icon" title="Click for description"></i></a></s></u><span title="{{ row.title }}">{{ row.title }}</span><small><a href="{{ url.named('user_view', ['username': row.user.lower]) }}">{{ row.user.username }}</a></small></b>
-                        {% endfor %}
-                    </center>
-                </div>
-                <div class="panel-footer">
-                    <div class="floatright">
-                        {{ paginate(pager) }}
-                    </div>
-                    <h3 class="panel-title">Page {{ page_current }} of {{ page_count }}</h3>
-                </div>
+                <h3 class="panel-title">Page {{ page_current }} of {{ page_count }}</h3>
             </div>
         </div>
     </div>
@@ -57,6 +59,17 @@ jQuery(function($) {
     });
 
 });
+</script>
+
+{{ javascript_include('//cdnjs.cloudflare.com/ajax/libs/masonry/4.0.0/masonry.pkgd.min.js') }}
+<script type="text/javascript">
+    $(window).load(function(e) {
+        $('div.grid').masonry({
+            columnWidth: '.grid-sizer',
+            itemSelector: '.grid-item',
+            gutter: 10
+        });
+    });
 </script>
 
 {#

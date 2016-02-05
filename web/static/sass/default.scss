@@ -5,7 +5,7 @@
 
 /* BOOTSTRAP */
 
-@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400italic,600,700");
+@import url('//fonts.googleapis.com/css?family=Source+Sans+Pro:400,400italic,600,700');
 @import 'bootstrap';
 
 /* THEME & COLOR FORMATTING */
@@ -29,21 +29,6 @@ html, body, input, textarea, select {
     color: #cfcfcf;
 }
 
-@import 'header';
-@import 'menu';
-@import 'footer';
-
-@import 'forms';
-@import 'tables';
-@import 'images';
-@import 'bbcode';
-@import 'grid';
-
-@import 'pages-commissions';
-@import 'pages-messagecenter';
-@import 'pages-submissions';
-@import 'pages-userpage';
-
 html, body {
     background-color: #141A21;
     color: #cfcfcf;
@@ -52,11 +37,6 @@ html, body {
     margin-left: auto;
     margin-right: auto;
     font-weight: 400;
-}
-
-#site {
-    overflow: auto;
-    padding: 0px;
 }
 
 hr {
@@ -1556,4 +1536,42 @@ a.dotted {
 
 .preview-enlthumb img {
     width: 100%;
+}
+
+/**
+ * START Silver Eagle Section
+ */
+
+@import 'header';
+@import 'menu';
+@import 'footer';
+
+@import 'forms';
+@import 'tables';
+@import 'images';
+@import 'bbcode';
+@import 'grid';
+
+@import 'pages-commissions';
+@import 'pages-cpanel';
+@import 'pages-messagecenter';
+@import 'pages-userpage';
+
+/* Bootstrap component customization */
+
+div.pagination {
+    margin: 0;
+}
+
+div.panel-heading .pagination,
+div.panel-footer .pagination {
+    margin: 0;
+    padding: 0;
+    margin-top: -7px;
+}
+div.panel-heading .pagination {
+    margin-top: -7px;
+}
+div.panel-footer .pagination {
+    margin-top: -8px;
 }

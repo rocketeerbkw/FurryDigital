@@ -29,19 +29,28 @@
     {% endblock %}
     {% block header_js %}
         {{ javascript_include('//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js', false) }}
+
+        <script type="text/javascript">
+        var app_static_url = '{{ static_url('') }}';
+
+        var sfw_cookie_name = '{{ fa.sfw_cookie_name|escape_js }}';
+        var cookie_domain = '{{ config.application.cookie_domain|escape_js }}';
+
+        var page_has_mature_content = {% if fa.page_has_mature_content %}true{% else %}false{% endif %};
+        </script>
+
+        <!-- Start Google Analytics -->
+        <script type="text/javascript">
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', '{{ config.application.analytics_code }}', 'auto');
+            ga('send', 'pageview');
+        </script>
+        <!-- End Google Analytics -->
     {% endblock %}
-
-    <!-- Start Google Analytics -->
-    <script type="text/javascript">
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', '{{ config.application.analytics_code }}', 'auto');
-    ga('send', 'pageview');
-    </script>
-    <!-- End Google Analytics -->
 </head>
 <body>
 <div id="site">
@@ -184,7 +193,7 @@
      End Ad Block Header #}
 
     {% if !fa.page_has_mature_content %}
-    <div id="ad-extra-flat" class="bg1 leaderboard1" style="text-align:center;min-height:90px">
+    <div id="ad-extra-flat" class="bg1 leaderboard1 aligncenter">
         <ins class="adsbygoogle"
              style="display:inline-block;width:728px;height:90px"
              data-ad-client="ca-pub-1896533421580439"
@@ -210,16 +219,7 @@
     </div>
 </div>
 
-{% block footerjs %}
-    <script type="text/javascript">
-    var app_static_url = '{{ static_url('') }}';
-
-    var sfw_cookie_name = '{{ fa.sfw_cookie_name|escape_js }}';
-    var cookie_domain = '{{ config.application.cookie_domain|escape_js }}';
-
-    var page_has_mature_content = {% if fa.page_has_mature_content %}true{% else %}false{% endif %};
-    </script>
-
+{% block footer_js %}
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
     {{ javascript_include('//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js') }}

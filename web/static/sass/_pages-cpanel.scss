@@ -34,36 +34,20 @@
     }
 }
 
+.multirows {
+    .row > div {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+}
+
 #controlpanel {
-    .cplineitem {
-        display: table;
-        width: 100%;
-        padding: 10px;
-    }
-    .cprow {
-        display: table-row;
-    }
-    .cpcell {
-        display: table-cell;
-        padding-right: 5px;
-    }
-    .cp33 {
-        width: 33%;
-    }
-    .cp50 {
-        width: 50%;
-    }
-    .cptoggle, .cpavatar {
-        width: 300px;
-        padding: 0 10px;
-        vertical-align: top;
-    }
     .p10tb {
         padding: 10px 0 5px 0;
     }
-    .passwordverify {
-        width: 530px;
-    }
+
+
+
     li {
         list-style-type: square !important;
         margin-left: 20px;
