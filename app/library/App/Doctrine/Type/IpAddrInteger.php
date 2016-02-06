@@ -12,7 +12,7 @@ use Doctrine\DBAL\Types\IntegerType;
  */
 class IpAddrInteger extends IntegerType
 {
-    const TYPENAME = 'ip_integer';
+    const IP_INTEGER = 'ip_integer';
 
     public function requiresSQLCommentHint(AbstractPlatform $platform)
     {
@@ -36,7 +36,7 @@ class IpAddrInteger extends IntegerType
 
     public function getName()
     {
-        return self::TYPENAME;
+        return self::IP_INTEGER;
     }
 
     /**
@@ -44,8 +44,8 @@ class IpAddrInteger extends IntegerType
      */
     public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
     {
-        $fieldDeclaration['length'] = 11;
-        $fieldDeclaration['unsigned'] = true;
+        if (!$fieldDeclaration['unsigned'])
+            die('"'.$fieldDeclaration['name'].'": IPInteger fields must always be unsigned.');
 
         return parent::getSQLDeclaration($fieldDeclaration, $platform);
     }

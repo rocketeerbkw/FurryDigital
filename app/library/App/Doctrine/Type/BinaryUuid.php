@@ -6,7 +6,7 @@ use Doctrine\DBAL\Types\BinaryType;
 
 class BinaryUuid extends BinaryType
 {
-    const TYPENAME = 'binary_uuid';
+    const BINARY_UUID = 'binary_uuid';
 
     public function requiresSQLCommentHint(AbstractPlatform $platform)
     {
@@ -30,7 +30,7 @@ class BinaryUuid extends BinaryType
 
     public function getName()
     {
-        return self::TYPENAME;
+        return self::BINARY_UUID;
     }
 
     /**
@@ -38,8 +38,11 @@ class BinaryUuid extends BinaryType
      */
     public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
     {
-        $fieldDeclaration['length'] = 16;
-        $fieldDeclaration['fixed'] = true;
+        if ($fieldDeclaration['length'] != 16)
+            die('"'.$fieldDeclaration['name'].'": Binary UUID fields must all have a length of 16.');
+
+        if (!$fieldDeclaration['fixed'])
+            die('"'.$fieldDeclaration['name'].'": Binary UUID fields must all be fixed length.');
 
         return parent::getSQLDeclaration($fieldDeclaration, $platform);
     }
