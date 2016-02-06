@@ -7,16 +7,21 @@
     "zendframework/zend-http": "~2.4",
     "zendframework/zend-servicemanager": "~2.4",
 
-    "doctrine/orm": "2.4.*",
+    "doctrine/orm": "2.5.*",
     "beberlei/DoctrineExtensions": "^1.0",
 
+    "imagine/imagine": "~0.5.0",
     "guzzlehttp/guzzle": "~5.0",
     "tedivm/stash": "0.12.*",
     "filp/whoops": "1.*",
     "nette/mail": "2.3.0",
     "gigablah/sphinxphp": "2.*",
-    
-    "imagine/imagine": "~0.5.0",
+
+    "lusitanian/oauth": "~1.0@dev",
+    "oryzone/oauth-user-data": "~1.0@dev",
+
+    "paragonie/random_compat": "^1.1",
+    "defuse/php-encryption": "~2.0@dev",
     "roave/security-advisories": "dev-master"
   },
   "require-dev": {

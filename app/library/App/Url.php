@@ -39,9 +39,9 @@ class Url extends \Phalcon\Mvc\Url
      *
      * @return mixed
      */
-    public function current()
+    public function current($absolute = false)
     {
-        return $this->getUrl($this->_request->getURI());
+        return $this->getUrl($this->_request->getURI(), $absolute);
     }
 
     /**
@@ -232,14 +232,14 @@ class Url extends \Phalcon\Mvc\Url
         return $url;
     }
 
-    public function getUrl($url_raw)
+    public function getUrl($url_raw, $absolute = false)
     {
         // Ignore preformed URLs.
         if (stristr($url_raw, '://'))
             return $url_raw;
 
         // Retrieve domain from either MVC controller or config file.
-        if ($this->_include_domain) {
+        if ($this->_include_domain || $absolute) {
             $url_domain = null;
 
             $url_domain = $this->_config->application->base_url;

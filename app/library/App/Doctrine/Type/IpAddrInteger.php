@@ -14,6 +14,11 @@ class IpAddrInteger extends IntegerType
 {
     const TYPENAME = 'ip_integer';
 
+    public function requiresSQLCommentHint(AbstractPlatform $platform)
+    {
+        return true;
+    }
+
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
         return self::inetAtoN($value);

@@ -98,19 +98,6 @@ class User extends \App\Doctrine\Entity
     protected $fullname;
 
     /**
-     * TODO: Unused Field (For Removal)
-     * @var string
-     * @Column(name="salt", type="string", options={"default"=""}, length=32)
-     */
-    protected $auth_password_legacy_salt;
-
-    /**
-     * @var string
-     * @Column(name="userpassword", type="string", options={"default"=""}, length=50, nullable=false)
-     */
-    protected $auth_password_legacy_hash;
-
-    /**
      * @var string
      * @Column(name="password_hash", type="string", options={"default"=""}, length=255, nullable=false)
      */
@@ -126,20 +113,16 @@ class User extends \App\Doctrine\Entity
     {
         if (trim($password))
         {
-            /*
-            // Set legacy password for older style authentication.
-            // TODO: Remove this when the modern application becomes the sole user of the database.
-            $hashed_password = crypt($password, '$2a$07$'.sha1('d67c5cbf5b01c9f91932e3b8def5e5f8').'$');
-            $hashed_password = sha1($hashed_password);
-            $this->auth_password_legacy_hash = $hashed_password;
-            $this->auth_password_legacy_salt = 'UNUSED';
-            */
-
             // Set new password using PHP internal security functions.
             $this->auth_password_new = password_hash($password, \PASSWORD_DEFAULT);
         }
 
         return $this;
+    }
+
+    public function generateRandomPassword()
+    {
+        $this->setPassword(base64_encode(random_bytes(64)));
     }
 
     /**

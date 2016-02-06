@@ -8,6 +8,11 @@ class BinaryUuid extends BinaryType
 {
     const TYPENAME = 'binary_uuid';
 
+    public function requiresSQLCommentHint(AbstractPlatform $platform)
+    {
+        return true;
+    }
+
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
         return self::uuidToBin($value);

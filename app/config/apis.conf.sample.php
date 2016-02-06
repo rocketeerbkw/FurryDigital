@@ -37,4 +37,61 @@ return array(
         'private_key' => '6LekzxETAAAAAJHF8npHcbx5DB6gOAwe2Ut0Stsh',
     ),
 
+    // Hybrid/oAuth API settings.
+    'oauth' => array(
+        'providers' => array(
+            'google' => array(
+                'enabled'   => false,
+
+                'name'      => 'Google+',
+                'class'     => 'googleplus',
+                'icon'      => 'icon-google-plus',
+
+                'key'       => '',
+                'secret'    => '',
+                'scopes'    => array('userinfo_email', 'userinfo_profile'),
+            ),
+            'facebook' => array(
+                'enabled'   => false,
+
+                'name'      => 'Facebook',
+                'class'     => 'facebook',
+                'icon'      => 'icon-facebook',
+
+                'key'       => '',
+                'secret'    => '',
+            ),
+            'twitter' => array(
+                'enabled'   => false,
+
+                'name'      => 'Twitter',
+                'class'     => 'twitter',
+                'icon'      => 'icon-twitter',
+
+                'key'       => '',
+                'secret'    => '',
+            ),
+            'tumblr' => array(
+                'enabled'   => false,
+
+                'name'      => 'Tumblr',
+                'class'     => 'tumblr',
+                'icon'      => 'icon-tumblr',
+
+                'key'       => '',
+                'secret'    => '',
+            ),
+            'deviantart' => array(
+                'enabled'   => false,
+
+                'name'      => 'DeviantArt',
+                'class'     => 'deviantart',
+                'icon'      => 'icon-deviantart',
+
+                'key'       => '',
+                'secret'    => '',
+            ),
+        ),
+    ),
+
 );
