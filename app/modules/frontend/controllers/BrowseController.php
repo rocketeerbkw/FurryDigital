@@ -78,5 +78,9 @@ class BrowseController extends BaseController
 
         $this->view->pager = $pager;
         $this->view->thumbnail_size = $this->user->getVariable('thumbnail_size');
+
+        $this->assets->collection('footer_js')
+            ->addJs('//cdnjs.cloudflare.com/ajax/libs/masonry/4.0.0/masonry.pkgd.min.js', false)
+            ->addJs('js/gallery.js');
     }
 }

@@ -81,14 +81,3 @@
 {% else %}
     {{ thumbnails(pager) }}
 {% endif %}
-
-{{ javascript_include('//cdnjs.cloudflare.com/ajax/libs/masonry/4.0.0/masonry.pkgd.min.js') }}
-<script type="text/javascript">
-    $(window).load(function(e) {
-        $('div.grid').masonry({
-            columnWidth: '.grid-sizer',
-            itemSelector: '.grid-item',
-            gutter: 10
-        });
-    });
-</script>

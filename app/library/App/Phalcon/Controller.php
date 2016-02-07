@@ -8,6 +8,18 @@ class Controller extends \Phalcon\Mvc\Controller
     public function beforeExecuteRoute()
     {
         $this->init();
+
+        $this->assets->collection('header_css')
+            ->addCss('css/default.css');
+
+        $this->assets->collection('header_js')
+            ->addJs('//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js', false);
+
+        $this->assets->collection('footer_js')
+            ->addJs('//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js', false, false, array('async' => 'async'))
+            ->addJs('//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js', false)
+            ->addJs('//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.2.43/jquery.form-validator.min.js', false);
+
         return $this->preDispatch();
     }
 

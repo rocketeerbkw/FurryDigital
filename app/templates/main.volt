@@ -25,19 +25,19 @@
     <link rel="shortcut icon" href="{{ static_url('icon_'~constant('APP_APPLICATION_ENV')~'.png') }}" type="image/png">
 
     {% block header_css %}
-        {{ stylesheet_link('css/default.css') }}
+        {{ assets.outputCss('header_css') }}
     {% endblock %}
     {% block header_js %}
-        {{ javascript_include('//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js', false) }}
-
         <script type="text/javascript">
-        var app_static_url = '{{ static_url('') }}';
+            var app_static_url = '{{ static_url('') }}';
 
-        var sfw_cookie_name = '{{ fa.sfw_cookie_name|escape_js }}';
-        var cookie_domain = '{{ config.application.cookie_domain|escape_js }}';
+            var sfw_cookie_name = '{{ fa.sfw_cookie_name|escape_js }}';
+            var cookie_domain = '{{ config.application.cookie_domain|escape_js }}';
 
-        var page_has_mature_content = {% if fa.page_has_mature_content %}true{% else %}false{% endif %};
+            var page_has_mature_content = {% if fa.page_has_mature_content %}true{% else %}false{% endif %};
         </script>
+
+        {{ assets.outputJs('header_js') }}
 
         <!-- Start Google Analytics -->
         <script type="text/javascript">
@@ -220,65 +220,7 @@
 </div>
 
 {% block footer_js %}
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-
-    {{ javascript_include('//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js') }}
-    {{ javascript_include('//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.2.43/jquery.form-validator.min.js') }}
-
-    {{ javascript_include('js/layout.js') }}
-
-    <script type="text/javascript">
-    // OnReady
-    jQuery(function($) {
-
-        var enlthumb_elem = $(".enlthumb"), preview_elem;
-
-        // If even one element with class "enlthumb" exists, then add the preview element
-        if (enlthumb_elem.length > 0) {
-            preview_elem = $('<div class="preview-enlthumb" style="display: none;"><img></img></div>');
-            $('body').append(preview_elem);
-
-            enlthumb_elem.each(function () {
-                var elem = $(this);
-
-                elem.mouseenter(function () {
-                    var preview_src = elem.attr('preview_src');
-
-                    // If empty, populate with the thumbnail src instead
-                    if (!$.trim(preview_src))
-                        preview_src = elem.attr('src');
-
-                    var temp_img = preview_elem.find('img')
-
-                    temp_img.attr('src', preview_src);
-
-                    // Get the width, height, top, and left of the image.
-                    var thumb_w = elem.width(),
-                        thumb_h = elem.height(),
-                        thumb_p = elem.offset(),
-                        prev_w = temp_img.width(),
-                        prev_h = temp_img.height(),
-                        win_offset = $(window).scrollTop();
-
-                    // Now set it's location
-                    preview_elem.css('top', thumb_p.top - (prev_h * 1.10));
-                    preview_elem.css('left', thumb_p.left - (prev_w / 2) + (thumb_w / 2));
-
-                    preview_elem.fadeIn(250);
-                }).mouseleave(function () {
-                    // Remove the top and left css
-                    preview_elem.css('top', '');
-                    preview_elem.css('left', '');
-
-                    // Clear and hide this sucker!
-                    preview_elem.find('img').empty();
-                    preview_elem.hide();
-                });
-            });
-        }
-
-    });
-    </script>
+    {{ assets.outputJs('footer_js') }}
 {% endblock %}
 </body>
 </html>

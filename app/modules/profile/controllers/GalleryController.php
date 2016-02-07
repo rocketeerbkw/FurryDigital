@@ -77,6 +77,11 @@ class GalleryController extends BaseController
 
         // Folder List
         $this->view->folder_list = Folder::fetchSelectWithGroups($this->owner->id, FALSE);
+
+        // Extra assets to display galleries
+        $this->assets->collection('footer_js')
+            ->addJs('//cdnjs.cloudflare.com/ajax/libs/masonry/4.0.0/masonry.pkgd.min.js', false)
+            ->addJs('js/gallery.js');
     }
 
     public function scrapsAction()
