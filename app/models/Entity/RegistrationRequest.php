@@ -36,19 +36,19 @@ class RegistrationRequest extends \App\Doctrine\Entity
 
     /**
      * @var string UUID
-     * @Column(name="confirmation_code", type="binary_uuid", nullable=false)
+     * @Column(name="confirmation_code", type="binary_uuid", length=16, options={"fixed"=true}, nullable=false)
      */
     protected $confirmation_code;
 
     /**
      * @var string UUID
-     * @Column(name="temp_sid", type="binary_uuid", nullable=false)
+     * @Column(name="temp_sid", type="binary_uuid", length=16, options={"fixed"=true}, nullable=false)
      */
     protected $temp_sid;
 
     /**
      * @var integer
-     * @Column(name="ip", type="ip_integer", nullable=false)
+     * @Column(name="ip", type="ip_integer", options={"unsigned"=true}, nullable=false)
      */
     protected $ip;
 

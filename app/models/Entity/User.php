@@ -143,7 +143,7 @@ class User extends \App\Doctrine\Entity
     /**
      * TODO: Unused Field
      * @var string UUID
-     * @Column(name="avatar_uuid", type="binary_uuid", nullable=true)
+     * @Column(name="avatar_uuid", type="binary_uuid", length=16, options={"fixed"=true}, nullable=true)
      */
     protected $_unused_avatar_uuid;
 

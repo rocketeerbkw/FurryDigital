@@ -26,10 +26,12 @@ class Doctrine
         $conn = $em->getConnection();
         $platform = $conn->getDatabasePlatform();
 
-        $platform->markDoctrineTypeCommented(Type::getType('json'));
-        $platform->markDoctrineTypeCommented(Type::getType('unixdatetime'));
-        $platform->markDoctrineTypeCommented(Type::getType('binary_uuid'));
-        $platform->markDoctrineTypeCommented(Type::getType('ip_integer'));
+        $platform->markDoctrineTypeCommented('json');
+        $platform->markDoctrineTypeCommented('unixdatetime');
+        $platform->markDoctrineTypeCommented('binary_uuid');
+        $platform->markDoctrineTypeCommented('ip_integer');
+
+        $conn->connect();
 
         return $em;
     }
@@ -83,7 +85,7 @@ class Doctrine
         $platform->registerDoctrineTypeMapping('enum', 'string');
 
         // Try the connection before rendering the page.
-        $em->getConnection()->connect();
+
 
         return $em;
     }

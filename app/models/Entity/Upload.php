@@ -234,7 +234,7 @@ class Upload extends \App\Doctrine\Entity
 
     /**
      * @var string UUID for file
-     * @Column(name="file_uuid", type="binary_uuid", nullable=true)
+     * @Column(name="file_uuid", type="binary_uuid", length=16, options={"fixed"=true}, nullable=true)
      */
     protected $full_uuid = 0;
 
@@ -355,7 +355,7 @@ class Upload extends \App\Doctrine\Entity
 
     /**
      * @var string UUID for thumbnail
-     * @Column(name="thumb_uuid", type="binary_uuid", nullable=true)
+     * @Column(name="thumb_uuid", type="binary_uuid", length=16, options={"fixed"=true}, nullable=true)
      */
     protected $thumbnail_uuid = 0;
 

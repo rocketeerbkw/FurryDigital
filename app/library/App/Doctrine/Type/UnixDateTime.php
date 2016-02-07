@@ -10,11 +10,11 @@ use Doctrine\DBAL\Platforms\AbstractPlatform;
  */
 class UnixDateTime extends IntegerType
 {
-    const TYPENAME = 'unixdatetime';
+    const UNIX_DATETIME = 'unixdatetime';
     
     public function getName()
     {
-        return self::TYPENAME;
+        return self::UNIX_DATETIME;
     }
     
     public function convertToDatabaseValue($value, AbstractPlatform $platform)

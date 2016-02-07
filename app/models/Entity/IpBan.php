@@ -14,7 +14,7 @@ class IpBan extends \App\Doctrine\Entity
 {
     /**
      * @var integer
-     * @Column(name="ip", type="ip_integer", nullable=false)
+     * @Column(name="ip", type="ip_integer", options={"unsigned"=true}, nullable=false)
      * @Id
      * @GeneratedValue(strategy="IDENTITY")
      */
