@@ -16,6 +16,21 @@ The application is built on the following technologies:
 * [Vagrant](http://www.vagrantup.com/) (Local Development)
 * [Sass](http://sass-lang.com/) (Stylesheets)
 
+## Why FurryDigital?
+
+With the fandom's leading web site continuing to exist and serve users on its current codebase, many might ask: why bother helping to support FurryDigital?
+
+Although the FAOpen codebase was originally intended for FurAffinity's use, their internal structure makes it highly unlikely that the code will ever be used there. The FurryDigital project is an effort to release that hard work to the public, allow the public to see and participate in the project with full transparency, and deliver a high quality service to the fanbase.
+
+The advantages of the FurryDigital platform are growing every day, but already, this new application is:
+
+* **More modern:** FurryDigital is built on top of modern, object-oriented PHP using the very powerful and fast Phalcon framework. Today's coding best practices, from MVC to Dependency Injection, are par for the course in this code. New tools like Vagrant, Composer, Sass and even Git itself help make the development process easier.
+* **More secure:** Data safety and privacy is a top priority in this application. User passwords are hashed using PHP7's newest bcrypt-powered salted and hashed passwords, private messages are stored encrypted in the database, data validation (both client and server-side) are built into every form, including Cross Site Request Forgery (CSRF) protection. 
+* **More transparent:** All of FurryDigital's code is right here in this repository for you to see and inspect for yourself. If you spot a vulnerability, you can submit a pull request yourself to help fix the problems. We place this kind of trust in our fans because we are driven by serving the public interest, not a bottom line or profit motive. In the end, this means better code with more frequent updates for the users.
+* **More powerful every day:** Already, the application features a number of new changes (bigger thumbnails, fewer advertisements, more permissive uploading rules) and connections to third-party services (Gravatar, sign-on with Google/Facebook/etc) than the FAOpen codebase. With a community helping to contribute new features and address issues in the code, more new features can arrive sooner, with smarter testing and review from more experts. 
+
+We hope you're as excited to work alongside us to help make this a great home for the art and multimedia of the fandom as we are.
+
 ## Developing Locally
 
 Follow these steps to get started with the local development process:
