@@ -57,25 +57,17 @@ class UserExternal extends \App\Doctrine\Entity
      */
 
     /**
-     * Handle external OAuth1/2 authentication.
+     * Process an external authentication request.
      *
      * @param $provider
-     * @param \OAuth\Common\Service\ServiceInterface $service
-     * @param \Entity\User|null $user
-     * @return \Entity\User|null|object
-     * @throws \App\Exception
+     * @param $user_profile
+     * @param User|null $user
+     * @return User|null|object
      * @throws \App\Exception\AccountNotLinked
-     * @throws \OAuth\UserData\Exception\UndefinedExtractorException
      */
-    public static function processExternal($provider, ServiceInterface $service, User $user = null)
+    public static function processExternal($provider, $user_profile, User $user = null)
     {
-        $extractorFactory = new ExtractorFactory();
-        $extractor = $extractorFactory->get($service);
-
-        if (!$extractor->supportsUniqueId())
-            throw new \App\Exception('External provider has no unique ID.');
-
-        $external = self::getRepository()->findOneBy(array('provider' => $provider, 'external_id' => $extractor->getUniqueId()));
+        $external = self::getRepository()->findOneBy(array('provider' => $provider, 'external_id' => $user_profile->identifier));
 
         // Locate a user account to associate.
         if ($user instanceof User)
@@ -86,16 +78,16 @@ class UserExternal extends \App\Doctrine\Entity
         {
             $user = $external->user;
         }
-        elseif ($extractor->supportsEmail())
+        elseif (!empty($user_profile->email))
         {
-            $user = User::getRepository()->findOneBy(array('email' => $extractor->getEmail()));
+            $user = User::getRepository()->findOneBy(array('email' => $user_profile->email));
 
             if (!($user instanceof User))
             {
                 $user = new User;
-                $user->email = $extractor->getEmail();
-                $user->name = $extractor->getUsername();
-                $user->avatar_url = $extractor->getImageUrl();
+                $user->email = $user_profile->email;
+                $user->name = $user_profile->displayName;
+                $user->avatar_url = $user_profile->photoURL;
                 $user->generateRandomPassword();
                 $user->save();
             }
@@ -112,12 +104,12 @@ class UserExternal extends \App\Doctrine\Entity
             // Create new external account and associate with the specified user.
             $external = new self;
             $external->provider = $provider;
-            $external->external_id = $extractor->getUniqueId();
+            $external->external_id = $user_profile->identifier;
         }
 
         $external->user = $user;
-        $external->name = $extractor->getUsername();
-        $external->avatar_url = $extractor->getImageUrl();
+        $external->name = $user_profile->displayName;
+        $external->avatar_url = $user_profile->photoURL;
         $external->save();
 
         return $user;

@@ -17,8 +17,7 @@
     "nette/mail": "2.3.0",
     "gigablah/sphinxphp": "2.*",
 
-    "lusitanian/oauth": "~1.0@dev",
-    "oryzone/oauth-user-data": "~1.0@dev",
+    "hybridauth/hybridauth": "dev-3.0.0-Remake",
 
     "paragonie/random_compat": "^1.1",
     "defuse/php-encryption": "~2.0@dev",

@@ -3,10 +3,6 @@ namespace Modules\Account\Controllers;
 
 use Entity\User;
 use Entity\UserExternal;
-use OAuth\Common\Http\Uri\UriFactory;
-use OAuth\Common\Storage\Session;
-use OAuth\Common\Consumer\Credentials;
-use OAuth\ServiceFactory;
 
 class LoginController extends BaseController
 {
@@ -47,7 +43,16 @@ class LoginController extends BaseController
         if ($this->auth->isLoggedIn())
             return $this->redirectToStoredReferrer('login', $this->di['url']->route());
 
-        return $this->renderForm($form, 'edit', 'Login');
+        $this->view->form = $form;
+
+        // Get external login options.
+        $oauth_providers = $this->config->apis->oauth->providers->toArray();
+        $external = array_filter($oauth_providers, function($info) { return $info['enabled']; });
+
+        $this->view->external = $external;
+
+        $this->assets->collection('header_css')
+            ->addCss('zocial/zocial.css');
     }
 
     public function oauthAction()
@@ -63,71 +68,44 @@ class LoginController extends BaseController
         if (!$provider_info['enabled'])
             throw new \App\Exception('Provider is not currently enabled!');
 
-        $storage = new Session();
+        $config = [
+            'callback' => $this->url->callback(),
+            'keys' => ['id' => $provider_info['key'], 'secret' => $provider_info['secret']]
+        ];
 
-        // Setup the credentials for the requests
-        $uriFactory = new UriFactory();
-        $currentUri = $uriFactory->createFromSuperGlobalArray($_SERVER);
-        $currentUri->setQuery('');
+        if (!empty($provider_info['scope']))
+            $config['scope'] = $provider_info['scope'];
 
-        $credentials = new Credentials(
-            $provider_info['key'],
-            $provider_info['secret'],
-            $currentUri->getAbsoluteUri()
-        );
+        $provider_classes = [
+            '\Hybridauth\Provider\\'.ucfirst($provider_name),
+            '\App\Auth\Provider\\'.ucfirst($provider_name),
+        ];
 
-        if (!empty($provider_info['scopes']))
-            $scopes = (array)$provider_info['scopes'];
-        else
-            $scopes = array();
-
-        $serviceFactory = new ServiceFactory();
-        $oauth_service = $serviceFactory->createService($provider_name, $credentials, $storage, $scopes);
-
-        if ($this->hasParam('code'))
+        foreach($provider_classes as $provider_class)
         {
-            $state = isset($_GET['state']) ? $_GET['state'] : null;
-            $oauth_service->requestAccessToken($_GET['code'], $state);
-
-            $user = UserExternal::processExternal($provider_name, $oauth_service);
-            $this->auth->setUser($user);
-
-            $this->alert('<b>Logged in via ' . $provider_info['name'] . '!</b>', 'green');
-
-            return $this->redirectToStoredReferrer('login', $this->di['url']->route());
-        }
-        elseif ($this->hasParam('oauth_token'))
-        {
-            $token = $storage->retrieveAccessToken($provider_name);
-
-            // This was a callback request from the provider, get the token.
-            $oauth_service->requestAccessToken(
-                $_GET['oauth_token'],
-                $_GET['oauth_verifier'],
-                $token->getRequestTokenSecret()
-            );
-
-            $user = UserExternal::processExternal($provider_name, $oauth_service);
-            $this->auth->setUser($user);
-
-            $this->alert('<b>Logged in via '.$provider_info['name'].'!</b>', 'green');
-
-            return $this->redirectToStoredReferrer('login', $this->di['url']->route());
-        }
-        else
-        {
-            if (method_exists($oauth_service, 'requestRequestToken'))
+            if (class_exists($provider_class))
             {
-                $token = $oauth_service->requestRequestToken();
-                $url = $oauth_service->getAuthorizationUri(array('oauth_token' => $token->getRequestToken()));
+                $oauth = new $provider_class($config);
+                break;
             }
-            else
-            {
-                $url = $oauth_service->getAuthorizationUri();
-            }
-
-            return $this->response->redirect($url->getAbsoluteUri());
         }
+
+        if (empty($oauth))
+            throw new \App\Exception('Provider not found!');
+
+        // Attempt authentication.
+        $oauth->authenticate();
+
+        // Load profile into database, get/create record.
+        $user_profile = $oauth->getUserProfile();
+        $user = UserExternal::processExternal($provider_name, $user_profile);
+
+        // Log in the user.
+        $this->auth->setUser($user);
+
+        $this->alert('<b>Logged in via ' . $provider_info['name'] . '!</b>', 'green');
+
+        return $this->redirectToStoredReferrer('login', $this->di['url']->route());
     }
 
     /*

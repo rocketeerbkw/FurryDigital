@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "55dd16e90d0721e3eb63d6692677a2a7",
-    "content-hash": "b1ada55d6a745916f69b12898ffd0908",
+    "hash": "2a8d42ad4163744e0a4e6076934ba68e",
+    "content-hash": "371736bad86161244efa59390b63c22d",
     "packages": [
         {
             "name": "beberlei/DoctrineExtensions",
@@ -102,12 +102,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/defuse/php-encryption.git",
-                "reference": "afda73a6b20d09ab5ec73830e2fd8b21b581fac8"
+                "reference": "ac0b7c78c8abd9609bb5f82a1e46aa68af346a36"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/defuse/php-encryption/zipball/afda73a6b20d09ab5ec73830e2fd8b21b581fac8",
-                "reference": "afda73a6b20d09ab5ec73830e2fd8b21b581fac8",
+                "url": "https://api.github.com/repos/defuse/php-encryption/zipball/ac0b7c78c8abd9609bb5f82a1e46aa68af346a36",
+                "reference": "ac0b7c78c8abd9609bb5f82a1e46aa68af346a36",
                 "shasum": ""
             },
             "require": {
@@ -143,7 +143,7 @@
                 "security",
                 "symmetric key cryptography"
             ],
-            "time": "2016-01-17 08:40:45"
+            "time": "2016-02-07 15:23:23"
         },
         {
             "name": "doctrine/annotations",
@@ -1013,6 +1013,63 @@
             "time": "2014-10-12 19:18:40"
         },
         {
+            "name": "hybridauth/hybridauth",
+            "version": "dev-3.0.0-Remake",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hybridauth/hybridauth.git",
+                "reference": "51e4d01c1fb7670b4d46964dde7050dfcade8c91"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hybridauth/hybridauth/zipball/51e4d01c1fb7670b4d46964dde7050dfcade8c91",
+                "reference": "51e4d01c1fb7670b4d46964dde7050dfcade8c91",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Hybridauth\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Miled",
+                    "email": "hybridauth@gmail.com"
+                }
+            ],
+            "description": "Open source social sign on PHP library.",
+            "homepage": "https://hybridauth.github.io",
+            "keywords": [
+                "Authentication",
+                "OpenId",
+                "api",
+                "authorization",
+                "facebook",
+                "google",
+                "oauth",
+                "social",
+                "twitter"
+            ],
+            "time": "2015-08-27 15:56:38"
+        },
+        {
             "name": "imagine/imagine",
             "version": "v0.5.0",
             "source": {
@@ -1063,62 +1120,6 @@
                 "image processing"
             ],
             "time": "2013-07-10 17:25:36"
-        },
-        {
-            "name": "lusitanian/oauth",
-            "version": "1.0.x-dev",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Lusitanian/PHPoAuthLib.git",
-                "reference": "cd01b45328f3d0e7d1e9c3d0b80ab978dd550002"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Lusitanian/PHPoAuthLib/zipball/cd01b45328f3d0e7d1e9c3d0b80ab978dd550002",
-                "reference": "cd01b45328f3d0e7d1e9c3d0b80ab978dd550002",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "require-dev": {
-                "symfony/http-foundation": "~2.1"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "0.1-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "OAuth": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "David Desberg",
-                    "email": "david@daviddesberg.com"
-                },
-                {
-                    "name": "Pieter Hordijk",
-                    "email": "info@pieterhordijk.com",
-                    "homepage": "https://pieterhordijk.com",
-                    "role": "developer"
-                }
-            ],
-            "description": "PHP 5.4+ oAuth 1/2 Library",
-            "keywords": [
-                "Authentication",
-                "authorization",
-                "oauth",
-                "security"
-            ],
-            "time": "2013-06-19 18:32:13"
         },
         {
             "name": "nette/mail",
@@ -1236,74 +1237,17 @@
             "time": "2015-11-30 00:11:35"
         },
         {
-            "name": "oryzone/oauth-user-data",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Oryzone/PHPoAuthUserData.git",
-                "reference": "d3740c6fced3fb6ad164b814ba8133757e4d6968"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Oryzone/PHPoAuthUserData/zipball/d3740c6fced3fb6ad164b814ba8133757e4d6968",
-                "reference": "d3740c6fced3fb6ad164b814ba8133757e4d6968",
-                "shasum": ""
-            },
-            "require": {
-                "lusitanian/oauth": "~1.0@dev",
-                "php": ">=5.3.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~3.7"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "OAuth\\UserData\\": "src/OAuth/UserData/",
-                    "OAuth\\UserData\\Unit\\": "tests/OAuth/Unit/UserData/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Luciano Mammino",
-                    "email": "lmammino@oryzone.com",
-                    "homepage": "http://oryzone.com",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Extension library for Lusitanian/PHPoAuthLib to extract user profile data from various oAuth providers",
-            "homepage": "https://github.com/Oryzone/PHPoAuthUserData",
-            "keywords": [
-                "Authentication",
-                "authorization",
-                "oauth",
-                "profile",
-                "security",
-                "user"
-            ],
-            "time": "2014-09-22 11:58:38"
-        },
-        {
             "name": "paragonie/random_compat",
-            "version": "1.1.6",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paragonie/random_compat.git",
-                "reference": "e6f80ab77885151908d0ec743689ca700886e8b0"
+                "reference": "b0e69d10852716b2ccbdff69c75c477637220790"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/e6f80ab77885151908d0ec743689ca700886e8b0",
-                "reference": "e6f80ab77885151908d0ec743689ca700886e8b0",
+                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/b0e69d10852716b2ccbdff69c75c477637220790",
+                "reference": "b0e69d10852716b2ccbdff69c75c477637220790",
                 "shasum": ""
             },
             "require": {
@@ -1338,7 +1282,7 @@
                 "pseudorandom",
                 "random"
             ],
-            "time": "2016-01-29 16:19:52"
+            "time": "2016-02-06 03:52:05"
         },
         {
             "name": "react/promise",
@@ -2263,8 +2207,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "lusitanian/oauth": 20,
-        "oryzone/oauth-user-data": 20,
+        "hybridauth/hybridauth": 20,
         "defuse/php-encryption": 20,
         "roave/security-advisories": 20,
         "phalcon/devtools": 20

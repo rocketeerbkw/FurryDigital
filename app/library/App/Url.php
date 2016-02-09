@@ -45,6 +45,14 @@ class Url extends \Phalcon\Mvc\Url
     }
 
     /**
+     * Generate a callback-friendly URL.
+     */
+    public function callback()
+    {
+        return $this->getUrl($this->routeFromHere(array()), true);
+    }
+
+    /**
      * Get the HTTP_REFERER value for the current page.
      *
      * @param null $default_url
