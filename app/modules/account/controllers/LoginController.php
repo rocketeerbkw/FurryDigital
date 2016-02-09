@@ -70,7 +70,11 @@ class LoginController extends BaseController
 
         $config = [
             'callback' => $this->url->callback(),
-            'keys' => ['id' => $provider_info['key'], 'secret' => $provider_info['secret']]
+            'keys' => [
+                'id' => $provider_info['key'],
+                'key' => $provider_info['key'],
+                'secret' => $provider_info['secret']
+            ]
         ];
 
         if (!empty($provider_info['scope']))
@@ -98,10 +102,13 @@ class LoginController extends BaseController
 
         // Load profile into database, get/create record.
         $user_profile = $oauth->getUserProfile();
-        $user = UserExternal::processExternal($provider_name, $user_profile);
+        $external_result = UserExternal::processExternal($provider_name, $user_profile);
+
+        if ($external_result['new_account'])
+            $this->alert('<b>A new account has been created with your e-mail address.</b><br>If you need to log in to this account directly, use the "Forgot My Password" function in login.', 'blue');
 
         // Log in the user.
-        $this->auth->setUser($user);
+        $this->auth->setUser($external_result['user']);
 
         $this->alert('<b>Logged in via ' . $provider_info['name'] . '!</b>', 'green');
 

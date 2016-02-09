@@ -3,8 +3,6 @@ namespace Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-use OAuth\Common\Service\ServiceInterface;
-use OAuth\UserData\ExtractorFactory;
 
 /**
  * @Table(name="users_external")
@@ -67,6 +65,7 @@ class UserExternal extends \App\Doctrine\Entity
      */
     public static function processExternal($provider, $user_profile, User $user = null)
     {
+        $new_account = false;
         $external = self::getRepository()->findOneBy(array('provider' => $provider, 'external_id' => $user_profile->identifier));
 
         // Locate a user account to associate.
@@ -84,6 +83,8 @@ class UserExternal extends \App\Doctrine\Entity
 
             if (!($user instanceof User))
             {
+                $new_account = true;
+
                 $user = new User;
                 $user->email = $user_profile->email;
                 $user->name = $user_profile->displayName;
@@ -112,6 +113,10 @@ class UserExternal extends \App\Doctrine\Entity
         $external->avatar_url = $user_profile->photoURL;
         $external->save();
 
-        return $user;
+        return [
+            'user' => $user,
+            'external' => $external,
+            'new_account' => $new_account,
+        ];
     }
 }

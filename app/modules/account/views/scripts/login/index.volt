@@ -31,9 +31,10 @@
             <div class="panel-body">
                 <p>Don't want to remember another password? Sign in with your linked social networking account!</p>
 
-                <div class="buttons">
                 {% for provider_key, provider_info in external %}
-                    <a href="{{ url.routeFromHere(['action': 'oauth', 'provider': provider_key]) }}" class="zocial {{ provider_info['class'] }}">Sign in with {{ provider_info['name'] }}</a></div>
+                <div class="buttons">
+                    <a href="{{ url.routeFromHere(['action': 'oauth', 'provider': provider_key]) }}" class="zocial {{ provider_info['class'] }}">Sign in with {{ provider_info['name'] }}</a>
+                </div>
                 {% endfor %}
             </div>
         </div>
