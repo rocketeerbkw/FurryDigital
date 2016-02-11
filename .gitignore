@@ -72,5 +72,4 @@ $RECYCLE.BIN/
 /web/uploads/avatars/*
 !/web/uploads/avatars/.gitkeep
 
-/web/uploads/thumbnails/*
-!/web/uploads/thumbnails/.gitkeep
+/legacy

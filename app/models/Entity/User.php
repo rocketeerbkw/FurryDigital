@@ -1,6 +1,7 @@
 <?php
 namespace Entity;
 
+use Doctrine\Common\Inflector\Inflector;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -399,7 +400,7 @@ class User extends \App\Doctrine\Entity
      * @var integer
      * @Column(name="commentcount", type="integer", length=11, options={"unsigned"=true}, nullable=false)
      */
-    protected $notify_comments = 0;
+    protected $notify_upload_comments = 0;
 
     /**
      * @var integer
@@ -448,7 +449,7 @@ class User extends \App\Doctrine\Entity
      *
      * @return array All notifications by type.
      */
-    public function getNotifications()
+    public function getNotifications($type = null)
     {
         static $notifications;
 
@@ -459,16 +460,28 @@ class User extends \App\Doctrine\Entity
 
             foreach($notify_types as $notify_key => $notify_info)
             {
-                $notify_info['count'] = (int)$this->$notify_key;
+                $notify_info['count'] = (int)$this->{$notify_info['count_var']};
                 $notify_info['show'] = ($notify_info['count'] > 0);
 
                 $notify_info['text'] = $notify_info['count'].' '.$notify_info['abbr'];
 
-                if ($notify_info['count'] != 1)
-                    $notify_info['title'] = \Doctrine\Common\Inflector\Inflector::pluralize($notify_info['title']);
+                $notify_info['title_singular'] = $notify_info['title'];
+                $notify_info['title_plural'] = Inflector::pluralize($notify_info['title']);
 
-                $notifications[$notify_info['short']] = $notify_info;
+                if ($notify_info['count'] != 1)
+                    $notify_info['title'] = $notify_info['title_plural'];
+
+                $notify_info['records'] = $this->{$notify_info['relation']};
+
+                $notifications[$notify_key] = $notify_info;
             }
+        }
+
+        if ($type !== null)
+        {
+            $notifications = array_filter($notifications, function($notify_row) use ($type) {
+                return $notify_row['type'] == $type;
+            });
         }
 
         return $notifications;
@@ -484,6 +497,27 @@ class User extends \App\Doctrine\Entity
         }
 
         return false;
+    }
+
+    public function updateNotificationCount($notify_type = NULL)
+    {
+        $notify_types = self::getNotificationTypes();
+
+        if ($notify_type === null)
+        {
+            foreach($notify_types as $notify_key => $notify_info)
+                $this->_doUpdateNotificationCount($notify_key, $notify_info);
+        }
+        else if (isset($notify_types[$notify_type]))
+        {
+            $this->_doUpdateNotificationCount($notify_type, $notify_types[$notify_type]);
+        }
+    }
+
+    protected function _doUpdateNotificationCount($notify_key, $notify_info)
+    {
+        $new_count = (int)$this->{$notify_info['relation']}->count();
+        $this->{$notify_info['count_var']} = $new_count;
     }
 
     /**
@@ -1064,6 +1098,7 @@ class User extends \App\Doctrine\Entity
                 return $login_info;
             }
         }
+        /*
         else
         {
             // Attempt login with legacy password style, and then force a set to the new password style if successful.
@@ -1078,6 +1113,7 @@ class User extends \App\Doctrine\Entity
                 return $login_info;
             }
         }
+        */
 
         return FALSE;
     }
@@ -1097,12 +1133,12 @@ class User extends \App\Doctrine\Entity
             $url = $di['url'];
 
             $notify_types = array(
-                'notify_favorites' => array(
+                'favorite' => array(
+                    'count_var' => 'notify_favorites',
                     'relation'  => 'favorite_notifications',
-                    'short'     => 'favorite',
                     'abbr'      => 'F',
                     'title'     => 'Favorite',
-                    'url'       => $url->route(['module' => 'account', 'controller' => 'messages', 'action' => 'others']).'#favorites',
+                    'type'      => 'other',
                 ),
                 /*
                 'journal_comment_notifications' => array(
@@ -1111,56 +1147,64 @@ class User extends \App\Doctrine\Entity
                     'title'     => 'Journal Comment',
                 ),
                 */
-                'notify_journals'  => array(
+                'journal'  => array(
+                    'count_var' => 'notify_journals',
                     'relation'  => 'journal_notifications',
-                    'short'     => 'journal',
                     'abbr'      => 'J',
                     'title'     => 'Journal',
-                    'url'       => $url->route(['module' => 'account', 'controller' => 'messages', 'action' => 'others']).'#journals',
+                    'type'      => 'other',
                 ),
-                'notify_notes'     => array(
+                'note' => array(
+                    'count_var' => 'notify_notes',
                     'relation'  => 'notes_received',
-                    'short'     => 'note',
                     'abbr'      => 'N',
                     'title'     => 'Note',
-                    'url'       => $url->route(['module' => 'account', 'controller' => 'messages', 'action' => 'pms']),
+                    'type'      => 'pms',
                 ),
-                'notify_shouts'    => array(
+                'shout' => array(
+                    'count_var' => 'notify_shouts',
                     'relation'  => 'shout_notifications',
-                    'short'     => 'shout',
                     'abbr'      => 'SH',
                     'title'     => 'Shout',
-                    'url'       => $url->route(['module' => 'account', 'controller' => 'messages', 'action' => 'others']).'#shouts',
+                    'type'      => 'other',
                 ),
-                'notify_comments'  => array(
+                'upload_comment' => array(
+                    'count_var' => 'notify_upload_comments',
                     'relation'  => 'upload_comment_notifications',
-                    'short'     => 'upload_comment',
                     'abbr'      => 'C',
                     'title'     => 'Comment',
-                    'url'       => $url->route(['module' => 'account', 'controller' => 'messages', 'action' => 'others']).'#comments',
+                    'type'      => 'other',
                 ),
-                'notify_uploads'   => array(
+                'upload' => array(
+                    'count_var' => 'notify_uploads',
                     'relation'  => 'upload_notifications',
-                    'short'     => 'upload',
                     'abbr'      => 'S',
                     'title'     => 'Upload',
-                    'url'       => $url->route(['module' => 'account', 'controller' => 'messages', 'action' => 'uploads']),
+                    'type'      => 'uploads',
                 ),
-                'notify_tickets'   => array(
+                'trouble_ticket'   => array(
+                    'count_var' => 'notify_tickets',
                     'relation'  => 'trouble_ticket_notifications',
-                    'short'     => 'trouble_ticket',
                     'abbr'      => 'TT',
                     'title'     => 'Trouble Ticket',
-                    'url'       => $url->route(['module' => 'account', 'controller' => 'messages', 'action' => 'troubletickets']),
+                    'type'      => 'troubletickets',
                 ),
-                'notify_watches'   => array(
+                'watch' => array(
+                    'count_var' => 'notify_watches',
                     'relation'  => 'watch_notifications',
-                    'short'     => 'watch',
                     'abbr'      => 'W',
                     'title'     => 'Watch',
-                    'url'       => $url->route(['module' => 'account', 'controller' => 'messages', 'action' => 'others']).'#watches',
+                    'type'      => 'other',
                 ),
             );
+
+            foreach($notify_types as $type_key => &$type_info)
+            {
+                $type_info['url'] = $url->route(['module' => 'account', 'controller' => 'messages', 'action' => $type_info['type']]);
+
+                if ($type_info['type'] == 'other')
+                    $type_info['url'] .= '#'.$type_key;
+            }
         }
 
         return $notify_types;

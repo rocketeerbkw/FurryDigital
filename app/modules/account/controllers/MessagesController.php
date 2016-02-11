@@ -24,11 +24,39 @@ class MessagesController extends BaseController
         // Message Center index
     }
 
-    public function uploadsAction()
+    public function othersAction()
     {
+        $notifications = $this->user->getNotifications('other');
+
+        if ($this->request->isPost() && $this->hasParam('do'))
+        {
+            $this->csrf->requireValid($_POST['csrf']);
+
+            $notify_type = $this->getParam('type');
+            if (isset($notifications[$notify_type]))
+            {
+                switch($this->getParam('do'))
+                {
+                    case 'remove_all':
+                        
+                    break;
+
+                    case 'remove_selected':
+
+                    break;
+                }
+
+                $this->user->updateNotificationCount($notify_type);
+            }
+
+            $this->alert('<b>Selected notifications cleared!</b>', 'green');
+            return $this->redirectFromHere(array('type' => null, 'do' => null));
+        }
+
+        $this->view->notifications = $notifications;
     }
 
-    public function othersAction()
+    public function uploadsAction()
     {
     }
 
