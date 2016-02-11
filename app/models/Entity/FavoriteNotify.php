@@ -12,6 +12,9 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class FavoriteNotify extends \App\Doctrine\Entity
 {
+    use Traits\NotifyTrait;
+    protected static $identifier = 'favorite_id';
+
     /**
      * @var integer
      * @Column(name="user_id", type="integer", length=11, options={"unsigned"=true}, nullable=true)

@@ -12,6 +12,9 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class WatchNotify extends \App\Doctrine\Entity
 {
+    use Traits\NotifyTrait;
+    protected $identifier_id = 'watch_id';
+
     /**
      * @var integer
      * @Column(name="user_id", type="integer", length=11, options={"unsigned"=true}, nullable=false)

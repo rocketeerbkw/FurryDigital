@@ -28,8 +28,8 @@ class Favorite extends \App\Doctrine\Entity
      */
     public function created()
     {
-        User::incrementCounter('favorites', $this->user->id);
-        \App\Legacy\Notifications::dispatch('favorite', $this->id, $this->user->id, $this->upload->id);
+        User::incrementCounter('favorites', $this->upload->user_id);
+        \App\Legacy\Notifications::dispatch('favorite', $this->id, $this->upload->user_id, $this->upload->id);
     }
 
     /**
@@ -37,8 +37,8 @@ class Favorite extends \App\Doctrine\Entity
      */
     public function deleted()
     {
-        User::decrementCounter('favorites', $this->user_id);
-        \App\Legacy\Notifications::purge('favorite', $this->id, $this->user_id);
+        User::decrementCounter('favorites', $this->upload->user_id);
+        \App\Legacy\Notifications::purge('favorite', $this->id, $this->upload->user_id);
     }
 
     /**

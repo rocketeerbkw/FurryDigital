@@ -14,6 +14,9 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class JournalCommentNotify extends \App\Doctrine\Entity
 {
+    use Traits\NotifyTrait;
+    protected static $identifier = 'comment_id';
+
     /**
      * @var integer
      * @Column(name="user_id", type="integer", length=11, options={"unsigned"=true}, nullable=false)

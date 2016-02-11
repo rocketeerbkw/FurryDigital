@@ -30,23 +30,28 @@ class MessagesController extends BaseController
 
         if ($this->request->isPost() && $this->hasParam('do'))
         {
-            $this->csrf->requireValid($_POST['csrf']);
+            $this->csrf->requireValid($_POST['csrf'], 'messages');
 
             $notify_type = $this->getParam('type');
             if (isset($notifications[$notify_type]))
             {
+                $notify_info = $notifications[$notify_type];
+                $notify_class = '\Entity\\'.$notify_info['class'];
+
                 switch($this->getParam('do'))
                 {
                     case 'remove_all':
-                        
+                        $notify_class::purgeAllByUser($this->user->id);
                     break;
 
                     case 'remove_selected':
-
+                        foreach($_POST['ids'] as $id)
+                            $notify_class::purgeByIdentifier($this->user->id, $id);
                     break;
                 }
 
                 $this->user->updateNotificationCount($notify_type);
+                $this->user->save();
             }
 
             $this->alert('<b>Selected notifications cleared!</b>', 'green');

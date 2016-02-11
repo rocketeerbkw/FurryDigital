@@ -1,6 +1,5 @@
 <?php
-
-namespace Entity;
+namespace Entity\Traits;
 
 trait CommentTrait
 {        

@@ -21,7 +21,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class UploadComment extends \App\Doctrine\Entity
 {
-    use CommentTrait;
+    use Traits\CommentTrait;
 
     // TODO: Move to ACL
     // How much time before a user is unable to edit their comments

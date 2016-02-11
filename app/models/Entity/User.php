@@ -1136,6 +1136,7 @@ class User extends \App\Doctrine\Entity
                 'favorite' => array(
                     'count_var' => 'notify_favorites',
                     'relation'  => 'favorite_notifications',
+                    'class'     => 'FavoriteNotify',
                     'abbr'      => 'F',
                     'title'     => 'Favorite',
                     'type'      => 'other',
@@ -1150,6 +1151,7 @@ class User extends \App\Doctrine\Entity
                 'journal'  => array(
                     'count_var' => 'notify_journals',
                     'relation'  => 'journal_notifications',
+                    'class'     => 'JournalNotify',
                     'abbr'      => 'J',
                     'title'     => 'Journal',
                     'type'      => 'other',
@@ -1164,6 +1166,7 @@ class User extends \App\Doctrine\Entity
                 'shout' => array(
                     'count_var' => 'notify_shouts',
                     'relation'  => 'shout_notifications',
+                    'class'     => 'ShoutNotify',
                     'abbr'      => 'SH',
                     'title'     => 'Shout',
                     'type'      => 'other',
@@ -1171,6 +1174,7 @@ class User extends \App\Doctrine\Entity
                 'upload_comment' => array(
                     'count_var' => 'notify_upload_comments',
                     'relation'  => 'upload_comment_notifications',
+                    'class'     => 'UploadCommentNotify',
                     'abbr'      => 'C',
                     'title'     => 'Comment',
                     'type'      => 'other',
@@ -1178,6 +1182,7 @@ class User extends \App\Doctrine\Entity
                 'upload' => array(
                     'count_var' => 'notify_uploads',
                     'relation'  => 'upload_notifications',
+                    'class'     => 'UploadNotify',
                     'abbr'      => 'S',
                     'title'     => 'Upload',
                     'type'      => 'uploads',
@@ -1185,6 +1190,7 @@ class User extends \App\Doctrine\Entity
                 'trouble_ticket'   => array(
                     'count_var' => 'notify_tickets',
                     'relation'  => 'trouble_ticket_notifications',
+                    'class'     => 'TroubleTicketNotify',
                     'abbr'      => 'TT',
                     'title'     => 'Trouble Ticket',
                     'type'      => 'troubletickets',
@@ -1192,6 +1198,7 @@ class User extends \App\Doctrine\Entity
                 'watch' => array(
                     'count_var' => 'notify_watches',
                     'relation'  => 'watch_notifications',
+                    'class'     => 'WatchNotify',
                     'abbr'      => 'W',
                     'title'     => 'Watch',
                     'type'      => 'other',

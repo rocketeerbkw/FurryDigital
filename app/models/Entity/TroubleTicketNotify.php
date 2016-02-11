@@ -12,6 +12,9 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class TroubleTicketNotify extends \App\Doctrine\Entity
 {
+    use Traits\NotifyTrait;
+    protected static $identifier = 'ticket_id';
+
     /**
      * @var integer
      * @Column(name="rowid", type="integer", length=11, options={"unsigned"=true}, nullable=false)
