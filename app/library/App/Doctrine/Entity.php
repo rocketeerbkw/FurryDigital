@@ -7,114 +7,107 @@ class Entity extends MagicProperties
 {
     /**
      * FromArray (A Doctrine 1 Classic)
+     *
+     * @param $source
+     * @return $this
+     * @throws \Doctrine\Common\Persistence\Mapping\MappingException
      */
-    
     public function fromArray($source)
     {
-        $em = self::getEntityManager();
-
-        $metafactory = $em->getMetadataFactory();
-        $meta = $metafactory->getMetadataFor(get_called_class());
-
-        $mapped_fields = array();
-        if ($meta->associationMappings)
-        {
-            foreach($meta->associationMappings as $mapping_name => $mapping_info)
-            {
-                $entity = $mapping_info['targetEntity'];
-
-                if (isset($mapping_info['joinTable']))
-                {
-                    $mapped_fields[$mapping_info['fieldName']] = array(
-                        'type' => 'many',
-                        'entity' => $entity,
-                        'is_owning_side' => ($mapping_info['isOwningSide'] == 1),
-                        'mappedBy' => $mapping_info['mappedBy'],
-                    );
-                }
-                else if (isset($mapping_info['joinColumns']))
-                {
-                    foreach($mapping_info['joinColumns'] as $col)
-                    {
-                        $col_name = $col['name'];
-                        $col_name = (isset($meta->fieldNames[$col_name])) ? $meta->fieldNames[$col_name] : $col_name;
-                        
-                        $mapped_fields[$col_name] = array(
-                            'name' => $mapping_name,
-                            'type' => 'one',
-                            'entity' => $entity,
-                        );
-                    }
-                }
-            }
-        }
+        $metadata = self::getMetadata();
+        $em = $metadata['em'];
+        $meta = $metadata['meta'];
+        $mappings = $metadata['mappings'];
         
         foreach((array)$source as $field => $value)
         {
-            if (isset($mapped_fields[$field]))
+            if (isset($mappings[$field]))
             {
-                $mapping = $mapped_fields[$field];
+                $mapping = $mappings[$field];
 
-                if ($mapping['type'] == "one")
+                switch($mapping['type'])
                 {
-                    $field_name = $mapping['name'];
-                    
-                    if (empty($value))
-                    {
-                        $this->$field_name = NULL;
-                    }
-                    else if ($value != $this->$field)
-                    {
-                        $obj_class = $mapping['entity'];
-                        $obj = $obj_class::find($value);
-                        
-                        if ($obj instanceof $obj_class)
-                            $this->$field_name = $obj;
-                    }
-                }
-                else if ($mapping['type'] == "many")
-                {
-                    $obj_class = $mapping['entity'];
+                    case "one_id":
+                        $entity_field = $mapping['name'];
+                        $entity_id = $mapping['ids'][0];
 
-                    if ($mapping['is_owning_side'])
-                    {
-                        $this->$field->clear();
-
-                        if ($value)
+                        if (empty($value))
                         {
-                            foreach((array)$value as $field_id)
+                            $this->$field = NULL;
+                            $this->$entity_field = NULL;
+                        }
+                        else if ($value != $this->$field)
+                        {
+                            $obj_class = $mapping['entity'];
+                            $obj = $obj_class::find($value);
+
+                            if ($obj instanceof $obj_class)
                             {
-                                if(($field_item = $obj_class::find((int)$field_id)) instanceof $obj_class)
+                                $this->$field = $obj->$entity_id;
+                                $this->$entity_field = $obj;
+                            }
+                        }
+                    break;
+
+                    case "one_entity":
+                        $entity_id = $mapping['ids'][0];
+                        $id_field = $mapping['name'];
+
+                        if (empty($value))
+                        {
+                            $this->$field = NULL;
+                            $this->$id_field = NULL;
+                        }
+                        else if ($value->$entity_id != $this->$field)
+                        {
+                            $this->$field = $value;
+                            $this->$id_field = $value->$entity_id;
+                        }
+                    break;
+
+                    case "many":
+                        $obj_class = $mapping['entity'];
+
+                        if ($mapping['is_owning_side'])
+                        {
+                            $this->$field->clear();
+
+                            if ($value)
+                            {
+                                foreach((array)$value as $field_id)
                                 {
-                                    $this->$field->add($field_item);
+                                    if(($field_item = $obj_class::find((int)$field_id)) instanceof $obj_class)
+                                    {
+                                        $this->$field->add($field_item);
+                                    }
                                 }
                             }
                         }
-                    }
-                    else
-                    {
-                        $foreign_field = $mapping['mappedBy'];
-
-                        if (count($this->$field) > 0)
+                        else
                         {
-                            foreach($this->$field as $record)
-                            {
-                                $record->$foreign_field->removeElement($this);
-                                $em->persist($record);
-                            }
-                        }
+                            $foreign_field = $mapping['mappedBy'];
 
-                        foreach((array)$value as $field_id)
-                        {
-                            if(($record = $obj_class::find((int)$field_id)) instanceof $obj_class)
+                            if (count($this->$field) > 0)
                             {
-                                $record->$foreign_field->add($this);
-                                $em->persist($record);
+                                foreach($this->$field as $record)
+                                {
+                                    $record->$foreign_field->removeElement($this);
+                                    $em->persist($record);
+                                }
                             }
-                        }
 
-                        $em->flush();
-                    }
+                            foreach((array)$value as $field_id)
+                            {
+                                if(($record = $obj_class::find((int)$field_id)) instanceof $obj_class)
+                                {
+                                    $record->$foreign_field->add($this);
+                                    $em->persist($record);
+                                }
+                            }
+
+                            $em->flush();
+                        }
+                    break;
                 }
             }
             else
@@ -174,11 +167,13 @@ class Entity extends MagicProperties
         
         return $this;
     }
-    
+
     /**
      * ToArray (A Doctrine 1 Classic)
+     *
      * @param $deep Iterate through collections associated with this item.
      * @param $form_mode Return values in a format suitable for ZendForm setDefault function.
+     * @return array
      */
     
     public function toArray($deep = FALSE, $form_mode = FALSE)
@@ -404,5 +399,67 @@ class Entity extends MagicProperties
         $conn = $em->getConnection();
 
         return $conn->query('ALTER TABLE '.$conn->quoteIdentifier($table_name).' AUTO_INCREMENT = 1');
+    }
+
+    public static function getMetadata($class = null)
+    {
+        if ($class === null)
+            $class = get_called_class();
+
+        $em = self::getEntityManager();
+
+        $meta_result = array();
+        $meta_result['em'] = $em;
+        $meta_result['factory'] = $em->getMetadataFactory();
+        $meta_result['meta'] = $meta_result['factory']->getMetadataFor($class);
+        $meta_result['mappings'] = array();
+
+        if ($meta_result['meta']->associationMappings)
+        {
+            foreach ($meta_result['meta']->associationMappings as $mapping_name => $mapping_info)
+            {
+                $entity = $mapping_info['targetEntity'];
+
+                if (isset($mapping_info['joinTable']))
+                {
+                    $meta_result['mappings'][$mapping_info['fieldName']] = array(
+                        'type'           => 'many',
+                        'entity'         => $entity,
+                        'is_owning_side' => ($mapping_info['isOwningSide'] == 1),
+                        'mappedBy'       => $mapping_info['mappedBy'],
+                    );
+                }
+                else
+                {
+                    if (isset($mapping_info['joinColumns']))
+                    {
+                        foreach ($mapping_info['joinColumns'] as $col)
+                        {
+                            $join_meta = $meta_result['factory']->getMetadataFor($entity);
+                            $join_ids = $join_meta->getIdentifierFieldNames();
+
+                            $col_name = $col['name'];
+                            $col_name = (isset($meta_result['meta']->fieldNames[$col_name])) ? $meta_result['meta']->fieldNames[$col_name] : $col_name;
+
+                            $meta_result['mappings'][$col_name] = array(
+                                'name'   => $mapping_name,
+                                'type'   => 'one_id',
+                                'entity' => $entity,
+                                'ids'    => $join_ids,
+                            );
+
+                            $meta_result['mappings'][$mapping_name] = array(
+                                'name'   => $col_name,
+                                'type'   => 'one_entity',
+                                'entity' => $entity,
+                                'ids'    => $join_ids,
+                            );
+                        }
+                    }
+                }
+            }
+        }
+
+        return $meta_result;
     }
 }
