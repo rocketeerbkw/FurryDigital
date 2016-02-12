@@ -1193,7 +1193,7 @@ class User extends \App\Doctrine\Entity
                     'class'     => 'TroubleTicketNotify',
                     'abbr'      => 'TT',
                     'title'     => 'Trouble Ticket',
-                    'type'      => 'troubletickets',
+                    'type'      => 'other',
                 ),
                 'watch' => array(
                     'count_var' => 'notify_watches',

@@ -8,6 +8,7 @@ class UtilController extends BaseController
 {
     public function permissions()
     {
+        return true;
         // return $this->acl->isAllowed('administer all');
     }
 
@@ -22,10 +23,12 @@ class UtilController extends BaseController
 
         // -------- START HERE -------- //
 
-
+        \App\Debug::print_r(\Entity\Upload::getMetadata());
 
         // -------- END HERE -------- //
 
         Debug::log('Done!');
+
+        exit;
     }
 }

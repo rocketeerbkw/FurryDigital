@@ -100,24 +100,15 @@
         </div>
     </form>
 
-    {{ javascript_include('//cdnjs.cloudflare.com/ajax/libs/masonry/4.0.0/masonry.pkgd.min.js') }}
     <script type="text/javascript">
-        $(window).load(function(e) {
-            $('div.grid').masonry({
-                columnWidth: '.grid-sizer',
-                itemSelector: '.grid-item',
-                gutter: 10
-            });
+    jQuery(function($) {
+        $('input[name="ids[]"]').change(function() {
+            if($(this).is(":checked"))
+                $(this).closest('div').addClass('checked');
+            else
+                $(this).closest('div').removeClass('checked');
         });
-
-        jQuery(function($) {
-            $('input[name="ids[]"]').change(function() {
-                if($(this).is(":checked"))
-                    $(this).closest('div').addClass('checked');
-                else
-                    $(this).closest('div').removeClass('checked');
-            });
-        });
+    });
     </script>
 
     {#

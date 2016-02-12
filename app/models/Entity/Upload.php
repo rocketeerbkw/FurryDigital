@@ -55,8 +55,8 @@ class Upload extends \App\Doctrine\Entity
      */
     public function created()
     {
-        User::incrementCounter('uploads', $this->user_id);
-        \App\Legacy\Notifications::dispatch('upload', $this->id);
+        User::incrementCounter('uploads', $this->user->id);
+        \App\Legacy\Notifications::dispatch('upload', $this->id, $this->user->id, $this->user->id);
     }
 
     /**

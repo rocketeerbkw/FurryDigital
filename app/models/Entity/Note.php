@@ -23,7 +23,7 @@ class Note extends \App\Doctrine\Entity
 {
     public function __construct()
     {
-
+        $this->created_at = time();
     }
 
     /**
@@ -65,12 +65,6 @@ class Note extends \App\Doctrine\Entity
     protected $sender;
 
     /**
-     * @var string
-     * @Column(name="fromlower", type="string", options={"default"=""}, length=30, nullable=false)
-     */
-    protected $fromlower;
-
-    /**
      * @var integer The recipient user ID.
      * @Column(name="target_id", type="integer", length=11, options={"unsigned"=true}, nullable=false)
      */
@@ -83,18 +77,6 @@ class Note extends \App\Doctrine\Entity
      * })
      */
     protected $recipient;
-
-    /**
-     * @var boolean
-     * @Column(name="folder_sender", type="boolean", nullable=false)
-     */
-    protected $folder_sender;
-
-    /**
-     * @var boolean
-     * @Column(name="folder_target", type="boolean", nullable=false)
-     */
-    protected $folder_target;
 
     /**
      * @var boolean
@@ -119,7 +101,7 @@ class Note extends \App\Doctrine\Entity
      * @var integer
      * @Column(name="date_posted", type="integer", length=11, options={"unsigned"=true}, nullable=false)
      */
-    protected $date_posted;
+    protected $created_at;
 
     /**
      * @var string

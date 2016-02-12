@@ -46,10 +46,4 @@ class UploadNotify extends \App\Doctrine\Entity
      * @Id
      */
     protected $upload;
-
-    /**
-     * @var integer
-     * @Column(name="source_id", type="integer", length=11, options={"unsigned"=true}, nullable=false)
-     */
-    protected $source_id;
 }
