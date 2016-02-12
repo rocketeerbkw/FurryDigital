@@ -11,9 +11,6 @@ use App\Legacy\Notifications;
  *
  * @Table(name="notes", indexes={
  *   @Index(name="for_comment_search_1", columns={"date_posted"}),
- *   @Index(name="fromlower", columns={"fromlower"}),
- *   @Index(name="sender_id__folder_sender", columns={"sender_id", "folder_sender"}),
- *   @Index(name="target_id__folder_target", columns={"target_id", "folder_target"}),
  *   @Index(name="target_id__is_read", columns={"target_id", "is_read"})
  * })
  * @Entity
@@ -21,6 +18,9 @@ use App\Legacy\Notifications;
  */
 class Note extends \App\Doctrine\Entity
 {
+    const FOLDER_INBOX = 0;
+    const FOLDER_OUTBOX = 1;
+
     public function __construct()
     {
         $this->created_at = time();

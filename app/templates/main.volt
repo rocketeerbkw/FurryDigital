@@ -102,7 +102,7 @@
                         <ul class="dropdown-menu">
                             <li class="dropdown-header">Profile Information</li>
                             <li><a href="{{ url.named('user_view', ['username': user.lower]) }}">My Profile Page</a></li>
-                            <li><a href="/msg/pms/">My Notes</a></li>
+                            <li><a href="{{ url.route(['module': 'account', 'controller': 'messages', 'action': 'pms']) }}">My Notes</a></li>
                             <li><a href="{{ url.route(['module': 'account', 'controller': 'journals', 'action': 'edit']) }}">Post a New Journal</a></li>
                             <li><a href="/commissions/{{ user.lower }}/">My Commission Info</a></li>
 

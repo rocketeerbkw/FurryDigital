@@ -2,6 +2,7 @@
 namespace Modules\Account\Controllers;
 
 use Entity\User;
+use Entity\Note;
 
 class MessagesController extends BaseController
 {
@@ -63,18 +64,42 @@ class MessagesController extends BaseController
 
     public function pmsAction()
     {
+        $folder = $this->getParam('folder', 'inbox');
+        $this->view->folder = $folder;
 
-    }
+        $message_q = $this->em->createQueryBuilder();
+        $message_q->select('n')
+            ->from('Entity\Note', 'n')
+            ->orderBy('n.created_at', 'DESC');
 
-    public function viewAction()
-    {
-    }
+        if ($folder == 'outbox')
+            $message_q->where('n.sender_id = :user_id');
+        else
+            $message_q->where('n.recipient_id = :user_id');
 
-    public function sendAction()
-    {
+        $message_q->setParameter('user_id', $this->user->id);
+
+        $messages = $message_q->getQuery()->getArrayResult();
+        $this->view->messages = $messages;
+
+        if ($this->hasParam('id'))
+        {
+            $id = (int)$this->getParam('id');
+
+            if ($folder == 'outbox')
+                $record = Note::getRepository()->findOneBy(array('id' => $id, 'sender_id' => $this->user->id));
+            else
+                $record = Note::getRepository()->findOneBy(array('id' => $id, 'recipient_id' => $this->user->id));
+
+            if (!($record instanceof Note))
+                throw new \App\Exception('Note not found!');
+
+            $this->view->record = $record;
+        }
     }
 
     public function composeAction()
     {
+
     }
 }

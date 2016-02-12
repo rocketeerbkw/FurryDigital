@@ -40,6 +40,22 @@ class Parser
     }
 
     /**
+     * Truncate a message for previewing.
+     *
+     * @param $string
+     * @param int $length
+     * @return string
+     */
+    public function truncate($string, $length = 80)
+    {
+        $string = $this->escape($string, false);
+        $string = $this->bbcode($string);
+
+        $string = strip_tags($string);
+        return Utilities::truncateText($string, $length);
+    }
+
+    /**
      * Escape a string for printing, and apply NL2BR.
      *
      * @param string $string
