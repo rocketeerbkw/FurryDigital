@@ -23,6 +23,7 @@ class Note extends \App\Doctrine\Entity
 
     public function __construct()
     {
+        $this->is_read = false;
         $this->created_at = time();
     }
 
@@ -31,7 +32,7 @@ class Note extends \App\Doctrine\Entity
      */
     public function created()
     {
-        Notifications::dispatch('shout', $this->id, $this->recipient->id, $this->sender->id);
+        Notifications::dispatch('note', $this->id, $this->recipient->id, $this->sender->id);
     }
 
     /**
@@ -39,7 +40,7 @@ class Note extends \App\Doctrine\Entity
      */
     public function deleting()
     {
-        Notifications::purge('note', $this->id, $this->recipient->id);
+        Notifications::purge('note', $this->id, $this->recipient_id);
     }
 
     /**
@@ -107,7 +108,7 @@ class Note extends \App\Doctrine\Entity
      * @var string
      * @Column(name="title", type="string", options={"default"=""}, length=120, nullable=false)
      */
-    protected $title;
+    protected $subject;
 
     /**
      * @var string

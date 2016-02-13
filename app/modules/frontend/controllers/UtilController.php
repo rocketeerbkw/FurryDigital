@@ -23,7 +23,11 @@ class UtilController extends BaseController
 
         // -------- START HERE -------- //
 
-        \App\Debug::print_r(\Entity\Upload::getMetadata());
+        $username = 'Buster_ñeeCE TEST!-Test';
+        \App\Utilities::print_r(\Entity\User::getLowerCase($username));
+
+        $user = \Entity\User::findByLower('SlvrEagle23');
+        echo $user->username;
 
         // -------- END HERE -------- //
 

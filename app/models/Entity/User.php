@@ -1271,8 +1271,18 @@ class User extends \App\Doctrine\Entity
      */
     public static function getLowerCase($username)
     {
+        // Convert some unicode characters into similar looking ASCII ones.
+        $username = strtr(utf8_decode($username),
+            utf8_decode('ŠŒŽšœžŸ¥µÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýÿ'),
+                        'SOZsozYYuAAAAAAACEEEEIIIIDNOOOOOOUUUUYsaaaaaaaceeeeiiiionoooooouuuuyy'
+        );
+
+        // Strip all non-alphanumeric characters.
+        $username = str_replace(array(' ', '#', '!'), '_', $username);
+        $username = preg_replace("/[^A-Za-z0-9_\\-]/", '', $username);
+
         $username = strtolower($username);
-        $username = substr(str_replace(array('_', ' ', '#', '!'), '', $username), 0, 30);
+        $username = substr($username, 0, 30);
         return $username;
     }
 
@@ -1348,5 +1358,18 @@ class User extends \App\Doctrine\Entity
         $em->createQuery('UPDATE '.__CLASS__.' us SET '.$field_name.'=IF('.$field_name.'=0, 0, '.$field_name.'-1) WHERE us.id = :user_id')
             ->setParameter('user_id', $user_id)
             ->execute();
+    }
+
+    /**
+     * Find a user by their lower-case identifier.
+     *
+     * @param $lower_name
+     * @return null|object
+     */
+    public static function findByLower($lower_name)
+    {
+        // Ensure format is valid.
+        $lower_name = self::getLowerCase($lower_name);
+        return self::getRepository()->findOneBy(array('lower' => $lower_name));
     }
 }

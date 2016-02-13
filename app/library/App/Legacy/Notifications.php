@@ -46,11 +46,19 @@ class Notifications
                     ->setParameter('user_id', $user_id)
                     ->getArrayResult();
 
-                // Prepare query for notification entries.
-                $notify_table_query = $em->createQuery('INSERT INTO ' . $einfo['notify_table'] . ' nt SET nt.user_id=:user_id, nt.' . $einfo['relationship'] . '_id=:entity_id, nt.source_id=:source_id');
+                // Remove all notifications relevant to entity.
+                // $remove_notification_query = $em->createQuery('DELETE FROM '.$einfo['notify_table'].' nt WHERE nt.user_id=:user_id nt.'.$einfo['relationship'].'_id = :entity_id');
 
+                // Prepare query for notification entries.
                 foreach($watching_users as $row)
                 {
+                    /*
+                    $remove_notification_query->setParameters(array(
+                        'entity_id' => $source_id,
+                        'user_id'   => $row['user_id'],
+                    ))->execute();
+                    */
+
                     // Create new notification.
                     $notify_record = new $einfo['notify_table'];
 
@@ -95,7 +103,7 @@ class Notifications
         $einfo = self::getEntityInfo($entity_name);
 
         // Remove all notifications relevant to entity.
-        $remove_notification_query = $em->createQuery('DELETE FROM '.$einfo['notify_table'].' nt WHERE nt.'.$einfo['relationship'].' = :entity_id');
+        $remove_notification_query = $em->createQuery('DELETE FROM '.$einfo['notify_table'].' nt WHERE nt.'.$einfo['relationship'].'_id = :entity_id');
 
         // Lower count of notifications for any affected users.
         $lower_counts_query = $em->createQuery('UPDATE Entity\User u SET u.'.$einfo['user_count'].'=IF(u.'.$einfo['user_count'].'>0, u.'.$einfo['user_count'].'-1, 0) WHERE u.id = :user_id');
@@ -113,7 +121,7 @@ class Notifications
             }
             else
             {
-                $user_ids_raw = $em->createQuery('SELECT nt.user_id FROM '.$einfo['notify_table'].' nt WHERE nt.'.$einfo['relationship'].' = :entity_id')
+                $user_ids_raw = $em->createQuery('SELECT nt.user_id FROM '.$einfo['notify_table'].' nt WHERE nt.'.$einfo['relationship'].'_id = :entity_id')
                     ->setParameter('entity_id', (int)$entity_id)
                     ->getArrayResult();
 

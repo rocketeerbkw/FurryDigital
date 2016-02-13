@@ -1,0 +1,20 @@
+#page-pms {
+    .media {
+        text-decoration: none;
+
+        .media-left {
+            font-size: 30px;
+            line-height: 30px;
+        }
+        .media-body {
+            padding-bottom: 15px;
+        }
+        &:last-child .media-body {
+            padding-bottom: 0;
+        }
+
+        h4 {
+            line-height: 100%;
+        }
+    }
+}
