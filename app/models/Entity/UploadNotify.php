@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * MessagecenterSubmissions
  *
- * @Table(name="messagecenter_submissions", indexes={@Index(name="entity_id", columns={"entity_id"})})
+ * @Table(name="upload_notify", indexes={@Index(name="entity_id", columns={"entity_id"})})
  * @Entity
  */
 class UploadNotify extends \App\Doctrine\Entity
@@ -25,7 +25,7 @@ class UploadNotify extends \App\Doctrine\Entity
     /**
      * @ManyToOne(targetEntity="User", inversedBy="upload_notifications")
      * @JoinColumns({
-     *   @JoinColumn(name="user_id", referencedColumnName="userid", onDelete="CASCADE")
+     *   @JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      * @Id
      */
@@ -41,7 +41,7 @@ class UploadNotify extends \App\Doctrine\Entity
     /**
      * @ManyToOne(targetEntity="Upload", inversedBy="notifications")
      * @JoinColumns({
-     *   @JoinColumn(name="entity_id", referencedColumnName="rowid", onDelete="CASCADE")
+     *   @JoinColumn(name="entity_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      * @Id
      */

@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * UserVariables
  *
- * @Table(name="user_variables", indexes={
+ * @Table(name="user_variable", indexes={
  *   @Index(name="var_id", columns={"var_id"})
  * })
  * @Entity
@@ -24,7 +24,7 @@ class UserVariable extends \App\Doctrine\Entity
      * @ManyToOne(targetEntity="User", inversedBy="vars")
      * @Id
      * @JoinColumns({
-     *   @JoinColumn(name="user_id", referencedColumnName="userid", onDelete="CASCADE")
+     *   @JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      */
     protected $user;

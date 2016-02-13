@@ -7,8 +7,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Submission Folders
  *
- * @Table(name="gallery_folders_submissions", indexes={
- *   @Index(name="submission_id", columns={"submission_id"})
+ * @Table(name="upload_has_folder", indexes={
+ *   @Index(name="upload_id", columns={"upload_id"})
  * })
  * @Entity
  * @HasLifecycleCallbacks
@@ -54,7 +54,7 @@ class UploadFolder extends \App\Doctrine\Entity
     /**
      * @ManyToOne(targetEntity="Folder", inversedBy="uploads")
      * @JoinColumns({
-     *   @JoinColumn(name="folder_id", referencedColumnName="row_id", onDelete="CASCADE")
+     *   @JoinColumn(name="folder_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      * @Id
      */
@@ -62,7 +62,7 @@ class UploadFolder extends \App\Doctrine\Entity
 
     /**
      * @var integer
-     * @Column(name="submission_id", type="integer", length=11, options={"unsigned"=true}, nullable=false)
+     * @Column(name="upload_id", type="integer", length=11, options={"unsigned"=true}, nullable=false)
      * @GeneratedValue(strategy="NONE")
      */
     protected $upload_id;
@@ -70,7 +70,7 @@ class UploadFolder extends \App\Doctrine\Entity
     /**
      * @ManyToOne(targetEntity="Upload", inversedBy="folders")
      * @JoinColumns({
-     *   @JoinColumn(name="submission_id", referencedColumnName="rowid", onDelete="CASCADE")
+     *   @JoinColumn(name="upload_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      * @Id
      */

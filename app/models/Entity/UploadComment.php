@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Upload Comments
  *
- * @Table(name="comments_submission", indexes={
+ * @Table(name="upload_comment", indexes={
  *   @Index(name="subid_level", columns={"entity_id", "level"}),
  *   @Index(name="subid_nestid", columns={"entity_id", "nest_level"}),
  *   @Index(name="for_comment_search", columns={"date_posted"}),
@@ -68,7 +68,7 @@ class UploadComment extends \App\Doctrine\Entity
 
     /**
      * @var integer
-     * @Column(name="row_id", type="integer", length=11, options={"unsigned"=true}, nullable=false)
+     * @Column(name="id", type="integer", length=11, options={"unsigned"=true}, nullable=false)
      * @Id
      * @GeneratedValue(strategy="IDENTITY")
      */
@@ -83,7 +83,7 @@ class UploadComment extends \App\Doctrine\Entity
     /**
      * @ManyToOne(targetEntity="User", inversedBy="upload_comments")
      * @JoinColumns({
-     *   @JoinColumn(name="user_id", referencedColumnName="userid", onDelete="CASCADE")
+     *   @JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      */
     protected $user;
@@ -97,7 +97,7 @@ class UploadComment extends \App\Doctrine\Entity
     /**
      * @ManyToOne(targetEntity="Upload", inversedBy="comments")
      * @JoinColumns({
-     *   @JoinColumn(name="entity_id", referencedColumnName="rowid", onDelete="CASCADE")
+     *   @JoinColumn(name="entity_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      */
     protected $upload;
@@ -110,7 +110,7 @@ class UploadComment extends \App\Doctrine\Entity
     
     /**
      * @ManyToOne(targetEntity="UploadComment", inversedBy="comments")
-     * @JoinColumn(name="parent_id", referencedColumnName="row_id", onDelete="CASCADE")
+     * @JoinColumn(name="parent_id", referencedColumnName="id", onDelete="CASCADE")
      */
     protected $parent;
 
@@ -162,7 +162,7 @@ class UploadComment extends \App\Doctrine\Entity
     
     /**
      * @ManyToOne(targetEntity="User")
-     * @JoinColumn(name="is_deleted", referencedColumnName="userid", onDelete="CASCADE")
+     * @JoinColumn(name="is_deleted", referencedColumnName="id", onDelete="CASCADE")
      */
     protected $deleting_user;
 

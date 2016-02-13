@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Message Center Journal Comment Notifications
  *
- * @Table(name="messagecenter_comments_journal", indexes={
+ * @Table(name="journal_comment_notify", indexes={
  *   @Index(name="entity_id", columns={"entity_id"})
  * })
  * @Entity
@@ -28,7 +28,7 @@ class JournalCommentNotify extends \App\Doctrine\Entity
     /**
      * @ManyToOne(targetEntity="User", inversedBy="journal_comment_notifications")
      * @JoinColumns({
-     *   @JoinColumn(name="user_id", referencedColumnName="userid", onDelete="CASCADE")
+     *   @JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      */
     protected $user;
@@ -44,7 +44,7 @@ class JournalCommentNotify extends \App\Doctrine\Entity
     /**
      * @ManyToOne(targetEntity="JournalComment", inversedBy="notifications")
      * @JoinColumns({
-     *   @JoinColumn(name="comment_id", referencedColumnName="row_id", onDelete="CASCADE")
+     *   @JoinColumn(name="comment_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      */
     protected $comment;

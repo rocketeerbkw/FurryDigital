@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * MessagecenterWatches
  *
- * @Table(name="messagecenter_watches", indexes={@Index(name="entity_id", columns={"entity_id"})})
+ * @Table(name="watch_notify", indexes={@Index(name="entity_id", columns={"entity_id"})})
  * @Entity
  */
 class WatchNotify extends \App\Doctrine\Entity
@@ -25,7 +25,7 @@ class WatchNotify extends \App\Doctrine\Entity
     /**
      * @ManyToOne(targetEntity="User", inversedBy="watch_notifications")
      * @JoinColumns({
-     *   @JoinColumn(name="user_id", referencedColumnName="userid", onDelete="CASCADE")
+     *   @JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      * @Id
      */
@@ -41,7 +41,7 @@ class WatchNotify extends \App\Doctrine\Entity
     /**
      * @ManyToOne(targetEntity="Watch", inversedBy="notifications")
      * @JoinColumns({
-     *   @JoinColumn(name="entity_id", referencedColumnName="row_id", onDelete="CASCADE")
+     *   @JoinColumn(name="entity_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      * @Id
      */

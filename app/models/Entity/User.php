@@ -8,12 +8,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Users
  *
- * @Table(name="users", indexes={
+ * @Table(name="user", indexes={
  *   @Index(name="username", columns={"username"}),
  *   @Index(name="lower_index", columns={"lower"}),
  *   @Index(name="lostpw", columns={"lostpw"}),
  *   @Index(name="for_admin_tools", columns={"ip"}),
- *   @Index(name="for_admin_tools2", columns={"useremail"}),
+ *   @Index(name="for_admin_tools2", columns={"email"}),
  *   @Index(name="for_admin_tools3", columns={"regemail"})
  * })
  * @Entity
@@ -57,8 +57,6 @@ class User extends \App\Doctrine\Entity
         $this->trouble_tickets_assigned = new ArrayCollection;
         $this->trouble_ticket_comments = new ArrayCollection;
         $this->trouble_ticket_notifications = new ArrayCollection;
-        $this->user_comments_sent = new ArrayCollection;
-        $this->user_comments_received = new ArrayCollection;
         $this->suspensions = new ArrayCollection;
         $this->suspensions_enforced = new ArrayCollection;
         $this->vars = new ArrayCollection;
@@ -68,7 +66,7 @@ class User extends \App\Doctrine\Entity
 
     /**
      * @var integer
-     * @Column(name="userid", type="integer", length=11, options={"unsigned"=true}, nullable=false)
+     * @Column(name="id", type="integer", length=11, options={"unsigned"=true}, nullable=false)
      * @Id
      * @GeneratedValue(strategy="IDENTITY")
      */
@@ -201,7 +199,7 @@ class User extends \App\Doctrine\Entity
 
     /**
      * @var string The user's current e-mail address.
-     * @Column(name="useremail", type="string", options={"default"=""}, length=150, nullable=false)
+     * @Column(name="email", type="string", options={"default"=""}, length=150, nullable=false)
      */
     protected $email;
 
@@ -377,8 +375,6 @@ class User extends \App\Doctrine\Entity
     public function updateCounts()
     {
         $this->num_uploads = $this->uploads->count();
-        $this->num_comments_sent = $this->user_comments_sent->count();
-        $this->num_comments_received = $this->user_comments_received->count();
         $this->num_favorites = $this->favorites->count();
         $this->num_journals = $this->journals->count();
     }
@@ -908,16 +904,6 @@ class User extends \App\Doctrine\Entity
      * @OneToMany(targetEntity="TroubleTicketNotify", mappedBy="user")
      */
     protected $trouble_ticket_notifications;
-
-    /**
-     * @OneToMany(targetEntity="UserComment", mappedBy="sender", fetch="EXTRA_LAZY")
-     */
-    protected $user_comments_sent;
-
-    /**
-     * @OneToMany(targetEntity="UserComment", mappedBy="recipient", fetch="EXTRA_LAZY")
-     */
-    protected $user_comments_received;
 
     /**
      * @OneToOne(targetEntity="UserContact", mappedBy="user")

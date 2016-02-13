@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Gallery Folder Groups
  *
- * @Table(name="gallery_folder_groups", indexes={
+ * @Table(name="folder_group", indexes={
  *   @Index(name="user_id__section_order", columns={"user_id", "sort_order"})
  * })
  * @Entity
@@ -24,7 +24,7 @@ class FolderGroup extends \App\Doctrine\Entity
 
     /**
      * @var integer
-     * @Column(name="row_id", type="integer", length=11, options={"unsigned"=true}, nullable=false)
+     * @Column(name="id", type="integer", length=11, options={"unsigned"=true}, nullable=false)
      * @Id
      * @GeneratedValue(strategy="IDENTITY")
      */
@@ -39,14 +39,14 @@ class FolderGroup extends \App\Doctrine\Entity
     /**
      * @ManyToOne(targetEntity="User", inversedBy="folder_groups")
      * @JoinColumns({
-     *   @JoinColumn(name="user_id", referencedColumnName="userid", onDelete="CASCADE")
+     *   @JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      */
     protected $user;
 
     /**
      * @var string
-     * @Column(name="entity_name", type="string", options={"default"=""}, length=64, nullable=false)
+     * @Column(name="name", type="string", options={"default"=""}, length=64, nullable=false)
      */
     protected $name;
 
@@ -58,13 +58,13 @@ class FolderGroup extends \App\Doctrine\Entity
 
     /**
      * @var integer
-     * @Column(name="date_created", type="integer", length=11, options={"unsigned"=true}, nullable=false)
+     * @Column(name="created_at", type="integer", length=11, options={"unsigned"=true}, nullable=false)
      */
     protected $created_at;
 
     /**
      * @var integer
-     * @Column(name="date_updated", type="integer", length=11, options={"unsigned"=true}, nullable=false)
+     * @Column(name="updated_at", type="integer", length=11, options={"unsigned"=true}, nullable=false)
      */
     protected $updated_at;
 

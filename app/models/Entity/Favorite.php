@@ -7,8 +7,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Favorites
  *
- * @Table(name="favorites", indexes={
- *   @Index(name="subid_user", columns={"submission_id", "user_id"}),
+ * @Table(name="favorite", indexes={
+ *   @Index(name="subid_user", columns={"upload_id", "user_id"}),
  *   @Index(name="user", columns={"user_id"})
  * })
  * @Entity
@@ -43,7 +43,7 @@ class Favorite extends \App\Doctrine\Entity
 
     /**
      * @var integer
-     * @Column(name="row_id", type="integer", length=11, options={"unsigned"=true}, nullable=false)
+     * @Column(name="id", type="integer", length=11, options={"unsigned"=true}, nullable=false)
      * @Id
      * @GeneratedValue(strategy="IDENTITY")
      */
@@ -58,21 +58,21 @@ class Favorite extends \App\Doctrine\Entity
     /**
      * @ManyToOne(targetEntity="User", inversedBy="favorites")
      * @JoinColumns({
-     *   @JoinColumn(name="user_id", referencedColumnName="userid", onDelete="CASCADE")
+     *   @JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      */
     protected $user;
 
     /**
      * @var integer
-     * @Column(name="submission_id", type="integer", length=11, options={"unsigned"=true}, nullable=false)
+     * @Column(name="upload_id", type="integer", length=11, options={"unsigned"=true}, nullable=false)
      */
     protected $upload_id;
 
     /**
      * @ManyToOne(targetEntity="Upload", inversedBy="favorites")
      * @JoinColumns({
-     *   @JoinColumn(name="submission_id", referencedColumnName="rowid", onDelete="CASCADE")
+     *   @JoinColumn(name="upload_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      */
     protected $upload;

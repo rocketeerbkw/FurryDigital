@@ -45,7 +45,7 @@ class SearchController extends BaseController
             $sphinx_request['q']                = preg_replace('/[\x00-\x1F]/', ' ', $data['q']);
             $sphinx_request['page']             = $data['page'];
             $sphinx_request['perpage']          = $data['perpage'];
-            $sphinx_request['use_index']        = 'submissions_delta submissions';
+            $sphinx_request['use_index']        = 'uploads_delta uploads';
             $sphinx_request['match_mode']       = $this->_sphinx_match_mode($data['mode']);
             $sphinx_request['field_weights']    = array(
                 'title'     => 3,

@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Watches
  *
- * @Table(name="watches", indexes={
+ * @Table(name="watch", indexes={
  *   @Index(name="target_user", columns={"target_id", "user_id"}),
  *   @Index(name="user", columns={"user_id"})
  * })
@@ -41,7 +41,7 @@ class Watch extends \App\Doctrine\Entity
 
     /**
      * @var integer
-     * @Column(name="row_id", type="integer", length=11, options={"unsigned"=true}, nullable=false)
+     * @Column(name="id", type="integer", length=11, options={"unsigned"=true}, nullable=false)
      * @Id
      * @GeneratedValue(strategy="IDENTITY")
      */
@@ -56,7 +56,7 @@ class Watch extends \App\Doctrine\Entity
     /**
      * @ManyToOne(targetEntity="User", inversedBy="watches")
      * @JoinColumns({
-     *   @JoinColumn(name="user_id", referencedColumnName="userid", onDelete="CASCADE")
+     *   @JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      */
     protected $user;
@@ -70,7 +70,7 @@ class Watch extends \App\Doctrine\Entity
     /**
      * @ManyToOne(targetEntity="User", inversedBy="watching_me")
      * @JoinColumns({
-     *   @JoinColumn(name="target_id", referencedColumnName="userid", onDelete="CASCADE")
+     *   @JoinColumn(name="target_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      */
     protected $target;

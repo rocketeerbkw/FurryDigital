@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * IP Bans
  *
- * @Table(name="ip_bans")
+ * @Table(name="ip_ban")
  * @Entity
  */
 class IpBan extends \App\Doctrine\Entity
@@ -65,7 +65,7 @@ class IpBan extends \App\Doctrine\Entity
     /**
      * @ManyToOne(targetEntity="User")
      * @JoinColumns({
-     *   @JoinColumn(name="user_id", referencedColumnName="userid", onDelete="CASCADE")
+     *   @JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      */
     protected $user;

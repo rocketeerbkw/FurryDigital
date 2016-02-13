@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * RegistrationRequests
  *
- * @Table(name="registration_requests", uniqueConstraints={
+ * @Table(name="registration_request", uniqueConstraints={
  *   @UniqueConstraint(name="username", columns={"username"})
  * },indexes={
  *   @Index(name="confirmation_code__date_created", columns={"confirmation_code", "date_created"}),
@@ -28,7 +28,7 @@ class RegistrationRequest extends \App\Doctrine\Entity
     /**
      * @var integer
      *
-     * @Column(name="row_id", type="integer", length=11, options={"unsigned"=true}, nullable=false)
+     * @Column(name="id", type="integer", length=11, options={"unsigned"=true}, nullable=false)
      * @Id
      * @GeneratedValue(strategy="IDENTITY")
      */

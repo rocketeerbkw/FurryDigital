@@ -9,7 +9,7 @@ use App\Legacy\Notifications;
 /**
  * Notes
  *
- * @Table(name="notes", indexes={
+ * @Table(name="note", indexes={
  *   @Index(name="for_comment_search_1", columns={"date_posted"}),
  *   @Index(name="target_id__is_read", columns={"target_id", "is_read"})
  * })
@@ -45,7 +45,7 @@ class Note extends \App\Doctrine\Entity
 
     /**
      * @var integer
-     * @Column(name="row_id", type="integer", length=11, options={"unsigned"=true}, nullable=false)
+     * @Column(name="id", type="integer", length=11, options={"unsigned"=true}, nullable=false)
      * @Id
      * @GeneratedValue(strategy="IDENTITY")
      */
@@ -60,7 +60,7 @@ class Note extends \App\Doctrine\Entity
     /**
      * @ManyToOne(targetEntity="User", inversedBy="notes_sent")
      * @JoinColumns({
-     *   @JoinColumn(name="sender_id", referencedColumnName="userid", onDelete="CASCADE")
+     *   @JoinColumn(name="sender_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      */
     protected $sender;
@@ -74,7 +74,7 @@ class Note extends \App\Doctrine\Entity
     /**
      * @ManyToOne(targetEntity="User", inversedBy="notes_received")
      * @JoinColumns({
-     *   @JoinColumn(name="target_id", referencedColumnName="userid", onDelete="CASCADE")
+     *   @JoinColumn(name="target_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      */
     protected $recipient;

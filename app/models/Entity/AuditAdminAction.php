@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Admin Actions Audit Log
  *
- * @Table(name="df_adminactions")
+ * @Table(name="audit_admin_action")
  * @Entity
  */
 class AuditAdminAction extends \App\Doctrine\Entity
@@ -20,7 +20,7 @@ class AuditAdminAction extends \App\Doctrine\Entity
 
     /**
      * @var integer
-     * @Column(name="rowid", type="integer", length=11, options={"unsigned"=true}, nullable=false)
+     * @Column(name="id", type="integer", length=11, options={"unsigned"=true}, nullable=false)
      * @Id
      * @GeneratedValue(strategy="IDENTITY")
      */
@@ -41,7 +41,7 @@ class AuditAdminAction extends \App\Doctrine\Entity
     /**
      * @ManyToOne(targetEntity="User", inversedBy="admin_actions")
      * @JoinColumns({
-     *   @JoinColumn(name="user", referencedColumnName="userid", onDelete="CASCADE")
+     *   @JoinColumn(name="user", referencedColumnName="id", onDelete="CASCADE")
      * })
      */
     protected $user;

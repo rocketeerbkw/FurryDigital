@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * MessagecenterJournals
  *
- * @Table(name="messagecenter_journals", indexes={@Index(name="entity_id", columns={"entity_id"})})
+ * @Table(name="journal_notify", indexes={@Index(name="entity_id", columns={"entity_id"})})
  * @Entity
  */
 class JournalNotify extends \App\Doctrine\Entity
@@ -26,7 +26,7 @@ class JournalNotify extends \App\Doctrine\Entity
     /**
      * @ManyToOne(targetEntity="User", inversedBy="journal_notifications")
      * @JoinColumns({
-     *   @JoinColumn(name="user_id", referencedColumnName="userid", onDelete="CASCADE")
+     *   @JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      */
     protected $user;
@@ -42,7 +42,7 @@ class JournalNotify extends \App\Doctrine\Entity
     /**
      * @ManyToOne(targetEntity="Journal", inversedBy="notifications")
      * @JoinColumns({
-     *   @JoinColumn(name="entity_id", referencedColumnName="row_id", onDelete="CASCADE")
+     *   @JoinColumn(name="entity_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      */
     protected $journal;

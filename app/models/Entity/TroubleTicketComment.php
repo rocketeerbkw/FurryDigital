@@ -8,9 +8,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Trouble Ticket Comments
  *
- * @Table(name="comments_troubleticket", indexes={
- *   @Index(name="ticketid_userid", columns={"ticketid", "userid"}),
- *   @Index(name="ticketid_date", columns={"ticketid", "date"})
+ * @Table(name="trouble_ticket_comment", indexes={
+ *   @Index(name="ticketid_userid", columns={"ticket_id", "user_id"}),
+ *   @Index(name="ticketid_date", columns={"ticket_id", "created_at"})
  * })
  * @Entity
  * @HasLifecycleCallbacks
@@ -24,7 +24,7 @@ class TroubleTicketComment extends \App\Doctrine\Entity
 
     /**
      * @var integer
-     * @Column(name="rowid", type="integer", length=11, options={"unsigned"=true}, nullable=false)
+     * @Column(name="id", type="integer", length=11, options={"unsigned"=true}, nullable=false)
      * @Id
      * @GeneratedValue(strategy="IDENTITY")
      */
@@ -49,28 +49,28 @@ class TroubleTicketComment extends \App\Doctrine\Entity
 
     /**
      * @var integer
-     * @Column(name="ticketid", type="integer", length=11, options={"unsigned"=true}, nullable=false)
+     * @Column(name="ticket_id", type="integer", length=11, options={"unsigned"=true}, nullable=false)
      */
     protected $ticket_id;
 
     /**
      * @ManyToOne(targetEntity="TroubleTicket", inversedBy="comments")
      * @JoinColumns({
-     *   @JoinColumn(name="ticketid", referencedColumnName="rowid", onDelete="CASCADE")
+     *   @JoinColumn(name="ticket_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      */
     protected $ticket;
 
     /**
      * @var integer
-     * @Column(name="userid", type="integer", length=11, options={"unsigned"=true}, nullable=false)
+     * @Column(name="user_id", type="integer", length=11, options={"unsigned"=true}, nullable=false)
      */
     protected $user_id;
 
     /**
      * @ManyToOne(targetEntity="User", inversedBy="trouble_ticket_comments")
      * @JoinColumns({
-     *   @JoinColumn(name="userid", referencedColumnName="userid", onDelete="CASCADE")
+     *   @JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      */
     protected $user;
@@ -90,7 +90,7 @@ class TroubleTicketComment extends \App\Doctrine\Entity
 
     /**
      * @var integer
-     * @Column(name="date", type="integer", length=11, options={"unsigned"=true}, nullable=false)
+     * @Column(name="created_at", type="integer", length=11, options={"unsigned"=true}, nullable=false)
      */
     protected $created_at;
 

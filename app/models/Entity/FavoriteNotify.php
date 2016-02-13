@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Favorites Notifications
  *
- * @Table(name="messagecenter_favorites", indexes={@Index(name="entity_id", columns={"entity_id"})})
+ * @Table(name="favorite_notify", indexes={@Index(name="entity_id", columns={"entity_id"})})
  * @Entity
  */
 class FavoriteNotify extends \App\Doctrine\Entity
@@ -24,7 +24,7 @@ class FavoriteNotify extends \App\Doctrine\Entity
     /**
      * @ManyToOne(targetEntity="User", inversedBy="favorite_notifications")
      * @JoinColumns({
-     *   @JoinColumn(name="user_id", referencedColumnName="userid", onDelete="CASCADE")
+     *   @JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      * @Id
      */
@@ -39,7 +39,7 @@ class FavoriteNotify extends \App\Doctrine\Entity
     /**
      * @ManyToOne(targetEntity="Favorite", inversedBy="notifications")
      * @JoinColumns({
-     *   @JoinColumn(name="entity_id", referencedColumnName="row_id", onDelete="CASCADE")
+     *   @JoinColumn(name="entity_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      * @Id
      */
@@ -54,7 +54,7 @@ class FavoriteNotify extends \App\Doctrine\Entity
     /**
      * @ManyToOne(targetEntity="Upload", inversedBy="favorite_notifications")
      * @JoinColumns({
-     *   @JoinColumn(name="source_id", referencedColumnName="rowid", onDelete="CASCADE")
+     *   @JoinColumn(name="source_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      */
     protected $upload;

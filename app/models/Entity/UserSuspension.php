@@ -7,14 +7,14 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * User Suspensions
  *
- * @Table(name="user_suspensions2", indexes={@Index(name="user_suspended", columns={"user_suspended"})})
+ * @Table(name="user_suspension", indexes={@Index(name="user_suspended", columns={"user_suspended"})})
  * @Entity
  */
 class UserSuspension extends \App\Doctrine\Entity
 {
     /**
      * @var integer
-     * @Column(name="row_id", type="integer", length=11, options={"unsigned"=true}, nullable=false)
+     * @Column(name="id", type="integer", length=11, options={"unsigned"=true}, nullable=false)
      * @Id
      * @GeneratedValue(strategy="IDENTITY")
      */
@@ -29,7 +29,7 @@ class UserSuspension extends \App\Doctrine\Entity
     /**
      * @ManyToOne(targetEntity="User", inversedBy="suspensions")
      * @JoinColumns({
-     *   @JoinColumn(name="user_suspended", referencedColumnName="userid", onDelete="CASCADE")
+     *   @JoinColumn(name="user_suspended", referencedColumnName="id", onDelete="CASCADE")
      * })
      */
     protected $user;
@@ -43,7 +43,7 @@ class UserSuspension extends \App\Doctrine\Entity
     /**
      * @ManyToOne(targetEntity="User", inversedBy="suspensions_enforced")
      * @JoinColumns({
-     *   @JoinColumn(name="enacted_by", referencedColumnName="userid", onDelete="CASCADE")
+     *   @JoinColumn(name="enacted_by", referencedColumnName="id", onDelete="CASCADE")
      * })
      */
     protected $enforcer;

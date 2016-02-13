@@ -173,7 +173,7 @@ sed -i 's/bind-address/bind-address = 0.0.0.0#/' /etc/mysql/my.cnf
 # Grant all privilege to root for remote access
 #
 mysql -u root -Bse "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '' WITH GRANT OPTION;"
-mysql -u root -Bse "CREATE DATABASE fa_sandbox CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+mysql -u root -Bse "CREATE DATABASE furrydigital CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
 
 service mysql restart
 

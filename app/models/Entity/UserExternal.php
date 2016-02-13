@@ -5,7 +5,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * @Table(name="users_external")
+ * @Table(name="user_external")
  * @Entity
  */
 class UserExternal extends \App\Doctrine\Entity
@@ -45,7 +45,7 @@ class UserExternal extends \App\Doctrine\Entity
     /**
      * @ManyToOne(targetEntity="User", inversedBy="external_accounts")
      * @JoinColumns({
-     *   @JoinColumn(name="user_id", referencedColumnName="userid", onDelete="CASCADE")
+     *   @JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      */
     protected $user;

@@ -11,7 +11,7 @@ return array(
     'host'          => 'localhost',
 
     // Name of the primary application database.
-    'dbname'        => 'fa_sandbox',
+    'dbname'        => 'furrydigital',
 
     // Username for the database user with read/write access to the above database.
     'user'          => 'root',

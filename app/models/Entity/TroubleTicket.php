@@ -7,9 +7,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Trouble Tickets
  *
- * @Table(name="troubletickets", indexes={
+ * @Table(name="trouble_ticket", indexes={
  *   @Index(name="resolved_lastlookedat", columns={"resolved", "lastlookedat"}),
- *   @Index(name="userid_resolved", columns={"userid", "resolved"})
+ *   @Index(name="userid_resolved", columns={"user_id", "resolved"})
  * })
  * @Entity
  */
@@ -25,7 +25,7 @@ class TroubleTicket extends \App\Doctrine\Entity
 
     /**
      * @var integer
-     * @Column(name="rowid", type="integer", length=11, options={"unsigned"=true}, nullable=false)
+     * @Column(name="id", type="integer", length=11, options={"unsigned"=true}, nullable=false)
      * @Id
      * @GeneratedValue(strategy="IDENTITY")
      */
@@ -33,14 +33,14 @@ class TroubleTicket extends \App\Doctrine\Entity
 
     /**
      * @var integer The submitting user.
-     * @Column(name="userid", type="integer", length=11, options={"unsigned"=true}, nullable=false)
+     * @Column(name="user_id", type="integer", length=11, options={"unsigned"=true}, nullable=false)
      */
     protected $user_id;
 
     /**
      * @ManyToOne(targetEntity="User", inversedBy="trouble_tickets")
      * @JoinColumns({
-     *   @JoinColumn(name="userid", referencedColumnName="userid", onDelete="CASCADE")
+     *   @JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      */
     protected $user;
@@ -54,7 +54,7 @@ class TroubleTicket extends \App\Doctrine\Entity
     /**
      * @ManyToOne(targetEntity="User", inversedBy="trouble_tickets_assigned")
      * @JoinColumns({
-     *   @JoinColumn(name="assigned_to_user_id", referencedColumnName="userid", onDelete="SET NULL")
+     *   @JoinColumn(name="assigned_to_user_id", referencedColumnName="id", onDelete="SET NULL")
      * })
      */
     protected $assigned_to_user;
@@ -114,7 +114,7 @@ class TroubleTicket extends \App\Doctrine\Entity
 
     /**
      * @var integer
-     * @Column(name="ticketdate", type="integer", length=11, options={"unsigned"=true}, nullable=false)
+     * @Column(name="created_at", type="integer", length=11, options={"unsigned"=true}, nullable=false)
      */
     protected $created_at;
 

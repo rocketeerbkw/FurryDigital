@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * User Contacts
  *
- * @Table(name="user_contacts")
+ * @Table(name="user_contact")
  * @Entity
  */
 class UserContact extends \App\Doctrine\Entity
@@ -22,7 +22,7 @@ class UserContact extends \App\Doctrine\Entity
 
     /**
      * @OneToOne(targetEntity="User", inversedBy="contact")
-     * @JoinColumn(name="user_id", referencedColumnName="userid", onDelete="CASCADE")
+     * @JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")
      */
     protected $user;
 

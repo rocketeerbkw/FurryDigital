@@ -1,6 +1,6 @@
 <?php
 
-namespace Entity;
+namespace Entity\Unused;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -15,13 +15,12 @@ use Doctrine\Common\Collections\ArrayCollection;
  *   @Index(name="user_id", columns={"user_id"}),
  *   @Index(name="parent_id", columns={"parent_id"})
  * })
- * @Entity
  */
 class UserComment extends \App\Doctrine\Entity
 {
     /**
      * @var integer
-     * @Column(name="row_id", type="integer", length=11, options={"unsigned"=true}, nullable=false)
+     * @Column(name="id", type="integer", length=11, options={"unsigned"=true}, nullable=false)
      * @Id
      * @GeneratedValue(strategy="IDENTITY")
      */
@@ -54,7 +53,7 @@ class UserComment extends \App\Doctrine\Entity
     /**
      * @ManyToOne(targetEntity="User", inversedBy="user_comments_sent")
      * @JoinColumns({
-     *   @JoinColumn(name="user_id", referencedColumnName="userid", onDelete="CASCADE")
+     *   @JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      */
     protected $sender;
@@ -68,7 +67,7 @@ class UserComment extends \App\Doctrine\Entity
     /**
      * @ManyToOne(targetEntity="User", inversedBy="user_comments_received")
      * @JoinColumns({
-     *   @JoinColumn(name="entity_id", referencedColumnName="userid", onDelete="CASCADE")
+     *   @JoinColumn(name="entity_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      */
     protected $recipient;

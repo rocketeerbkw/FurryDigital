@@ -7,7 +7,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Trouble Ticket Notifications
  *
- * @Table(name="df_usermessages_Tickets", indexes={@Index(name="userid", columns={"userid"})})
+ * @Table(name="trouble_ticket_notify", indexes={
+ *   @Index(name="userid", columns={"user_id"})
+ * })
  * @Entity
  */
 class TroubleTicketNotify extends \App\Doctrine\Entity
@@ -17,7 +19,7 @@ class TroubleTicketNotify extends \App\Doctrine\Entity
 
     /**
      * @var integer
-     * @Column(name="rowid", type="integer", length=11, options={"unsigned"=true}, nullable=false)
+     * @Column(name="id", type="integer", length=11, options={"unsigned"=true}, nullable=false)
      * @Id
      * @GeneratedValue(strategy="IDENTITY")
      */
@@ -25,28 +27,28 @@ class TroubleTicketNotify extends \App\Doctrine\Entity
 
     /**
      * @var integer
-     * @Column(name="ticketid", type="integer", length=11, options={"unsigned"=true}, nullable=false)
+     * @Column(name="ticket_id", type="integer", length=11, options={"unsigned"=true}, nullable=false)
      */
     protected $ticket_id;
 
     /**
      * @ManyToOne(targetEntity="TroubleTicket", inversedBy="notifications")
      * @JoinColumns({
-     *   @JoinColumn(name="ticketid", referencedColumnName="rowid", onDelete="CASCADE")
+     *   @JoinColumn(name="ticket_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      */
     protected $ticket;
 
     /**
      * @var integer
-     * @Column(name="userid", type="integer", length=11, options={"unsigned"=true}, nullable=false)
+     * @Column(name="user_id", type="integer", length=11, options={"unsigned"=true}, nullable=false)
      */
     protected $user_id;
 
     /**
      * @ManyToOne(targetEntity="User", inversedBy="trouble_ticket_notifications")
      * @JoinColumns({
-     *   @JoinColumn(name="userid", referencedColumnName="userid", onDelete="CASCADE")
+     *   @JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      */
     protected $user;

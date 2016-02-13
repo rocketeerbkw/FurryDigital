@@ -7,9 +7,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Journals
  *
- * @Table(name="journals", indexes={
+ * @Table(name="journal", indexes={
  *   @Index(name="user", columns={"user_id"}),
- *   @Index(name="date", columns={"date_posted"})
+ *   @Index(name="date", columns={"created_at"})
  * })
  * @Entity
  * @HasLifecycleCallbacks
@@ -53,7 +53,7 @@ class Journal extends \App\Doctrine\Entity
 
     /**
      * @var integer
-     * @Column(name="row_id", type="integer", length=11, options={"unsigned"=true}, nullable=false)
+     * @Column(name="id", type="integer", length=11, options={"unsigned"=true}, nullable=false)
      * @Id
      * @GeneratedValue(strategy="IDENTITY")
      */
@@ -68,20 +68,20 @@ class Journal extends \App\Doctrine\Entity
     /**
      * @ManyToOne(targetEntity="User", inversedBy="journals")
      * @JoinColumns({
-     *   @JoinColumn(name="user_id", referencedColumnName="userid", onDelete="CASCADE")
+     *   @JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      */
     protected $user;
 
     /**
      * @var integer
-     * @Column(name="date_posted", type="integer", length=11, options={"unsigned"=true}, nullable=false)
+     * @Column(name="created_at", type="integer", length=11, options={"unsigned"=true}, nullable=false)
      */
     protected $created_at;
 
     /**
      * @var integer
-     * @Column(name="comments_locked", type="integer", length=11, options={"unsigned"=true}, nullable=false)
+     * @Column(name="disable_comments", type="integer", length=11, options={"unsigned"=true}, nullable=false)
      */
     protected $disable_comments;
 

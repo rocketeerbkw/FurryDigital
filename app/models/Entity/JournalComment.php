@@ -7,8 +7,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Journal Comments
  *
- * @Table(name="comments_journal", indexes={
- *   @Index(name="date", columns={"date_posted"}),
+ * @Table(name="journal_comment", indexes={
+ *   @Index(name="date", columns={"created_at"}),
  *   @Index(name="journal_level", columns={"entity_id", "level"}),
  *   @Index(name="journal_nestid", columns={"entity_id", "nest_level"}),
  *   @Index(name="user_id", columns={"user_id"}),
@@ -43,7 +43,7 @@ class JournalComment extends \App\Doctrine\Entity
     /**
      * @var integer
      *
-     * @Column(name="row_id", type="integer", length=11, options={"unsigned"=true}, nullable=false)
+     * @Column(name="id", type="integer", length=11, options={"unsigned"=true}, nullable=false)
      * @Id
      * @GeneratedValue(strategy="IDENTITY")
      */
@@ -58,7 +58,7 @@ class JournalComment extends \App\Doctrine\Entity
     /**
      * @ManyToOne(targetEntity="User", inversedBy="journal_comments")
      * @JoinColumns({
-     *   @JoinColumn(name="user_id", referencedColumnName="userid", onDelete="CASCADE")
+     *   @JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      */
     protected $user;
@@ -72,7 +72,7 @@ class JournalComment extends \App\Doctrine\Entity
     /**
      * @ManyToOne(targetEntity="Journal", inversedBy="comments")
      * @JoinColumns({
-     *   @JoinColumn(name="entity_id", referencedColumnName="row_id", onDelete="CASCADE")
+     *   @JoinColumn(name="entity_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      */
     protected $journal;
@@ -109,15 +109,15 @@ class JournalComment extends \App\Doctrine\Entity
 
     /**
      * @var integer
-     * @Column(name="date_posted", type="integer", length=11, options={"unsigned"=true}, nullable=false)
+     * @Column(name="created_at", type="integer", length=11, options={"unsigned"=true}, nullable=false)
      */
-    protected $date_posted;
+    protected $created_at;
 
     /**
      * @var integer
-     * @Column(name="date_updated", type="integer", length=11, options={"unsigned"=true}, nullable=false)
+     * @Column(name="updated_at", type="integer", length=11, options={"unsigned"=true}, nullable=false)
      */
-    protected $date_updated;
+    protected $updated_at;
 
     /**
      * @var integer

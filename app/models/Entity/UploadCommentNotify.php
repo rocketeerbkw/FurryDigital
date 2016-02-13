@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Upload Notifications
  *
- * @Table(name="messagecenter_comments_submission", indexes={@Index(name="entity_id", columns={"entity_id"})})
+ * @Table(name="upload_comment_notify", indexes={@Index(name="entity_id", columns={"entity_id"})})
  * @Entity
  */
 class UploadCommentNotify extends \App\Doctrine\Entity
@@ -24,7 +24,7 @@ class UploadCommentNotify extends \App\Doctrine\Entity
     /**
      * @ManyToOne(targetEntity="User", inversedBy="upload_comment_notifications")
      * @JoinColumns({
-     *   @JoinColumn(name="user_id", referencedColumnName="userid", onDelete="CASCADE")
+     *   @JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      * @Id
      */
@@ -39,7 +39,7 @@ class UploadCommentNotify extends \App\Doctrine\Entity
     /**
      * @ManyToOne(targetEntity="UploadComment", inversedBy="notifications")
      * @JoinColumns({
-     *   @JoinColumn(name="entity_id", referencedColumnName="row_id", onDelete="CASCADE")
+     *   @JoinColumn(name="entity_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      * @Id
      */
@@ -54,7 +54,7 @@ class UploadCommentNotify extends \App\Doctrine\Entity
     /**
      * @ManyToOne(targetEntity="Upload", inversedBy="comment_notifications")
      * @JoinColumns({
-     *   @JoinColumn(name="source_id", referencedColumnName="rowid", onDelete="CASCADE")
+     *   @JoinColumn(name="source_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      */
     protected $upload;

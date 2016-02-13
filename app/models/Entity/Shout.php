@@ -7,11 +7,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Shouts
  *
- * @Table(name="shouts", indexes={
+ * @Table(name="shout", indexes={
  *   @Index(name="user", columns={"target_id"}),
  *   @Index(name="message", columns={"message"}),
  *   @Index(name="shouterid_user", columns={"sender_id", "target_id"}),
- *   @Index(name="for_comment_search", columns={"date_posted"})
+ *   @Index(name="for_comment_search", columns={"created_at"})
  * })
  * @Entity
  * @HasLifecycleCallbacks
@@ -43,7 +43,7 @@ class Shout extends \App\Doctrine\Entity
 
     /**
      * @var integer
-     * @Column(name="row_id", type="integer", length=11, options={"unsigned"=true}, nullable=false)
+     * @Column(name="id", type="integer", length=11, options={"unsigned"=true}, nullable=false)
      * @Id
      * @GeneratedValue(strategy="IDENTITY")
      */
@@ -58,7 +58,7 @@ class Shout extends \App\Doctrine\Entity
     /**
      * @ManyToOne(targetEntity="User", inversedBy="shouts_sent")
      * @JoinColumns({
-     *   @JoinColumn(name="sender_id", referencedColumnName="userid", onDelete="CASCADE")
+     *   @JoinColumn(name="sender_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      */
     protected $sender;
@@ -72,7 +72,7 @@ class Shout extends \App\Doctrine\Entity
     /**
      * @ManyToOne(targetEntity="User", inversedBy="shouts_received")
      * @JoinColumns({
-     *   @JoinColumn(name="target_id", referencedColumnName="userid", onDelete="CASCADE")
+     *   @JoinColumn(name="target_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      */
     protected $recipient;
@@ -97,7 +97,7 @@ class Shout extends \App\Doctrine\Entity
 
     /**
      * @var integer
-     * @Column(name="date_posted", type="integer", length=11, options={"unsigned"=true}, nullable=false)
+     * @Column(name="created_at", type="integer", length=11, options={"unsigned"=true}, nullable=false)
      */
     protected $created_at;
 

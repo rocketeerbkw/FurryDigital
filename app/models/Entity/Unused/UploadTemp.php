@@ -1,5 +1,5 @@
 <?php
-namespace Entity;
+namespace Entity\Unused;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -8,14 +8,13 @@ use Doctrine\Common\Collections\ArrayCollection;
  * TODO: Unused Table in new submission system.
  * Temporary Submissions
  *
- * @Table(name="submissions_tmp", indexes={@Index(name="userid_date", columns={"userid", "date"})})
- * @Entity
+ * @Table(name="upload_temp", indexes={@Index(name="userid_date", columns={"userid", "date"})})
  */
 class UploadTemp extends \App\Doctrine\Entity
 {
     /**
      * @var integer
-     * @Column(name="rowid", type="integer", length=11, options={"unsigned"=true}, nullable=false)
+     * @Column(name="id", type="integer", length=11, options={"unsigned"=true}, nullable=false)
      * @Id
      * @GeneratedValue(strategy="IDENTITY")
      */
@@ -30,7 +29,7 @@ class UploadTemp extends \App\Doctrine\Entity
     /**
      * @ManyToOne(targetEntity="User", inversedBy="uploads_temp")
      * @JoinColumns({
-     *   @JoinColumn(name="userid", referencedColumnName="userid", onDelete="CASCADE")
+     *   @JoinColumn(name="userid", referencedColumnName="id", onDelete="CASCADE")
      * })
      */
     protected $user;

@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Gallery Folders
  *
- * @Table(name="gallery_folders", indexes={
+ * @Table(name="folder", indexes={
  *   @Index(name="user_id__folder_order", columns={"user_id", "sort_order"}),
  *   @Index(name="group_id", columns={"group_id"})
  * })
@@ -34,7 +34,7 @@ class Folder extends \App\Doctrine\Entity
 
     /**
      * @var integer
-     * @Column(name="row_id", type="integer", length=11, options={"unsigned"=true}, nullable=false)
+     * @Column(name="id", type="integer", length=11, options={"unsigned"=true}, nullable=false)
      * @Id
      * @GeneratedValue(strategy="IDENTITY")
      */
@@ -49,7 +49,7 @@ class Folder extends \App\Doctrine\Entity
     /**
      * @ManyToOne(targetEntity="User", inversedBy="folders")
      * @JoinColumns({
-     *   @JoinColumn(name="user_id", referencedColumnName="userid", onDelete="CASCADE")
+     *   @JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      */
     protected $user;
@@ -63,7 +63,7 @@ class Folder extends \App\Doctrine\Entity
     /**
      * @ManyToOne(targetEntity="FolderGroup", inversedBy="folders")
      * @JoinColumns({
-     *   @JoinColumn(name="group_id", referencedColumnName="row_id", onDelete="SET NULL")
+     *   @JoinColumn(name="group_id", referencedColumnName="id", onDelete="SET NULL")
      * })
      */
     protected $group;

@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Commission Types
  *
- * @Table(name="commission_types", indexes={
+ * @Table(name="commission_type", indexes={
  *   @Index(name="user_id_display_order", columns={"user_id", "display_order"})
  * })
  * @Entity
@@ -17,7 +17,7 @@ class CommissionType extends \App\Doctrine\Entity
 {
     /**
      * @var integer
-     * @Column(name="row_id", type="integer", length=11, options={"unsigned"=true}, nullable=false)
+     * @Column(name="id", type="integer", length=11, options={"unsigned"=true}, nullable=false)
      * @Id
      * @GeneratedValue(strategy="IDENTITY")
      */
@@ -32,7 +32,7 @@ class CommissionType extends \App\Doctrine\Entity
     /**
      * @ManyToOne(targetEntity="User", inversedBy="commission_types")
      * @JoinColumns({
-     *   @JoinColumn(name="user_id", referencedColumnName="userid", onDelete="CASCADE")
+     *   @JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      */
     protected $user;

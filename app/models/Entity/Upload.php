@@ -7,14 +7,14 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Uploads
  *
- * @Table(name="submissions", indexes={
- *   @Index(name="user", columns={"user"}),
+ * @Table(name="upload", indexes={
+ *   @Index(name="user", columns={"user_id"}),
  *   @Index(name="adultsubmission_isscrap", columns={"adultsubmission", "isscrap"}),
  *   @Index(name="species", columns={"species"}),
  *   @Index(name="category_adultsubmission", columns={"category", "adultsubmission"}),
  *   @Index(name="subtype_species_adultsubmission_isscrap", columns={"subtype", "species", "adultsubmission", "isscrap"}),
  *   @Index(name="category", columns={"category"}),
- *   @Index(name="date", columns={"date"})
+ *   @Index(name="date", columns={"created_at"})
  * })
  * @Entity
  * @HasLifecycleCallbacks
@@ -91,7 +91,7 @@ class Upload extends \App\Doctrine\Entity
 
     /**
      * @var integer
-     * @Column(name="rowid", type="integer", length=11, options={"unsigned"=true}, nullable=false)
+     * @Column(name="id", type="integer", length=11, options={"unsigned"=true}, nullable=false)
      * @Id
      * @GeneratedValue(strategy="IDENTITY")
      */
@@ -99,21 +99,21 @@ class Upload extends \App\Doctrine\Entity
 
     /**
      * @var integer
-     * @Column(name="user", type="integer", length=11, options={"unsigned"=true}, nullable=false)
+     * @Column(name="user_id", type="integer", length=11, options={"unsigned"=true}, nullable=false)
      */
     protected $user_id;
 
     /**
      * @ManyToOne(targetEntity="User", inversedBy="uploads")
      * @JoinColumns({
-     *   @JoinColumn(name="user", referencedColumnName="userid", onDelete="CASCADE")
+     *   @JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      */
     protected $user;
 
     /**
      * @var int
-     * @Column(name="submission_type", type="smallint", nullable=false)
+     * @Column(name="upload_type", type="smallint", nullable=false)
      */
     protected $upload_type;
 
@@ -128,13 +128,13 @@ class Upload extends \App\Doctrine\Entity
 
     /**
      * @var integer UNIX timestamp when the record was created.
-     * @Column(name="date", type="integer", length=11, options={"unsigned"=true}, nullable=false)
+     * @Column(name="created_at", type="integer", length=11, options={"unsigned"=true}, nullable=false)
      */
     protected $created_at;
 
     /**
      * @var integer Most recently updated UNIX timestamp.
-     * @Column(name="date_updated", type="integer", length=11, options={"unsigned"=true}, nullable=false)
+     * @Column(name="updated_at", type="integer", length=11, options={"unsigned"=true}, nullable=false)
      */
     protected $updated_at;
 
