@@ -30,7 +30,7 @@
 
                         <div class="cell bg3 usercomment valigntop auto_link">
                             <div class="p5t p10l p10r">
-                                <span class="fontcolor3 fontsize12 floatright">{{ fa.formatDate(row.created_at) }}</span>
+                                <span class="fontcolor3 fontsize12 floatright">{{ app.formatDate(row.created_at) }}</span>
                                 <span class="replyto-name">
                                     <h3>
                                         <span class="p10r"><input type="checkbox" name="shouts[]" value="{{ row.id }}"></span><a class="orange" href="{{ url.get('user/'~row.sender.lower) }}"><strong>{{ row.sender.username }}</strong></a>

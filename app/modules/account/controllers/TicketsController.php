@@ -69,7 +69,7 @@ class TicketsController extends BaseController
 
         if ($this->request->isPost() && $form->isValid($_POST))
         {
-            $this->fa->readOnly();
+            $this->app->readOnly();
 
             // Handle reply to the ticket.
             $data = $form->getValues();
@@ -114,7 +114,7 @@ class TicketsController extends BaseController
 
     public function closeAction()
     {
-        $this->fa->readOnly();
+        $this->app->readOnly();
 
         $id = (int)$this->getParam('id');
         $record = TroubleTicket::getRepository()->findOneBy(array('id' => (int)$id, 'user_id' => $this->user->id));

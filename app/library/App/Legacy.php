@@ -2,7 +2,7 @@
 /**
  * FurryDigital Legacy Class
  *
- * This class exposes several critical functions to the global Dependency Injection (DI) container as $di->fa.
+ * This class exposes several critical functions to the global Dependency Injection (DI) container as $di->app.
  * It is, itself, DI-aware, so it can call other DI containers as needed.
  *
  * Do not use this class as a universal "catch-all" for global functions unless absolutely necessary!!

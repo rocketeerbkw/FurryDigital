@@ -11,12 +11,12 @@ class SearchController extends BaseController
 
         $form_config['elements']['perpage']['default'] = $this->user->getVariable('perpage');
 
-        if (!$this->fa->canSeeArt('mature'))
+        if (!$this->app->canSeeArt('mature'))
         {
             unset($form_config['elements']['rating'][1]['options'][Upload::RATING_MATURE]);
             unset($form_config['elements']['rating'][1]['options'][Upload::RATING_ADULT]);
         }
-        elseif (!$this->fa->canSeeArt('adult'))
+        elseif (!$this->app->canSeeArt('adult'))
         {
             unset($form_config['elements']['rating'][1]['options'][Upload::RATING_ADULT]);
         }
@@ -65,7 +65,7 @@ class SearchController extends BaseController
                 $sphinx_request['filters']['adultsubmission'] = (array)$data['rating'];
 
                 if (in_array(Upload::RATING_MATURE, $data['rating']) || in_array(Upload::RATING_ADULT, $data['rating']))
-                    $this->fa->setPageHasMatureContent(true);
+                    $this->app->setPageHasMatureContent(true);
             }
 
             if (!empty($data['type']))

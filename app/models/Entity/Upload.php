@@ -441,9 +441,9 @@ class Upload extends \App\Doctrine\Entity
     public function canSee()
     {
         $di = \Phalcon\Di::getDefault();
-        $fa = $di['fa'];
+        $app = $di['app'];
 
-        return (bool)$fa->canSeeArt($this->getRatingReadable());
+        return (bool)$app->canSeeArt($this->getRatingReadable());
     }
 
     /**
@@ -564,7 +564,12 @@ class Upload extends \App\Doctrine\Entity
         else
             $folder = $types[self::TYPE_IMAGE]['folder'];
 
-        $path_prefix = $this->user->lower.'/'.$folder.'/'.$this->id;
+        $path_folder = $this->user->lower.'/'.$folder;
+
+        $path_folder_full = self::getFilePath($path_folder);
+        @mkdir($path_folder_full, 0777, true);
+
+        $path_prefix = $path_folder.'/'.$this->id;
         $path_suffix = $filename_base.'.'.$file_info['extension'];
 
         $base_paths = array(

@@ -34,7 +34,7 @@
                             <a href="{{ url.get('journal/'~row.id) }}">{{ row.subject }}</a>
                             {% if row.id == featured_journal %}<span class="label label-primary">Featured</span>{% endif %}
                             <br>
-                            <span class="fontsize12">Posted {{ fa.formatDate(row.created_at) }}</span>
+                            <span class="fontsize12">Posted {{ app.formatDate(row.created_at) }}</span>
                         </td>
                     </tr>
                 {% endfor %}

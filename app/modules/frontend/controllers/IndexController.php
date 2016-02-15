@@ -13,11 +13,11 @@ class IndexController extends BaseController
         $rating_query = '(true = true)';
         $rating_cache = '';
 
-        if ($this->fa->canSeeArt('adult'))
+        if ($this->app->canSeeArt('adult'))
         {
             $rating_cache = 'gma';
         }
-        elseif ($this->fa->canSeeArt('mature'))
+        elseif ($this->app->canSeeArt('mature'))
         {
             $rating_query = '(up.rating = '.Upload::RATING_GENERAL.' OR up.rating = '.Upload::RATING_MATURE.')';
             $rating_cache = 'gm-';
@@ -28,7 +28,7 @@ class IndexController extends BaseController
             $rating_cache = 'g--';
         }
 
-        $frontpage_cache_key = 'fa.frontpage.recent'.$rating_cache;
+        $frontpage_cache_key = 'app.frontpage.recent'.$rating_cache;
         $frontpage_cache_lifetime = 30; // 30 seconds
         $frontpage_data = $cache->load($frontpage_cache_key);
 
@@ -51,7 +51,7 @@ class IndexController extends BaseController
                 foreach($type_records_raw as $record)
                 {
                     if ($record['rating'] != Upload::RATING_GENERAL)
-                        $this->fa->setPageHasMatureContent(true);
+                        $this->app->setPageHasMatureContent(true);
 
                     $record['rating_text'] = Upload::getRatingText($record['rating']);
                     $record['thumbnail_url'] = Upload::getFileUrl($record['thumbnail']);

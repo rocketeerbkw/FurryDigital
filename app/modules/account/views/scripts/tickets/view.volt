@@ -10,7 +10,7 @@
             </div>
 
             <h3 class="panel-title">{% if ticket.is_resolved %}<span>[Closed] </span>{% else %}<span>[Open] </span>{% endif %} {{ ticket.getIssueTypeName() }}{% if ticket.other %} ({{ ticket.other }}){% endif %}</h3>
-            Opened {{ fa.formatDate(ticket.created_at) }}
+            Opened {{ app.formatDate(ticket.created_at) }}
         </div>
         <div class="panel-body">
             <div class="lineitem">
@@ -43,7 +43,7 @@
                 <div class="cell bg3 usercomment valigntop auto_link">
                     <div class="p5t p10l p10r">
                         <div class="responsenav fontsize12 auto_link">
-                            <span class="fontcolor3 fontsize12 floatright">posted {{ fa.formatDate(row.created_at) }}</span>
+                            <span class="fontcolor3 fontsize12 floatright">posted {{ app.formatDate(row.created_at) }}</span>
 
                             <h3>
                                 <a class="orange" href="{{ url.get('user/'~row.user.lower) }}"><strong>{{ row.user.username }}</strong></a>

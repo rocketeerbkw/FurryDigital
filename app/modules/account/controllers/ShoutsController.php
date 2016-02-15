@@ -16,7 +16,7 @@ class ShoutsController extends BaseController
 
     public function deleteAction()
     {
-        $this->fa->readOnly();
+        $this->app->readOnly();
 
         if (empty($_POST['shouts']))
             throw new \App\Exception('No shouts specified to delete!');

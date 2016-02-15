@@ -58,9 +58,9 @@ class IndexController extends BaseController
         $this->view->accept_commissions = $this->owner->getVariable('accept_commissions');
 
         // Maturity Rating Filter
-        if ($this->fa->canSeeArt('adult'))
+        if ($this->app->canSeeArt('adult'))
             $maturity_filter = array(Upload::RATING_GENERAL, Upload::RATING_ADULT, Upload::RATING_MATURE);
-        elseif ($this->fa->canSeeArt('mature'))
+        elseif ($this->app->canSeeArt('mature'))
             $maturity_filter = array(Upload::RATING_GENERAL, Upload::RATING_MATURE);
         else
             $maturity_filter = array(Upload::RATING_GENERAL);
@@ -73,7 +73,7 @@ class IndexController extends BaseController
             if ($profile_pic instanceof Upload && in_array($profile_pic->rating, $maturity_filter))
             {
                 if ($profile_pic->rating == Upload::RATING_ADULT)
-                    $this->fa->setPageHasMatureContent();
+                    $this->app->setPageHasMatureContent();
 
                 $this->view->profile_pic = $profile_pic;
             }
@@ -87,7 +87,7 @@ class IndexController extends BaseController
             if ($featured_pic instanceof Upload && in_array($featured_pic->rating, $maturity_filter))
             {
                 if ($featured_pic->rating == Upload::RATING_ADULT)
-                    $this->fa->setPageHasMatureContent();
+                    $this->app->setPageHasMatureContent();
 
                 $this->view->featured_pic = $featured_pic;
             }
@@ -105,7 +105,7 @@ class IndexController extends BaseController
             foreach($uploads as $row)
             {
                 if ($row->rating == Upload::RATING_ADULT)
-                    $this->fa->setPageHasMatureContent();
+                    $this->app->setPageHasMatureContent();
             }
 
             $this->view->latest_uploads = $uploads;
@@ -153,7 +153,7 @@ class IndexController extends BaseController
                 foreach($latest_faves as $row)
                 {
                     if ($row->rating == Upload::RATING_ADULT)
-                        $this->fa->setPageHasMatureContent();
+                        $this->app->setPageHasMatureContent();
                 }
 
                 $this->view->latest_faves = $latest_faves;
@@ -199,7 +199,7 @@ class IndexController extends BaseController
 
     public function shoutAction()
     {
-        $this->fa->readOnly();
+        $this->app->readOnly();
 
         $this->acl->checkPermission('is logged in');
 
@@ -249,7 +249,7 @@ class IndexController extends BaseController
 
     public function watchAction()
     {
-        $this->fa->readOnly();
+        $this->app->readOnly();
 
         if ($this->user->getVariable('account_disabled'))
         {
@@ -280,7 +280,7 @@ class IndexController extends BaseController
 
     public function unwatchAction()
     {
-        $this->fa->readOnly();
+        $this->app->readOnly();
 
         $watches = Watch::getRepository()->findBy(array('user_id' => $this->user->id, 'target_id' => $this->owner->id));
 

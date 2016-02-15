@@ -19,7 +19,7 @@ class FavoritesController extends BaseController
         foreach($pager as $row)
         {
             if ($row->adultsubmission != 0)
-                $this->fa->setPageHasMatureContent(true);
+                $this->app->setPageHasMatureContent(true);
         }
 
         $this->view->pager = $pager;
@@ -27,7 +27,7 @@ class FavoritesController extends BaseController
 
     public function deleteAction()
     {
-        $this->fa->readOnly();
+        $this->app->readOnly();
 
         $id = (int)$this->getParam('id');
         $record = Favorite::getRepository()->findOneBy(array('id' => $id, 'user_id' => $this->user->id));

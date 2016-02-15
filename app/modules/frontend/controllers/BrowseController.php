@@ -12,12 +12,12 @@ class BrowseController extends BaseController
 
         $form_config = $this->current_module_config->forms->browse->toArray();
 
-        if (!$this->fa->canSeeArt('mature'))
+        if (!$this->app->canSeeArt('mature'))
         {
             unset($form_config['elements']['rating'][1]['options'][Upload::RATING_MATURE]);
             unset($form_config['elements']['rating'][1]['options'][Upload::RATING_ADULT]);
         }
-        elseif (!$this->fa->canSeeArt('adult'))
+        elseif (!$this->app->canSeeArt('adult'))
         {
             unset($form_config['elements']['rating'][1]['options'][Upload::RATING_ADULT]);
         }
@@ -67,7 +67,7 @@ class BrowseController extends BaseController
                 ->setParameter('ratings', (array)$filters['rating']);
 
             if (in_array(Upload::RATING_MATURE, $filters['rating']) || in_array(Upload::RATING_ADULT, $filters['rating']))
-                $this->fa->setPageHasMatureContent(true);
+                $this->app->setPageHasMatureContent(true);
         }
 
         $query = $qb->orderBy('up.created_at', 'DESC')->getQuery();

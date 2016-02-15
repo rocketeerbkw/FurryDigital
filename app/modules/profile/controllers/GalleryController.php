@@ -24,11 +24,11 @@ class GalleryController extends BaseController
         $rating_query = '(true = true)';
         $rating_cache = '';
 
-        if ($this->fa->canSeeArt('adult'))
+        if ($this->app->canSeeArt('adult'))
         {
             $rating_cache = 'gma';
         }
-        elseif ($this->fa->canSeeArt('mature'))
+        elseif ($this->app->canSeeArt('mature'))
         {
             $rating_query = '(up.rating = '.Upload::RATING_GENERAL.' OR up.rating = '.Upload::RATING_MATURE.')';
             $rating_cache = 'gm-';
@@ -69,7 +69,7 @@ class GalleryController extends BaseController
             foreach($pager as $row)
             {
                 if ($row->rating == Upload::RATING_ADULT)
-                    $this->fa->setPageHasMatureContent();
+                    $this->app->setPageHasMatureContent();
             }
         }
 

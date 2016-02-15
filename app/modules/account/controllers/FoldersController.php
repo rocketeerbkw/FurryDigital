@@ -42,7 +42,7 @@ class FoldersController extends BaseController
 
     public function editfolderAction()
     {
-        $this->fa->readOnly();
+        $this->app->readOnly();
 
         $form_config = $this->current_module_config->forms->folder->toArray();
         $form_config['elements']['group_id'][1]['options'] = FolderGroup::fetchSelect($this->user->id, 'No Group');
@@ -87,7 +87,7 @@ class FoldersController extends BaseController
 
     public function deletefolderAction()
     {
-        $this->fa->readOnly();
+        $this->app->readOnly();
 
         $id = (int)$this->getParam('id');
         $record = Folder::getRepository()->findOneBy(array('id' => $id, 'user_id' => $this->user->id));
@@ -103,7 +103,7 @@ class FoldersController extends BaseController
 
     public function movefolderAction()
     {
-        $this->fa->readOnly();
+        $this->app->readOnly();
 
         // Trigger a manual folder re-sort before selecting the record.
         $this->_reSort();
@@ -126,7 +126,7 @@ class FoldersController extends BaseController
 
     public function editgroupAction()
     {
-        $this->fa->readOnly();
+        $this->app->readOnly();
 
         $form_config = $this->current_module_config->forms->foldergroup->toArray();
         $form = new \App\Form($form_config);
@@ -169,7 +169,7 @@ class FoldersController extends BaseController
 
     public function deletegroupAction()
     {
-        $this->fa->readOnly();
+        $this->app->readOnly();
 
         $id = (int)$this->getParam('id');
         $record = FolderGroup::getRepository()->findOneBy(array('id' => $id, 'user_id' => $this->user->id));
@@ -185,7 +185,7 @@ class FoldersController extends BaseController
 
     public function movegroupAction()
     {
-        $this->fa->readOnly();
+        $this->app->readOnly();
 
         // Trigger a manual folder re-sort before selecting the record.
         $this->_reSort();

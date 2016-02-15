@@ -23,11 +23,15 @@ class UtilController extends BaseController
 
         // -------- START HERE -------- //
 
-        $username = 'Buster_ñeeCE TEST!-Test';
-        \App\Utilities::print_r(\Entity\User::getLowerCase($username));
+        $crypto = $this->di->get('crypto');
 
-        $user = \Entity\User::findByLower('SlvrEagle23');
-        echo $user->username;
+        $encrypted = $crypto->encrypt('TEST MESSAGE');
+
+        var_dump($encrypted);
+
+        $decrypted = $crypto->decrypt($encrypted);
+
+        var_dump($decrypted);
 
         // -------- END HERE -------- //
 

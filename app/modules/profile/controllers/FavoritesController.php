@@ -19,9 +19,9 @@ class FavoritesController extends BaseController
         $perpage = $this->user->getVariable('perpage');
 
         // Maturity Rating Filter
-        if ($this->fa->canSeeArt('adult'))
+        if ($this->app->canSeeArt('adult'))
             $maturity_filter = array(Upload::RATING_GENERAL, Upload::RATING_ADULT, Upload::RATING_MATURE);
-        elseif ($this->fa->canSeeArt('mature'))
+        elseif ($this->app->canSeeArt('mature'))
             $maturity_filter = array(Upload::RATING_GENERAL, Upload::RATING_MATURE);
         else
             $maturity_filter = array(Upload::RATING_GENERAL);
@@ -68,7 +68,7 @@ class FavoritesController extends BaseController
                 foreach($pager as $fav_row)
                 {
                     if ($fav_row->upload->rating == Upload::RATING_ADULT)
-                        $this->fa->setPageHasMatureContent();
+                        $this->app->setPageHasMatureContent();
                 }
             }
         }

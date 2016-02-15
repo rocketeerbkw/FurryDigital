@@ -24,7 +24,7 @@
                 {% for message in messages %}
                 <a class="media" href="{{ url.routeFromHere(['id': message['id']]) }}">
                     <div class="media-left">
-                    {% if message.is_read %}
+                    {% if message['is_read'] %}
                         <i class="fa fa-envelope-o"></i>
                     {% else %}
                         <i class="fa fa-envelope"></i>
@@ -32,10 +32,10 @@
                     </div>
                     <div class="media-body">
                         <h4 class="media-heading">
-                            {{ message['subject']|e }}
-                            <br><small>{% if folder == "outbox" %}{{ message['recipient']['username']|e }}{% else %}{{ message['sender']['username']|e }}{% endif %} &bull; {{ fa.formatDate(message['created_at']) }}</small>
+                            {% if folder == "outbox" %}{{ message['recipient']['username']|e }}{% else %}{{ message['sender']['username']|e }}{% endif %}
+                            <br><small>{{ app.formatDate(message['created_at']) }}</small>
                         </h4>
-                        {{ parser.truncate(message['message']) }}
+                        {{ message['subject']|e }}
                     </div>
                 </a>
                 {% endfor %}

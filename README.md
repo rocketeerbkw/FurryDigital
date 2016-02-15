@@ -105,13 +105,14 @@ Here are the common DI containers used across the system:
 
 * **`auth` - Authentication:** Tracks whether a user is logged in, and can return the current active user.
 * **`acl` - Access Control List:** Checks whether a user has permission to access a specified feature.
+* **`app` - FurryDigital Legacy:** Inherited functionality from the older FurryDigital system.
 * **`cache` - Cache:** Access user cache data (stored in flat files, Memcached, or Redis).
 * **`config` - Configuration:** Access global configuration files as objects.
+* **`crypto` - Cryptography:** Helper for quickly encrypting and decrypting messages.
 * **`csrf` - CSRF Protection:** Dedicated class to generate tokens for Cross-Site Request Forgery protection.
 * **`current_module_config` - Current Module Configuration:** Same as `config`, but relative to the current module.
 * **`db` - Doctrine Database Abstraction:** The [Database Abstraction Layer](http://www.doctrine-project.org/projects/dbal.html) from the Doctrine database system.
 * **`em` - Doctrine Entity Manager:** The global ORM [Entity Manager](http://www.doctrine-project.org/api/orm/2.0/class-Doctrine.ORM.EntityManager.html) from the Doctrine database system.
-* **`fa` - FurryDigital Legacy:** Inherited functionality from the older FurryDigital system.
 * **`flash` - Status Announcements:** Post persistent messages to the site header, that will appear either on the current page load (if the render hasn't happened yet) or on the next page (in the event of forwards).
 * **`parser` - Text Parser:** Helpers to handle message escaping, BBCode, smileys, URLs, etc.
 * **`session` - Session Management:** Wraps the PHP $_SESSION superglobal and allows for isolated namespaces in the session. 

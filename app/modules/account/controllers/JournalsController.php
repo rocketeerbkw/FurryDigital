@@ -20,7 +20,7 @@ class JournalsController extends BaseController
     // Create or update journal
     public function editAction()
     {
-        $this->fa->readOnly();
+        $this->app->readOnly();
 
         $form_config = $this->current_module_config->forms->journal->toArray();
         $form = new \App\Form($form_config);
@@ -77,7 +77,7 @@ class JournalsController extends BaseController
 
     public function deleteAction()
     {
-        $this->fa->readOnly();
+        $this->app->readOnly();
 
         $id = (int)$this->getParam('id');
         $record = Journal::getRepository()->findOneBy(array('id' => $id, 'user_id' => $this->user->id));

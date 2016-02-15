@@ -18,8 +18,7 @@ use App\Legacy\Notifications;
  */
 class Note extends \App\Doctrine\Entity
 {
-    const FOLDER_INBOX = 0;
-    const FOLDER_OUTBOX = 1;
+    use Traits\EncryptionTrait;
 
     public function __construct()
     {
@@ -115,5 +114,17 @@ class Note extends \App\Doctrine\Entity
      * @Column(name="message", type="text", length=65535, nullable=false)
      */
     protected $message;
+
+    public function getMessage()
+    {
+        if (!empty($this->message))
+            return self::decrypt($this->message);
+        else
+            return NULL;
+    }
+    public function setMessage($new_message)
+    {
+        $this->message = self::encrypt($new_message);
+    }
 
 }

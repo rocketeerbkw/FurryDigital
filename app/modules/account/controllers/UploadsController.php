@@ -40,7 +40,7 @@ class UploadsController extends BaseController
         foreach($pager as $row)
         {
             if ($row->adultsubmission != 0)
-                $this->fa->setPageHasMatureContent(true);
+                $this->app->setPageHasMatureContent(true);
         }
 
         $this->view->pager = $pager;
@@ -417,7 +417,7 @@ class UploadsController extends BaseController
      */
     public function deleteAction()
     {
-        $this->fa->fileReadOnly();
+        $this->app->fileReadOnly();
 
         $submissions = $this->_initBulkAction();
 
@@ -438,7 +438,7 @@ class UploadsController extends BaseController
      */
     protected function _initBulkAction()
     {
-        $this->fa->readOnly();
+        $this->app->readOnly();
 
         if (!$this->request->hasPost('ids'))
             throw new \App\Exception('No Upload IDs specified!');

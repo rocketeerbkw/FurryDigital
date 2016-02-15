@@ -5,6 +5,9 @@
 
 return array(
 
+    // Used to encrypt sensitive database content at rest.
+    'crypto_key' => 'def00000784902fd08d9aac696a918dcfb1eb8b019a502814b742aa16d5c8c0dc62b39b25e1a7d6695d8c3b56fc295db434fc0d8f5c8abcbc5edb8ce860b6dcfea37e477',
+
     // Amazon AWS Management
     'amazon_aws' => array(
         'access_key_id'     => '',

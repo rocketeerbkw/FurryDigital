@@ -8,7 +8,7 @@
             <div class="p5t p10l p10r">
 
                 <div class="responsenav fontsize12 auto_link">
-                    <span class="fontcolor3 fontsize12 floatright p10t">posted {{ fa.formatDate(journal.created_at) }}</span>
+                    <span class="fontcolor3 fontsize12 floatright p10t">posted {{ app.formatDate(journal.created_at) }}</span>
                     <h2><strong>{{ journal.subject|e }}</strong></h2>
                 </div>
 

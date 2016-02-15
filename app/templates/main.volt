@@ -31,10 +31,10 @@
         <script type="text/javascript">
             var app_static_url = '{{ static_url('') }}';
 
-            var sfw_cookie_name = '{{ fa.sfw_cookie_name|escape_js }}';
+            var sfw_cookie_name = '{{ app.sfw_cookie_name|escape_js }}';
             var cookie_domain = '{{ config.application.cookie_domain|escape_js }}';
 
-            var page_has_mature_content = {% if fa.page_has_mature_content %}true{% else %}false{% endif %};
+            var page_has_mature_content = {% if app.page_has_mature_content %}true{% else %}false{% endif %};
         </script>
 
         {{ assets.outputJs('header_js') }}
@@ -146,8 +146,8 @@
                         </li>
                     {% endif %}
 
-                    {% if fa.canSeeArt('adult', false) %}
-                        <li class="no-sub sfw-toggle {% if fa.getSfwCookie() %}active{% endif %}">
+                    {% if app.canSeeArt('adult', false) %}
+                        <li class="no-sub sfw-toggle {% if app.getSfwCookie() %}active{% endif %}">
                             <a class="top-heading" href="?" title="Toggle to hide Mature and Adult submissions. Effective starting next page load.">
                                 <span class="hideonmobile">SFW</span>
                                 <span class="hideondesktop">Toggle SFW</span>
@@ -180,7 +180,7 @@
 
     <div class="ads">
         <div class="in">
-        {% if fa.canSeeArt('adult') %}
+        {% if app.canSeeArt('adult') %}
             <span id="ad-2" class="ad hidden first"></span >
             <span id="ad-4" class="ad hidden adhidemobile"></span >
         {% else %}
@@ -192,7 +192,7 @@
 
      End Ad Block Header #}
 
-    {% if !fa.page_has_mature_content %}
+    {% if !app.page_has_mature_content %}
     <div id="ad-extra-flat" class="bg1 leaderboard1 aligncenter">
         <ins class="adsbygoogle"
              style="display:inline-block;width:728px;height:90px"

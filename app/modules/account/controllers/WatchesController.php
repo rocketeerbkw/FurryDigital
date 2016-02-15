@@ -8,7 +8,7 @@ class WatchesController extends BaseController
 {
     public function indexAction()
     {
-        $this->fa->readOnly();
+        $this->app->readOnly();
 
         $per_page = 64;
         $page = $this->getParam('page', 1);

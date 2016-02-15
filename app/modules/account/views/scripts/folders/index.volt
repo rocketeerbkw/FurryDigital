@@ -29,7 +29,7 @@
                     {{ folder.num_files }}
                 </td>
                 <td align="center">
-                    {{ fa.formatDate(folder.updated_at) }}
+                    {{ app.formatDate(folder.updated_at) }}
                 </td>
             </tr>
         {% endfor %}
@@ -99,7 +99,7 @@
                                 &nbsp;
                             </td>
                             <td align="center">
-                                {{ fa.formatDate(group.updated_at) }}
+                                {{ app.formatDate(group.updated_at) }}
                             </td>
                         </tr>
                         {{ folder_row(group.folders) }}

@@ -160,7 +160,7 @@
                         <!-- {latestjournal} -->
                         <div class="container-item-mid roundedul roundedur">
                             <div class="fontcolor3 fontsize12 floatright inline p10t">
-                                {{ fa.formatDate(journal.created_at) }}
+                                {{ app.formatDate(journal.created_at) }}
                                 <?=$date?>
                             </div>
                             <h2><a href="{{ url.named('journal_view', ['id': journal.id]) }}"><strong>{{ journal.subject|e }}</strong></a></h2>
@@ -215,7 +215,7 @@
                                                             <h3><a class="fonthighlight" href="{{ url.named('user_view', ['username': row.sender.lower]) }}"><strong>{{ row.sender.username|e }}</strong></a></h3>
                                                         </div>
                                                         <div class="comments-userline-datetime fontsize12 p5b">
-                                                            {{ fa.formatDate(row.created_at) }}
+                                                            {{ app.formatDate(row.created_at) }}
                                                         </div>
                                                     </div>
                                                     <hr>

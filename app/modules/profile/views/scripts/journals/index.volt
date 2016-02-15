@@ -13,7 +13,7 @@
             {% for row in pager %}
                 <div class="page-controls-journal-links bgtrans" style="padding:5px 0">
                     <a href="#jid:{{ row.id }}"><strong>{{ row.subject|e }}</strong></a><br>
-                    <span class="fontsize12">Posted: {{ fa.formatDate(row.created_at) }}</span>
+                    <span class="fontsize12">Posted: {{ app.formatDate(row.created_at) }}</span>
                 </div>
             {% endfor %}
             </div>
@@ -28,7 +28,7 @@
                 <div id="jid:{{ row.id }}" class="userpage-section-header">
                     <div class="userpage-module bg3 rounded">
                         <div class="inline"><h2 class="p20l p10t"><strong>{{ row.subject|e }}</strong></h2></div>
-                        <div class="fontcolor3 fontsize12 journalfloat p20r"> posted: {{ fa.formatDate(row.created_at) }}</div>
+                        <div class="fontcolor3 fontsize12 journalfloat p20r"> posted: {{ app.formatDate(row.created_at) }}</div>
                         <div class="p20lr"><hr></div>
                         <div id="journalcontent" class="journalcontent p20lr p10b">
                             {{ parser.message(row.message) }}

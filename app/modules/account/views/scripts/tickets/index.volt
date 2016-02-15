@@ -62,7 +62,7 @@
                     {% for row in tickets %}
                         <tr>
                             <td class="alt1" align="center">
-                                {{ fa.formatDate(row.created_at) }}
+                                {{ app.formatDate(row.created_at) }}
                             </td>
                             <td class="alt1" align="left">
                                 <a href="{{ url.routeFromHere(['action': 'view', 'id': row.id]) }}">Ticket ID #{{ row.id }} {% if row.is_resolved %}(Closed){% endif %}</a><br>
@@ -80,7 +80,7 @@
                             </td>
                             <td class="alt1" align="center">
                                 {% if row.last_reply_date %}
-                                    {{ fa.formatDate(row.last_reply_date) }}
+                                    {{ app.formatDate(row.last_reply_date) }}
                                 {% else %}
                                     <i>Never</i>
                                 {% endif %}

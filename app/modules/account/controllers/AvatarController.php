@@ -48,8 +48,8 @@ class AvatarController extends BaseController
 
     public function indexAction()
     {
-        $this->fa->readOnly();
-        $this->fa->fileReadOnly();
+        $this->app->readOnly();
+        $this->app->fileReadOnly();
 
         $form = new \App\Form($this->current_module_config->forms->avatar);
 

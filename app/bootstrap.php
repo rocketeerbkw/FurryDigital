@@ -284,19 +284,20 @@ $di->setShared('parser', array(
     )
 ));
 
+// Register cryptography helper.
+$di->setShared('crypto', array(
+    'className' => '\App\Crypto',
+    'arguments' => array(
+        array('type' => 'service', 'name' => 'config'),
+    )
+));
+
 /*
 // TODO: Re-enable support for locale for App users.
 // PVL-specific customization.
 $system_tz = \PVL\Customization::get('timezone');
 @date_default_timezone_set($system_tz);
 */
-
-$di->setShared('fa', function () use ($di) {
-    $fa = new \App\Legacy($di);
-    $fa->init();
-
-    return $fa;
-});
 
 $di->setShared('app', function () use ($di) {
     $fa = new \App\Legacy($di);

@@ -56,7 +56,7 @@
             </div>
             <div class="row2">
                 Full Name: {{ owner.fullname|e }}<br>
-                Reg'd Since: {{ fa.formatDate(owner.regdate) }}
+                Reg'd Since: {{ app.formatDate(owner.regdate) }}
             </div>
         </td>
     {% else %}
