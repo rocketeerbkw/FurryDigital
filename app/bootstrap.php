@@ -28,7 +28,7 @@ define("APP_UPLOAD_FOLDER", APP_INCLUDE_STATIC);
 if (isset($_SERVER['APP_APPLICATION_ENV']))
     define('APP_APPLICATION_ENV', $_SERVER['APP_APPLICATION_ENV']);
 elseif (file_exists(APP_INCLUDE_BASE.'/.env'))
-    define('APP_APPLICATION_ENV', include(APP_INCLUDE_BASE.'/.env'));
+    define('APP_APPLICATION_ENV', ($env = @file_get_contents(APP_INCLUDE_BASE.'/.env')) ? trim($env) : 'development');
 elseif (isset($_SERVER['X-App-Dev-Environment']) && $_SERVER['X-App-Dev-Environment'])
     define('APP_APPLICATION_ENV', 'development');
 else
