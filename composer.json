@@ -17,6 +17,7 @@
     "nette/mail": "2.3.0",
     "gigablah/sphinxphp": "2.*",
 
+    "aws/aws-sdk-php": "3.*",
     "hybridauth/hybridauth": "dev-3.0.0-Remake",
 
     "paragonie/random_compat": "^1.1",

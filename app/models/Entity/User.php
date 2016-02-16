@@ -173,27 +173,14 @@ class User extends \App\Doctrine\Entity
         $di = \Phalcon\Di::getDefault();
         $avatar_dir = $di['config']->application->avatars_path;
 
-        /*
-        // Delete an existing avatar, if one exists.
-        if ($this->avatar_mtime != 0)
-        {
-            $old_avatar = $avatar_dir.'/'.$this->avatar_mtime.'/'.$this->lower.'.gif';
-
-            if (file_exists($old_avatar))
-                @unlink($old_avatar);
-        }
-        */
-
         // Move the specified avatar to the public avatar directory.
-        $new_mtime = time();
-
-        // $new_avatar_dest = $avatar_dir.'/'.$new_mtime.'/'.$this->lower.'.gif';
         $new_avatar_dest = $avatar_dir.'/'.$this->lower.'.gif';
 
-        // @mkdir($avatar_dir.'/'.$new_mtime);
-        @copy($new_avatar_source, $new_avatar_dest);
+        // Copy via S3 service.
+        $s3 = $di->get('s3');
+        $s3->copy($new_avatar_source, $new_avatar_dest);
 
-        $this->avatar_mtime = $new_mtime;
+        $this->avatar_mtime = time();
         $this->save();
     }
 

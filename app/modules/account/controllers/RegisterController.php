@@ -17,7 +17,7 @@ class RegisterController extends BaseController
             return $this->redirectHome();
 
         // Check if registration is disabled in settings.
-        $fa_settings = $this->di->get('fa')->settings;
+        $fa_settings = $this->di->get('app')->settings;
         if($fa_settings['Disable_Registration'] == 1)
             throw new \App\Exception($fa_settings['Disable_Registration_Reason']);
     }
@@ -43,7 +43,7 @@ class RegisterController extends BaseController
                 $form->addError('username', $status['message']);
 
             // Validate e-mail address against junk providers.
-            $fa_settings = $this->di->get('fa')->settings;
+            $fa_settings = $this->di->get('app')->settings;
             $blocked_providers = explode("\n", str_replace("\r", '', $fa_settings['Junk_Email_Providers']));
 
             foreach($blocked_providers as $provider)
@@ -197,7 +197,7 @@ class RegisterController extends BaseController
             return array('valid' => FALSE, 'message' => 'Usernames must not start with a period.');
 
         // Username must not contain forbidden words.
-        $fa_settings = $this->di->get('fa')->settings;
+        $fa_settings = $this->di->get('app')->settings;
         $blocked_words = explode(' ', strtolower(str_replace(array("\n", "\r"), array(' ', ''), $fa_settings['Account_Name_Blocklist'])));
 
         $found = FALSE;

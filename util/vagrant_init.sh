@@ -185,6 +185,7 @@ mkdir -p $tmp_base
 mkdir -p $tmp_base/cache
 mkdir -p $tmp_base/sessions
 mkdir -p $tmp_base/proxies
+mkdir -p $tmp_base/uploads
 
 touch $tmp_base/access.log
 touch $tmp_base/error.log

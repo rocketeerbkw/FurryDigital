@@ -583,6 +583,7 @@ class Upload extends \App\Doctrine\Entity
         {
             $return_paths[$path_key] = array(
                 'base'      => $path_base,
+                'temp'      => APP_INCLUDE_TEMP.'/uploads/'.$this->id.'_'.$path_key.'.tmp',
                 'path'      => self::getFilePath($path_base),
                 'url'       => self::getFileUrl($path_base),
             );

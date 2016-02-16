@@ -133,6 +133,8 @@ class UploadsController extends BaseController
             \IMagick::setResourceLimit(\Imagick::RESOURCETYPE_MEMORY, 32);
             \IMagick::setResourceLimit(\Imagick::RESOURCETYPE_MAP, 32);
 
+            $s3 = $this->di->get('s3');
+
             $files = $form->getFiles($this->request);
             $imagine = new Imagine;
 
@@ -168,10 +170,14 @@ class UploadsController extends BaseController
                         $dest_path = $submission_paths['full']['path'];
                         
                         // Copying this instead of moving due to the file being reused by preview/thumbnail
-                        copy($submission_file->getTempName(), $dest_path);
+                        $s3->upload($submission_file->getTempName(), $dest_path);
                     }
                     else
-                        $submission_image->save($submission_paths['full']['path'], array('animated' => $is_animated));
+                    {
+                        $submission_image->save($submission_paths['full']['temp']);
+                        $s3->upload($submission_paths['full']['temp'], $submission_paths['full']['path']);
+                    }
+
 
                     // Make this file the thumbnail if no other is specified.
                     if (empty($files['thumbnail']) && (!$edit_mode || $data['rebuild_thumbnail']))
@@ -192,7 +198,7 @@ class UploadsController extends BaseController
                 {
                     // Handle non-images. Way simpler, right?
                     $dest_path = $submission_paths['full']['path'];
-                    $submission_file->moveTo($dest_path);
+                    $s3->upload($submission_file->getTempName(), $dest_path);
 
                     // Prevent the file from being deleted below.
                     $submission_file = null;
@@ -225,7 +231,9 @@ class UploadsController extends BaseController
             {
                 // Generate "small" size thumbnail.
                 $this->_resizeImage($preview_image, self::MAX_PREVIEW_SIZE);
-                $preview_image->save($preview_paths['small']['path']);
+
+                $preview_image->save($preview_paths['small']['temp']);
+                $s3->upload($preview_paths['small']['temp'], $preview_paths['small']['path']);
 
                 $record->setSmall($preview_paths['small']['base']);
             }
@@ -235,7 +243,9 @@ class UploadsController extends BaseController
             {
                 // Generate "thumb" size thumbnail.
                 $this->_resizeImage($thumbnail_image, self::MAX_THUMB_SIZE);
-                $thumbnail_image->save($thumbnail_paths['thumbnail']['path']);
+
+                $thumbnail_image->save($thumbnail_paths['thumbnail']['temp']);
+                $s3->upload($thumbnail_paths['thumbnail']['temp'], $thumbnail_paths['thumbnail']['path']);
 
                 $record->setThumbnail($thumbnail_paths['thumbnail']['base']);
             }

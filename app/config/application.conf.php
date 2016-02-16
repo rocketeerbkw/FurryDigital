@@ -11,7 +11,7 @@ $config = array(
     'analytics_code'    => 'UA-37359273-8',
     
     // Primary application web address
-    'base_url'          => (APP_IS_SECURE ? 'https://' : 'http://').'furry.digital',
+    'base_url'          => 'https://furry.digital',
 
     // Path the cookie should use.
     'cookie_domain'     => '.furry.digital',
@@ -27,19 +27,19 @@ $config = array(
     // 'api_url'           => (APP_IS_SECURE ? 'https://' : 'http://').'api.furry.digital',
 
     // Local path for art.
-    'art_path'          => APP_INCLUDE_WEB.'/uploads/art',
+    'art_path'          => 's3://art.furry.digital',
+
+    // Web URL for art.
+    'art_url'           => 'https://art.furry.digital',
 
     // List of folders that should exist in any user's art folder.
     'art_folders'       => array('avatars', 'images', 'text', 'audio', 'video'),
 
-    // Web URL for art.
-    'art_url'           => '/uploads/art',
-
     // Local path for avatars.
-    'avatars_path'      => APP_INCLUDE_WEB.'/uploads/avatars',
+    'avatars_path'      => 's3://avatars.furry.digital',
 
     // Web URL for avatars.
-    'avatars_url'       => '/uploads/avatars',
+    'avatars_url'       => 'https://avatars.furry.digital',
     
     // Messenger mail settings
     'mail'              => array(
@@ -100,9 +100,14 @@ $config = array(
  * Development mode changes.
  */
 
-
 if (APP_APPLICATION_ENV != 'production')
 {
+    $config['art_path'] = APP_INCLUDE_WEB.'/uploads/art';
+    $config['art_url'] = '/uploads/art';
+
+    $config['avatars_path'] = APP_INCLUDE_WEB.'/uploads/avatars';
+    $config['avatars_url'] = '/uploads/avatars';
+
     $config['phpSettings']['display_startup_errors'] = 1;
     $config['phpSettings']['display_errors'] = 1;
 

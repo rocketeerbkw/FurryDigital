@@ -292,6 +292,14 @@ $di->setShared('crypto', array(
     )
 ));
 
+// Register Amazon S3 service helper.
+$di->setShared('s3', array(
+    'className' => '\App\Service\AmazonS3',
+    'arguments' => array(
+        array('type' => 'service', 'name' => 'config'),
+    ),
+));
+
 /*
 // TODO: Re-enable support for locale for App users.
 // PVL-specific customization.

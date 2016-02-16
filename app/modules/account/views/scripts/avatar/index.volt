@@ -36,7 +36,7 @@
                     <div class="aligncenter" style="width: 120px; float: left; margin-right: 10px;">
                         <a href="{{ url.routeFromHere(['action': 'choose', 'id': avatar_key]) }}" title="Select This Avatar"><img src="{{  avatar_info['url'] }}" alt=""></a><br>
                         <span class="fontsize12 aligncenter">
-                            <a style="cursor: pointer;" onclick="showConfirm('Are you sure you want to delete this avatar?', '{{ url.routeFromHere(['action': 'delete', 'id': avatar_key]) }}');">Delete</a>
+                            <a style="cursor: pointer;" onclick="return confirm('Are you sure you want to delete this avatar?');" href="{{ url.routeFromHere(['action': 'delete', 'id': avatar_key]) }}">Delete</a>
                         </span>
                     </div>
                 {% endfor %}

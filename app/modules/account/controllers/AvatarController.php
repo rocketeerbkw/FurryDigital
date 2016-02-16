@@ -11,10 +11,13 @@ class AvatarController extends BaseController
 {
     protected $_avatars;
     protected $_gravatar;
+    protected $_s3;
 
     public function preDispatch()
     {
         parent::preDispatch();
+
+        $this->_s3 = $this->di->get('s3');
 
         // Loop through art directory for filesystem avatars.
         $art_base = $this->user->lower.'/avatars';
@@ -68,7 +71,11 @@ class AvatarController extends BaseController
                 $source_info = pathinfo($file->getName());
                 $dest_filename = preg_replace("/[^A-Za-z0-9_]/", '', substr($source_info['filename'], 0, 30)).'.gif';
 
-                $dest_path = $art_dir.'/'.$this->user->lower.'/avatars/'.$dest_filename;
+                $temp_path = APP_INCLUDE_TEMP.'/uploads/'.$this->user->lower.'_avatar.tmp';
+
+                $dest_path_dir = $art_dir.'/'.$this->user->lower.'/avatars';
+                $dest_path = $dest_path_dir.'/'.$dest_filename;
+                @mkdir($dest_path_dir, 0777, true);
 
                 // Create resized image for avatar.
                 $imagine = new Imagine;
@@ -77,7 +84,9 @@ class AvatarController extends BaseController
 
                 $imagine->open($source_path)
                     ->thumbnail($size, $mode)
-                    ->save($dest_path);
+                    ->save($temp_path);
+
+                $this->_s3->upload($temp_path, $dest_path);
 
                 // Set as default avatar also.
                 $this->user->setAvatar($dest_path);
@@ -103,7 +112,11 @@ class AvatarController extends BaseController
         $art_dir = $this->config->application->art_path;
 
         // Clean up original filename for destination filename.
-        $dest_path = $art_dir.'/'.$this->user->lower.'/avatars/gravatar.gif';
+        $temp_path = APP_INCLUDE_TEMP.'/uploads/'.$this->user->lower.'_avatar.tmp';
+
+        $dest_path_dir = $art_dir.'/'.$this->user->lower.'/avatars';
+        $dest_path = $dest_path_dir.'/gravatar.gif';
+        @mkdir($dest_path_dir, 0777, true);
 
         // Create resized image for avatar.
         $imagine = new Imagine;
@@ -112,7 +125,9 @@ class AvatarController extends BaseController
 
         $imagine->open($source_path)
             ->thumbnail($size, $mode)
-            ->save($dest_path);
+            ->save($temp_path);
+
+        $this->_s3->upload($temp_path, $dest_path);
 
         $this->user->setAvatar($dest_path);
 
