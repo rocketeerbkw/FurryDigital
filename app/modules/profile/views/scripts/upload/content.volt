@@ -50,24 +50,13 @@
     <!-- INSERT GALLERY CODE HERE, temporarily removed due and can be found at gallery.code -->
     
     <div class="aligncenter p10b">
-        <!--if(array_key_exists('before', $adjacent_submissions[$folder_data['folder_id']])){$sub_data = $adjacent_submissions[$folder_data['folder_id']]['before'][0];?>
-            <span class="button hideonmobile submission rounded"><a href="/view/<?=$sub_data['rowid']?>/" class="prev dotted">&#x276e;&#x276e;&nbsp;Older</a></span>
-        }-->
-
+        <div class="btn-group">
+            <a class="btn btn-sm btn-default" href="{{ upload.getFullUrl() }}" target="_blank">Download</a>
         {% if auth.isLoggedIn() %}
-            <span class="button submission rounded"><a href="{{ url.named('upload_fav', ['id': upload.id, 'key': upload_csrf_str]) }}">{{ is_favorited }}</a></span>
+            <a class="btn btn-sm btn-success" href="{{ url.named('upload_fav', ['id': upload.id, 'key': upload_csrf_str]) }}">{{ is_favorited }}</a>
+            <a class="btn btn-sm btn-default" href="{{ url.route(['module': 'account', 'controller': 'messages', 'action': 'compose']) }}?recipient={{ upload.user.lower }}">Message {{ upload.user.username|e }}</a>
         {% endif %}
-        <!--if($_USER['vars']->get('gallery_navigation')!='minigallery'){
-            <span class="button submission rounded"><a href="<?=$folder_data['url']?>" title="<?=$folder_data['num_files']?> submissions">Go to <?=$folder_data['folder_name']?></a></span>
-        }-->
-        <span class="button submission rounded"><a href="{{ upload.getFullUrl() }}">Download</a></span>
-        {% if auth.isLoggedIn() %}
-            <span class="button submission rounded"><a href="/newpm/{{ upload.user.lower }}/">Note {{ upload.user.username }}</a></span>
-        {% endif %}
-
-        <!--if(array_key_exists('after', $adjacent_submissions[$folder_data['folder_id']])){$sub_data = $adjacent_submissions[$folder_data['folder_id']]['after'][0];?>
-            <span class="button hideonmobile submission rounded"><a href="/view/<?=$sub_data['rowid']?>/" class="next dotted">Newer &nbsp;&#x276f;&#x276f;</a></span>
-        }-->
+        </div>
     </div>
 
     <div class="flextitlecol bg4 borderbot">
@@ -109,10 +98,6 @@
                 </div>
             </div>
         </div>
-
-        <div class="bg3 p20 flextitleitem3 hideondesktop borderbot auto_link">
-            {{ upload.description }}
-        </div>
     </div>
     
     {% if acl.isAllowed('administer all') %}
@@ -122,14 +107,12 @@
     {% if is_owner %}
         <div class="p20lr p10t p10b bg2 auto_link borderbot">
             <h3 class="inline">Owner Options</h3>
-            <a class="p10l" href="/controls/uploads/changeinfo/{{ upload.id }}">Edit Info</a>
-            <a class="p10l" href="/controls/uploads/changethumbnail/{{ upload.id }}">Update Thumbnail</a>
-            <a class="p10l" href="/controls/uploads/edit/{{ upload.id }}">Update Submission File</a>
+            <a class="p10l" href="{{ url.route(['module': 'account', 'controller': 'uploads', 'action': 'edit', 'id': upload.id]) }}">Edit Upload Details</a>
         </div>
     {% endif %}
 
-    <div class="bg3 p20 hideonmobile borderbot auto_link">
-        {{ upload.description }}
+    <div class="bg3 p20 borderbot auto_link">
+        {{ parser.message(upload.description) }}
     </div>
 
     <div class="tags-row p20lr">

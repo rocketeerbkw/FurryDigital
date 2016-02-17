@@ -2,7 +2,7 @@
 namespace Modules\Profile\Controllers;
 
 use \Entity\Upload;
-//use \DateTime as DateTime;
+use \Entity\Favorite;
 
 class UploadController extends BaseController
 {
@@ -19,24 +19,32 @@ class UploadController extends BaseController
         if (!($upload instanceof Upload))
             throw new \App\Exception('Upload not found!');
 
-        $view = $this->view;
+        $this->view->upload = $upload;
         
-        $view->upload = $upload;
-        
-        $view->is_favorited = (false ? '+Favorite' : '-Favorite');
-        $view->comment_csrf_str = $this->csrf->generate('_upload_comments');
-        $view->upload_csrf_str = $this->csrf->generate('_upload_content');
-        $view->file_mime = $upload->getMIME();
-        $view->keyword_arr = $upload->getKeywords();
-        $view->created_at = \App\Utilities::fa_date_format($upload->created_at, $upload->user->getTimezoneDiff());
-        
-        if ($this->user != NULL) {
+        if ($this->auth->isLoggedIn())
+        {
+            $favorite = Favorite::getRepository()->findOneBy(array('upload_id' => $upload->id, 'user_id' => $this->user->id));
+            $is_favorited = ($favorite instanceof Favorite);
+
+            $this->view->is_favorited = ($is_favorited ? 'Unfavorite' : 'Favorite');
+
             // Determine if the user is the owner of the upload
-            $view->is_owner = $upload->user->id == $this->user->id;
-            
+            $this->view->is_owner = ($upload->user_id == $this->user->id);
+
             // Get if the user prefer fullview first
-            $view->fullview = $this->user->fullview ? 'true' : 'false'; // Apparently, Volt doesn't seem to want convert straight to string
+            $this->view->fullview = $this->user->fullview ? 'true' : 'false'; // Apparently, Volt doesn't seem to want convert straight to string
         }
+        else
+        {
+            $this->view->is_favorited = '';
+            $this->view->is_owner = false;
+        }
+
+        $this->view->comment_csrf_str = $this->csrf->generate('_upload_comments');
+        $this->view->upload_csrf_str = $this->csrf->generate('_upload_content');
+        $this->view->file_mime = $upload->getMIME();
+        $this->view->keyword_arr = $upload->getKeywords();
+        $this->view->created_at = \App\Utilities::fa_date_format($upload->created_at, $upload->user->getTimezoneDiff());
         
         // Comments!
         // Create the comment forms
@@ -44,19 +52,19 @@ class UploadController extends BaseController
         
         $form_config['action'] = $this->url->named('upload_view', array('id' => $upload->id)) . '/comment/new'; // Add the action so they can actually comment!
         
-        $view->comment_form = new \App\Form($form_config);
+        $this->view->comment_form = new \App\Form($form_config);
         
         // Reply form. Uses the same config, but different id.
         $form_config['action'] = ''; // No need for this.
         
         $form_config['id'] = 'reply_form';
         
-        $view->reply_form = new \App\Form($form_config);
+        $this->view->reply_form = new \App\Form($form_config);
         
         // Edit form. Same story.
         $form_config['id'] = 'edit_form';
         
-        $view->edit_form = new \App\Form($form_config);
+        $this->view->edit_form = new \App\Form($form_config);
 
         // Construct the comments        
         $comment_ents = \Entity\UploadComment::getRepository()->findBy(
@@ -80,42 +88,37 @@ class UploadController extends BaseController
         }
         
         // Flatten the array to allow Volt to run through it without issue
-        $view->upload_comments = \Nette\Utils\Arrays::flatten($up_comments);
+        $this->view->upload_comments = \Nette\Utils\Arrays::flatten($up_comments);
         
         // Only need to do these when users with access need to see these stats.
         if ($this->acl->isAllowed('administer all')) {
-            $view->total_deleted_comments = 0;
-            $view->total_deleted_comments_by_admin = 0;
-            $view->total_deleted_comments_by_uploader = 0;  
-            $view->total_deleted_comments_by_poster = 0;
+            $this->view->total_deleted_comments = 0;
+            $this->view->total_deleted_comments_by_admin = 0;
+            $this->view->total_deleted_comments_by_uploader = 0;  
+            $this->view->total_deleted_comments_by_poster = 0;
         
             // Get the total comments deleted
             foreach ($comment_ents as $comment) {
                 $deleting_user = $comment->deleting_user;
             
                 if ($deleting_user != NULL) { // Post has been deleted
-                    $view->total_deleted_comments++;
+                    $this->view->total_deleted_comments++;
                     
                     // Determine who deleted it!
                     if($deleting_user->id == $comment->user_id) // Poster deleted it!
-                        $view->total_deleted_comments_by_poster++;
+                        $this->view->total_deleted_comments_by_poster++;
                     elseif($deleting_user->id == $upload->user.id) // Uploader deleted it!
-                        $view->total_deleted_comments_by_uploader++;
+                        $this->view->total_deleted_comments_by_uploader++;
                     elseif($this->acl->userAllowed('administer all', $deleting_user)) // Admin deleted it!
-                        $view->total_deleted_comments_by_admin++;
+                        $this->view->total_deleted_comments_by_admin++;
                 }
             }
         }
         
-        // Grab the EXIF info (If any) and pass it to the view
-        // TODO: Will need to determine if we need to include more or less information
-        //$exif = exif_read_data($upload->getFullPath(), 'EXIF');
-        //$view->exif_info = ($exif ? $exif : '');
-        
         // Legacy stuff
         // TODO: Move this off to either ACL or some other config. Most if not all is controller specific
-        $view->edit_duration_sec = \Entity\UploadComment::getEditDuration();
-        $view->STATIC_ASSET_MODIFICATION_DATE = self::STATIC_ASSET_MODIFICATION_DATE; // Assuming this is for versioning.
+        $this->view->edit_duration_sec = \Entity\UploadComment::getEditDuration();
+        $this->view->STATIC_ASSET_MODIFICATION_DATE = self::STATIC_ASSET_MODIFICATION_DATE; // Assuming this is for versioning.
     }
     
     protected static function _getValueByKeys($array, $keys) {
