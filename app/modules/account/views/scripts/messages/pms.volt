@@ -14,7 +14,7 @@
                         </button>
                         <ul class="dropdown-menu">
                         {% for folder_key, folder_label in folders %}
-                            <li><a href="{{ url.routeFromHere(['folder': folder_key]) }}">{{ folder_label }}</a></li>
+                            <li><a href="{{ url.routeFromHere(['folder': folder_key, 'id': null]) }}">{{ folder_label }}</a></li>
                         {% endfor %}
                         </ul>
                     </div>
@@ -53,6 +53,7 @@
                 </div>
             </div>
 
+            {% if reply_form %}
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">Reply</h3>
@@ -61,6 +62,7 @@
                     {{ reply_form.render() }}
                 </div>
             </div>
+            {% endif %}
         {% else %}
             <div class="panel panel-default">
                 <div class="panel-heading">

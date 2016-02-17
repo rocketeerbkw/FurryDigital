@@ -13,7 +13,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 class WatchNotify extends \App\Doctrine\Entity
 {
     use Traits\NotifyTrait;
-    protected $identifier_id = 'watch_id';
+    protected static $identifier = 'watch_id';
 
     /**
      * @var integer
