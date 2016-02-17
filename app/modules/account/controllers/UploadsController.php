@@ -127,6 +127,7 @@ class UploadsController extends BaseController
                 $record->save(); // Immediately save to generate IDs used in next steps.
             }
 
+            unset($data['submission'], $data['thumbnail']);
             $record->fromArray($data);
 
             // Begin file handling.
