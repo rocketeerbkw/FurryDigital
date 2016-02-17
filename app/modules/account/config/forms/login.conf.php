@@ -7,7 +7,7 @@ return array(
     'elements'      => array(
 
         'username'      => array('text', array(
-            'label' => 'Username',
+            'label' => 'Username or E-mail Address',
             'class' => 'half-width',
             'spellcheck' => 'false',
             'required' => true,

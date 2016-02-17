@@ -80,8 +80,15 @@ class User extends \App\Doctrine\Entity
 
     public function setUsername($username)
     {
-        $this->username = $username;
-        $this->lower = self::getLowerCase($username);
+        if (strcmp($username, $this->username) != 0)
+        {
+            $existing_user = self::getRepository()->findOneBy(array('username' => $username));
+            if ($existing_user instanceof self)
+                throw new \App\Exception('User with that username already exists!');
+
+            $this->username = $username;
+            $this->lower = self::getLowerCase($username);
+        }
     }
 
     /**
@@ -189,6 +196,18 @@ class User extends \App\Doctrine\Entity
      * @Column(name="email", type="string", options={"default"=""}, length=150, nullable=false)
      */
     protected $email;
+
+    public function setEmail($email)
+    {
+        if (strcmp($email, $this->email) != 0)
+        {
+            $existing_user = self::getRepository()->findOneBy(array('email' => $email));
+            if ($existing_user instanceof self)
+                throw new \App\Exception('User with that e-mail address already exists!');
+
+            $this->email = $email;
+        }
+    }
 
     /**
      * @var string The e-mail address that the user registered with.
@@ -1055,7 +1074,10 @@ class User extends \App\Doctrine\Entity
      */
     public static function authenticate($username, $password)
     {
-        $login_info = self::getRepository()->findOneBy(array('username' => $username));
+        $em = self::getEntityManager();
+        $login_info = $em->createQuery('SELECT u FROM '.__CLASS__.' u WHERE (u.username = :username OR u.email = :username)')
+            ->setParameter('username', $username)
+            ->getOneOrNullResult();
 
         if (!($login_info instanceof self))
             return FALSE;
