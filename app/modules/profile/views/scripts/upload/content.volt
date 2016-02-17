@@ -1,6 +1,6 @@
 {%- macro submission_data(upload) %}
     <!-- Need to remove the imgresizer class when showing the preview (Need to find out why) -->
-    <img id="submissionImg" title="Click to change the View" class="imgresizer" alt="{{ upload.title }}" src="{% if upload.upload_type == constant('\Entity\Upload::TYPE_IMAGE') %} {{ upload.getFullUrl() }} {% else %} {{ upload.getFullUrl() }} {% endif %}" style="cursor: pointer;" />
+    <img id="submissionImg" title="Click to change the View" class="imgresizer" alt="{{ upload.title }}" src="{% if upload.upload_type == constant('\Entity\Upload::TYPE_IMAGE') %} {{ upload.getSmallUrl() }} {% else %} {{ upload.getFullUrl() }} {% endif %}" style="cursor: pointer;" />
 {%- endmacro %}
 
 <div class="bg1">

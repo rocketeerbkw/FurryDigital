@@ -1,36 +1,13 @@
 {% set title='View' %}
 
-{% if !auth.isLoggedIn() %}
-	<script type="text/javascript">
-	(function() {
-	  var ARTICLE_URL = window.location.href;
-	  var CONTENT_ID = 'everything';
-	  document.write(
-	    '<scr'+'ipt '+
-	    'src="//survey.g.doubleclick.net/survey?site=_r4cms4yom6bzwybyv6g6d2gize'+
-	    '&amp;url='+encodeURIComponent(ARTICLE_URL)+
-	    (CONTENT_ID ? '&amp;cid='+encodeURIComponent(CONTENT_ID) : '')+
-	    '&amp;random='+(new Date).getTime()+
-	    '" type="text/javascript">'+'\x3C/scr'+'ipt>');
-	})();
-	</script>
-{% endif %}
-
 <div id="submission_page" class="p402_premium">
 
     {% include "upload/content.volt" %}
-
-    <div id="ad-extra-comments" class="leaderboard2" style="text-align:center;min-height:90px"></div>
     
     {% include "upload/comment.volt" %}
 </div>
 
-{% if !auth.isLoggedIn() %}
-	<script type="text/javascript">
-		try { _402_Show(); } catch(e) {}
-	</script>
-{% endif %}
-
+{#
 {{ javascript_include('//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js', false) }}
 
 <script type="text/javascript">
@@ -110,3 +87,4 @@
         });
     });
 </script>
+#}
