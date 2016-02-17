@@ -75,9 +75,9 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li class="dropdown-header">Community</li>
-                        <li><a href="{{ url.get('journals/fender') }}">Site News</a></li>
                         <li><a href="http://www.facebook.com/furrydigital">Facebook</a></li>
                         <li><a href="http://twitter.com/furrydigital">Twitter</a></li>
+                        <li><a href="https://www.youtube.com/channel/UCcvvrapgk2QcfhWidi0ThPQ">YouTube</a></li>
 
                         <li class="dropdown-header">Support</li>
                         <li><a href="{{ url.get('staff') }}">FurryDigital Staff</a></li>
@@ -211,7 +211,7 @@
     <div id="footer" class="bg5">
         <strong>&copy; 2015-{{ date('Y') }} {{ config.application.name }}</strong> |
         <span class="hideonmobile">
-            <a href="http://github.com/SlvrEagle23/FAOpen">Powered by FAOpen</a> |
+            <a href="https://github.com/FurryDigital/FurryDigital">An Open-Source Project</a> |
             <a href="{{ url.get('tos') }}">Terms of Service</a> |
             <a href="{{ url.get('coc') }}">Code of Conduct</a> |
             <a href="{{ url.get('aup') }}">Acceptable Upload Policy</a>

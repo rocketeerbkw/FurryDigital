@@ -11,10 +11,15 @@ class MessagesController extends BaseController
         // Message Center index
     }
 
-    public function othersAction()
+    public function otherAction()
     {
         $notifications = $this->user->getNotifications('other');
         $this->view->notifications = $notifications;
+    }
+
+    public function othersAction()
+    {
+        return $this->dispatcher->forward(array('action' => 'other'));
     }
 
     public function uploadsAction()
