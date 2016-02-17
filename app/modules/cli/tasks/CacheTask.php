@@ -26,6 +26,18 @@ class CacheTask extends Task
 
         $this->printLn('Local cache flushed.');
 
+        // Flush Phalcon template cache.
+        $cache_dir = APP_INCLUDE_TEMP.'/cache';
+        foreach(scandir($cache_dir) as $cache_file)
+        {
+            if (in_array($cache_file, array('.', '..')))
+                continue;
+
+            @unlink($cache_dir.'/'.$cache_file);
+        }
+
+        $this->printLn('Phalcon template cache cleared.');
+
         // Flush CloudFlare cache (if used).
         if (APP_APPLICATION_ENV == 'production')
         {
