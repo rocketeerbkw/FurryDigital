@@ -1,6 +1,9 @@
 {%- macro submission_data(upload) %}
-    <!-- Need to remove the imgresizer class when showing the preview (Need to find out why) -->
-    <img id="submissionImg" title="Click to change the View" class="imgresizer" alt="{{ upload.title }}" src="{% if upload.upload_type == constant('\Entity\Upload::TYPE_IMAGE') %} {{ upload.getSmallUrl() }} {% else %} {{ upload.getFullUrl() }} {% endif %}" style="cursor: pointer;" />
+    {% if upload.upload_type == constant('\Entity\Upload::TYPE_IMAGE') %}
+        <img id="submissionImg" title="Click to enlarge!" class="imgresizer" alt="{{ upload.title|e }}" src="{{ upload.getSmallUrl() }}"  data-full-url="{{ upload.getFullUrl() }}" data-small-url="{{ upload.getSmallUrl() }}" style="cursor: pointer;">
+    {% else %}
+        <img id="submissionImg" alt="{{ upload.title|e }}" src="{{ upload.getSmallUrl() }}">
+    {% endif %}
 {%- endmacro %}
 
 <div class="bg1">
@@ -24,9 +27,7 @@
             <span class="imgshad aligncenter">
                 {{ submission_data(upload) }}
             </span>
-            
-            <br />
-            <br />
+            <br><br>
             <audio controls>
                 <source src="{{ upload.getFullUrl() }}">
                 Your browser does not support the audio element.
@@ -62,8 +63,8 @@
     <div class="flextitlecol bg4 borderbot">
         <div class="flextitleitem1 bg4">
             <a href="/user/{{ upload.user.lower }}/"><img class="floatleft submissionusericon trans p10l p10r" style="" src="{{ upload.user.getAvatar() }}"></a>
-            <div class="submissiontitlecontent trans">{{ upload.title }}</div>
-            <div class="auto_link submissiontitleuser"><a href="/user/{{ upload.user.lower }}/"><strong>{{ upload.user.username }}</strong></a> | <abbr class="moment-ago" mtime="{{ upload.created_at }}">{{ created_at }}</abbr></div> 
+            <div class="submissiontitlecontent trans">{{ upload.title|e }}</div>
+            <div class="auto_link submissiontitleuser"><a href="/user/{{ upload.user.lower }}/"><strong>{{ upload.user.username|e }}</strong></a> | {{ app.formatDate(upload.created_at) }}</div>
         </div>
 
         <div class="flextitleitem2 bg4 aligncenter">
@@ -71,23 +72,19 @@
 
                 <div class="flextitlestat trans order1 bg4 p10r" style="top:2px">
                     <h3>Views</h3>
-                    <span class="">{{ upload.views }}</span>
+                    <span>{{ upload.views }}</span>
                 </div>
 
                 <div class="flextitlestat trans order2 bg4 p10lr" style="top:2px">
                     <h3>Favs</h3>
-                    <span class="">
-                        {% if is_owner %}
-                            <a href="/favslist/{{ upload.id }}/">{{ upload.favorites|length }}</a>
-                        {% else %}
-                            {{ upload.favorites|length }}
-                        {% endif %}
+                    <span>
+                        {{ upload.favorites|length }}
                     </span>
                 </div>
 
                 <div class="flextitlestat trans order3 bg4 p10lr" style="top:2px">
                     <h3>Comments</h3>
-                    <span class="">{{ upload.comments|length }}</span>
+                    <span>{{ upload.comments|length }}</span>
                 </div>
 
                 <div class="flextitlestat trans order4 fontsize16 p10l p20r">
@@ -145,25 +142,16 @@
 
 {% if upload.upload_type == constant('\Entity\Upload::TYPE_IMAGE') %}
 <script type="text/javascript">
-    (function() {
-        var small_url   = "{{ upload.getSmallUrl() }}",
-            full_url    = "{{ upload.getFullUrl() }}",
-            is_full     = {{ fullview }},
-            sub_elem    = jQuery("#submissionImg")
-        
-        function setImage() {
-            sub_elem.attr('src', (is_full ? full_url : small_url))
-        }
-        
-        function toggleImageSize() {
-            is_full = !is_full
-            
-            console.log('test')
-            
-            setImage()
-        }
-        
-        jQuery("#submissionImg").click(toggleImageSize)
-    })()
+jQuery(function($) {
+    var is_full = false;
+    $("#submissionImg").on('click', function (e) {
+        if (is_full)
+            $(this).attr('src', $(this).data('small-url'));
+        else
+            $(this).attr('src', $(this).data('full-url'));
+
+        is_full = !is_full;
+    });
+});
 </script>
 {% endif %}
