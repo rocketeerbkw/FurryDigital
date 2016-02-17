@@ -1291,6 +1291,9 @@ class User extends \App\Doctrine\Entity
             // $avatar_base = $avatar_mtime . '/' . $lower . '.gif';
             $avatar_base = $lower . '.gif';
 
+            // Register the S3 handler before checking for an avatar.
+            $s3 = $di->get('s3');
+
             if (file_exists($avatar_dir.'/'.$avatar_base))
                 return $avatar_url.'/'.$avatar_base.'?'.$avatar_mtime;
         }
