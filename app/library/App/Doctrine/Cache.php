@@ -19,6 +19,7 @@ class Cache extends \Doctrine\Common\Cache\CacheProvider
 
         $pool = new \Stash\Pool($cache_driver);
         $pool->setNamespace(\App\Cache::getSitePrefix('doctrine'));
+
         $this->_cache = $pool;
     }
 

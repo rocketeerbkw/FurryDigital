@@ -12,7 +12,7 @@
 
     "imagine/imagine": "~0.5.0",
     "guzzlehttp/guzzle": "~5.0",
-    "tedivm/stash": "~0.14",
+    "tedivm/stash": "0.12.*",
     "filp/whoops": "1.*",
     "nette/mail": "2.3.0",
     "gigablah/sphinxphp": "2.*",
