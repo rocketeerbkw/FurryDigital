@@ -154,28 +154,28 @@ return array(
         '/view/{id:[0-9]+}/comment/new' => array(
             'name'      => 'upload_comment_new',
             'module'    => 'profile',
-            'controller' => 'uploadFeature',
+            'controller' => 'upload_feature',
             'action'    => 'reply',
         ),
         
         '/view/comment/edit/{id:[0-9]+}' => array(
             'name'      => 'upload_comment_edit',
             'module'    => 'profile',
-            'controller' => 'uploadFeature',
+            'controller' => 'upload_feature',
             'action'    => 'edit',
         ),
         
         '/view/comment/hide/{id:[0-9]+}/key/{key:[0-9A-Za-z]+}' => array(
             'name'      => 'upload_comment_hide',
             'module'    => 'profile',
-            'controller' => 'uploadFeature',
+            'controller' => 'upload_feature',
             'action'    => 'hide',
         ),
         
         '/view/fav/{id:[0-9]+}/key/{key:[0-9A-Za-z]+}' => array(
             'name'      => 'upload_fav',
             'module'    => 'profile',
-            'controller' => 'uploadFeature',
+            'controller' => 'upload_feature',
             'action'    => 'favorite',
         ),
     ),
