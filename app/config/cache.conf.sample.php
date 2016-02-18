@@ -9,7 +9,7 @@ return array(
     // memcached - Uses libmemcached and 'memcached' settings below.
     // redis - Uses phpredis and 'redis' settings below.
     // file - Uses flat-file storage and 'file' settings below.
-    'cache' => 'memcached',
+    'cache' => 'redis',
 
     // Flatfile configuration
     'file' => array(

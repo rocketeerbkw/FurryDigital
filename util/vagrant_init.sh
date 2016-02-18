@@ -97,7 +97,7 @@ pecl channel-update pecl.php.net
 #
 # Memcached
 #
-apt-get install -y memcached php5-memcached php5-memcache
+# apt-get install -y memcached php5-memcached php5-memcache
 
 #
 # MongoDB
