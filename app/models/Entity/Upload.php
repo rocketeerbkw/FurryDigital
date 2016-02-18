@@ -212,7 +212,7 @@ class Upload extends \App\Doctrine\Entity
      * @Column(name="gender", type="string", options={"default"=""}, length=40, nullable=false)
      */
     protected $gender = 0;
-    
+
     /**
      * Get a human-readable version of the gender value.
      *
@@ -257,31 +257,32 @@ class Upload extends \App\Doctrine\Entity
 
     public function setFull($new_path)
     {
-        // Delete existing file (if exists).
-        if (!empty($this->full))
+        if ($this->full != $new_path)
         {
-            @unlink(self::getFilePath($this->full));
-        }
+            // Delete existing file (if exists).
+            if (!empty($this->full))
+                @unlink(self::getFilePath($this->full));
 
-        // Clear legacy files.
-        if (!empty($this->_unused_story_path))
-        {
-            @unlink(self::getFilePath($this->_unused_story_path));
-            $this->_unused_story_path = NULL;
-        }
-        if (!empty($this->_unused_poetry_path))
-        {
-            @unlink(self::getFilePath($this->_unused_poetry_path));
-            $this->_unused_poetry_path = NULL;
-        }
-        if (!empty($this->_unused_music_path))
-        {
-            @unlink(self::getFilePath($this->_unused_music_path));
-            $this->_unused_music_path = NULL;
-        }
+            // Clear legacy files.
+            if (!empty($this->_unused_story_path))
+            {
+                @unlink(self::getFilePath($this->_unused_story_path));
+                $this->_unused_story_path = NULL;
+            }
+            if (!empty($this->_unused_poetry_path))
+            {
+                @unlink(self::getFilePath($this->_unused_poetry_path));
+                $this->_unused_poetry_path = NULL;
+            }
+            if (!empty($this->_unused_music_path))
+            {
+                @unlink(self::getFilePath($this->_unused_music_path));
+                $this->_unused_music_path = NULL;
+            }
 
-        $this->full = self::cleanUpBasePath($new_path);
-        $this->full_uuid = \App\Legacy\Utilities::uuid();
+            $this->full = self::cleanUpBasePath($new_path);
+            $this->full_uuid = \App\Legacy\Utilities::uuid();
+        }
     }
 
     protected function _getFull()
@@ -340,11 +341,14 @@ class Upload extends \App\Doctrine\Entity
 
     public function setSmall($new_path)
     {
-        // Delete existing file (if exists).
-        if (!empty($this->small))
-            @unlink(self::getFilePath($this->small));
+        if ($this->small != $new_path)
+        {
+            // Delete existing file (if exists).
+            if (!empty($this->small))
+                @unlink(self::getFilePath($this->small));
 
-        $this->small = self::cleanUpBasePath($new_path);
+            $this->small = self::cleanUpBasePath($new_path);
+        }
     }
 
     /**
@@ -378,12 +382,15 @@ class Upload extends \App\Doctrine\Entity
 
     public function setThumbnail($new_path)
     {
-        // Delete existing file (if exists).
-        if (!empty($this->thumbnail))
-            @unlink(self::getFilePath($this->thumbnail));
+        if ($this->thumbnail != $new_path)
+        {
+            // Delete existing file (if exists).
+            if (!empty($this->thumbnail))
+                @unlink(self::getFilePath($this->thumbnail));
 
-        $this->thumbnail = self::cleanUpBasePath($new_path);
-        $this->thumbnail_uuid = \App\Legacy\Utilities::uuid();
+            $this->thumbnail = self::cleanUpBasePath($new_path);
+            $this->thumbnail_uuid = \App\Legacy\Utilities::uuid();
+        }
     }
 
     /**
@@ -552,7 +559,17 @@ class Upload extends \App\Doctrine\Entity
         $file_info = pathinfo($uploaded_file);
 
         // Clean up the provided file path.
-        $filename_base = preg_replace('#[^a-zA-Z0-9\_]#', '', $file_info['filename']);
+        $filename_base = $file_info['filename'];
+
+        // Remove the part before the dot if a user is reuploading from FD/FA.
+        if (strpos($filename_base, '.') !== false)
+        {
+            $dot_parts = explode('.', $filename_base);
+            array_shift($dot_parts);
+            $filename_base = implode('', $dot_parts);
+        }
+
+        $filename_base = preg_replace('#[^a-zA-Z0-9\_]#', '', $filename_base);
         $filename_base = substr($filename_base, 0, 100);
 
         // Determine the folder of the submission by type.
@@ -569,7 +586,7 @@ class Upload extends \App\Doctrine\Entity
         $path_folder_full = self::getFilePath($path_folder);
         @mkdir($path_folder_full, 0777, true);
 
-        $path_prefix = $path_folder.'/'.$this->id;
+        $path_prefix = $path_folder.'/'.gmdate('YmdHi');
         $path_suffix = $filename_base.'.'.$file_info['extension'];
 
         $base_paths = array(

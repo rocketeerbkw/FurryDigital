@@ -57,15 +57,24 @@ class UploadsController extends BaseController
 
         if ($id !== 0)
         {
-            // Edit existing record.
-            // TODO: Reimplement administrator access.
-            $record = Upload::getRepository()->findOneBy(array('id' => $id, 'user_id' => $this->user->id));
+            $record = Upload::find($id);
 
-            if (!($record instanceof Upload))
-                throw new \App\Exception('Submission ID not found!');
+            if ($record instanceof Upload)
+            {
+                if ($this->user->id == $record->user_id)
+                    $admin_mode = false;
+                elseif ($this->acl->isAllowed('manage uploads'))
+                    $admin_mode = true;
+                else
+                    throw new \App\Exception('Upload not found!');
+            }
+            else
+            {
+                throw new \App\Exception('Upload not found!');
+            }
 
             $edit_mode = true;
-            $type = $record->submission_type;
+            $type = $record->upload_type;
         }
         else
         {
@@ -123,8 +132,6 @@ class UploadsController extends BaseController
                 $record = new Upload();
                 $record->upload_type = $type;
                 $record->user = $this->user;
-                $record->is_hidden = true; // Hide until properly populated.
-                $record->save(); // Immediately save to generate IDs used in next steps.
             }
 
             unset($data['submission'], $data['thumbnail']);
@@ -167,11 +174,12 @@ class UploadsController extends BaseController
                     $is_animated = count($submission_image->layers()) > 1;
                     
                     // So, it seems Imagine really loves to screw up GIFs, so lets avoid that
-                    if ($is_animated) {
+                    if ($is_animated)
+                    {
                         $dest_path = $submission_paths['full']['path'];
                         
                         // Copying this instead of moving due to the file being reused by preview/thumbnail
-                        $s3->upload($submission_file->getTempName(), $dest_path);
+                        $s3->copy($submission_file->getTempName(), $dest_path);
                     }
                     else
                     {
@@ -179,20 +187,17 @@ class UploadsController extends BaseController
                         $s3->upload($submission_paths['full']['temp'], $submission_paths['full']['path']);
                     }
 
-
                     // Make this file the thumbnail if no other is specified.
                     if (empty($files['thumbnail']) && (!$edit_mode || $data['rebuild_thumbnail']))
                     {
                         $thumbnail_file = $submission_file;
                         $thumbnail_paths = $submission_paths;
-
                         $thumbnail_image = $submission_image;
                     }
                     
                     // Set up the preview parameters
                     $preview_file = $submission_file;
                     $preview_paths = $submission_paths;
-
                     $preview_image = $submission_image;
                 }
                 else
@@ -219,11 +224,10 @@ class UploadsController extends BaseController
             }
             
             // If we haven't set a preview image/path, then use the thumbnail if possible
-            if (is_null($preview_file))
+            if (is_null($preview_file) && !is_null($thumbnail_file))
             {
                 $preview_file = $thumbnail_file;
                 $preview_paths = $thumbnail_paths;
-
                 $preview_image = $thumbnail_image;
             }
             
@@ -258,21 +262,14 @@ class UploadsController extends BaseController
             if ($thumbnail_file)
                 @unlink($thumbnail_file->getTempName());
 
-            // Unhide the record that was hidden earlier.
-            if (!$edit_mode)
-                $record->is_hidden = false;
-
             $record->save();
 
-            $view_url = $this->url->get('view/'.$record->id);
-            $view_link = 'You can <a href="'.$view_url.'" target="_blank_">view your submission\'s public page here</a>.';
-
             if ($edit_mode)
-                $this->alert('<b>Submission Updated!</b><br>'.$view_link, 'green');
+                $this->alert('<b>Submission Updated!</b>', 'green');
             else
-                $this->alert('<b>New Submission Uploaded!</b><br>'.$view_link, 'green');
+                $this->alert('<b>New Submission Uploaded!</b>', 'green');
 
-            return $this->redirectFromHere(array('action' => 'index', 'id' => NULL, 'type' => NULL));
+            return $this->redirectToName('upload_view', ['id' => $record->id]);
         }
 
         // Render the main form.

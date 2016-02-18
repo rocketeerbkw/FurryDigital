@@ -97,14 +97,10 @@
         </div>
     </div>
     
-    {% if acl.isAllowed('administer all') %}
-        {{ partial("upload/admin_options") }}
-    {% endif %}
-    
-    {% if is_owner %}
+    {% if is_owner or acl.isAllowed('manage uploads') %}
         <div class="p20lr p10t p10b bg2 auto_link borderbot">
-            <h3 class="inline">Owner Options</h3>
-            <a class="p10l" href="{{ url.route(['module': 'account', 'controller': 'uploads', 'action': 'edit', 'id': upload.id]) }}">Edit Upload Details</a>
+            <h3 class="inline">Manage This Upload</h3>
+            <a class="p10l" href="{{ url.route(['module': 'account', 'controller': 'uploads', 'action': 'edit', 'id': upload.id]) }}">Edit File &amp; Details</a>
         </div>
     {% endif %}
 
@@ -123,9 +119,9 @@
         
         {% if keyword_arr %}
             Keywords:
-                {% for keyword in keyword_arr %}
-                    <span class="tags"><a href="/search/@keywords {{ keyword }}">{{ keyword }}</a></span>
-                {% endfor %}
+            {% for keyword in keyword_arr %}
+                <span class="tags"><a href="/search/@keywords {{ keyword }}">{{ keyword }}</a></span>
+            {% endfor %}
         {% endif %}
     </div>
 </div>
