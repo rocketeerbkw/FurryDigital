@@ -54,7 +54,11 @@
         <div class="btn-group">
             <a class="btn btn-sm btn-default" href="{{ upload.getFullUrl() }}" target="_blank">Download</a>
         {% if auth.isLoggedIn() %}
-            <a class="btn btn-sm btn-success" href="{{ url.named('upload_fav', ['id': upload.id, 'key': upload_csrf_str]) }}">{{ is_favorited }}</a>
+            {% if is_favorited %}
+                <a class="btn btn-sm btn-danger" href="{{ url.named('upload_fav', ['id': upload.id, 'key': upload_csrf_str]) }}">Unfavorite</a>
+            {% else %}
+                <a class="btn btn-sm btn-success" href="{{ url.named('upload_fav', ['id': upload.id, 'key': upload_csrf_str]) }}">Favorite</a>
+            {% endif %}
             <a class="btn btn-sm btn-default" href="{{ url.route(['module': 'account', 'controller': 'messages', 'action': 'compose']) }}?recipient={{ upload.user.lower }}">Message {{ upload.user.username|e }}</a>
         {% endif %}
         </div>
@@ -111,7 +115,7 @@
     <div class="tags-row p20lr">
         <div class="p10b hideonmobile">
             {% if upload.category %}<strong>Category:</strong> {{ upload.getCategoryReadable() }}  > {% endif %}
-            {% if upload.subtype %}{{ upload.getSubtypeReadable() }}{% endif %}
+            {% if upload.theme %}{{ upload.getThemeReadable() }}{% endif %}
             {% if upload.width and upload.height %} | <strong>Resolution:</strong> {{ upload.width }}x{{ upload.height }}px{% endif %}
             {% if upload.species %}| <strong>Species:</strong> {{ upload.getSpeciesReadable() }}{% endif %}
             {% if upload.gender %}| <strong>Gender:</strong> {{ upload.getGenderReadable() }}{% endif %}

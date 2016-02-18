@@ -14,7 +14,7 @@
     <a class="stats hideonmobile" href="{{ url.route(['module': 'account', 'controller': 'settings', 'action':'profile']) }}">Edit My Profile</a>
 {% endif %}
 {% if auth.isLoggedIn() AND user.lower != owner.lower %}
-    <a class="stats" href="{{ url.get('newpm/'~owner.lower) }}">Note</a>
+    <a class="stats" href="{{ url.route(['module': 'account', 'controller': 'messages', 'action': 'compose']) }}?recipient={{ owner.lower }}">Message</a>
     {% if is_watching %}
         <a class="stats" href="{{ url.named('user_unwatch', ['username': owner.lower]) }}" class="red">- Unwatch</a>
     {% else %}

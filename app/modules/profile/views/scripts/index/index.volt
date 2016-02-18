@@ -15,13 +15,11 @@
             </div>
             {% endif %}
 
+            {% if owner.profileinfo %}
             <div class="user-profile-desc valigntop">
-                {% if owner.profileinfo %}
-                    {{ parser.message(owner.profileinfo) }}
-                {% else %}
-                    <i>Not Available...</i>
-                {% endif %}
+                {{ parser.message(owner.profileinfo) }}
             </div>
+            {% endif %}
         </div>
         <!-- END PROFILE -->
 
@@ -41,23 +39,35 @@
                     {% if latest_uploads %}
                     <div>
                         <h3><a href="{{ url.named('user_gallery', ['username': owner.lower]) }}">Gallery</a></h3>
-                        <center class="flow userpage-submissions linesubs">
-                        {% for row in latest_uploads %}
-                            <b id="sid_{{ row.id }}" class="r-{{ row.getRatingReadable() }}"><u><s><a href="{{ url.named('upload_view', ['id': row.id]) }}"><img class="enlthumb" alt="" preview_src="{{ row.getSmallUrl() }}" src="{{ row.getThumbnailUrl() }}"></a></s></u></b>
-                        {% endfor %}
-                        </center>
+
+                        <div class="grid">
+                            <div class="grid-sizer"></div>
+                            {% for row in latest_uploads %}
+                                <div id="sid_{{ row['id'] }}" class="grid-item r-{{ row.getRatingReadable() }}">
+                                    <a class="image" href="{{ url.named('upload_view', ['id': row['id']]) }}">
+                                        <img alt="" src="{{ row['thumbnail_url'] }}">
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        </div>
                     </div>
                     {% endif %}
 
                     {% if latest_faves %}
                     <div>
                         <h3><a href="{{ url.named('user_favorites', ['username': owner.lower]) }}">Favorites</a></h3>
-                        <center class="flow userpage-favorites linefavs">
-                        {% for fave in latest_faves %}
-                            {% set row=fave.upload %}
-                            <b id="sid_{{ row.id }}" class="r-{{ row.getRatingReadable() }}"><u><s><a href="{{ url.named('upload_view', ['id': row.id]) }}"><img class="enlthumb" alt=""  preview_src="{{ row.getSmallUrl() }}" src="{{ row.getThumbnailUrl() }}"></a></s></u></b>
-                        {% endfor %}
-                        </center>
+
+                        <div class="grid">
+                            <div class="grid-sizer"></div>
+                            {% for fave in latest_faves %}
+                                {% set row = fave.upload %}
+                                <div id="sid_{{ row['id'] }}" class="grid-item r-{{ row.getRatingReadable() }}">
+                                    <a class="image" href="{{ url.named('upload_view', ['id': row['id']]) }}">
+                                        <img alt="" src="{{ row['thumbnail_url'] }}">
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        </div>
                     </div>
                     {% endif %}
                 </div>

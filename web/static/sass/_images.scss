@@ -396,6 +396,9 @@ center.flow {
         max-height: 380px;
         max-width: 400px;
         vertical-align: middle;
+
+        object-fit: cover;
+        object-position: center;
     }
     .backdrop {
         width: 100%;

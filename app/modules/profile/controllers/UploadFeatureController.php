@@ -7,6 +7,11 @@ use \Entity\Favorite;
 
 class UploadFeatureController extends BaseController
 {
+    protected function permissions()
+    {
+        return $this->acl->isAllowed('is logged in');
+    }
+
     public function replyAction()
     {    
         $upload_id = (int)$this->getParam('id');
@@ -147,41 +152,33 @@ class UploadFeatureController extends BaseController
         $csrf_key = $this->getParam('key');
         
         // Verify this isn't a cross-domain attack before proceeding
-        if ($this->csrf->verify($csrf_key, '_upload_content')) {
-            // TODO: Check comment hiding rate limit here!
+        if ($this->csrf->verify($csrf_key, '_upload_content'))
+        {
             $upload_id = (int)$this->getParam('id');
-            
             $upload = Upload::find($upload_id);
             
             // Verifying if the Upload exists
             if (!($upload instanceof Upload))
                 throw new \App\Exception('Upload not found!');
-            
-            $favorite = $this->em->createQuery('SELECT f FROM \Entity\Favorite f WHERE f.upload_id = :upload_id')
-                                ->setParameter('upload_id', $upload->id)
-                                ->getArrayResult();
-            
-            // Verify the user can even progress further
-            //self::_userCheck($upload);
-            
-            // If the favorite exists, delete it. If not, create it!
-            // TODO: Look into soft deleting
-            if (count($favorite) > 0)
-                \App\Utilities::print_r($favorite);
-                //$favorite->delete();
-            else {
+
+            $favorite = Favorite::getRepository()->findOneBy(array('user_id' => $this->user->id, 'upload_id' => $upload->id));
+
+            if ($favorite instanceof Favorite)
+            {
+                $favorite->delete();
+
+                $this->alert('<b>Upload unfavorited.</b>', 'green');
+            }
+            else
+            {
                 $favorite = new Favorite();
-                
                 $favorite->upload = $upload;
                 $favorite->user = $this->user;
-                
                 $favorite->save();
+
+                $this->alert('<b>Upload favorited!</b>', 'green');
             }
-            
-            
-            
-            // Redirect to the Upload page to our comment!
-            // TODO: Add a way to auto-lock on to the comment. Maybe a perma-link style approach?
+
             return $this->redirectToName('upload_view', array('id' => $upload->id));            
         }
     }
@@ -216,10 +213,5 @@ class UploadFeatureController extends BaseController
             }
         }
         */
-    }
-    
-    protected function permissions()
-    {
-        return $this->acl->isAllowed('is logged in');
     }
 }

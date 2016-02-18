@@ -26,7 +26,7 @@ class UploadController extends BaseController
             $favorite = Favorite::getRepository()->findOneBy(array('upload_id' => $upload->id, 'user_id' => $this->user->id));
             $is_favorited = ($favorite instanceof Favorite);
 
-            $this->view->is_favorited = ($is_favorited ? 'Unfavorite' : 'Favorite');
+            $this->view->is_favorited = $is_favorited;
 
             // Determine if the user is the owner of the upload
             $this->view->is_owner = ($upload->user_id == $this->user->id);
@@ -36,7 +36,7 @@ class UploadController extends BaseController
         }
         else
         {
-            $this->view->is_favorited = '';
+            $this->view->is_favorited = false;
             $this->view->is_owner = false;
         }
 

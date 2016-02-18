@@ -192,19 +192,19 @@ class Upload extends \App\Doctrine\Entity
      * @var integer
      * @Column(name="subtype", type="smallint", nullable=false)
      */
-    protected $subtype = 1;
+    protected $theme = 1;
     
     /**
      * Get a human-readable version of the subtype value.
      *
      * @return string
      */
-    public function getSubtypeReadable()
+    public function getThemeReadable()
     {
         $di = \Phalcon\Di::getDefault();
         $config = $di['config'];
         
-        return self::_getReadable($this->subtype, $config->fa->art_types->toArray());
+        return self::_getReadable($this->theme, $config->fa->art_types->toArray());
     }
 
     /**
