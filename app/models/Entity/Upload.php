@@ -56,7 +56,7 @@ class Upload extends \App\Doctrine\Entity
     public function created()
     {
         User::incrementCounter('uploads', $this->user->id);
-        \App\Legacy\Notifications::dispatch('upload', $this->id, $this->user->id, $this->user->id);
+        \App\Notifications::dispatch('upload', $this->id, $this->user->id, $this->user->id);
     }
 
     /**
@@ -81,12 +81,12 @@ class Upload extends \App\Doctrine\Entity
         {
             foreach($this->comments as $comment)
             {
-                \App\Legacy\Notifications::purge('upload_comment', $comment->id, $this->user_id);
+                \App\Notifications::purge('upload_comment', $comment->id, $this->user_id);
             }
         }
 
         User::decrementCounter('uploads', $this->user_id);
-        \App\Legacy\Notifications::purge('upload', $this->id);
+        \App\Notifications::purge('upload', $this->id);
     }
 
     /**
@@ -166,7 +166,7 @@ class Upload extends \App\Doctrine\Entity
         $di = \Phalcon\Di::getDefault();
         $config = $di['config'];
         
-        return self::_getReadable($this->category, $config->fa->categories->toArray());
+        return self::_getReadable($this->category, $config->fd->categories->toArray());
     }
 
     /**
@@ -185,7 +185,7 @@ class Upload extends \App\Doctrine\Entity
         $di = \Phalcon\Di::getDefault();
         $config = $di['config'];
         
-        return self::_getReadable($this->species, $config->fa->species->toArray());
+        return self::_getReadable($this->species, $config->fd->species->toArray());
     }
 
     /**
@@ -204,7 +204,7 @@ class Upload extends \App\Doctrine\Entity
         $di = \Phalcon\Di::getDefault();
         $config = $di['config'];
         
-        return self::_getReadable($this->theme, $config->fa->art_types->toArray());
+        return self::_getReadable($this->theme, $config->fd->art_types->toArray());
     }
 
     /**
@@ -223,7 +223,7 @@ class Upload extends \App\Doctrine\Entity
         $di = \Phalcon\Di::getDefault();
         $config = $di['config'];
         
-        return self::_getReadable($this->gender, $config->fa->genders->toArray());
+        return self::_getReadable($this->gender, $config->fd->genders->toArray());
     }
 
     /**
@@ -574,7 +574,7 @@ class Upload extends \App\Doctrine\Entity
 
         // Determine the folder of the submission by type.
         $config = self::getConfig();
-        $types = $config->fa->upload_types->toArray();
+        $types = $config->fd->upload_types->toArray();
 
         if (!empty($types[$this->upload_type]['folder']))
             $folder = $types[$this->upload_type]['folder'];

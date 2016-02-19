@@ -52,7 +52,7 @@ class UploadComment extends \App\Doctrine\Entity
         User::incrementCounter('comments_sent', $this->user_id);
         User::incrementCounter('comments_received', $this->upload->user_id);
 
-        \App\Legacy\Notifications::dispatch('upload_comment', $this->id, $this->upload->user_id, $this->upload->id);
+        \App\Notifications::dispatch('upload_comment', $this->id, $this->upload->user_id, $this->upload->id);
     }
 
     /**
@@ -63,7 +63,7 @@ class UploadComment extends \App\Doctrine\Entity
         User::decrementCounter('comments_sent', $this->user_id);
         User::decrementCounter('comments_received', $this->upload->user_id);
 
-        \App\Legacy\Notifications::purge('upload_comment', $this->id, $this->upload->user_id);
+        \App\Notifications::purge('upload_comment', $this->id, $this->upload->user_id);
     }
 
     /**

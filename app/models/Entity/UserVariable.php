@@ -64,7 +64,7 @@ class UserVariable extends \App\Doctrine\Entity
         if (!$var_definitions)
         {
             $di = \Phalcon\Di::getDefault();
-            $var_definitions = $di['config']->fa->user_variables->toArray();
+            $var_definitions = $di['config']->fd->user_variables->toArray();
         }
 
         return $var_definitions;

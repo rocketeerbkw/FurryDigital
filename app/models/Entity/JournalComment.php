@@ -29,7 +29,7 @@ class JournalComment extends \App\Doctrine\Entity
      */
     public function created()
     {
-        \App\Legacy\Notifications::dispatch('journal_comment', $this->id, $this->journal->user_id);
+        \App\Notifications::dispatch('journal_comment', $this->id, $this->journal->user_id);
     }
 
     /**
@@ -37,7 +37,7 @@ class JournalComment extends \App\Doctrine\Entity
      */
     public function deleted()
     {
-        \App\Legacy\Notifications::purge('journal_comment', $this->id, $this->journal->user_id);
+        \App\Notifications::purge('journal_comment', $this->id, $this->journal->user_id);
     }
 
     /**

@@ -28,7 +28,7 @@ class Watch extends \App\Doctrine\Entity
      */
     public function created()
     {
-        \App\Legacy\Notifications::dispatch('watch', $this->id, $this->target->id, $this->user->id);
+        \App\Notifications::dispatch('watch', $this->id, $this->target->id, $this->user->id);
     }
 
     /**
@@ -36,7 +36,7 @@ class Watch extends \App\Doctrine\Entity
      */
     public function deleted()
     {
-        \App\Legacy\Notifications::purge('watch', $this->id, $this->target_id);
+        \App\Notifications::purge('watch', $this->id, $this->target_id);
     }
 
     /**

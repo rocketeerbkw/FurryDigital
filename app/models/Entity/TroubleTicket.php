@@ -137,7 +137,7 @@ class TroubleTicket extends \App\Doctrine\Entity
             $di = \Phalcon\Di::getDefault();
             $config = $di['config'];
 
-            $types_raw = $config->fa->trouble_ticket_types->toArray();
+            $types_raw = $config->fd->trouble_ticket_types->toArray();
 
             $type_lookup = array();
             foreach($types_raw as $group_name => $group_items)

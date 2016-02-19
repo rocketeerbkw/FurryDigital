@@ -4,6 +4,7 @@ return array(
     'method'        => 'post',
     'id'            => 'comment_form',
     'name'          => 'myform',
+
     'elements'      => array(
         'parent_id'      => array('hidden', array(
             'value' => ''
@@ -24,8 +25,8 @@ return array(
             'type'  => 'submit',
             'name'  => 'submit',
             'helper' => 'formButton',
-            'label' => 'Post Your Comment',
-            'class' => 'button centerthis floatright',
+            'label' => 'Post Comment',
+            'class' => 'btn btn-sm btn-default',
         )),
     ),
 );

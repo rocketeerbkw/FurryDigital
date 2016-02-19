@@ -52,7 +52,7 @@ class UploadsController extends BaseController
 
     public function editAction()
     {
-        $types = $this->config->fa->upload_types->toArray();
+        $types = $this->config->fd->upload_types->toArray();
         $id = (int)$this->getParam('id');
 
         if ($id !== 0)

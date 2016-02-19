@@ -72,25 +72,25 @@ return array(
 
                 'category' => array('select', array(
                     'label' => 'Category',
-                    'options' => AppUtils::reverseArray($config->fa->categories->toArray()),
+                    'options' => AppUtils::reverseArray($config->fd->categories->toArray()),
                     'layout' => 'col50',
                 )),
 
                 'theme' => array('select', array(
                     'label' => 'Theme',
-                    'options' => AppUtils::reverseArray($config->fa->art_types->toArray()),
+                    'options' => AppUtils::reverseArray($config->fd->art_types->toArray()),
                     'layout' => 'col50',
                 )),
 
                 'species' => array('select', array(
                     'label' => 'Species',
-                    'options' => AppUtils::reverseArray($config->fa->species->toArray()),
+                    'options' => AppUtils::reverseArray($config->fd->species->toArray()),
                     'layout' => 'col50',
                 )),
 
                 'gender' => array('select', array(
                     'label' => 'Gender',
-                    'options' => AppUtils::reverseArray($config->fa->genders->toArray()),
+                    'options' => AppUtils::reverseArray($config->fd->genders->toArray()),
                     'layout' => 'col50',
                 )),
 

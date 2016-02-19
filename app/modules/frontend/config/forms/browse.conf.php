@@ -16,22 +16,22 @@ return array(
 
         'category' => array('select', array(
             'label' => 'Category',
-            'options' => AppUtils::reverseArray($config->fa->categories->toArray()),
+            'options' => AppUtils::reverseArray($config->fd->categories->toArray()),
         )),
 
         'theme' => array('select', array(
             'label' => 'Theme',
-            'options' => AppUtils::reverseArray($config->fa->art_types->toArray()),
+            'options' => AppUtils::reverseArray($config->fd->art_types->toArray()),
         )),
 
         'species' => array('select', array(
             'label' => 'Species',
-            'options' => AppUtils::reverseArray($config->fa->species->toArray()),
+            'options' => AppUtils::reverseArray($config->fd->species->toArray()),
         )),
 
         'gender' => array('select', array(
             'label' => 'Gender',
-            'options' => AppUtils::reverseArray($config->fa->genders->toArray()),
+            'options' => AppUtils::reverseArray($config->fd->genders->toArray()),
         )),
 
         'rating' => array('multiCheckbox', array(

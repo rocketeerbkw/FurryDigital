@@ -3,7 +3,7 @@ use App\Utilities;
 use Entity\Upload;
 
 $di = \Phalcon\Di::getDefault();
-$var_config = $di['config']->fa->user_variables->toArray();
+$var_config = $di['config']->fd->user_variables->toArray();
 
 return array(
     'method' => 'post',

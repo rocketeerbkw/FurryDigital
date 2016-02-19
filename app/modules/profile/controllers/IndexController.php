@@ -21,7 +21,7 @@ class IndexController extends BaseController
     {
         // Compile all social info.
         $owner_social = array();
-        $social_types = $this->config->fa->social->toArray();
+        $social_types = $this->config->fd->social->toArray();
         $escaper = new \Phalcon\Escaper();
 
         foreach($social_types as $social_category => $social_items)

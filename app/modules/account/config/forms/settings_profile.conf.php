@@ -25,7 +25,7 @@ $form_config = array(
 
                 'typeartist' => array('select', array(
                     'label' => 'Type of Artist/User',
-                    'options' => array('' => 'Member') + $config->fa->artist_types->toArray(),
+                    'options' => array('' => 'Member') + $config->fd->artist_types->toArray(),
                     'belongsTo' => 'user',
                 )),
 
@@ -44,7 +44,7 @@ $form_config = array(
 
                 'mood' => array('select', array(
                     'label' => 'What Best Describes Your Mood?',
-                    'options' => array('' => '') + $config->fa->moods->toArray(),
+                    'options' => array('' => '') + $config->fd->moods->toArray(),
                     'belongsTo' => 'user',
                     'layout' => 'col33',
                 )),
@@ -217,7 +217,7 @@ $form_config = array(
 
 // Load social information into the appropriate fieldsets.
 
-$social_groups = $config->fa->social->toArray();
+$social_groups = $config->fd->social->toArray();
 foreach($social_groups as $group_key => $group_elements)
 {
     $group_name = 'contact_'.$group_key;

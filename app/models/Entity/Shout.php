@@ -30,7 +30,7 @@ class Shout extends \App\Doctrine\Entity
      */
     public function created()
     {
-        \App\Legacy\Notifications::dispatch('shout', $this->id, $this->recipient->id, $this->sender->id);
+        \App\Notifications::dispatch('shout', $this->id, $this->recipient->id, $this->sender->id);
     }
 
     /**
@@ -38,7 +38,7 @@ class Shout extends \App\Doctrine\Entity
      */
     public function deleted()
     {
-        \App\Legacy\Notifications::purge('shout', $this->id, $this->recipient->id);
+        \App\Notifications::purge('shout', $this->id, $this->recipient->id);
     }
 
     /**

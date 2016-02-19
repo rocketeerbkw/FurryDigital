@@ -30,7 +30,7 @@ class Journal extends \App\Doctrine\Entity
     public function created()
     {
         User::incrementCounter('journals', $this->user_id);
-        \App\Legacy\Notifications::dispatch('upload', $this->id);
+        \App\Notifications::dispatch('upload', $this->id);
     }
 
     /**
@@ -42,12 +42,12 @@ class Journal extends \App\Doctrine\Entity
         {
             foreach($this->comments as $comment)
             {
-                \App\Legacy\Notifications::purge('journal_comment', $comment->id, $this->user_id);
+                \App\Notifications::purge('journal_comment', $comment->id, $this->user_id);
             }
         }
 
         User::decrementCounter('journals', $this->user_id);
-        \App\Legacy\Notifications::purge('journal', $this->id);
+        \App\Notifications::purge('journal', $this->id);
     }
 
 

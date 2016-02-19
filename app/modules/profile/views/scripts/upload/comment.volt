@@ -38,7 +38,7 @@
                                 </span>
                                 
                                 <? if ($comment->canHide($this->user)): ?>
-                                    <a href="{{ url.named('upload_comment_hide', ['id': comment.id, 'key': comment_csrf_str]) }}" onclick="javascript: return(confirm(\'Are you sure you want to hide this comment?{% if !acl.isAllowed('administer all') %} You will not be able to restore it once you do.{% endif %}\'))"><span class="hideonmobile">| </span>{% if comment.isHidden() %}Unh{% else %}H{% endif %}ide Comment</a>
+                                    <a href="{{ url.named('upload_comment_hide', ['id': comment.id, 'key': comment_csrf_str]) }}" onclick="return(confirm('Are you sure you want to hide this comment?{% if !acl.isAllowed('administer all') %} You will not be able to restore it once you do.{% endif %}'))"><span class="hideonmobile">| </span>{% if comment.isHidden() %}Unh{% else %}H{% endif %}ide Comment</a>
                                 <? endif; ?>
                             </div>
 

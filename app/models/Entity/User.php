@@ -641,7 +641,7 @@ class User extends \App\Doctrine\Entity
         $di = \Phalcon\Di::getDefault();
         $config = $di['config'];
 
-        $species_raw = $config->fa->species->toArray();
+        $species_raw = $config->fd->species->toArray();
         $species = \App\Legacy\Utilities::reverseArray($species_raw);
 
         if (isset($species[$this->species]))
@@ -1125,81 +1125,16 @@ class User extends \App\Doctrine\Entity
         if (!$notify_types)
         {
             $di = \Phalcon\Di::getDefault();
-            $url = $di['url'];
+            $config = $di->get('config');
 
-            $notify_types = array(
-                'favorite' => array(
-                    'count_var' => 'notify_favorites',
-                    'relation'  => 'favorite_notifications',
-                    'class'     => 'FavoriteNotify',
-                    'abbr'      => 'F',
-                    'title'     => 'Favorite',
-                    'type'      => 'other',
-                ),
-                /*
-                'journal_comment_notifications' => array(
-                    'short'     => 'journal_comment',
-                    'abbr'      => 'JC',
-                    'title'     => 'Journal Comment',
-                ),
-                */
-                'journal'  => array(
-                    'count_var' => 'notify_journals',
-                    'relation'  => 'journal_notifications',
-                    'class'     => 'JournalNotify',
-                    'abbr'      => 'J',
-                    'title'     => 'Journal',
-                    'type'      => 'other',
-                ),
-                'note' => array(
-                    'count_var' => 'notify_notes',
-                    'relation'  => 'notes_received',
-                    'abbr'      => 'N',
-                    'title'     => 'Note',
-                    'type'      => 'pms',
-                ),
-                'shout' => array(
-                    'count_var' => 'notify_shouts',
-                    'relation'  => 'shout_notifications',
-                    'class'     => 'ShoutNotify',
-                    'abbr'      => 'SH',
-                    'title'     => 'Shout',
-                    'type'      => 'other',
-                ),
-                'upload_comment' => array(
-                    'count_var' => 'notify_upload_comments',
-                    'relation'  => 'upload_comment_notifications',
-                    'class'     => 'UploadCommentNotify',
-                    'abbr'      => 'C',
-                    'title'     => 'Comment',
-                    'type'      => 'other',
-                ),
-                'upload' => array(
-                    'count_var' => 'notify_uploads',
-                    'relation'  => 'upload_notifications',
-                    'class'     => 'UploadNotify',
-                    'abbr'      => 'S',
-                    'title'     => 'Upload',
-                    'type'      => 'uploads',
-                ),
-                'trouble_ticket'   => array(
-                    'count_var' => 'notify_tickets',
-                    'relation'  => 'trouble_ticket_notifications',
-                    'class'     => 'TroubleTicketNotify',
-                    'abbr'      => 'TT',
-                    'title'     => 'Trouble Ticket',
-                    'type'      => 'other',
-                ),
-                'watch' => array(
-                    'count_var' => 'notify_watches',
-                    'relation'  => 'watch_notifications',
-                    'class'     => 'WatchNotify',
-                    'abbr'      => 'W',
-                    'title'     => 'Watch',
-                    'type'      => 'other',
-                ),
-            );
+            $notify_types = $config->fd->notifications->toArray();
+            foreach($notify_types as &$type)
+            {
+                $type['count_var'] = $type['user_count'];
+                $type['class'] = $type['notify_table'];
+            }
 
+            $url = $di->get('url');
             foreach($notify_types as $type_key => &$type_info)
             {
                 $type_info['url'] = $url->route(['module' => 'account', 'controller' => 'messages', 'action' => $type_info['type']]);

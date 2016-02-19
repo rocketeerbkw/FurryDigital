@@ -83,7 +83,7 @@ class Parser
      */
     public function smilies($string)
     {
-        $smilies = $this->config->fa->smilies->toArray();
+        $smilies = $this->config->fd->smilies->toArray();
 
         foreach($smilies as $key => $val)
             $string = str_ireplace($key, '<img alt="" src="'.$this->url->getStatic('img/smilies/'.$val).'">', $string);

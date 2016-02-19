@@ -3,7 +3,7 @@ $di = \Phalcon\Di::getDefault();
 $config = $di['config'];
 
 // Assemble dropdown for trouble ticket types.
-$types_raw = $config->fa->trouble_ticket_types->toArray();
+$types_raw = $config->fd->trouble_ticket_types->toArray();
 $type_select = array();
 foreach($types_raw as $group_name => $group_items)
 {

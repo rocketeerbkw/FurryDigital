@@ -1,5 +1,5 @@
 <?php
-namespace App\Legacy;
+namespace App;
 
 class Notifications
 {
@@ -145,73 +145,10 @@ class Notifications
 
     protected static function getEntityInfo($entity_name)
     {
-        $entity_info = array(
-            'favorite' => array(
-                'single_user'       => true,
-                'entity_table'      => 'Entity\Favorite',
-                'notify_table'      => 'Entity\FavoriteNotify',
-                'user_count'        => 'notify_favorites',
-                'relationship'      => 'favorite',
-                'secondary'         => 'upload_id',
-            ),
-            'upload' => array(
-                'single_user'       => false,
-                'entity_table'      => 'Entity\Upload',
-                'notify_table'      => 'Entity\UploadNotify',
-                'user_count'        => 'notify_uploads',
-                'relationship'      => 'upload',
-            ),
-            'upload_comment' => array(
-                'single_user'       => true,
-                'entity_table'      => 'Entity\UploadComment',
-                'notify_table'      => 'Entity\UploadCommentNotify',
-                'user_count'        => 'notify_comments',
-                'relationship'      => 'comment',
-                'secondary'         => 'upload_id',
-            ),
-            'journal' => array(
-                'single_user'       => false,
-                'entity_table'      => 'Entity\Journal',
-                'notify_table'      => 'Entity\JournalNotify',
-                'user_count'        => 'notify_journals',
-                'relationship'      => 'upload',
-            ),
-            'journal_comment' => array(
-                'single_user'       => true,
-                'entity_table'      => 'Entity\JournalComment',
-                'notify_table'      => 'Entity\JournalCommentNotify',
-                'user_count'        => 'notify_comments',
-                'relationship'      => 'comment',
-            ),
-            'note' => array(
-                'single_user'       => true,
-                'entity_table'      => 'Entity\Note',
-                'user_count'        => 'notify_notes',
-            ),
-            'shout' => array(
-                'single_user'       => true,
-                'entity_table'      => 'Entity\Shout',
-                'notify_table'      => 'Entity\ShoutNotify',
-                'user_count'        => 'notify_shouts',
-                'relationship'      => 'shout',
-                'secondary'         => 'source_id',
-            ),
-            'ticket' => array(
-                'single_user'       => true,
-                'entity_table'      => 'Entity\TroubleTicket',
-                'notify_table'      => 'Entity\TroubleTicketNotify',
-                'user_count'        => 'notify_tickets',
-                'relationship'      => 'ticket',
-            ),
-            'watch' => array(
-                'single_user'       => true,
-                'entity_table'      => 'Entity\Watch',
-                'notify_table'      => 'Entity\WatchNotify',
-                'user_count'        => 'notify_watches',
-                'relationship'      => 'watch',
-                'secondary'         => 'source_id',
-            ),
-        );
+        $di = \Phalcon\Di::getDefault();
+        $config = $di->get('config');
+
+        $entity_info = $config->fd->notifications->toArray();
 
         if (!isset($entity_info[$entity_name]))
             throw new \App\Exception('Cannot handle notifications for "'.$entity_name.'".');

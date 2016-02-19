@@ -36,7 +36,7 @@ class TroubleTicketComment extends \App\Doctrine\Entity
     public function created()
     {
         if ($this->user_id !== $this->ticket->user_id)
-            \App\Legacy\Notifications::dispatch('ticket', $this->ticket->id, $this->ticket->user_id);
+            \App\Notifications::dispatch('ticket', $this->ticket->id, $this->ticket->user_id);
     }
 
     /**
@@ -44,7 +44,7 @@ class TroubleTicketComment extends \App\Doctrine\Entity
      */
     public function deleted()
     {
-        \App\Legacy\Notifications::purge('ticket', $this->id, $this->ticket->user_id);
+        \App\Notifications::purge('ticket', $this->id, $this->ticket->user_id);
     }
 
     /**

@@ -72,7 +72,7 @@ class Legacy
 
         // Load the site-wide settings from the global config.
         $config = $this->di->get('config');
-        $this->settings = $config->fa->system->toArray();
+        $this->settings = $config->fd->system->toArray();
 
         // Initialize the App-specific user array and load it into the DI container.
         $this->user = $this->di->get('user');

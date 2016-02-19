@@ -9,7 +9,7 @@ use App\Legacy\Utilities as AppUtils;
 $di = \Phalcon\Di::getDefault();
 $config = $di['config'];
 
-$vars_config = $config->fa->user_variables->toArray();
+$vars_config = $config->fd->user_variables->toArray();
 
 $order_by_select = array();
 foreach($vars_config['search_order']['allowed'] as $order_name)
@@ -23,7 +23,7 @@ $perpage_select = array();
 foreach($vars_config['perpage']['allowed'] as $perpage_name)
     $perpage_select[$perpage_name] = $perpage_name;
 
-$upload_types_config = $config->fa->upload_types->toArray();
+$upload_types_config = $config->fd->upload_types->toArray();
 
 $upload_type_select = array();
 foreach($upload_types_config as $upload_type_key => $upload_type_info)
