@@ -8,7 +8,7 @@
                 <p>Don't have an account within the {{ config.application.name }} system? Create one below.</p>
 
                 <div class="buttons">
-                    <a class="btn btn-primary"><i class="icon-asterisk"></i> Create New Account</a>
+                    <a class="btn btn-primary" href="{{ url.routeFromHere(['module': 'account', 'controller': 'register', 'action': 'index']) }}"><i class="icon-asterisk"></i> Create New Account</a>
                 </div>
             </div>
         </div>
