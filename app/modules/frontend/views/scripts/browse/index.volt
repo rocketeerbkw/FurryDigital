@@ -20,6 +20,7 @@
                         <div id="sid_{{ row['id'] }}" class="grid-item r-{{ row.getRatingReadable() }} t-{{ row.getUploadTypeName() }}">
                             <a class="image" href="{{ url.get('view/'~row['id']) }}">
                                 <img alt="" src="{{ row['thumbnail_url'] }}">
+                                <div class="image-type" title="{{ row.getUploadTypeName()|capitalize }}"><i class="{{ row.getUploadTypeIcon() }}"></i></div>
                             </a>
                             <span class="title" title="{{ row.title }}">{{ row.title }}</span>
                             <span class="artist"><a href="{{ url.named('user_view', ['username': row.user.lower]) }}">{{ row.user.username }}</a></span>

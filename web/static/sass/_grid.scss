@@ -35,8 +35,20 @@
     }
 
     a.image {
+        display: block;
+        position: relative;
         max-height: 150px;
         overflow: hidden;
+
+        .image-type {
+            position: absolute;
+            bottom: 5px;
+            right: 10px;
+
+            font-size: 15px;
+            color: #FFF;
+            text-shadow: 0 0 2px #000, 0 0 5px #000, 0 0 10px #000;
+        }
     }
 
     img {

@@ -123,7 +123,18 @@ class Upload extends \App\Doctrine\Entity
      */
     public function getUploadTypeName()
     {
-        return self::getUploadTypeText($this->upload_type);
+        $upload_type_info = self::getUploadTypeInfo($this->upload_type);
+        return $upload_type_info['name'];
+    }
+
+    /**
+     * Return the CSS class name for the upload type icon.
+     * @return string
+     */
+    public function getUploadTypeIcon()
+    {
+        $upload_type_info = self::getUploadTypeInfo($this->upload_type);
+        return $upload_type_info['icon'];
     }
 
     /**
@@ -686,19 +697,43 @@ class Upload extends \App\Doctrine\Entity
             return $rating_names[self::RATING_GENERAL];
     }
 
-    public static function getUploadTypeText($upload_type)
+    public static function getUploadTypeInfo($upload_type)
     {
         $upload_types = array(
-            self::TYPE_IMAGE        => 'image',
-            self::TYPE_TEXT         => 'text',
-            self::TYPE_AUDIO        => 'audio',
-            self::TYPE_VIDEO        => 'video',
+            self::TYPE_IMAGE => array(
+                'name' => 'image',
+                'icon' => 'fa fa-file-image-o',
+            ),
+            self::TYPE_TEXT => array(
+                'name' => 'text',
+                'icon' => 'fa fa-file-text-o',
+            ),
+            self::TYPE_AUDIO => array(
+                'name' => 'audio',
+                'icon' => 'fa fa-file-sound-o',
+            ),
+            self::TYPE_VIDEO => array(
+                'name' => 'video',
+                'icon' => 'fa fa-file-video-o',
+            ),
         );
 
         if (isset($upload_types[$upload_type]))
             return $upload_types[$upload_type];
         else
             return $upload_types[self::TYPE_IMAGE];
+    }
+
+    public static function getUploadTypeText($upload_type)
+    {
+        $upload_type_info = self::getUploadTypeInfo($upload_type);
+        return $upload_type_info['name'];
+    }
+
+    public static function getUploadTypeIconClass($upload_type)
+    {
+        $upload_type_info = self::getUploadTypeInfo($upload_type);
+        return $upload_type_info['icon'];
     }
 
     public static function getConfig()

@@ -34,6 +34,28 @@ class IndexController extends BaseController
 
         if (!$frontpage_data)
         {
+            $type_records_raw = $this->em->createQuery('SELECT up.id, up.title, up.upload_type, up.description, up.rating, up.thumbnail, us.username, us.lower, us.avatar_mtime FROM Entity\Upload up JOIN up.user us WHERE up.is_scrap = 0 AND '.$rating_query.' ORDER BY up.id DESC')
+                ->setMaxResults(50)
+                ->getArrayResult();
+
+            foreach($type_records_raw as $record)
+            {
+                if ($record['rating'] != Upload::RATING_GENERAL)
+                    $this->app->setPageHasMatureContent(true);
+
+                $record['rating_text'] = Upload::getRatingText($record['rating']);
+                $record['thumbnail_url'] = Upload::getFileUrl($record['thumbnail']);
+
+                $upload_type_info = Upload::getUploadTypeInfo($record['upload_type']);
+                $record['upload_type_name'] = $upload_type_info['name'];
+                $record['upload_type_icon'] = $upload_type_info['icon'];
+
+                $record['avatar'] = User::getUserAvatar($record['lower'], $record['avatar_mtime']);
+
+                $frontpage_data[] = $record;
+            }
+
+            /*
             $frontpage_data = array();
 
             $record_types = array(
@@ -63,6 +85,7 @@ class IndexController extends BaseController
 
                 $frontpage_data[$type_key] = $type_records;
             }
+            */
 
             $cache->set($frontpage_data, $frontpage_cache_key, $frontpage_cache_lifetime);
         }
