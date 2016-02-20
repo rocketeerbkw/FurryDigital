@@ -8,6 +8,7 @@ use App\Legacy\Utilities as AppUtils;
 
 $di = \Phalcon\Di::getDefault();
 $config = $di['config'];
+$url = $di['url'];
 
 return array(
     'method'        => 'post',
@@ -61,6 +62,8 @@ return array(
 
                 'rating' => array('radio', array(
                     'label' => 'Rating',
+                    'description' => '<a href="'.$url->named('terms').'" target="_blank">Which rating should I use?</a>',
+
                     'default' => 0,
                     'options' => array(
                         Upload::RATING_GENERAL => '<b>General:</b> Suitable for all-ages.',

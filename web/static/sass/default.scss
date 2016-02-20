@@ -149,6 +149,16 @@ p {
     }
 }
 
+dl {
+    dt {
+        font-size: 15px;
+        font-weight: bold;
+    }
+    dd {
+        margin: 5px 0 5px 15px;
+    }
+}
+
 .clear {
     clear: both;
 }

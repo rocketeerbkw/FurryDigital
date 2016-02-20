@@ -1,9 +1,6 @@
-<h1>Terms of Service</h1>
-<h3>Updated: 2/3/2016</h3>
-
 <p>Our Terms of Service are written in plain english wherever possible. We reserve the right to apply reasonable interpretation to the enforcement of these rules and regulations, for the protection of the safety of our audience.</p>
 
-<h2>1. Acceptance and Compliance</h2>
+<h4>1. Acceptance and Compliance</h4>
 
 <dl>
     <dt>By being here, you agree to follow the rules.</dt>
@@ -27,7 +24,7 @@
     </dd>
 </dl>
 
-<h2>2. Modifications to this Agreement</h2>
+<h4>2. Modifications to this Agreement</h4>
 
 <dl>
     <dt>We can update this policy at any time, without notice.</dt>
@@ -36,7 +33,7 @@
     </dd>
 </dl>
 
-<h2>3. Account Registration and Usage</h2>
+<h4>3. Account Registration and Usage</h4>
 
 <dl>
     <dt>You must be at least 13 years old to use this site.</dt>
@@ -91,7 +88,7 @@
     </dd>
 </dl>
 
-<h2>4. Data Use, User Created Content, and Privacy</h2>
+<h4>4. Data Use, User Created Content, and Privacy</h4>
 
 <dl>
     <dt>You give us permission to host and share content you upload to the site. You retain your copyright to the content.</dt>
@@ -120,7 +117,7 @@
     </dd>
 </dl>
 
-<h2>5. Service and Accessibility</h2>
+<h4>5. Service and Accessibility</h4>
 
 <dl>
     <dt>Our services are provided on an "as is" and "as available" basis. We do not warranty our services or content (yours or ours).</dt>

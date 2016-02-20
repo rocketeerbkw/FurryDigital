@@ -8,14 +8,17 @@
 {% block content %}
     {% set title='Upload' %}
 
-    <h2>Select Content Type</h2>
-
-    {% for type_key, type_info in types %}
-        <div class="p5t p5b">
-            <h3><a href="{{ url.routeFromHere(['type': type_key]) }}">{{ type_info['name'] }}</a> &raquo;</h3>
-            <p class="p5">
-                {{ type_info['description'] }}
-            </p>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Select Content Type</h3>
         </div>
-    {% endfor %}
+        <div class="panel-body">
+            <dl>
+            {% for type_key, type_info in types %}
+                <dt><a href="{{ url.routeFromHere(['type': type_key]) }}">{{ type_info['name'] }}</a> &raquo;</dt>
+                <dd>{{ type_info['description'] }}</dd>
+            {% endfor %}
+            </dl>
+        </div>
+    </div>
 {% endblock %}

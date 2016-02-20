@@ -14,18 +14,11 @@ return array(
             'name' => 'home',
         ),
         // Terms of Service
-        '/tos' => array(
+        '/terms' => array(
             'module' => 'frontend',
             'controller' => 'info',
-            'action' => 'tos',
-            'name' => 'tos',
-        ),
-        // Code of Conduct
-        '/coc' => array(
-            'module' => 'frontend',
-            'controller' => 'info',
-            'action' => 'coc',
-            'name' => 'coc',
+            'action' => 'terms',
+            'name' => 'terms',
         ),
         // Staff
         '/staff' => array(
@@ -33,13 +26,6 @@ return array(
             'controller' => 'info',
             'action' => 'staff',
             'name' => 'staff',
-        ),
-        // Acceptable Upload Policy
-        '/aup' => array(
-            'module' => 'frontend',
-            'controller' => 'info',
-            'action' => 'aup',
-            'name' => 'aup',
         ),
 
         /**

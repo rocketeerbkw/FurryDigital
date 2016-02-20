@@ -212,9 +212,7 @@
         <strong>&copy; 2015-{{ date('Y') }} {{ config.application.name }}</strong> |
         <span class="hideonmobile">
             <a href="https://github.com/FurryDigital/FurryDigital">An Open-Source Project</a> |
-            <a href="{{ url.get('tos') }}">Terms of Service</a> |
-            <a href="{{ url.get('coc') }}">Code of Conduct</a> |
-            <a href="{{ url.get('aup') }}">Acceptable Upload Policy</a>
+            <a href="{{ url.get('terms') }}">Terms of Service / Code of Conduct</a>
         </span>
     </div>
 </div>
