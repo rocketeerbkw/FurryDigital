@@ -4,12 +4,12 @@
     <a class="stats" href="/adminaction/?action=nuke_gallery&lower=<?=urlencode($artist_lower)?>" >Nuke Gallery</a>
 } #}
 
-{% if acl.isAllowed('administer all') %}
+{# {% if acl.isAllowed('administer all') %}
     <a class="stats hideonmobile" href="/user/history/<?=$artist_lower?>/">History</a>
-{% endif %}
-{% if acl.isAllowed('administer all') OR (auth.isLoggedIn() AND user.lower == owner.lower) %}
+{% endif %} #}
+{# {% if acl.isAllowed('administer all') OR (auth.isLoggedIn() AND user.lower == owner.lower) %}
     <a class="stats hideonmobile" href="/stats/<?=$artist_lower?>/submissions/">Stats</a>
-{% endif %}
+{% endif %} #}
 {% if user.lower == owner.lower %}
     <a class="stats hideonmobile" href="{{ url.route(['module': 'account', 'controller': 'settings', 'action':'profile']) }}">Edit My Profile</a>
 {% endif %}

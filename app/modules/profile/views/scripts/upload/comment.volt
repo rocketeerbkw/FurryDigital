@@ -6,7 +6,7 @@
                 <div class="comments-flex">
 
                     <div class="comments-flex-item-icon">
-                        <a href="/user/{{ comment.user.lower }}/"><img class="usericonmobile" src="{{ comment.user.getUserAvatar() }}" alt="{{ comment.user.lower }}" /></a>
+                        <a href="{{ url.named('user_view', ['username': comment.user.lower]) }}"><img class="usericonmobile" src="{{ comment.user.getAvatar() }}" alt="{{ comment.user.lower }}" /></a>
                     </div>
 
                     <div class="comments-flex-item-main usercomment bg3">
@@ -15,25 +15,23 @@
 
                                 <div class="replyto-name comments-userline-username">
                                     {% if comment.hasBeenEdited() %}
-                                        <img class="floatleft" style="margin-top:4px" src="{{ static_url('/img/edited.png') }}" title="Comment has been edited by its owner" />
+                                        (Edited)
                                     {% endif %}
-                                    <h3><a class="fonthighlight" href="/user/{{ comment.user.lower }}/"><strong>{{ comment.user.lower }}</strong></a> {% if comment.isAdminComment() %}<img src="{{ static_url('/img/tail.gif') }}" title="Staff Member"/>{% endif %}</h3>
+                                    <h3><a class="fonthighlight" href="/user/{{ comment.user.lower }}/"><strong>{{ comment.user.lower }}</strong></a> {% if comment.isAdminComment() %}<span class="label label-primary">Staff Member</span>{% endif %}</h3>
                                 </div>
 
                                 <div class="comments-userline-datetime fontsize12">
-                                    <abbr class="moment-ago" mtime="{{ comment.created_at }}">{{ comment.getFormattedDate() }}</abbr> <a class="hideonmobile" href="#cid:{{ comment.id }}" title="Link to this Comment"><span class="fontcolor3">#link</span></a>
+                                    {{ app.formatDate(comment.created_at) }} <a class="hideonmobile" href="#cid:{{ comment.id }}" title="Link to this Comment"><span class="fontcolor3">#link</span></a>
                                 </div>
-
                             </div>
-
 
                             <div class="auto_link fontsize12 p5b">
                                 <span class="hideonmobile">
                                     Comments: {{ comment.user.getTotalComments() }} |
-                                    <a href="/gallery/{{ comment.user.lower }}/">Gallery</a> |
-                                    <a href="/journals/{{ comment.user.lower }}/">Journals</a>
+                                    <a href="{{ url.named('user_gallery', ['username': comment.user.lower]) }}">Gallery</a> |
+                                    <a href="{{ url.named('user_journals', ['username': comment.user.lower]) }}">Journals</a>
                                     {% if auth.isLoggedIn() %}
-                                        | <a href="/newpm/{{ comment.user.lower }}/">Note</a>
+                                        | <a href="{{ url.route(['module': 'account', 'controller': 'messages', 'action': 'compose']) }}?recipient={{ comment.user.lower }}">Send a Message</a>
                                     {% endif %}
                                 </span>
                                 

@@ -65,11 +65,12 @@
             <div class="menu-icon"></div>
 
             <ul>
-                <li class="lileft"><a class="top-heading" href="{{ url.get('browse') }}">Browse</a></li>
-                <li class="lileft"><a class="top-heading hideondesktop" href="{{ url.get('search') }}">Search</a></li>
-                <li class="lileft"><a class="top-heading" href="{{ url.get('upload') }}">Upload</a></li>
+                <li class="lileft"><a class="top-heading" href="{{ url.get('browse') }}"><i class="fa fa-th"></i> Browse</a></li>
+                <li class="lileft"><a class="top-heading hideondesktop" href="{{ url.get('search') }}"><i class="fa fa-search"></i> Search</a></li>
+                <li class="lileft"><a class="top-heading" href="{{ url.get('upload') }}"><i class="fa fa-upload"></i> Upload</a></li>
                 <li class="lileft dropdown" role="presentation">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-info-circle"></i>
                         About
                         <span class="caret"></span>
                     </a>
@@ -81,9 +82,7 @@
 
                         <li class="dropdown-header">Support</li>
                         <li><a href="{{ url.get('staff') }}">FurryDigital Staff</a></li>
-                        <li><a href="{{ url.get('tos') }}">Terms of Service</a></li>
-                        <li><a href="{{ url.get('coc') }}">Code of Conduct</a></li>
-                        <li><a href="{{ url.get('aup') }}">Upload Policy</a></li>
+                        <li><a href="{{ url.get('terms') }}">Terms / Code of Conduct</a></li>
                     </ul>
                 </li>
 
@@ -96,7 +95,7 @@
                 {% if auth.isLoggedIn() %}
                     <li role="presentation" class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="{{ url.named('user_view', ['username': user.lower]) }}" role="button" aria-haspopup="true" aria-expanded="false">
-                            <span class="hideondesktop">My App ( </span>{{ user.symbol }} {{ user.username }}<span class="hideondesktop"> )</span>
+                            {{ user.symbol }} {{ user.username }}
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
@@ -126,6 +125,7 @@
 
                     <li class="dropdown" role="presentation">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="{{ url.route(['module': 'account']) }}" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-cog"></i>
                             My Content
                             <span class="caret"></span>
                         </a>
@@ -142,14 +142,14 @@
 
                     {% if acl.isAllowed('administer all') %}
                         <li>
-                            <a class="top-heading" href="{{ url.route(['module': 'admin']) }}">Admin</a>
+                            <a class="top-heading" href="{{ url.route(['module': 'admin']) }}"><i class="fa fa-cogs"></i> Admin</a>
                         </li>
                     {% endif %}
 
                     {% if app.canSeeArt('adult', false) %}
                         <li class="no-sub sfw-toggle {% if app.getSfwCookie() %}active{% endif %}">
                             <a class="top-heading" href="?" title="Toggle to hide Mature and Adult submissions. Effective starting next page load.">
-                                <span class="hideonmobile">SFW</span>
+                                <span class="hideonmobile"><i class="fa fa-flag"></i> SFW</span>
                                 <span class="hideondesktop">Toggle SFW</span>
                             </a>
                         </li>
@@ -158,9 +158,9 @@
 
                 <li class="no-sub">
                 {% if auth.isLoggedIn() %}
-                    <a id="logout-link" class="logout-link" href="{{ url.route(['module': 'account', 'controller': 'logout', 'csrf': csrf.generate('login')]) }}">Log Out</a>
+                    <a id="logout-link" class="logout-link" href="{{ url.route(['module': 'account', 'controller': 'logout', 'csrf': csrf.generate('login')]) }}"><i class="fa fa-sign-out"></i> Log Out</a>
                 {% else %}
-                    <a href="{{ url.route(['module': 'account', 'controller': 'register']) }}">Register</a> | <a href="{{ url.route(['module': 'account', 'controller': 'login']) }}">Log in</a>
+                    <a href="{{ url.route(['module': 'account', 'controller': 'register']) }}"><i class="fa fa-asterisk"></i> Register</a> | <a href="{{ url.route(['module': 'account', 'controller': 'login']) }}"><i class="fa fa-sign-in"></i> Log in</a>
                 {% endif %}
                 </li>
 
